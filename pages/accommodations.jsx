@@ -28,8 +28,8 @@ function accommodations() {
     <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
     </Head>
-    
-      <div className="relative h-[150px] sm:h-[150px] lg:h-[150px] xl:h-[150px] 2xl:h-[150px]">
+
+      <div className="relative h-[125px] sm:h-[150px] lg:h-[150px] xl:h-[150px] 2xl:h-[150px]">
       <Image
         src="https://images.unsplash.com/photo-1529171099841-94c0c0d7a49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80"
         layout="fill"
@@ -50,8 +50,9 @@ function accommodations() {
       </div>
     </div>
     <div className='flex justify-center mt-6 '>
-      <h1 className='text-center text-3xl mx-3 text-gray-600 leading-8'>The perfect accommodations for your holidays</h1>
+      <h1 className='text-center text-2xl mx-3 my-10  text-gray-600 leading-8'>The perfect accommodations for your holidays</h1>
     </div>
+      <div className='border-b mx-5 mb-10'></div>
     <div className='flex flex-col justify-center md:flex-row'>
 
     {hotels.map((hotel) => (

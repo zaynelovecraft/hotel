@@ -14,7 +14,7 @@ function Bannertwo() {
       <div className="flex bg-cyan-600 justify-center">
         <div className="flex overflow-hidden justify-center items-center flex-col">
             <div className="flex lg:flex-row flex-col lg:mt-10 items-center justify-center">
-
+        
           <div className="relative my-4 ov rounded-lg w-[350px] h-[300px] sm:w-[600px] sm:h-[400px]">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/WhatsApp-Image-2020-04-20-at-1.10.46-PM-3.jpeg"

@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Image from 'next/image'
 import { AiOutlineHome } from '@react-icons/all-files/ai/AiOutlineHome'
 import { BsBuilding } from '@react-icons/all-files/bs/BsBuilding'
 import { BsFillPeopleFill } from '@react-icons/all-files/bs/BsFillPeopleFill'
 import { GiBed } from '@react-icons/all-files/gi/GiBed'
+import { BsFileEarmarkArrowDown } from '@react-icons/all-files/bs/BsFileEarmarkArrowDown'
+import { BsFileEarmarkArrowUp } from '@react-icons/all-files/bs/BsFileEarmarkArrowUp'
+
 function Solocien() {
     const [clicked, setClicked] = useState(false)
+    const inputRef = useRef(null)
+ 
+   const focus = () => {
+     setClicked(false)
+     inputRef.current.scrollIntoView()
+   }
   return <div>
       <div className="relative  h-[500px]">
       <Image
@@ -22,7 +31,7 @@ function Solocien() {
         <h1 className='text-2xl'>
         Sol-O-Cien Condo
         </h1>
-        <p className='my-3 text-sm mx-2'>
+        <p className='my-3 text-sm '>
         Playas de Rosarito, Predios Urbanos
         </p>
         <h1 className='flex text-xl font-bold justify-end'>
@@ -31,7 +40,7 @@ function Solocien() {
     </div>
     <div className='mx-4 text-gray-500'>
         <div className='flex mb-2 items-center'><AiOutlineHome className='text-3xl mr-2' /> <h1 className='font-light'> Entire Home</h1></div>
-        <div className='flex mb-2 items-center'><BsBuilding className='text-3xl mr-2' /> <h1 className='font-light'> Condos</h1></div>
+        <div ref={inputRef} className='flex mb-2 items-center'><BsBuilding className='text-3xl mr-2' /> <h1 className='font-light'> Condos</h1></div>
         <div className='flex mb-2 items-center'><BsFillPeopleFill className='text-3xl mr-2' /> <h1 className='font-light'> 6 Guest</h1></div>
         <div className='flex mb-2 items-center'><GiBed className='text-3xl mr-2' /> <h1 className='font-light'> 3 Bedrooms</h1></div>
     </div>
@@ -40,7 +49,7 @@ function Solocien() {
     </div>
     
     <div className='mx-8 text-gray-700 text-2xl'>
-        <h1>Listing Description</h1>
+        <h1  >Listing Description</h1>
         <h1 className='font-extralight mt-3'>Welcome</h1>
         {clicked ? (
 
@@ -134,16 +143,81 @@ Small/medium sized- well behaved dogs are welcomed (deposit/cleaning fee apply)
 <br/>
 This vacation getaway was planned with every detail in mind, just show up and relax.</p>
 
-<button onClick={()=>{setClicked(false)}} className='text-sm text-yellow-600 hover:text-yellow-800 mb-4'>View Less</button>
+<button onClick={()=>{focus()}} className='text-sm text-yellow-600 hover:text-yellow-800 mb-4'>View Less</button>
 
 </div>
         ) : (  
         <div>
             <p className='font-light text-sm leading-relaxed mt-4'>Welcome to Sol-O-Cien, your comfort is our priority, here are some helpful tips/instructions to make your visit an enjoyable experience.</p>
-            <button onClick={()=>{setClicked(true)}} className='text-sm text-yellow-600 hover:text-yellow-800 mb-4'>View More</button>
+            <button onClick={()=>{setClicked(true)}} className='text-sm text-yellow-600 hover:text-yellow-800 mb-4'>Read More</button>
         </div>
         
         )}
+        </div>
+        <div className='flex mb-3 flex-col items-center overflow-hidden justify-center'>
+        <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+          <Image
+            src='https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8831_Original-scaled.jpg'
+            className=""
+            alt="img"
+            layout="fill"
+            objectFit="cover"
+          />
+    
+        
+        </div>
+        <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+          <Image
+            src='https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8832_Original-scaled.jpg'
+            className=""
+            alt="img"
+            layout="fill"
+            objectFit="cover"
+          />
+    
+        
+        </div>
+        <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+          <Image
+            src='https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8834_Original-scaled.jpg'
+            className=""
+            alt="img"
+            layout="fill"
+            objectFit="cover"
+          />
+    
+        
+        </div>
+        <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+          <Image
+            src='https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8835_Original-scaled.jpg'
+            className=""
+            alt="img"
+            layout="fill"
+            objectFit="cover"
+          />
+    
+        
+        </div>
+        <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+          <Image
+            src='https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8839_Original-scaled.jpg'
+            className=""
+            alt="img"
+            layout="fill"
+            objectFit="cover"
+          />
+        <div className='absolute bottom-[50px] right-[100px]'>
+            <h1 className='text-white font-bold text-xl'>See All Photos + </h1>
+        </div>
+        
+        </div>
+        </div>
+        <div className='flex mx-10'>
+            <BsFileEarmarkArrowDown className='text-yellow-700 text-xl' />
+        </div>
+        <div className='flex mx-5'>
+            <BsFileEarmarkArrowUp className='text-yellow-700 text-2xl' />
         </div>
   </div>;
 }
