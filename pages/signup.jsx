@@ -67,7 +67,7 @@ const SignUp = () => {
   }, [user]);
 
   return (
-    <div className="flex justify-center h-screen overflow-hidden ">
+    <div className="flex justify-center overflow-hidden ">
       <div className="flex mt-14 flex-col justify-between max-w-lg p-3 m-auto mx-5 ms:mx-auto sm:w-96 ">
         <div className="flex justify-center pb-5 ">
           <h1 className="text-black">Sign Up</h1>
@@ -128,7 +128,7 @@ const SignUp = () => {
         
 
         <Button
-            className="mt-10 animate-bounce"
+            className="mt-10 mb-10 animate-bounce"
             variant="slim"
             type="submit"
             disabled={loading}
