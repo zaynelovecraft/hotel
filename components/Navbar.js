@@ -358,6 +358,7 @@ export default function NavBar() {
                   </Transition>
                 </>
               )}
+              {/*  */}
             </Popover>
           </Popover.Group>
           <div className="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
