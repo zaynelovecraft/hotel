@@ -13,7 +13,7 @@ function Banner() {
       <div className="absolute mt-1 top-1/3 w-full text-center">
         <p
           style={{ fontFamily: "Quintessential" }}
-          className="text-5xl sm:text-5xl md:text-6xl sm:mb-36 md:mb-26 lg:mb-56 font-black text-white "
+          className="text-5xl mx-1 sm:text-5xl md:text-6xl sm:mb-36 md:mb-26 lg:mb-56 font-black text-white "
         >
           Enjoy your holidays
         </p>
