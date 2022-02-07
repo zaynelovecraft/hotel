@@ -11,6 +11,8 @@ function Solocien() {
   const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
   const [priceInfo, setPriceInfo] = useState(false)
+  const [sleeping, setSleeping] = useState(false)
+  const [address, setAddress] = useState(false)
 
   const focus = () => {
     setClicked(false);
@@ -311,6 +313,56 @@ function Solocien() {
             <h1 className="text-sm font-semibold mb-3">Early Bird Discount:<span className="font-light"> 10% discount for bookings made 14 nights in advance</span></h1>
             <h1 className="text-sm font-semibold mb-">Extra options:<span className="font-light"> <br /> <br/> pet: $ 25 Per Guest</span></h1>
           </div>
+        )}
+        
+        <div className="border mb-10 mx-5 my-3"></div>
+      </div>
+      <div>
+        <div onClick={()=>{setSleeping(!sleeping)}} className="flex cursor-pointer items-center mx-8">
+          {sleeping ? (
+        <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+  ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
+          
+          <button className={`text-normal ${sleeping && 'text-yellow-800'} text-gray-600 font-bold`}>Sleeping Situation</button>
+        </div>
+        {sleeping && (
+          <div className="mx-3">
+            <div className="flex justify-around mb-10 mt-5">
+              <div className="border w-[75px] flex flex-col h-[100px]">
+                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">Bedroom 1</h1>
+                <h1 className="mx-1 text-sm text-gray-500">1 Queen Bed</h1>
+              </div>
+              <div className="border w-[75px] flex flex-col h-[100px]">
+                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">Bedroom 2</h1>
+                <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
+
+              </div>
+              <div className="border w-[75px] flex flex-col h-[100px]">
+                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">Bedroom 3</h1>
+                <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
+
+              </div>
+              <div className="border w-[75px] flex flex-col h-[100px]">
+                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">Bedroom 4</h1>
+                <h1 className="mx-1 text-sm text-gray-500">1 Twin bed</h1>
+
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div className="border mb-10 mx-5 my-3"></div>
+      </div>
+      <div>
+        <div onClick={()=>{setAddress(!address)}} className="flex cursor-pointer items-center mx-8">
+          {address ? (
+        <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+  ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
+          
+          <button className={`text-normal ${address && 'text-yellow-800'} text-gray-600 font-bold`}>Address</button>
+        </div>
+        {address && (
+          <div></div>
         )}
         
         <div className="border mb-10 mx-5 my-3"></div>
