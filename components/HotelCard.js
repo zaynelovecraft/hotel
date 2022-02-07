@@ -13,7 +13,8 @@ function HotelCard({hotel}) {
 
     <div className="flex md:mx-10 hover:opacity-80 hover:cursor-pointer justify-center">
       <div className="flex mt-10 overflow-hidden flex-col justify-center">
-        <div className="relative flex border w-[360px] h-[300px] lg:w-[450px] lg:h-[400px] ">
+        <div className="relative flex border border-black w-[360px] h-[300px] lg:w-[450px] lg:h-[400px] ">
+          <div style={{background: 'linear-gradient(to bottom, transparent 0%, black 300%)'}} className="absolute z-[1] w-full h-full"><h1></h1></div>
           <Image
             src={hotel.img}
             className=""
@@ -21,7 +22,7 @@ function HotelCard({hotel}) {
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute font-bold text-white left-3 bottom-3">
+          <div className="absolute z-10 font-bold text-white left-3 bottom-3">
             <h1 className="text-2xl  p-1 ">$ 400/<span className="text-xs">night</span></h1>
           </div>
         </div>
@@ -40,6 +41,7 @@ function HotelCard({hotel}) {
           </div>
           <BsHeartFill className=" text-4xl text-pink-400" />
         </div>
+      <div className="border mx-8 "></div>
       </div>
     </div>
 </a>
