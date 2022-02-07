@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { BiWater } from "@react-icons/all-files/Bi/BiWater";
-import { FaHotel } from "@react-icons/all-files/Fa/FaHotel";
-import { FaUmbrellaBeach } from "@react-icons/all-files/Fa/FaUmbrellaBeach";
+import { BiWater } from "@react-icons/all-files/bi/BiWater";
+import { FaHotel } from "@react-icons/all-files/fa/FaHotel";
+import { FaUmbrellaBeach } from "@react-icons/all-files/fa/FaUmbrella";
 
 
 function Bannertwo() {
