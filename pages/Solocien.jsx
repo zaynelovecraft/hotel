@@ -294,8 +294,24 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className="text-normal focus:text-yellow-800 text-gray-600 font-bold">Price Info</button>
+          <button className={`text-normal ${priceInfo && 'text-yellow-800'} text-gray-600 font-bold`}>Price Info</button>
         </div>
+        {priceInfo && (
+          <div className="mx-10 text-gray-600 mt-3">
+            <h1 className="text-sm font-semibold mb-3">Price per night: <span className="font-light">$ 400</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Price per night(7d+) : <span className="font-light">$ 250</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Price per night(30d+): <span className="font-light">$ 150</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Price per weekend (Friday and Saturday): <span className="font-light">$ 500</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Extra Price per Guest: <span className="font-light">$ 40</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Cleaning Fee: <span className="font-light">$ 65 Single Fee</span></h1>
+            <h1 className="text-sm font-semibold mb-3">City Tax fee: <span className="font-light">$ 3 Single Fee</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Minimum no of nights:<span className="font-light"> 1</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Allow more guest than the capacity:<span className="font-light"> yes</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Security deposit<span className="font-light"> $ 200</span></h1>
+            <h1 className="text-sm font-semibold mb-3">Early Bird Discount:<span className="font-light"> 10% discount for bookings made 14 nights in advance</span></h1>
+            <h1 className="text-sm font-semibold mb-">Extra options:<span className="font-light"> <br /> <br/> pet: $ 25 Per Guest</span></h1>
+          </div>
+        )}
         
         <div className="border mb-10 mx-5 my-3"></div>
       </div>
