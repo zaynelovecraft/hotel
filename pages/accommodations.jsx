@@ -28,6 +28,7 @@ function accommodations() {
     <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
     </Head>
+    
       <div className="relative h-[150px] sm:h-[150px] lg:h-[150px] xl:h-[150px] 2xl:h-[150px]">
       <Image
         src="https://images.unsplash.com/photo-1529171099841-94c0c0d7a49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80"
@@ -39,7 +40,7 @@ function accommodations() {
       <div className="absolute mt-1 lg:mt-0 top-1/3 w-full text-center">
         <p
           style={{ fontFamily: "Quintessential" }}
-          className="text-2xl mx-1 sm:text-5xl md:text-6xl sm:mb-36 md:mb-26 lg:mb-20  font-black text-white "
+          className="text-4xl mx-1 sm:text-5xl md:text-6xl sm:mb-36 md:mb-26 lg:mb-20  font-black text-white "
         >
           Accommodations
         </p>

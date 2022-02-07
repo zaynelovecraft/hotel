@@ -60,7 +60,7 @@ const SignIn = () => {
 
   if (!user)
     return (
-      <div className=" flex justify-center overflow-hidden h-screen">
+      <div className=" flex justify-center overflow-hidden">
         <div className=" mt-14 flex flex-col justify-between max-w-lg p-3 m-auto mx-5 ms:mx-auto sm:w-96">
           <div className="flex justify-center pb-5">
             <h1 className="text-black">Sign In</h1>
@@ -172,7 +172,7 @@ const SignIn = () => {
             ></div>
           </div>
           <Button
-            className="animate-bounce"
+            className="animate-bounce mb-20"
             variant="slim"
             type="submit"
             disabled={loading}
