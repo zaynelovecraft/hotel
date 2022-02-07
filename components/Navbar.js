@@ -36,14 +36,14 @@ import { MdLocalHotel } from "@react-icons/all-files/md/MdLocalHotel";
 const solutions = [
   {
     name: "Home",
-    description: "Explore our most recent collections and new arrivals!",
+    description: "Explore our most recent accommodations and new arrivals!",
     href: "/",
     icon: BiHomeHeart,
   },
   {
     name: "Accomodations",
-    description: "Search a well organized page of all our inventory",
-    href: "/underwork",
+    description: "Search for your dream vacation away from home",
+    href: "/accommodations",
     icon: MdLocalHotel,
   },
   {
