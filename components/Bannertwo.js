@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { BiWater } from "@react-icons/all-files/bi/BiWater";
+import { GiWaveCrest } from "@react-icons/all-files/gi/GiWaveCrest";
 import { FaHotel } from "@react-icons/all-files/fa/FaHotel";
-import { FaUmbrellaBeach } from "@react-icons/all-files/fa/FaUmbrellaBeach.esm";
+import { GiPalmTree } from "@react-icons/all-files/gi/GiPalmTree";
+
 
 
 
@@ -48,13 +49,13 @@ function Bannertwo() {
 
           <div className="flex m-3 sm:mb-10  flex-row">
             <div className="rounded-full m-3 p-3 bg-cyan-500">
-              <BiWater className=" text-white sm:p-2  sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
+              <GiWaveCrest className=" text-white sm:p-2  sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
             </div>
             <div className="rounded-full m-3 p-3 bg-cyan-500">
               <FaHotel className=" text-white sm:p-2 sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
             </div>
             <div className="rounded-full m-3 p-3 bg-cyan-500">
-              <FaUmbrellaBeach className=" text-white sm:p-2 sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
+              <GiPalmTree className=" text-white sm:p-2 sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
             </div>
           </div>
         </div>
