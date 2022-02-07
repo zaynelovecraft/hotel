@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BiWater } from "@react-icons/all-files/bi/BiWater";
 import { FaHotel } from "@react-icons/all-files/fa/FaHotel";
 import { FaUmbrellaBeach } from "@react-icons/all-files/fa/FaUmbrella";
+import { IconContext } from "react-icons"
 
 
 function Bannertwo() {

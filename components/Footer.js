@@ -5,9 +5,10 @@ import tail from "./icons/tailwind-css-logo-vector.png";
 import ver from "./icons/vercel.png";
 import supa from "./icons/supabase-logo-vector.png";
 import { AiOutlineGithub } from "@react-icons/all-files/ai/AiOutlineGithub";
-import { AiFillFacebook } from "@react-icons/all-files/Ai/AiFillFacebook";
+import { AiFillFacebook } from "@react-icons/all-files/ai/AiFillFacebook";
 import { GrInstagram } from "@react-icons/all-files/gr/GrInstagram";
 import Link from "next/link";
+import { IconContext } from "react-icons"
 
 const navigation = [
   { name: "About", href: "/underwork" },
