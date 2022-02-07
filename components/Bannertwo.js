@@ -3,7 +3,8 @@ import Image from "next/image";
 import { BiWater } from "@react-icons/all-files/Bi/BiWater";
 import { FaHotel } from "@react-icons/all-files/Fa/FaHotel";
 import { FaUmbrellaBeach } from "@react-icons/all-files/Fa/FaUmbrellaBeach";
-import { GiPalmTree } from "@react-icons/all-files/Gi/GiPalmTree";
+
+
 function Bannertwo() {
   return (
     <div>
