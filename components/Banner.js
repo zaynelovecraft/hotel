@@ -8,6 +8,7 @@ function Banner() {
         layout="fill"
         objectFit="cover"
         alt="img"
+        priority
       />
       <div className="absolute mt-1 top-1/3 w-full text-center">
         <p
