@@ -1,0 +1,20 @@
+.root {
+    @apply sticky top-0 bg-black z-40 transition-all duration-150;
+  }
+  
+  .link {
+    @apply inline-flex lg:text-black items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-white rounded-md p-1;
+  }
+  
+  .link:hover {
+    @apply text-gray-400;
+  }
+  
+  .link:focus {
+    @apply outline-none text-cyan-500 ring-2 ring-cyan-500 ring-opacity-50;
+  }
+  
+  .logo {
+    @apply cursor-pointer rounded-full transform duration-100 ease-in-out;
+  }
+  
