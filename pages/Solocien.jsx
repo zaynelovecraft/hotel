@@ -34,26 +34,29 @@ function Solocien() {
   function Modal({ children, shown, close }) {
     return shown ? (
       <div
-        className=" fixed z-20 bg-black  w-full h-screen "
+        className=" fixed z-20  bg-black  w-full h-screen "
         onClick={() => {
           // close modal when outside of modal is clicked
           close();
         }}
       >
         <div
-          className="relative mt-5"
+          className=""
           onClick={(e) => {
             // do not close modal if anything inside modal content is clicked
             e.stopPropagation();
           }}
         >
           <button
-            className="text-white border text-1xl font-bold shadow-lg border-white rounded-lg px-2 border-2 ml-4 "
+            className="text-white text-1xl z-30 font-bold shadow-lg border-white rounded-lg px-2 border-2 ml-4 "
             onClick={close}
           >
             X
           </button>
+          
+
           {children}
+         
         </div>
       </div>
     ) : null;
@@ -592,8 +595,8 @@ function Solocien() {
       </div>
       <div onClick={() => {
           toggleModal(!modalShown);
-        }} className="flex mb-3 flex-col align-middle sm:flex-row items-center overflow-hidden justify-center">
-        <div className="cursor-pointer">
+        }} className="flex cursor-pointer mb-3 flex-col align-middle sm:flex-row items-center overflow-hidden justify-center">
+        <div className="">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8840_Original-scaled.jpg"
