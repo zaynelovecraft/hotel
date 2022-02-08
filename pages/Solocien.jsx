@@ -262,9 +262,9 @@ function Solocien() {
           </div>
         )}
       </div>
-      <div className="flex mb-10 mt-10 justify-center">
+      <div className="flex mb-6 mt-6 justify-center">
 
-      <div className=" flex overflow-hidden w-[500px] mb-10 h-[300px] justify-center">
+      <div className=" flex overflow-hidden w-[500px] mb-10 h-[310px] justify-center">
         
        <DateRange
         style={{width: '100vw', height: '100%', maxWidth: '350px',   }}
