@@ -34,7 +34,7 @@ function Solocien() {
   function Modal({ children, shown, close }) {
     return shown ? (
       <div
-        className=" fixed z-20  w-full h-screen "
+        className=" fixed z-20 bg-black  w-full h-screen "
         onClick={() => {
           // close modal when outside of modal is clicked
           close();
@@ -658,7 +658,7 @@ function Solocien() {
               layout="fill"
               objectFit="cover"
             />
-            <div className="absolute bottom-[50px] z-20 right-[100px]">
+            <div className="absolute bottom-[50px] z-[1] right-[100px]">
               <h1 className="text-white font-bold text-xl">
                 See All Photos +{" "}
               </h1>
