@@ -94,7 +94,7 @@ function Solocien() {
       >
         <section className="">
           <Carousel className="">
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[300px] h-screen">
               <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1230-Copy.jpg"
                 className=""
