@@ -10,6 +10,9 @@ import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
 import Link from 'next/link'
 import Mapp from '../components/Mapp'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css';
+import { DateRange } from 'react-date-range';
 
 function Solocien() {
   const [clicked, setClicked] = useState(false);
@@ -20,6 +23,19 @@ function Solocien() {
   const [details, setDetails] = useState(false)
   const [features, setFeatures] = useState(false)
   const [terms, setTerms] = useState(false)
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
 
   const focus = () => {
     setClicked(false);
@@ -245,6 +261,20 @@ function Solocien() {
             </button>
           </div>
         )}
+      </div>
+      <div className="flex mb-10 mt-10 justify-center">
+
+      <div className=" flex overflow-hidden w-[500px] mb-10 h-[300px] justify-center">
+        
+       <DateRange
+        style={{width: '100vw', height: '100%', maxWidth: '350px',   }}
+        ranges={[selectionRange]}
+          // disabledDates={[new Date(ree)]}
+          minDate={new Date()}
+          onChange={handleSelect}
+          rangeColors={['#03cffc']}
+       /> 
+      </div>
       </div>
       <div className="flex mb-3 flex-col items-center overflow-hidden justify-center">
         <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -568,7 +598,7 @@ function Solocien() {
       </div>
       <div className="flex justify-center items-center overflow-hidden">
 
-      <section className="w-[400px]  h-[300px]">
+      <section className="w-[450px]  h-[450px]">
         <Mapp />
       </section>
       </div>
