@@ -9,6 +9,8 @@ import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArr
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
 import Link from 'next/link'
+import Mapp from '../components/Mapp'
+
 function Solocien() {
   const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
@@ -528,6 +530,14 @@ function Solocien() {
                   <MdDoNotDisturb className="text-red-600 mr-3" />
                   <h1 className="line-through">Smoking Allowed</h1>
                 </div> 
+            <div className="flex mb-2 items-center">
+                  <MdDoNotDisturb className="text-red-600 mr-3" />
+                  <h1 className="line-through">Vaping</h1>
+                </div> 
+            <div className="flex mb-2 items-center">
+                  <MdDoNotDisturb className="text-red-600 mr-3" />
+                  <h1 className="line-through">Drugs</h1>
+                </div> 
           </div>
         )}
         
@@ -555,6 +565,12 @@ function Solocien() {
           </Link>
         </div>
         </div>
+      </div>
+      <div className="flex justify-center overflow-hidden">
+
+      <section className="w-[400px] overflow-hidden h-[400px]">
+        <Mapp />
+      </section>
       </div>
     </div>
   );
