@@ -566,9 +566,9 @@ function Solocien() {
         </div>
         </div>
       </div>
-      <div className="flex justify-center overflow-hidden">
+      <div className="flex justify-center items-center overflow-hidden">
 
-      <section className="w-[450px] overflow-hidden h-[400px]">
+      <section className="w-[400px]  h-[300px]">
         <Mapp />
       </section>
       </div>

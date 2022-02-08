@@ -1,21 +1,42 @@
-import React from "react";
-import Map from "react-map-gl";
+import React, { useState } from "react";
+import Map, { Marker } from "react-map-gl";
+import Head from 'next/head'
 
 function Mapp() {
-  return (
-    <Map
+  const [viewstate, setViewstate] = useState({
+    width: "100vw",
+    height: "100vh",
+    longitude: -117.055626,
+    latitude: 32.3648126,
+    zoom: 12,
+  });
 
-    initialViewState={{
-      longitude: -117.055626,
-      latitude: 32.3648126,
-      zoom: 13
+  return (
+    
+    <Map
+      {...viewstate}
+      mapStyle="mapbox://styles/zayne/ckzdejant000514o7hlq87x99"
+      mapboxAccessToken={process.env.mapbox_key}
+      onMove={(evt) => setViewstate(evt.viewState)}
       
-    }}
-    style={{width: '100%', height: '100%'}}
-    mapStyle="mapbox://styles/zayne/ckzdejant000514o7hlq87x99"
-    mapboxAccessToken={process.env.mapbox_key}
-    />
-  )
+    >
+      <Head>
+      <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet"/>
+
+      </Head>
+      <Marker
+        longitude={-117.055626}
+        latitude={32.3648126}
+        anchor="center"
+        
+     
+>
+
+</Marker>
+        
+   
+    </Map>
+  );
 }
 
 export default Mapp;
