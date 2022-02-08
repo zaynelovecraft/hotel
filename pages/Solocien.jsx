@@ -48,7 +48,7 @@ function Solocien() {
           }}
         >
           <button
-            className="text-black border text-1xl font-bold shadow-lg border-black rounded-lg px-2 border-2 ml-4 "
+            className="text-white border text-1xl font-bold shadow-lg border-white rounded-lg px-2 border-2 ml-4 "
             onClick={close}
           >
             X
@@ -344,7 +344,7 @@ function Solocien() {
         onClick={() => {
           toggleModal(!modalShown);
         }}
-        className="relative  h-[500px]"
+        className="relative cursor-pointer  h-[500px]"
       >
         <div
           style={{
