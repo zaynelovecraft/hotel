@@ -8,11 +8,13 @@ import { BsFileEarmarkArrowDown } from "@react-icons/all-files/bs/BsFileEarmarkA
 import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArrowUp";
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
+import { IoMdPhotos } from "@react-icons/all-files/io/IoMdPhotos";
 import Link from 'next/link'
 import Mapp from '../components/Mapp'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
+import Head from 'next/head'
 
 function Solocien() {
   const [clicked, setClicked] = useState(false);
@@ -43,6 +45,10 @@ function Solocien() {
   };
   return (
     <div>
+      <Head>
+      <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
+      </Head>
       <div className="relative  h-[500px]">
         <div
           style={{
@@ -262,12 +268,17 @@ function Solocien() {
           </div>
         )}
       </div>
-      <div className="flex mb-6 mt-6 justify-center">
-
-      <div className=" flex overflow-hidden w-[500px] mb-10 h-[310px] justify-center">
+                <div className="flex flex-col mt-4 items-center justify-center">
+                  <h1 className="font-extralight text-2xl">Availability</h1>
+                </div>
+                  <div className="border-gray-300 border-b mx-24 mb-2">
+                    
+                  </div>
+      <div className="flex mb-6 mt-2 justify-center">
+      <div className=" flex overflow-hidden w-[500px] mb-2 h-[310px] justify-center">
         
        <DateRange
-        style={{width: '100vw', height: '100%', maxWidth: '350px',   }}
+        style={{width: '100vw', height: '100%', maxWidth: '400px',   }}
         ranges={[selectionRange]}
           // disabledDates={[new Date(ree)]}
           minDate={new Date()}
@@ -276,6 +287,14 @@ function Solocien() {
        /> 
       </div>
       </div>
+      <div className="border-gray-300 border-b mx-6 mb-6">
+                    
+                  </div>
+                  <div className="flex mb-1 mt-8 items-center justify-center">
+                    
+                    <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
+                    <h1 className="text-xl text-gray-500" style={{ fontFamily: "Quintessential" }}>Photos</h1>
+                  </div>
       <div className="flex mb-3 flex-col items-center overflow-hidden justify-center">
         <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
           <Image
@@ -314,6 +333,15 @@ function Solocien() {
           />
         </div>
         <div className="relative mb-10 hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
+        <div
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, black 200%)",
+          }}
+          className="absolute z-[1] w-full h-full"
+        >
+          <h1></h1>
+        </div>
           <Image
             src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8839_Original-scaled.jpg"
             className=""
@@ -321,7 +349,7 @@ function Solocien() {
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute bottom-[50px] right-[100px]">
+          <div className="absolute bottom-[50px] z-20 right-[100px]">
             <h1 className="text-white font-bold text-xl">See All Photos + </h1>
           </div>
         </div>
@@ -333,7 +361,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`${priceInfo ? 'text-yellow-800' : 'text-gray-600'} text-normal font-bold`}>Price Info</button>
+          <button className={`${priceInfo ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 text-normal font-bold`}>Price Info</button>
         </div>
         {priceInfo && (
           <div className="mx-10 text-gray-600 mt-3">
@@ -360,7 +388,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`text-normal ${sleeping ? 'text-yellow-800' : 'text-gray-600'} font-bold`}>Sleeping Situation</button>
+          <button className={`text-normal ${sleeping ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 font-bold`}>Sleeping Situation</button>
         </div>
         {sleeping && (
           <div className="mx-3">
@@ -396,7 +424,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`text-normal ${address ? 'text-yellow-800' : 'text-gray-600'} font-bold`}>Address</button>
+          <button className={`text-normal ${address ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 font-bold`}>Address</button>
         </div>
         {address && (
           <div>
@@ -421,7 +449,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`text-normal ${details ? 'text-yellow-800' : 'text-gray-600'} font-bold`}>Details</button>
+          <button className={`text-normal ${details ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 font-bold`}>Details</button>
         </div>
         {details && (
           <div>
@@ -446,7 +474,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`text-normal ${features ? 'text-yellow-800' : 'text-gray-600'} font-bold`}>Features</button>
+          <button className={`text-normal ${features ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 font-bold`}>Features</button>
         </div>
         {features && (
           <div>
@@ -540,7 +568,7 @@ function Solocien() {
         <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
   ) : (<BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />)}
           
-          <button className={`text-normal ${terms ? 'text-yellow-800' : 'text-gray-600'} font-bold`}>Terms and Conditions</button>
+          <button className={`text-normal ${terms ? 'text-yellow-800' : 'text-gray-600'} hover:text-yellow-600 font-bold`}>Terms and Conditions</button>
         </div>
         {terms && (
           <div className="mx-10 text-gray-600 mt-3">
@@ -596,9 +624,9 @@ function Solocien() {
         </div>
         </div>
       </div>
-      <div className="flex justify-center items-center overflow-hidden">
+      <div className="flex justify-center bg-gray-800 items-center overflow-hidden">
 
-      <section className="w-[450px]  h-[450px]">
+      <section className="w-[600px]  h-[450px]">
         <Mapp />
       </section>
       </div>
