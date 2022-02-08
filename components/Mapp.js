@@ -8,12 +8,12 @@ function Mapp() {
     initialViewState={{
       longitude: -117.055626,
       latitude: 32.3648126,
-      zoom: 14
+      zoom: 13
       
     }}
     style={{width: '100%', height: '100%'}}
     mapStyle="mapbox://styles/zayne/ckzdejant000514o7hlq87x99"
-    mapboxAccessToken="pk.eyJ1IjoiemF5bmUiLCJhIjoiY2t6ZGVlN3psMnhhNTJvbXpsMWNzeWd4NCJ9.IAVrOei3t_0Kzs21XA4Gxw"
+    mapboxAccessToken={process.env.mapbox_key}
     />
   )
 }

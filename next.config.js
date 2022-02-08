@@ -6,6 +6,7 @@ module.exports = {
   env: {
     SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN,
     SHOPIFY_STOREFRONT_ACCESSTOKEN: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
+    mapbox_key: 'pk.eyJ1IjoiemF5bmUiLCJhIjoiY2t6ZGVlN3psMnhhNTJvbXpsMWNzeWd4NCJ9.IAVrOei3t_0Kzs21XA4Gxw'
     
   },
   images: {
