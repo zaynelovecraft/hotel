@@ -593,7 +593,7 @@ function Solocien() {
       <div onClick={() => {
           toggleModal(!modalShown);
         }} className="flex mb-3 flex-col align-middle sm:flex-row items-center overflow-hidden justify-center">
-        <div className="">
+        <div className="cursor-pointer">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8840_Original-scaled.jpg"
