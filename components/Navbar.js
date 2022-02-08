@@ -128,7 +128,7 @@ export default function NavBar() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" passHref>
               <a className="cursor-pointer">
-                <div className="relative w-[60px] h-[60px]">
+                <div className="relative w-[40px] h-[40px]">
 
                 <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-amarillo.png"
@@ -152,7 +152,7 @@ export default function NavBar() {
               <MiniCart user={user} cart={cart} />
             </div> */}
             <div className="-mr-2 flex items-center -my-2 lg:hidden">
-              <Popover.Button className="bg-gray-600  rounded-md p-2 inline-flex items-center justify-center text-white hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-inset focus:text-white focus:ring-white">
+              <Popover.Button className="bg-gray-600  rounded-md p-1 inline-flex items-center justify-center text-white hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-inset focus:text-white focus:ring-white">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
               </Popover.Button>
