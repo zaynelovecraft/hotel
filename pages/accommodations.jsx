@@ -29,7 +29,21 @@ function accommodations() {
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
     </Head>
 
+      
+
+<div>
+  
+
       <div className="relative h-[125px] sm:h-[150px] lg:h-[150px] xl:h-[150px] 2xl:h-[150px]">
+      <div
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, black 400%)",
+          }}
+          className="absolute z-[1] w-full h-full"
+        >
+          <h1></h1>
+        </div>
       <Image
         src="https://images.unsplash.com/photo-1529171099841-94c0c0d7a49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80"
         layout="fill"
@@ -49,6 +63,7 @@ function accommodations() {
         {/* <button className='text-purple-500 bg-white px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transition duration-150'>I am flexible!</button> */}
       </div>
     </div>
+</div>
     <div className='flex justify-center mt-6 '>
       <h1 className='text-center text-2xl mx-3 my-10  text-gray-600 leading-8'>The perfect accommodations for your holidays</h1>
     </div>

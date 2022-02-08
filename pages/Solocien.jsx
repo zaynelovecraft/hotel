@@ -8,7 +8,7 @@ import { BsFileEarmarkArrowDown } from "@react-icons/all-files/bs/BsFileEarmarkA
 import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArrowUp";
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
-
+import Link from 'next/link'
 function Solocien() {
   const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
@@ -534,7 +534,28 @@ function Solocien() {
         <div className="border mb-10 mx-5 my-3"></div>
       </div>
      
-      
+      <div className=" bg-cyan-500">
+        <div className="mx-10 flex justify-around items-center">
+        <div className="relative my-4 border-4  rounded-full sm:w-[350px] sm:h-[350px]  w-[150px] h-[150px]">
+          <Image
+            src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-blanco-232x300.png"
+            className="rounded-2xl justify-center"
+            alt="img"
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+
+        <div>
+          <Link href="/contact">
+          <a>
+
+          <button className="p-4 text-white shadow-lg font-bold hover:text-black hover:bg-cyan-300 rounded-3xl text-blue cursor-pointer bg-cyan-400">Contact the <br/>Owner</button>
+          </a>
+          </Link>
+        </div>
+        </div>
+      </div>
     </div>
   );
 }
