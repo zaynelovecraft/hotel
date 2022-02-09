@@ -3,27 +3,54 @@ import Image from "next/image";
 import { GiWaveCrest } from "@react-icons/all-files/gi/GiWaveCrest";
 import { FaHotel } from "@react-icons/all-files/fa/FaHotel";
 import { GiPalmTree } from "@react-icons/all-files/gi/GiPalmTree";
-
-
+import Link from 'next/link'
 
 
 
 function Bannertwo() {
+
+
+  const cardsData = [
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8841_Original-scaled.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1261-Copy-2.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1233-Copy-2.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1236-Copy-2.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1256-Copy.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1257-Copy.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1215-Copy.jpg',
+      title: 'Sol O Cien Condo'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1221-Copy.jpg',
+      title: 'Sol O Cien Condo'
+    },
+  ]
+
+
   return (
-    <div>
-      <div className="flex bg-cyan-600 justify-center">
-        <div className="flex overflow-hidden justify-center items-center flex-col">
+    <div className="">
+      <div className=" bg-cyan-600">
             <div className="flex lg:flex-row flex-col lg:mt-10 items-center justify-center">
-        
-          <div className="relative my-4 ov rounded-lg w-[350px] h-[300px] sm:w-[600px] sm:h-[400px]">
-            <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/WhatsApp-Image-2020-04-20-at-1.10.46-PM-3.jpeg"
-              className="rounded-2xl"
-              alt="img"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
+         
           <div className="relative my-4 rounded-lg sm:w-[350px] sm:h-[350px] md:w-[350px] md:h-[250px] w-[250px] h-[250px]">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-blanco-232x300.png"
@@ -34,6 +61,35 @@ function Bannertwo() {
             />
           </div>
             </div>
+        <div className="">
+          <section className="mx-5">
+            <div className="flex scrollbar-hide space-x-3 p-3 -ml-3 overflow-scroll">
+
+          {cardsData?.map(item => (
+            <Link href="/accommodations">
+            <a>
+
+            <div className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105" key={item.title}>
+             <div className="relative mr-10 h-80 w-80">
+               <Image src={item.img} className="rounded-xl " objectFit="cover" layout="fill" /> 
+
+             </div>
+             <div className="flex items-center justify-between" >
+
+             <h3 className="text-2xl text-white mt-1">{item.title}</h3>
+             <button className="mr-14 text-white border rounded-xl  px-2 shadow-lg hover:bg-cyan-300">Book Now!</button>
+             </div>
+            </div>
+            
+            </a>
+            </Link>
+            
+          ))}
+            </div>
+          </section>
+
+<div className="pb-10">
+
           <div className="flex sm:text-2xl sm:mx-10 lg:mx-36 text-center m-3">
             <p style={{ fontFamily: "Open Sans" }} className="text-white">
               Sol-O-Cien was designed with your comfort in mind. We created a
@@ -47,7 +103,7 @@ function Bannertwo() {
             </p>
           </div>
 
-          <div className="flex m-3 sm:mb-10  flex-row">
+          <div className="flex justify-center   flex-row">
             <div className="rounded-full m-3 p-3 bg-cyan-500">
               <GiWaveCrest className=" text-white sm:p-2  sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
             </div>
@@ -58,6 +114,7 @@ function Bannertwo() {
               <GiPalmTree className=" text-white sm:p-2 sm:w-[100px] sm:h-[100px] w-[35px] h-[35px]" />
             </div>
           </div>
+</div>
         </div>
       </div>
       <div className="flex flex-col text-center bg-pink-700 justify-center">
