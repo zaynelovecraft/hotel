@@ -17,8 +17,19 @@ import { DateRange } from "react-date-range";
 import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import Calendi from "../components/Calendi";
 
-function Solocien() {
+export async function getServerSideProps() {
+  const response = await fetch("http://localhost:3000/api/hotel");
+  const data = await response.json();
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
+
+
+function Solocien({data}) {
   const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
   const [priceInfo, setPriceInfo] = useState(false);
@@ -30,28 +41,34 @@ function Solocien() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [modalShown, toggleModal] = useState(false);
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([])
   console.log("start", startDate);
   console.log("end", endDate);
-  
+  console.log("hiii",datesarray)
+  const [rerender, setRerender] = useState(false);
 
-  useEffect(async () => {
+  useEffect(()=>{
+  
+      
+      setRerender(!rerender);
+  }, [datesarray]);
+  // useEffect(async () => {
     
-      const response = await fetch("/api/hotel");
-      const data = await response.json();
-      setData(data);
-      // console.log(data[0].start.date)
-      // console.log(data[1].start.date)
-      // console.log(data[2].start.date)
+  //     const response = await fetch("/api/hotel");
+  //     const data = await response.json();
+  //     setData(data);
+  //     // console.log(data[0].start.date)
+  //     // console.log(data[1].start.date)
+  //     // console.log(data[2].start.date)
      
 
     
     
-  }, []);
+  // }, []);
   useEffect(async () => {
       getdates()
-  }, [data])
+  }, [data, datesarray])
 
   const getdates = () => {
     let dates = []
@@ -618,7 +635,8 @@ function Solocien() {
         <h1 className="font-extralight text-2xl">Availability</h1>
       </div>
       <div className="border-gray-300 border-b mx-24 mb-2"></div>
-      
+     
+    
       <div className="flex mb-6 mt-2 justify-center">
         <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
           <DateRange
@@ -635,6 +653,8 @@ function Solocien() {
           />
         </div>
       </div>
+    
+     
       <div className="border-gray-300 border-b mx-24 mb-6"></div>
       <div className="flex mb-1 mt-8 items-center justify-center">
         <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
