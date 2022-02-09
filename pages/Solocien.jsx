@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { AiOutlineHome } from "@react-icons/all-files/ai/AiOutlineHome";
 import { BsBuilding } from "@react-icons/all-files/bs/BsBuilding";
@@ -30,6 +30,53 @@ function Solocien() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [modalShown, toggleModal] = useState(false);
+  const [data, setData] = useState();
+  const [datesarray, setDatesarray] = useState([])
+  console.log("start", startDate);
+  console.log("end", endDate);
+  
+
+  useEffect(async () => {
+    
+      const response = await fetch("/api/hotel");
+      const data = await response.json();
+      setData(data);
+      // console.log(data[0].start.date)
+      // console.log(data[1].start.date)
+      // console.log(data[2].start.date)
+     
+
+    
+    
+  }, []);
+  useEffect(async () => {
+      getdates()
+  }, [data])
+
+  const getdates = () => {
+    let dates = []
+    for(let i = 0; i < data?.length; i ++) {
+     dates.push(data[i].start.date)
+    }
+   
+    for(let i = 0; i < dates.length; i ++) {
+
+
+      
+
+      const added = dates[i].concat('T03:24:00')
+      
+      datesarray.push(added)
+      
+      // const datesjon = JSON.stringify(dates[i]);
+      // const added = datesjon.concat('T03:24:00')
+      // console.log(added)
+      // console.log(dates[i])
+      // dates[i].append('')
+    } 
+    
+    
+  }
 
   function Modal({ children, shown, close }) {
     return shown ? (
@@ -571,8 +618,9 @@ function Solocien() {
         <h1 className="font-extralight text-2xl">Availability</h1>
       </div>
       <div className="border-gray-300 border-b mx-24 mb-2"></div>
+      
       <div className="flex mb-6 mt-2 justify-center">
-        <div className=" flex overflow-hidden w-[700px] mb-2 h-[300px] justify-center">
+        <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
           <DateRange
             style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
             ranges={[selectionRange]}
@@ -580,6 +628,10 @@ function Solocien() {
             minDate={new Date()}
             onChange={handleSelect}
             rangeColors={["#03cffc"]}
+
+            disabledDates={datesarray.map((e) => (
+              new Date(e)
+            ))}
           />
         </div>
       </div>
