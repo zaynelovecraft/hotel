@@ -52,7 +52,7 @@ const hi = [
   return (
     <div className="">
       <div className=" bg-cyan-600">
-            <div className="flex lg:flex-row flex-col lg:mt-10 items-center justify-center">
+            <div className="flex lg:flex-row flex-col items-center justify-center">
          
           <div className="relative my-4 rounded-lg sm:w-[350px] sm:h-[350px] md:w-[350px] md:h-[250px] w-[250px] h-[250px]">
             <Image
@@ -65,7 +65,7 @@ const hi = [
           </div>
             </div>
         <div className="">
-          <section className="mx-5">
+          <section className=" mx-auto max-w-5xl ">
             <div className="flex scrollbar-hide space-x-3 p-3 -ml-3 overflow-scroll">
 
           {cardsData?.map(item => (
@@ -93,7 +93,7 @@ const hi = [
 
 <div className="pb-10">
 
-          <div className="flex sm:text-2xl sm:mx-10 lg:mx-36 text-center m-3">
+          <div className="flex mb-10 sm:text-2xl sm:mx-10 lg:mx-36 text-center m-3">
             <p style={{ fontFamily: "Open Sans" }} className="text-white">
               Sol-O-Cien was designed with your comfort in mind. We created a
               place like no other in the area. This is a Rustic-Mexican-Nautical
