@@ -47,13 +47,13 @@ function Solocien({data}) {
   console.log("start", startDate);
   console.log("end", endDate);
   console.log("hiii",datesarray)
-  const [rerender, setRerender] = useState(false);
+  // const [rerender, setRerender] = useState(false);
 
-  useEffect(()=>{
+  // useEffect(()=>{
   
       
-      setRerender(!rerender);
-  }, [datesarray]);
+  //     setRerender(!rerender);
+  // }, [datesarray]);
   // useEffect(async () => {
     
   //     const response = await fetch("/api/hotel");
@@ -69,7 +69,7 @@ function Solocien({data}) {
   // }, []);
   useEffect(async () => {
       getdates()
-  }, [data, datesarray])
+  }, [])
 
   const getdates = () => {
     let dates = []
