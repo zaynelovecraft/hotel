@@ -19,18 +19,17 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Calendi from "../components/Calendi";
 
-export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/hotel");
-  const data = await response.json();
+// export async function getServerSideProps() {
+//   const response = await fetch("/api/hotel");
+//   const data = await response.json();
 
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
-}
-// 
+//   return {
+//     props: { data }, // will be passed to the page component as props
+//   };
+// }
+//
 
-
-function Solocien({data}) {
+function Solocien() {
   const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
   const [priceInfo, setPriceInfo] = useState(false);
@@ -42,59 +41,50 @@ function Solocien({data}) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [modalShown, toggleModal] = useState(false);
-  // const [data, setData] = useState();
-  const [datesarray, setDatesarray] = useState([])
+  const [data, setData] = useState();
+  const [datesarray, setDatesarray] = useState([]);
   console.log("start", startDate);
   console.log("end", endDate);
-  console.log("hiii",datesarray)
-  // const [rerender, setRerender] = useState(false);
+  console.log("hiii", datesarray);
+  const [rerender, setRerender] = useState(false);
 
-  // useEffect(()=>{
-  
-      
-  //     setRerender(!rerender);
-  // }, [datesarray]);
-  // useEffect(async () => {
-    
-  //     const response = await fetch("/api/hotel");
-  //     const data = await response.json();
-  //     setData(data);
-  //     // console.log(data[0].start.date)
-  //     // console.log(data[1].start.date)
-  //     // console.log(data[2].start.date)
-     
+  useEffect(()=>{
 
-    
-    
-  // }, []);
+      setRerender(!rerender);
+  }, [data]);
+
   useEffect(async () => {
-      getdates()
-  }, [])
+
+      const response = await fetch("/api/hotel");
+      const data = await response.json();
+      setData(data);
+      // console.log(data[0].start.date)
+      // console.log(data[1].start.date)
+      // console.log(data[2].start.date)
+
+  }, []);
+  useEffect(async () => {
+    getdates();
+  }, [data]);
 
   const getdates = () => {
-    let dates = []
-    for(let i = 0; i < data?.length; i ++) {
-     dates.push(data[i].start.date)
+    let dates = [];
+    for (let i = 0; i < data?.length; i++) {
+      dates.push(data[i].start.date);
     }
-   
-    for(let i = 0; i < dates.length; i ++) {
 
+    for (let i = 0; i < dates.length; i++) {
+      const added = dates[i].concat("T03:24:00");
 
-      
+      datesarray.push(added);
 
-      const added = dates[i].concat('T03:24:00')
-      
-      datesarray.push(added)
-      
       // const datesjon = JSON.stringify(dates[i]);
       // const added = datesjon.concat('T03:24:00')
       // console.log(added)
       // console.log(dates[i])
       // dates[i].append('')
-    } 
-    
-    
-  }
+    }
+  };
 
   function Modal({ children, shown, close }) {
     return shown ? (
@@ -118,10 +108,8 @@ function Solocien({data}) {
           >
             X
           </button>
-          
 
           {children}
-         
         </div>
       </div>
     ) : null;
@@ -636,8 +624,7 @@ function Solocien({data}) {
         <h1 className="font-extralight text-2xl">Availability</h1>
       </div>
       <div className="border-gray-300 border-b mx-24 mb-2"></div>
-     
-    
+
       <div className="flex mb-6 mt-2 justify-center">
         <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
           <DateRange
@@ -647,15 +634,11 @@ function Solocien({data}) {
             minDate={new Date()}
             onChange={handleSelect}
             rangeColors={["#03cffc"]}
-
-            disabledDates={datesarray.map((e) => (
-              new Date(e)
-            ))}
+            disabledDates={datesarray.map((e) => new Date(e))}
           />
         </div>
       </div>
-    
-     
+
       <div className="border-gray-300 border-b mx-24 mb-6"></div>
       <div className="flex mb-1 mt-8 items-center justify-center">
         <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
@@ -666,9 +649,12 @@ function Solocien({data}) {
           Photos
         </h1>
       </div>
-      <div onClick={() => {
+      <div
+        onClick={() => {
           toggleModal(!modalShown);
-        }} className="flex cursor-pointer mb-3 flex-col align-middle sm:flex-row items-center overflow-hidden justify-center">
+        }}
+        className="flex cursor-pointer mb-3 flex-col align-middle sm:flex-row items-center overflow-hidden justify-center"
+      >
         <div className="">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
