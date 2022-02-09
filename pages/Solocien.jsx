@@ -27,6 +27,7 @@ export async function getServerSideProps() {
     props: { data }, // will be passed to the page component as props
   };
 }
+// 
 
 
 function Solocien({data}) {
