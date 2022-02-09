@@ -128,7 +128,7 @@ export default function NavBar() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" passHref>
               <a className="cursor-pointer">
-                <div className="relative w-[40px] h-[40px]">
+                <div className="relative lg:w-[60px] lg:h-[60px] w-[40px] h-[40px]">
 
                 <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-amarillo.png"

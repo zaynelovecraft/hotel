@@ -17,7 +17,8 @@ import { DateRange } from "react-date-range";
 import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import Calendi from "../components/Calendi";
+// import Calendi from "../components/Calendi";
+import { DateRangePicker } from 'react-date-range';
 
 // export async function getServerSideProps() {
 //   const response = await fetch("/api/hotel");
@@ -43,8 +44,8 @@ function Solocien() {
   const [modalShown, toggleModal] = useState(false);
   const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([]);
-  console.log("start", startDate);
-  console.log("end", endDate);
+  // console.log("start", startDate);
+  // console.log("end", endDate);
   console.log("hiii", datesarray);
   const [rerender, setRerender] = useState(false);
 
@@ -62,29 +63,106 @@ function Solocien() {
       // console.log(data[1].start.date)
       // console.log(data[2].start.date)
 
+
   }, []);
   useEffect(async () => {
     getdates();
   }, [data]);
 
+
+
+
+
+
   const getdates = () => {
+
     let dates = [];
+
     for (let i = 0; i < data?.length; i++) {
-      dates.push(data[i].start.date);
+      const addDays = (date, days = 1 ) => {
+      const result = new Date(date)
+      result.setDate(result.getDate() + days)
+      return result
     }
+    if(data[i].start.date === undefined) {
+      const dateRange = (start, end, range = []) => {
+        if (start > end) return range;
+        const next = addDays(start, 1);
+        return dateRange(next, end, [...range, start]);
+      };
+      
+    const range = dateRange(new Date(data[i].start.dateTime), new Date(data[i].end.dateTime))
 
-    for (let i = 0; i < dates.length; i++) {
-      const added = dates[i].concat("T03:24:00");
+    const wet = range.map(date => date.toISOString().slice(0, 10))
 
+    const final = dates.concat(wet)
+    
+  for (let x = 0; x < final.length; x++) {
+  
+ const added = final[x].concat("T03:24:00");
+
+ datesarray.push(added);
+ 
+}
+    } else {
+     console.log(data[i].start.date)
+      
+     const wet = data[i].start.date
+     const final = dates.concat(wet)
+     for (let x = 0; x < final.length; x++) {
+  
+      const added = final[x].concat("T03:24:00");
+     
       datesarray.push(added);
-
-      // const datesjon = JSON.stringify(dates[i]);
-      // const added = datesjon.concat('T03:24:00')
-      // console.log(added)
-      // console.log(dates[i])
-      // dates[i].append('')
+     }
+    
     }
-  };
+  
+     
+  
+
+
+  
+
+  
+  
+  // const datesjon = JSON.stringify(dates[i]);
+  // const added = datesjon.concat('T03:24:00')
+  // console.log(added)
+  // console.log(dates[i])
+  // dates[i].append('')
+}
+
+
+
+        
+
+    
+  
+};
+      
+        
+
+      
+        
+        
+      
+       
+
+
+      
+     
+     
+
+
+      
+      
+
+
+
+
+
+
 
   function Modal({ children, shown, close }) {
     return shown ? (
@@ -418,40 +496,47 @@ function Solocien() {
           alt="img"
           priority
         />
-        <div className="absolute z-10 text-white mt-1 lg:mt-0 left-5 bottom-5">
+        <div className="absolute z-10 text-white mt-1 lg:mt-0 lg:left-36 left-5 bottom-5">
           <h1 ref={inputRef} className="text-3xl">
             Sol-O-Cien Condo
           </h1>
           <p className="my-3 font-light text-lg ">
             Playas de Rosarito, Predios Urbanos
           </p>
-          <h1 className=" text-yellow-600 text-2xl font-bold ">
+          <h1 className=" text-yellow-600 sm:hidden text-2xl font-bold ">
+            $ 400 per night
+          </h1>
+        </div>
+        <div className="absolute hidden sm:inline-flex bottom-5 my-3 lg:right-36 right-5 z-20 ">
+ <h1 className=" text-yellow-600  text-2xl font-bold ">
             $ 400 per night
           </h1>
         </div>
       </div>
+          <div className="sm:justify-center sm:flex">
 
-      <div className="mx-4 mt-10 text-gray-500">
-        <div className="flex mb-2 items-center">
+      <div className="mx-4 max-w-[750px] mt-10 sm:flex sm:flex-row  text-gray-500">
+        <div className="flex mb-2 mr-14 items-center">
           <AiOutlineHome className="text-3xl mr-2" />{" "}
           <h1 className="font-light"> Entire Home</h1>
         </div>
-        <div className="flex mb-2 items-center">
+        <div className="flex mb-2 mr-14 items-center">
           <BsBuilding className="text-3xl mr-2" />{" "}
           <h1 className="font-light"> Condos</h1>
         </div>
-        <div className="flex mb-2 items-center">
+        <div className="flex mb-2 mr-14 items-center">
           <BsFillPeopleFill className="text-3xl mr-2" />{" "}
           <h1 className="font-light"> 6 Guest</h1>
         </div>
-        <div className="flex mb-2 items-center">
+        <div className="flex mb-2 mr-14 items-center">
           <GiBed className="text-3xl mr-2" />{" "}
           <h1 className="font-light"> 3 Bedrooms</h1>
         </div>
       </div>
+          </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
-      <div className="mx-8 text-gray-700 text-2xl">
+      <div className="mx-8 text-gray-700 lg:mx-auto max-w-[800px] text-2xl">
         <h1>Listing Description</h1>
         <h1 className="font-extralight mt-3">Welcome</h1>
         {clicked ? (
@@ -625,7 +710,7 @@ function Solocien() {
       </div>
       <div className="border-gray-300 border-b mx-24 mb-2"></div>
 
-      <div className="flex mb-6 mt-2 justify-center">
+      <div className="flex lg:hidden mb-6 mt-2 justify-center">
         <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
           <DateRange
             style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
@@ -635,6 +720,23 @@ function Solocien() {
             onChange={handleSelect}
             rangeColors={["#03cffc"]}
             disabledDates={datesarray.map((e) => new Date(e))}
+            
+          />
+        </div>
+      </div>
+      <div className="hidden lg:flex mx-auto mb-6 mt-2 justify-center">
+        <div className=" flex overflow-hidden  w-100vw mb-2 h-[400px] justify-center">
+          <DateRangePicker
+            style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
+            ranges={[selectionRange]}
+            // disabledDates={[new Date(ree)]}
+            minDate={new Date()}
+            onChange={handleSelect}
+            rangeColors={["#03cffc"]}
+            disabledDates={datesarray.map((e) => new Date(e))}
+            months={2}
+            direction="horizontal"
+            
           />
         </div>
       </div>
@@ -728,6 +830,7 @@ function Solocien() {
           </div>
         </div>
       </div>
+              <div className="mx-auto max-w-[800PX]">
 
       <div>
         <div
@@ -1131,6 +1234,7 @@ function Solocien() {
 
         <div className="border mb-10 mx-5 my-3"></div>
       </div>
+              </div>
 
       <div className=" bg-cyan-500">
         <div className="mx-10 flex justify-around items-center">
@@ -1157,7 +1261,7 @@ function Solocien() {
         </div>
       </div>
       <div className="flex justify-center bg-gray-800 items-center overflow-hidden">
-        <section className="w-[600px]  h-[450px]">
+        <section className="sm:w-[700px] lg:h-[700px] lg:w-[1000px]  sm:h-[550px] w-[600px]  h-[450px]">
           <Mapp />
         </section>
       </div>

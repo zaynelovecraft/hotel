@@ -68,7 +68,7 @@ function accommodations() {
       <h1 className='text-center text-2xl mx-3 my-10  text-gray-600 leading-8'>The perfect accommodations for your holidays</h1>
     </div>
       <div className='border-b mx-5 mb-10'></div>
-    <div className='flex flex-col justify-center md:flex-row'>
+    <div className='flex overflow-scroll flex-col justify-center md:flex-row'>
 
     {hotels.map((hotel) => (
               <HotelCard key={hotel.name} hotel={hotel} />

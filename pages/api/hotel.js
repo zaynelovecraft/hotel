@@ -41,7 +41,7 @@ export default function handler (req, res) {
   };
   
   let start = '2022-2-01T00:00:00.000Z';
-  let end = '2022-5-20T00:00:00.000Z';
+  let end = '2023-5-20T00:00:00.000Z';
   
   
   try {
