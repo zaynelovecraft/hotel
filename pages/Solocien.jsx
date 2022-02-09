@@ -18,7 +18,7 @@ import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 // import Calendi from "../components/Calendi";
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker } from "react-date-range";
 
 // export async function getServerSideProps() {
 //   const response = await fetch("/api/hotel");
@@ -46,123 +46,95 @@ function Solocien() {
   const [datesarray, setDatesarray] = useState([]);
   // console.log("start", startDate);
   // console.log("end", endDate);
-  console.log("hiii", datesarray);
+
   const [rerender, setRerender] = useState(false);
 
-  useEffect(()=>{
-
-      setRerender(!rerender);
+  useEffect(() => {
+    setRerender(!rerender);
   }, [data]);
 
   useEffect(async () => {
-
-      const response = await fetch("/api/hotel");
-      const data = await response.json();
-      setData(data);
-      // console.log(data[0].start.date)
-      // console.log(data[1].start.date)
-      // console.log(data[2].start.date)
-
-
+    const response = await fetch("/api/hotel");
+    const data = await response.json();
+    setData(data);
+    // console.log(data[0].start.date)
+    // console.log(data[1].start.date)
+    // console.log(data[2].start.date)
   }, []);
   useEffect(async () => {
     getdates();
   }, [data]);
 
-
-
-
-
-
   const getdates = () => {
-
     let dates = [];
 
     for (let i = 0; i < data?.length; i++) {
-      const addDays = (date, days = 1 ) => {
-      const result = new Date(date)
-      result.setDate(result.getDate() + days)
-      return result
-    }
-    if(data[i].start.date === undefined) {
-      const dateRange = (start, end, range = []) => {
-        if (start > end) return range;
-        const next = addDays(start, 1);
-        return dateRange(next, end, [...range, start]);
+      const addDays = (date, days = 1) => {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
       };
-      
-    const range = dateRange(new Date(data[i].start.dateTime), new Date(data[i].end.dateTime))
+      const startcheck = data[i].start.date?.slice(8);
+      const endcheck = data[i].end.date?.slice(8);
 
-    const wet = range.map(date => date.toISOString().slice(0, 10))
+      if (data[i].start.date === undefined) {
+        const dateRange = (start, end, range = []) => {
+          if (start > end) return range;
+          const next = addDays(start, 1);
+          return dateRange(next, end, [...range, start]);
+        };
 
-    const final = dates.concat(wet)
-    
-  for (let x = 0; x < final.length; x++) {
-  
- const added = final[x].concat("T03:24:00");
+        const range = dateRange(
+          new Date(data[i].start.dateTime),
+          new Date(data[i].end.dateTime)
+        );
 
- datesarray.push(added);
- 
-}
-    } else {
-     console.log(data[i].start.date)
-      
-     const wet = data[i].start.date
-     const final = dates.concat(wet)
-     for (let x = 0; x < final.length; x++) {
-  
-      const added = final[x].concat("T03:24:00");
-     
-      datesarray.push(added);
-     }
-    
+        const wet = range.map((date) => date.toISOString().slice(0, 10));
+
+        const final = dates.concat(wet);
+
+        for (let x = 0; x < final.length; x++) {
+          const added = final[x].concat("T03:24:00");
+
+          datesarray.push(added);
+        }
+      } else if (startcheck == endcheck - 1) {
+        const wet = data[i].start.date;
+        const final = dates.concat(wet);
+        for (let x = 0; x < final.length; x++) {
+          const added = final[x].concat("T03:24:00");
+
+          datesarray.push(added);
+        }
+      } else {
+        const dateRange = (start, end, range = []) => {
+          if (start > end) return range;
+          const next = addDays(start, 1);
+          return dateRange(next, end, [...range, start]);
+        };
+        const range = dateRange(
+          new Date(data[i].start.date),
+          new Date(data[i].end.date)
+        );
+
+        const wet = range.map((date) => date.toISOString().slice(0, 10));
+        const final = dates.concat(wet);
+        final.pop();
+
+        for (let x = 0; x < final.length; x++) {
+          const added = final[x].concat("T03:24:00");
+
+          datesarray.push(added);
+        }
+      }
+
+      // const datesjon = JSON.stringify(dates[i]);
+      // const added = datesjon.concat('T03:24:00')
+      // console.log(added)
+      // console.log(dates[i])
+      // dates[i].append('')
     }
-  
-     
-  
-
-
-  
-
-  
-  
-  // const datesjon = JSON.stringify(dates[i]);
-  // const added = datesjon.concat('T03:24:00')
-  // console.log(added)
-  // console.log(dates[i])
-  // dates[i].append('')
-}
-
-
-
-        
-
-    
-  
-};
-      
-        
-
-      
-        
-        
-      
-       
-
-
-      
-     
-     
-
-
-      
-      
-
-
-
-
-
-
+  };
 
   function Modal({ children, shown, close }) {
     return shown ? (
@@ -507,33 +479,32 @@ function Solocien() {
             $ 400 per night
           </h1>
         </div>
-        <div className="absolute hidden sm:inline-flex bottom-5 my-3 lg:right-36 right-5 z-20 ">
- <h1 className=" text-yellow-600  text-2xl font-bold ">
+        <div className="absolute hidden sm:inline-flex bottom-5 my-3 lg:right-36 right-5 z-10 ">
+          <h1 className=" text-yellow-600  text-2xl font-bold ">
             $ 400 per night
           </h1>
         </div>
       </div>
-          <div className="sm:justify-center sm:flex">
-
-      <div className="mx-4 max-w-[750px] mt-10 sm:flex sm:flex-row  text-gray-500">
-        <div className="flex mb-2 mr-14 items-center">
-          <AiOutlineHome className="text-3xl mr-2" />{" "}
-          <h1 className="font-light"> Entire Home</h1>
-        </div>
-        <div className="flex mb-2 mr-14 items-center">
-          <BsBuilding className="text-3xl mr-2" />{" "}
-          <h1 className="font-light"> Condos</h1>
-        </div>
-        <div className="flex mb-2 mr-14 items-center">
-          <BsFillPeopleFill className="text-3xl mr-2" />{" "}
-          <h1 className="font-light"> 6 Guest</h1>
-        </div>
-        <div className="flex mb-2 mr-14 items-center">
-          <GiBed className="text-3xl mr-2" />{" "}
-          <h1 className="font-light"> 3 Bedrooms</h1>
+      <div className="sm:justify-center sm:flex">
+        <div className="mx-4 max-w-[750px] mt-10 sm:flex sm:flex-row  text-gray-500">
+          <div className="flex mb-2 mr-14 items-center">
+            <AiOutlineHome className="text-3xl mr-2" />{" "}
+            <h1 className="font-light"> Entire Home</h1>
+          </div>
+          <div className="flex mb-2 mr-14 items-center">
+            <BsBuilding className="text-3xl mr-2" />{" "}
+            <h1 className="font-light"> Condos</h1>
+          </div>
+          <div className="flex mb-2 mr-14 items-center">
+            <BsFillPeopleFill className="text-3xl mr-2" />{" "}
+            <h1 className="font-light"> 6 Guest</h1>
+          </div>
+          <div className="flex mb-2 mr-14 items-center">
+            <GiBed className="text-3xl mr-2" />{" "}
+            <h1 className="font-light"> 3 Bedrooms</h1>
+          </div>
         </div>
       </div>
-          </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
       <div className="mx-8 text-gray-700 lg:mx-auto max-w-[800px] text-2xl">
@@ -720,7 +691,6 @@ function Solocien() {
             onChange={handleSelect}
             rangeColors={["#03cffc"]}
             disabledDates={datesarray.map((e) => new Date(e))}
-            
           />
         </div>
       </div>
@@ -736,7 +706,6 @@ function Solocien() {
             disabledDates={datesarray.map((e) => new Date(e))}
             months={2}
             direction="horizontal"
-            
           />
         </div>
       </div>
@@ -830,411 +799,411 @@ function Solocien() {
           </div>
         </div>
       </div>
-              <div className="mx-auto max-w-[800PX]">
-
-      <div>
-        <div
-          onClick={() => {
-            setPriceInfo(!priceInfo);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {priceInfo ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
-          )}
-
-          <button
-            className={`${
-              priceInfo ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 text-normal font-bold`}
+      <div className="mx-auto max-w-[800PX]">
+        <div>
+          <div
+            onClick={() => {
+              setPriceInfo(!priceInfo);
+            }}
+            className="flex cursor-pointer items-center mx-8"
           >
-            Price Info
-          </button>
-        </div>
-        {priceInfo && (
-          <div className="mx-10 text-gray-600 mt-3">
-            <h1 className="text-sm font-semibold mb-3">
-              Price per night: <span className="font-light">$ 400</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Price per night(7d+) : <span className="font-light">$ 250</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Price per night(30d+): <span className="font-light">$ 150</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Price per weekend (Friday and Saturday):{" "}
-              <span className="font-light">$ 500</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Extra Price per Guest: <span className="font-light">$ 40</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Cleaning Fee: <span className="font-light">$ 65 Single Fee</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              City Tax fee: <span className="font-light">$ 3 Single Fee</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Minimum no of nights:<span className="font-light"> 1</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Allow more guest than the capacity:
-              <span className="font-light"> yes</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Security deposit<span className="font-light"> $ 200</span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-3">
-              Early Bird Discount:
-              <span className="font-light">
-                {" "}
-                10% discount for bookings made 14 nights in advance
-              </span>
-            </h1>
-            <h1 className="text-sm font-semibold mb-">
-              Extra options:
-              <span className="font-light">
-                {" "}
-                <br /> <br /> pet: $ 25 Per Guest
-              </span>
-            </h1>
+            {priceInfo ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`${
+                priceInfo ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 text-normal font-bold`}
+            >
+              Price Info
+            </button>
           </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
-      </div>
-      <div>
-        <div
-          onClick={() => {
-            setSleeping(!sleeping);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {sleeping ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
-          )}
-
-          <button
-            className={`text-normal ${
-              sleeping ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 font-bold`}
-          >
-            Sleeping Situation
-          </button>
-        </div>
-        {sleeping && (
-          <div className="mx-3">
-            <div className="flex justify-around mb-10 mt-5">
-              <div className="border w-[75px] flex flex-col h-[100px]">
-                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
-                  Bedroom 1
-                </h1>
-                <h1 className="mx-1 text-sm text-gray-500">1 Queen Bed</h1>
-              </div>
-              <div className="border w-[75px] flex flex-col h-[100px]">
-                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
-                  Bedroom 2
-                </h1>
-                <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
-              </div>
-              <div className="border w-[75px] flex flex-col h-[100px]">
-                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
-                  Bedroom 3
-                </h1>
-                <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
-              </div>
-              <div className="border w-[75px] flex flex-col h-[100px]">
-                <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
-                  Bedroom 4
-                </h1>
-                <h1 className="mx-1 text-sm text-gray-500">1 Twin bed</h1>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
-      </div>
-      <div>
-        <div
-          onClick={() => {
-            setAddress(!address);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {address ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
-          )}
-
-          <button
-            className={`text-normal ${
-              address ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 font-bold`}
-          >
-            Address
-          </button>
-        </div>
-        {address && (
-          <div>
+          {priceInfo && (
             <div className="mx-10 text-gray-600 mt-3">
               <h1 className="text-sm font-semibold mb-3">
-                Address:{" "}
-                <span className="font-light">
-                  Exact location information is provided after a booking is
-                  confirmed
-                </span>
+                Price per night: <span className="font-light">$ 400</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                City:<span className="font-light"> Playas de Rosarito</span>
+                Price per night(7d+) : <span className="font-light">$ 250</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Area: <span className="font-light">Predios Urbanos</span>
+                Price per night(30d+): <span className="font-light">$ 150</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                County: <span className="font-light">Mexico</span>
+                Price per weekend (Friday and Saturday):{" "}
+                <span className="font-light">$ 500</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                State: <span className="font-light"> Baja California</span>
+                Extra Price per Guest: <span className="font-light">$ 40</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Zip: <span className="font-light">22703</span>
+                Cleaning Fee:{" "}
+                <span className="font-light">$ 65 Single Fee</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Country: <span className="font-light">Mexico</span>
-              </h1>
-            </div>
-          </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
-      </div>
-      <div>
-        <div
-          onClick={() => {
-            setDetails(!details);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {details ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
-          )}
-
-          <button
-            className={`text-normal ${
-              details ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 font-bold`}
-          >
-            Details
-          </button>
-        </div>
-        {details && (
-          <div>
-            <div className="mx-10 text-gray-600 mt-3">
-              <h1 className="text-sm font-semibold mb-3">
-                Property ID: <span className="font-light">28278</span>
+                City Tax fee: <span className="font-light">$ 3 Single Fee</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Bedrooms:<span className="font-light"> 4</span>
+                Minimum no of nights:<span className="font-light"> 1</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Bathrooms: <span className="font-light">2</span>
+                Allow more guest than the capacity:
+                <span className="font-light"> yes</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Check-in-hour: <span className="font-light"> 3:00 PM</span>
+                Security deposit<span className="font-light"> $ 200</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Check-out-hour: <span className="font-light"> 11:00 AM</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Extra People:{" "}
+                Early Bird Discount:
                 <span className="font-light">
                   {" "}
-                  We can accommodate up to 12 guests, there is a $40.00 dollar
-                  charge per guest per night after 8 guests
+                  10% discount for bookings made 14 nights in advance
                 </span>
               </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Cancellation:{" "}
+              <h1 className="text-sm font-semibold mb-">
+                Extra options:
                 <span className="font-light">
-                  Your reservation is fully refundable up to 14 days prior to
-                  arrival, no refund if less than 14 days
+                  {" "}
+                  <br /> <br /> pet: $ 25 Per Guest
                 </span>
               </h1>
             </div>
-          </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
-      </div>
-      <div>
-        <div
-          onClick={() => {
-            setFeatures(!features);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {features ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
           )}
 
-          <button
-            className={`text-normal ${
-              features ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 font-bold`}
-          >
-            Features
-          </button>
+          <div className="border mb-10 mx-5 my-3"></div>
         </div>
-        {features && (
-          <div>
+        <div>
+          <div
+            onClick={() => {
+              setSleeping(!sleeping);
+            }}
+            className="flex cursor-pointer items-center mx-8"
+          >
+            {sleeping ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`text-normal ${
+                sleeping ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 font-bold`}
+            >
+              Sleeping Situation
+            </button>
+          </div>
+          {sleeping && (
+            <div className="mx-3">
+              <div className="flex justify-around mb-10 mt-5">
+                <div className="border w-[75px] flex flex-col h-[100px]">
+                  <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
+                    Bedroom 1
+                  </h1>
+                  <h1 className="mx-1 text-sm text-gray-500">1 Queen Bed</h1>
+                </div>
+                <div className="border w-[75px] flex flex-col h-[100px]">
+                  <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
+                    Bedroom 2
+                  </h1>
+                  <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
+                </div>
+                <div className="border w-[75px] flex flex-col h-[100px]">
+                  <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
+                    Bedroom 3
+                  </h1>
+                  <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
+                </div>
+                <div className="border w-[75px] flex flex-col h-[100px]">
+                  <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
+                    Bedroom 4
+                  </h1>
+                  <h1 className="mx-1 text-sm text-gray-500">1 Twin bed</h1>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="border mb-10 mx-5 my-3"></div>
+        </div>
+        <div>
+          <div
+            onClick={() => {
+              setAddress(!address);
+            }}
+            className="flex cursor-pointer items-center mx-8"
+          >
+            {address ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`text-normal ${
+                address ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 font-bold`}
+            >
+              Address
+            </button>
+          </div>
+          {address && (
+            <div>
+              <div className="mx-10 text-gray-600 mt-3">
+                <h1 className="text-sm font-semibold mb-3">
+                  Address:{" "}
+                  <span className="font-light">
+                    Exact location information is provided after a booking is
+                    confirmed
+                  </span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  City:<span className="font-light"> Playas de Rosarito</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Area: <span className="font-light">Predios Urbanos</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  County: <span className="font-light">Mexico</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  State: <span className="font-light"> Baja California</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Zip: <span className="font-light">22703</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Country: <span className="font-light">Mexico</span>
+                </h1>
+              </div>
+            </div>
+          )}
+
+          <div className="border mb-10 mx-5 my-3"></div>
+        </div>
+        <div>
+          <div
+            onClick={() => {
+              setDetails(!details);
+            }}
+            className="flex cursor-pointer items-center mx-8"
+          >
+            {details ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`text-normal ${
+                details ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 font-bold`}
+            >
+              Details
+            </button>
+          </div>
+          {details && (
+            <div>
+              <div className="mx-10 text-gray-600 mt-3">
+                <h1 className="text-sm font-semibold mb-3">
+                  Property ID: <span className="font-light">28278</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Bedrooms:<span className="font-light"> 4</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Bathrooms: <span className="font-light">2</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Check-in-hour: <span className="font-light"> 3:00 PM</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Check-out-hour: <span className="font-light"> 11:00 AM</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Extra People:{" "}
+                  <span className="font-light">
+                    {" "}
+                    We can accommodate up to 12 guests, there is a $40.00 dollar
+                    charge per guest per night after 8 guests
+                  </span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Cancellation:{" "}
+                  <span className="font-light">
+                    Your reservation is fully refundable up to 14 days prior to
+                    arrival, no refund if less than 14 days
+                  </span>
+                </h1>
+              </div>
+            </div>
+          )}
+
+          <div className="border mb-10 mx-5 my-3"></div>
+        </div>
+        <div>
+          <div
+            onClick={() => {
+              setFeatures(!features);
+            }}
+            className="flex cursor-pointer items-center mx-8"
+          >
+            {features ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`text-normal ${
+                features ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 font-bold`}
+            >
+              Features
+            </button>
+          </div>
+          {features && (
+            <div>
+              <div className="mx-10 text-gray-600 mt-3">
+                <h1 className="mt-6 mb-4">Other Features</h1>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Beach Chairs</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Beach Umbrellas</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Blender</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Board Games</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Coffee Maker</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Dishes</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Dishwasher</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Electric Can Opener</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Hand Mixer</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Kids Swimming Vest</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Kitchen</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Pool Floaties</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Portable Charcoal BBQ</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Shampoo</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Soap</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Toaster</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Towels</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Water filtration system</h1>
+                </div>
+                <div className="flex mb-2 items-center">
+                  <AiFillCheckCircle className="text-yellow-800 mr-3" />
+                  <h1>Wide Wheeled Wagon</h1>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="border mb-10 mx-5 my-3"></div>
+        </div>
+        <div>
+          <div
+            onClick={() => {
+              setTerms(!terms);
+            }}
+            className="flex cursor-pointer items-center mx-8"
+          >
+            {terms ? (
+              <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
+            ) : (
+              <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
+            )}
+
+            <button
+              className={`text-normal ${
+                terms ? "text-yellow-800" : "text-gray-600"
+              } hover:text-yellow-600 font-bold`}
+            >
+              Terms and Conditions
+            </button>
+          </div>
+          {terms && (
             <div className="mx-10 text-gray-600 mt-3">
-              <h1 className="mt-6 mb-4">Other Features</h1>
               <div className="flex mb-2 items-center">
                 <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Beach Chairs</h1>
+                <h1>Pets allowed</h1>
               </div>
               <div className="flex mb-2 items-center">
                 <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Beach Umbrellas</h1>
+                <h1>Children allowed</h1>
               </div>
               <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Blender</h1>
+                <MdDoNotDisturb className="text-red-600 mr-3" />
+                <h1 className="line-through">Party Allowed</h1>
               </div>
               <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Board Games</h1>
+                <MdDoNotDisturb className="text-red-600 mr-3" />
+                <h1 className="line-through">Smoking Allowed</h1>
               </div>
               <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Coffee Maker</h1>
+                <MdDoNotDisturb className="text-red-600 mr-3" />
+                <h1 className="line-through">Vaping</h1>
               </div>
               <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Dishes</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Dishwasher</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Electric Can Opener</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Hand Mixer</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Kids Swimming Vest</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Kitchen</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Pool Floaties</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Portable Charcoal BBQ</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Shampoo</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Soap</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Toaster</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Towels</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Water filtration system</h1>
-              </div>
-              <div className="flex mb-2 items-center">
-                <AiFillCheckCircle className="text-yellow-800 mr-3" />
-                <h1>Wide Wheeled Wagon</h1>
+                <MdDoNotDisturb className="text-red-600 mr-3" />
+                <h1 className="line-through">Drugs</h1>
               </div>
             </div>
-          </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
-      </div>
-      <div>
-        <div
-          onClick={() => {
-            setTerms(!terms);
-          }}
-          className="flex cursor-pointer items-center mx-8"
-        >
-          {terms ? (
-            <BsFileEarmarkArrowDown className="text-yellow-700 mr-2 text-xl" />
-          ) : (
-            <BsFileEarmarkArrowUp className="text-yellow-700 mr-2 text-xl" />
           )}
 
-          <button
-            className={`text-normal ${
-              terms ? "text-yellow-800" : "text-gray-600"
-            } hover:text-yellow-600 font-bold`}
-          >
-            Terms and Conditions
-          </button>
+          <div className="border mb-10 mx-5 my-3"></div>
         </div>
-        {terms && (
-          <div className="mx-10 text-gray-600 mt-3">
-            <div className="flex mb-2 items-center">
-              <AiFillCheckCircle className="text-yellow-800 mr-3" />
-              <h1>Pets allowed</h1>
-            </div>
-            <div className="flex mb-2 items-center">
-              <AiFillCheckCircle className="text-yellow-800 mr-3" />
-              <h1>Children allowed</h1>
-            </div>
-            <div className="flex mb-2 items-center">
-              <MdDoNotDisturb className="text-red-600 mr-3" />
-              <h1 className="line-through">Party Allowed</h1>
-            </div>
-            <div className="flex mb-2 items-center">
-              <MdDoNotDisturb className="text-red-600 mr-3" />
-              <h1 className="line-through">Smoking Allowed</h1>
-            </div>
-            <div className="flex mb-2 items-center">
-              <MdDoNotDisturb className="text-red-600 mr-3" />
-              <h1 className="line-through">Vaping</h1>
-            </div>
-            <div className="flex mb-2 items-center">
-              <MdDoNotDisturb className="text-red-600 mr-3" />
-              <h1 className="line-through">Drugs</h1>
-            </div>
-          </div>
-        )}
-
-        <div className="border mb-10 mx-5 my-3"></div>
       </div>
-              </div>
 
       <div className=" bg-cyan-500">
         <div className="mx-10 flex justify-around items-center">
