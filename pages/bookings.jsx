@@ -128,7 +128,7 @@ function bookings() {
             className="text-2xl font-extralight text-gray-500"
             style={{ fontFamily: "Quintessential" }}
           >
-            Bookings
+            Reservations
           </h1>
         </div>
         <div className=" flex max-w-[150px] mx-auto border border-b  mt-2 "></div>
@@ -170,6 +170,13 @@ function bookings() {
               disabledDates={datesarray.map((e) => new Date(e))}
             />
           </div>
+        </div>
+        <div className="flex flex-col text-center justify-center">
+            <h1>guest number</h1>
+            <h1>pet?</h1>
+            <h1></h1>
+            <h1></h1>
+            <h1></h1>
         </div>
       </section>
     </div>
