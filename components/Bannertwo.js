@@ -66,7 +66,7 @@ const hi = [
             </div>
         <div className="">
           <section className=" mx-auto max-w-5xl ">
-            <div className="flex scrollbar-hide space-x-3 p-3 -ml-3 overflow-scroll">
+            <div className="flex scrollbar-hide space-x-3 p-3 ml-2 overflow-scroll">
 
           {cardsData?.map(item => (
             <Link href="/accommodations">
@@ -79,7 +79,7 @@ const hi = [
              </div>
              <div className="flex items-center justify-between" >
 
-             <h3 className="text-2xl text-white mt-1">{item.title}</h3>
+             <h3 className="text-2xl ml-3 text-white mt-1">{item.title}</h3>
              <button className="mr-14 text-white border mt-2 rounded-xl  px-2 shadow-lg hover:bg-cyan-300">Book Now!</button>
              </div>
             </div>

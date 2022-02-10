@@ -485,24 +485,31 @@ function Solocien() {
           </h1>
         </div>
       </div>
-      <div className="sm:justify-center sm:flex">
-        <div className="mx-4 max-w-[750px] mt-10 sm:flex sm:flex-row  text-gray-500">
-          <div className="flex mb-2 mr-14 items-center">
+      <div className="flex justify-between mx-auto  max-w-[750px]   ">
+
+      <div className="sm:justify-center sm:ml-10 ml-2 sm:flex">
+        <div className=" max-w-[750px] mt-10 md:flex md:flex-row  text-gray-500">
+          <div className="flex mb-2  md:mr-5 items-center">
             <AiOutlineHome className="text-3xl mr-2" />{" "}
             <h1 className="font-light"> Entire Home</h1>
           </div>
-          <div className="flex mb-2 mr-14 items-center">
+          <div className="flex mb-2 md:mr-5 items-center">
             <BsBuilding className="text-3xl mr-2" />{" "}
             <h1 className="font-light"> Condos</h1>
           </div>
-          <div className="flex mb-2 mr-14 items-center">
+          <div className="flex mb-2 md:mr-5 items-center">
             <BsFillPeopleFill className="text-3xl mr-2" />{" "}
             <h1 className="font-light"> 6 Guest</h1>
           </div>
-          <div className="flex mb-2 mr-14 items-center">
+          <div className="flex mb-2 md:mr-5 items-center">
             <GiBed className="text-3xl mr-2" />{" "}
             <h1 className="font-light"> 3 Bedrooms</h1>
           </div>
+        </div>
+      </div>
+
+        <div>
+        <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">Book Now!</button>
         </div>
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
