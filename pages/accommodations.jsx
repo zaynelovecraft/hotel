@@ -33,6 +33,7 @@ function accommodations() {
 
 <div>
   
+  
 
       <div className="relative h-[125px] sm:h-[150px] lg:h-[150px] xl:h-[150px] 2xl:h-[150px]">
       <div

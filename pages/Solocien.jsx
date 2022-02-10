@@ -507,10 +507,14 @@ function Solocien() {
           </div>
         </div>
       </div>
+          <Link href={'/bookings'}>
+          <a>
 
-        <div>
+        <div className="cursor-pointer">
         <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">Book Now!</button>
         </div>
+          </a>
+          </Link>
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
@@ -1019,7 +1023,10 @@ function Solocien() {
                   Property ID: <span className="font-light">28278</span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
-                  Bedrooms:<span className="font-light"> 4</span>
+                  Bedrooms:<span className="font-light"> 3</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Rooms:<span className="font-light"> 6</span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
                   Bathrooms: <span className="font-light">2</span>
@@ -1029,6 +1036,15 @@ function Solocien() {
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
                   Check-out-hour: <span className="font-light"> 11:00 AM</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                  Late Check In: <span className="font-light"> Before 11 PM </span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                Optional Services: <span className="font-light"> Beach towels, beach chairs, umbrella, ice chest and beach wagon,Keurig coffee maker, Kitchen Aid blender, toaster, hand mixer, dishes/cooking essentials, dishwasher, reverse osmosis 6 step UV drinking water filtration system, ice maker, washer/dryer inside unit</span>
+                </h1>
+                <h1 className="text-sm font-semibold mb-3">
+                Outdoor Facilities:  <span className="font-light"> Patio 1- built in gas bbq/gas range/bar sink, hammock and seating area Patio 2- outdoor shower, 2 hammocks, wood burning terracota fireplace and seating area Patio 3- Hammock, bench and chairs, grass area (we have a small jumper for rent available for 2-3 children up to 8 years old that fits perfectly in this area, $25 dollars a day) 2 community pools and jacuzzi tub, private/gated community, 24/7 guard on duty, one block from beautiful Rosarito Beach (that’s 110 steps!!!) Beach towels, beach chairs, umbrella, ice chest and beach wagon are included. </span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
                   Extra People:{" "}
@@ -1041,8 +1057,7 @@ function Solocien() {
                 <h1 className="text-sm font-semibold mb-3">
                   Cancellation:{" "}
                   <span className="font-light">
-                    Your reservation is fully refundable up to 14 days prior to
-                    arrival, no refund if less than 14 days
+                  Free cancellation 14+ days before check in date. 50 % charge if cancelled less than 7 days before check in.
                   </span>
                 </h1>
               </div>
@@ -1204,6 +1219,14 @@ function Solocien() {
               <div className="flex mb-2 items-center">
                 <MdDoNotDisturb className="text-red-600 mr-3" />
                 <h1 className="line-through">Drugs</h1>
+              </div>
+              <div className="flex mb-2 text-xl  items-center">
+
+                <h1 className="underline">Other Rules</h1>
+              </div>
+              <div className="flex mb-2 items-center">
+
+                <h1 className="">No smoking of any kind, No vaping/e-Cigarettes, No drugs allowed (including medical marijuana)</h1>
               </div>
             </div>
           )}
