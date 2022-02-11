@@ -156,7 +156,7 @@ function bookings() {
         <div className=" flex max-w-[150px] mx-auto border border-b  mt-2 "></div>
 
         <div className="flex justify-center">
-          <div className="relative w-[300px] h-[300px]">
+          <div className="relative w-[300px] h-[300px] mb-10">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
               className=" justify-center"
@@ -164,27 +164,33 @@ function bookings() {
               layout="fill"
               objectFit="contain"
             />
-            <h1 className="absolute bottom-7 ml-2 font-light text-gray-700 ">
+            <h1 className="absolute bottom-7 font-light text-gray-700 ">
               Sol O Cien Condo
             </h1>
-            <h1 className="absolute bottom-[30px] mr-2 text-xs right-0 font-extralight text-gray-700 ">
+            <h1 className="absolute bottom-[30px] text-xs right-0 font-extralight text-gray-700 ">
               -Baja California, Mexico
             </h1>
+            <p className="absolute bottom-1 text-gray-500 text-[12px] mt-2">
+            $400 per day (Sun - Thu)
+          </p>
+          <p className="absolute -bottom-5 text-gray-500 text-[12px] mb-2">
+            $500 per day (Fri - Sat)
+          </p>
+          <p className="absolute -bottom-9 text-gray-500 text-[12px] mb-2">
+            Check in 3PM
+          </p>
+          <p className="absolute -bottom-[52px] text-gray-500 text-[12px] mb-2">
+            Check out 11AM
+          </p>
           </div>
         </div>
         <div className="flex flex-col text-center mt-10 justify-center">
           <h1
-            className="text-gray-500 text-2xl"
+            className="text-gray-500 mb-1 text-2xl"
             style={{ fontFamily: "Quintessential" }}
           >
-            Check In / Check Out
+            Check In  / Check Out 
           </h1>
-          <p className="text-gray-600 text-xs mt-2">
-            $400 per day (Sun - Thu)
-          </p>
-          <p className="text-gray-600 text-xs mb-2">
-            $500 per day (Fri - Sat)
-          </p>
         </div>
         <div className="flex mt-2 justify-center">
           <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
