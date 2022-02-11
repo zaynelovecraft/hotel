@@ -9,27 +9,28 @@ function bookings() {
   const [endDate, setEndDate] = useState(new Date());
   const [data, setData] = useState([]);
   const [datesarray, setDatesarray] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const contactForm = async () => {
+    event.preventDefault();
+  };
 
-    const yo = new Date(1995, 11, 15)
+  // console.log(data[0]?.start.dateTime)
+  // const date = data[0].start
+  // const date = ['2022-02-12T14:30:00']
 
-    console.log(yo)
-    
+  // const dayOfWeek = new Date(date)
+  // const isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0)
+  // console.log(isWeekend)
+  // console.log(dayOfWeek)
 
+  // console.log(dayOfWeek)
 
-
-    // console.log(data[0]?.start.dateTime)
-    // const date = data[0].start
-    // const date = ['2022-02-12T14:30:00']
-
-    // const dayOfWeek = new Date(date)
-    // const isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0)
-    // console.log(isWeekend)
-    // console.log(dayOfWeek)
-
-    // console.log(dayOfWeek)
-
-    // console.log(getDay())
+  // console.log(getDay())
 
   const selectionRange = {
     startDate: startDate,
@@ -53,14 +54,11 @@ function bookings() {
     const data = await response.json();
 
     setData(data);
-   
   }, []);
   useEffect(async () => {
     getdates();
   }, [data]);
 
-  
-  
   const getdates = () => {
     let dates = [];
 
@@ -132,8 +130,6 @@ function bookings() {
     }
   };
 
-  
-
   return (
     <div>
       <Head>
@@ -182,7 +178,7 @@ function bookings() {
             Check In / Check Out
           </h1>
         </div>
-        <div className="flex mb-6 mt-2 justify-center">
+        <div className="flex mt-2 justify-center">
           <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
             <DateRange
               style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
@@ -195,14 +191,65 @@ function bookings() {
             />
           </div>
         </div>
-        <div className="flex flex-col text-center justify-center">
-            <h1>guest number</h1>
-            <h1>pet?</h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-        </div>
       </section>
+      <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mx-auto">
+        <section className="  border-gray-700 sm:rounded-md">
+          <form onSubmit={contactForm} name="contact" id="contact-form">
+            <div className=" border-2 rounded-3xl py-2 mx-5  px-5">
+              <div>
+                <div>
+                  <select
+                    onChange={(e) => {
+                      setSubject(e.target.value);
+                    }}
+                    placeholder="guest"
+                    className="
+            
+              
+             
+              bg-white
+              w-full
+              rounded-md
+              focus:outline-none
+             
+            
+             
+              "
+                  >
+                    <option value="" disabled selected>
+                      Guest
+                    </option>
+                    <option value="1"> 1 Guest</option>
+                    <option value="1"> 2 Guest</option>
+                    <option value="1"> 3 Guest</option>
+                    <option value="1"> 4 Guest</option>
+                    <option value="1"> 5 Guest</option>
+                    <option value="1"> 6 Guest</option>
+                    <option value="1"> 7 Guest</option>
+                    <option value="1"> 8 Guest</option>
+                    <option value="1"> 9 Guest</option>
+                    <option value="1"> 10 Guest</option>
+
+                    
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="text-center mt-5">
+                <button
+                  disabled={loading}
+                  className="border p-1 rounded-2xl px-3 bg-pink-400"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
