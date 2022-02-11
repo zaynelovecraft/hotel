@@ -145,7 +145,7 @@ function bookings() {
       <section className="">
         <div className="flex justify-center mt-10">
           <h1
-            className="text-2xl font-extralight text-gray-500"
+            className="text-3xl font-extralight text-gray-500"
             style={{ fontFamily: "Quintessential" }}
           >
             Reservations
@@ -172,7 +172,7 @@ function bookings() {
         </div>
         <div className="flex mt-10 justify-center">
           <h1
-            className="text-gray-500"
+            className="text-gray-500 text-2xl"
             style={{ fontFamily: "Quintessential" }}
           >
             Check In / Check Out
@@ -193,15 +193,25 @@ function bookings() {
         </div>
       </section>
       <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mx-auto">
-        <section className="  border-gray-700 sm:rounded-md">
+        <section className="   sm:rounded-md">
           <form onSubmit={contactForm} name="contact" id="contact-form">
-            <div className=" border-2 rounded-3xl py-2 mx-5  px-5">
+            <h1 style={{ fontFamily: "Quintessential" }} className="text-center text-gray-500 mb-3 text-2xl">Number of guest</h1>
+            <div className=" border-2 border-cyan-500 rounded-3xl py-2 mx-5  px-5">
+
               <div>
                 <div>
                   <select
                     onChange={(e) => {
                       setSubject(e.target.value);
                     }}
+
+                    
+                    style={{ 
+                      border: 'none',
+                      webkitAppearance: 'none',
+                      mozAppearance: 'none',
+                      appearance: 'none',
+                      msAppearance: 'none', }}
                     placeholder="guest"
                     className="
             
@@ -211,12 +221,12 @@ function bookings() {
               w-full
               rounded-md
               focus:outline-none
-             
+             text-gray-800
             
              
               "
                   >
-                    <option value="" disabled selected>
+                    <option className="" value="" disabled selected>
                       Guest
                     </option>
                     <option value="1"> 1 Guest</option>

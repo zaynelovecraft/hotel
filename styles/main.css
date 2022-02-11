@@ -11,10 +11,17 @@
 *:focus {
   @apply outline-none ring-2 ring-pink-500 ring-opacity-50;
 
-}
+/* }
 
 input {-webkit-appearance: none; box-shadow: none !important; }
-:-webkit-autofill { color: #fff !important; }
+:-webkit-autofill { color: #fff !important; } */
+
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
+
 
 html {
   height: 100%;
