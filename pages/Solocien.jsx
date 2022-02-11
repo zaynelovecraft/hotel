@@ -72,9 +72,14 @@ function Solocien() {
       return dateRange(next, end, [...range, start]);
     };
 
-    const range = dateRange(new Date(startDate), new Date(endDate));
-
+    const range = dateRange(new Date(startDate), new Date(endDate))
+   
     const days = range.map((date) => date.toDateString().slice(0, 3));
+    if(days.length >= 2) {
+      
+      days.pop()
+    }
+    
     const priceperday = [];
 
     for (let i = 0; i < 7; i++) {

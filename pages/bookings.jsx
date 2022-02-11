@@ -129,6 +129,7 @@ function bookings() {
       // console.log(added)
       // console.log(dates[i])
       // dates[i].append('')
+      // 
     }
   };
 
@@ -156,7 +157,7 @@ function bookings() {
         <div className=" flex max-w-[150px] mx-auto border border-b  mt-2 "></div>
 
         <div className="flex justify-center">
-          <div className="relative w-[300px] h-[300px] mb-10">
+          <div className="relative w-[300px] h-[300px] mb-20">
             <Image
               src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
               className=" justify-center"
@@ -170,16 +171,22 @@ function bookings() {
             <h1 className="absolute bottom-[30px] text-xs right-0 font-extralight text-gray-700 ">
               -Baja California, Mexico
             </h1>
-            <p className="absolute bottom-1 text-gray-500 text-[12px] mt-2">
-            $400 per day (Sun - Thu)
+            <p className="absolute bottom-1 text-gray-500 text-[11px] mt-2">
+            $400 per night (Sun - Thu)
           </p>
-          <p className="absolute -bottom-5 text-gray-500 text-[12px] mb-2">
-            $500 per day (Fri - Sat)
+          <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
+            $500 per night (Fri - Sat)
           </p>
-          <p className="absolute -bottom-9 text-gray-500 text-[12px] mb-2">
+          <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
+          Price per night (7d+): $ 300
+          </p>
+          <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
+          Price per night (30d+): $ 150
+          </p>
+          <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
             Check in 3PM
           </p>
-          <p className="absolute -bottom-[52px] text-gray-500 text-[12px] mb-2">
+          <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
             Check out 11AM
           </p>
           </div>
@@ -191,8 +198,10 @@ function bookings() {
           >
             Check In  / Check Out 
           </h1>
+          
         </div>
-        <div className="flex mt-2 justify-center">
+        <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+        <div className="flex mb-5 mt-2 justify-center">
           <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
             <DateRange
               style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
@@ -206,7 +215,7 @@ function bookings() {
           </div>
         </div>
       </section>
-      <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mx-auto">
+      <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mb-[50px] mx-auto">
         <section className="   sm:rounded-md">
           <form onSubmit={contactForm} name="contact" id="contact-form">
             <h1
@@ -215,7 +224,8 @@ function bookings() {
             >
               Number of guest
             </h1>
-            <div className=" border-2 border-cyan-500 flex items-center rounded-3xl py-2 mx-5  px-5">
+            <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+            <div className=" border-2 border-cyan-500 shadow-lg flex items-center rounded-3xl py-2 mx-10  px-5">
               <BsPeopleFill className="text-1xl text-gray-500 mr-3" />
               <div className="w-full">
                 <div>
@@ -262,7 +272,7 @@ function bookings() {
                 </div>
               </div>
             </div>
-            <div className=" border-2 border-cyan-500 mt-5 flex items-center rounded-3xl py-2 mx-5  px-5">
+            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center rounded-3xl py-2 mx-10  px-5">
               <MdPets className="text-1xl text-gray-500 mr-3" />
               <div className="w-full " >
                 <div>
@@ -304,7 +314,7 @@ function bookings() {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <div className="text-center mt-5">
                 <button
                   disabled={loading}
@@ -314,10 +324,18 @@ function bookings() {
                   Submit
                 </button>
               </div>
-            </div>
+            </div> */}
           </form>
         </section>
       </div>
+      <section>
+        <h1 style={{ fontFamily: "Quintessential" }}
+              className="text-center text-gray-500 mb-3 text-2xl">Reservation Details</h1>
+               <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+        <div className=" mb-5 mx-10 border rounded-3xl shadow-lg h-[300px]">
+          <h1> </h1>
+        </div>
+      </section>
     </div>
   );
 }
