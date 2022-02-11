@@ -6,6 +6,7 @@ import { BsFillPeopleFill } from "@react-icons/all-files/bs/BsFillPeopleFill";
 import { GiBed } from "@react-icons/all-files/gi/GiBed";
 import { BsFileEarmarkArrowDown } from "@react-icons/all-files/bs/BsFileEarmarkArrowDown";
 import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArrowUp";
+
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
 import { IoMdPhotos } from "@react-icons/all-files/io/IoMdPhotos";
@@ -45,7 +46,7 @@ function Solocien() {
   const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([]);
   const [estemate, setEstemate] = useState(0);
-  console.log(estemate);
+
   // console.log("start", startDate);
   // console.log("end", endDate);
 
@@ -76,8 +77,6 @@ function Solocien() {
     const days = range.map((date) => date.toDateString().slice(0, 3));
     const priceperday = [];
 
-    
-
     for (let i = 0; i < 7; i++) {
       if (days[i] == "Fri") {
         price = price + 500;
@@ -103,16 +102,14 @@ function Solocien() {
     }
 
     for (let i = 7; i < 30; i++) {
-      if (typeof days[i] === 'string' || days[i] instanceof String) {
+      if (typeof days[i] === "string" || days[i] instanceof String) {
         price = price + 300;
       }
-     
     }
     for (let i = 30; i < days.length; i++) {
-      if (typeof days[i] === 'string' || days[i] instanceof String) {
+      if (typeof days[i] === "string" || days[i] instanceof String) {
         price = price + 150;
       }
-     
     }
 
     setEstemate(price);

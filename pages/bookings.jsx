@@ -4,6 +4,8 @@ import Head from "next/head";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
+import { BsPeopleFill } from "@react-icons/all-files/bs/BsPeopleFill";
+import { MdPets } from "@react-icons/all-files/md/MdPets";
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -170,13 +172,19 @@ function bookings() {
             </h1>
           </div>
         </div>
-        <div className="flex mt-10 justify-center">
+        <div className="flex flex-col text-center mt-10 justify-center">
           <h1
             className="text-gray-500 text-2xl"
             style={{ fontFamily: "Quintessential" }}
           >
             Check In / Check Out
           </h1>
+          <p className="text-gray-400 text-xs mt-2">
+            $400 per day (Sun - Thu)
+          </p>
+          <p className="text-gray-400 text-xs mb-2">
+            $500 per day (Fri - Sat)
+          </p>
         </div>
         <div className="flex mt-2 justify-center">
           <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
@@ -195,33 +203,37 @@ function bookings() {
       <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mx-auto">
         <section className="   sm:rounded-md">
           <form onSubmit={contactForm} name="contact" id="contact-form">
-            <h1 style={{ fontFamily: "Quintessential" }} className="text-center text-gray-500 mb-3 text-2xl">Number of guest</h1>
-            <div className=" border-2 border-cyan-500 rounded-3xl py-2 mx-5  px-5">
-
-              <div>
+            <h1
+              style={{ fontFamily: "Quintessential" }}
+              className="text-center text-gray-500 mb-3 text-2xl"
+            >
+              Number of guest
+            </h1>
+            <div className=" border-2 border-cyan-500 flex items-center rounded-3xl py-2 mx-5  px-5">
+              <BsPeopleFill className="text-1xl text-gray-500 mr-3" />
+              <div className="w-full">
                 <div>
                   <select
                     onChange={(e) => {
                       setSubject(e.target.value);
                     }}
-
-                    
-                    style={{ 
-                      border: 'none',
-                      webkitAppearance: 'none',
-                      mozAppearance: 'none',
-                      appearance: 'none',
-                      msAppearance: 'none', }}
+                    style={{
+                      border: "none",
+                      webkitAppearance: "none",
+                      mozAppearance: "none",
+                      appearance: "none",
+                      msAppearance: "none",
+                    }}
                     placeholder="guest"
                     className="
             
               
-             
+             cursor-pointer
               bg-white
               w-full
               rounded-md
               focus:outline-none
-             text-gray-800
+             text-gray-700
             
              
               "
@@ -230,15 +242,54 @@ function bookings() {
                       Guest
                     </option>
                     <option value="1"> 1 Guest</option>
-                    <option value="1"> 2 Guest</option>
-                    <option value="1"> 3 Guest</option>
-                    <option value="1"> 4 Guest</option>
-                    <option value="1"> 5 Guest</option>
-                    <option value="1"> 6 Guest</option>
-                    <option value="1"> 7 Guest</option>
-                    <option value="1"> 8 Guest</option>
-                    <option value="1"> 9 Guest</option>
-                    <option value="1"> 10 Guest</option>
+                    <option value="2"> 2 Guest</option>
+                    <option value="3"> 3 Guest</option>
+                    <option value="4"> 4 Guest</option>
+                    <option value="5"> 5 Guest</option>
+                    <option value="6"> 6 Guest </option>
+                    <option value="7"> 7 Guest - ($40 extra per night)</option>
+                    <option value="8"> 8 Guest - ($80 extra per night)</option>
+                    <option value="9"> 9 Guest - ($120 extra per night)</option>
+                    <option value="10"> 10 Guest - ($160 extra per night)</option>
+                  
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className=" border-2 border-cyan-500 mt-5 flex items-center rounded-3xl py-2 mx-5  px-5">
+              <MdPets className="text-1xl text-gray-500 mr-3" />
+              <div className="w-full " >
+                <div>
+                  <select
+                    onChange={(e) => {
+                      setSubject(e.target.value);
+                    }}
+                    style={{
+                      border: "none",
+                      webkitAppearance: "none",
+                      mozAppearance: "none",
+                      appearance: "none",
+                      msAppearance: "none",
+                    }}
+                    placeholder="guest"
+                    className="
+            
+              cursor-pointer
+                    w-full
+              bg-white
+              text-gray-700
+              rounded-md
+              focus:outline-none
+          
+            
+             
+              "
+                  >
+                    <option className="" value="" disabled selected>
+                      Pets ($25 single fee)
+                    </option>
+                    <option value="1"> 1 pet</option>
+                    <option value="2"> 2 or more pets</option>
 
                     
                   </select>
