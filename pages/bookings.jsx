@@ -16,11 +16,20 @@ function bookings() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [estemate, setEstemate] = useState(0);
+  const [days, setDays] = useState(0);
+  const [dates, setDates] = useState([]);
+  const [weekday, setWeekday] = useState(0);
+  const [weekend, setWeekend] = useState(0);
 
   const contactForm = async () => {
     event.preventDefault();
   };
 
+  const x = startDate.toDateString().slice(0, 3);
+  const y = endDate.toDateString().slice(0, 3);
+  const weekendprice = weekend * 500
+  const weekdayprice = weekday * 400
   // console.log(data[0]?.start.dateTime)
   // const date = data[0].start
   // const date = ['2022-02-12T14:30:00']
@@ -49,7 +58,7 @@ function bookings() {
 
   useEffect(() => {
     setRerender(!rerender);
-  }, [data]);
+  }, [data, estemate]);
 
   useEffect(async () => {
     const response = await fetch("/api/hotel");
@@ -60,6 +69,113 @@ function bookings() {
   useEffect(async () => {
     getdates();
   }, [data]);
+
+  useEffect(() => {
+    totalweekday();
+  }, [days]);
+
+  const totalweekday = () => {
+    if (dates.length === 0) return
+    let weekday = 0;
+    let weekend = 0;
+
+    for (let i = 0; i < dates.length; i++) {
+      if (dates[i] == "Fri") {
+        weekend = weekend + 1;
+      }
+      if (dates[i] == "Sat") {
+        weekend = weekend + 1;
+      }
+      if (dates[i] == "Mon") {
+        weekday = weekday + 1;
+      }
+      if (dates[i] == "Tue") {
+        weekday = weekday + 1;
+      }
+      if (dates[i] == "Thu") {
+        weekday = weekday + 1;
+      }
+      if (dates[i] == "Wed") {
+        weekday = weekday + 1;
+      }
+      if (dates[i] == "Sun") {
+        weekday = weekday + 1;
+      }
+    }
+    setWeekend(weekend);
+    setWeekday(weekday);
+  };
+
+  const price = () => {
+    let price = 0;
+    const addDays = (date, days = 1) => {
+      const result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    };
+    const dateRange = (start, end, range = []) => {
+      if (start > end) return range;
+      const next = addDays(start, 1);
+      return dateRange(next, end, [...range, start]);
+    };
+
+    const range = dateRange(new Date(startDate), new Date(endDate));
+
+    const days = range.map((date) => date.toDateString().slice(0, 3));
+    if (days.length >= 2) {
+      days.pop();
+    }
+
+    setDates(days);
+
+    setDays(days.length);
+
+    const priceperday = [];
+
+    for (let i = 0; i < 7; i++) {
+      if (days[i] == "Fri") {
+        price = price + 500;
+      }
+      if (days[i] == "Sat") {
+        price = price + 500;
+      }
+      if (days[i] == "Mon") {
+        price = price + 400;
+      }
+      if (days[i] == "Tue") {
+        price = price + 400;
+      }
+      if (days[i] == "Wed") {
+        price = price + 400;
+      }
+      if (days[i] == "Thu") {
+        price = price + 400;
+      }
+      if (days[i] == "Sun") {
+        price = price + 400;
+      }
+    }
+
+    for (let i = 7; i < 30; i++) {
+      if (typeof days[i] === "string" || days[i] instanceof String) {
+        price = price + 300;
+      }
+    }
+    for (let i = 30; i < days.length; i++) {
+      if (typeof days[i] === "string" || days[i] instanceof String) {
+        price = price + 150;
+      }
+    }
+
+    setEstemate(price);
+    totalweekday();
+
+    // if date is weekday = $400
+  };
+
+  useEffect(() => {
+    price();
+  }, [startDate, endDate]);
 
   const getdates = () => {
     let dates = [];
@@ -129,7 +245,7 @@ function bookings() {
       // console.log(added)
       // console.log(dates[i])
       // dates[i].append('')
-      // 
+      //
     }
   };
 
@@ -172,23 +288,23 @@ function bookings() {
               -Baja California, Mexico
             </h1>
             <p className="absolute bottom-1 text-gray-500 text-[11px] mt-2">
-            $400 per night (Sun - Thu)
-          </p>
-          <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
-            $500 per night (Fri - Sat)
-          </p>
-          <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
-          Price per night (7d+): $ 300
-          </p>
-          <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
-          Price per night (30d+): $ 150
-          </p>
-          <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
-            Check in 3PM
-          </p>
-          <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
-            Check out 11AM
-          </p>
+              $400 per night (Sun - Thu)
+            </p>
+            <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
+              $500 per night (Fri - Sat)
+            </p>
+            <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
+              Price per night (7d+): $ 300
+            </p>
+            <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
+              Price per night (30d+): $ 150
+            </p>
+            <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
+              Check in 3PM
+            </p>
+            <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
+              Check out 11AM
+            </p>
           </div>
         </div>
         <div className="flex flex-col text-center mt-10 justify-center">
@@ -196,13 +312,21 @@ function bookings() {
             className="text-gray-500 mb-1 text-2xl"
             style={{ fontFamily: "Quintessential" }}
           >
-            Check In  / Check Out 
+            Check In / Check Out
           </h1>
-          
         </div>
         <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+        {x === y ? (
+          <div></div>
+        ) : (
+          <h1 className="text-center text-gray-500 text-[15px]">
+            {days} {days === 1 ? "Night" : "Nights"} /{" "}
+            <span className="text-lime-600 text-[14px]">${estemate}</span>
+          </h1>
+        )}
+
         <div className="flex mb-5 mt-2 justify-center">
-          <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
+          <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px]  justify-center">
             <DateRange
               style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
               ranges={[selectionRange]}
@@ -225,8 +349,8 @@ function bookings() {
               Number of guest
             </h1>
             <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
-            <div className=" border-2 border-cyan-500 shadow-lg flex items-center rounded-3xl py-2 mx-10  px-5">
-              <BsPeopleFill className="text-1xl text-gray-500 mr-3" />
+            <div className=" border-2 border-cyan-500 shadow-lg flex items-center rounded-3xl py-2 mx-2  px-5">
+              <BsPeopleFill className="text-1xl text-gray-500 mr-1" />
               <div className="w-full">
                 <div>
                   <select
@@ -249,6 +373,7 @@ function bookings() {
               w-full
               rounded-md
               focus:outline-none
+              text-xs
              text-gray-700
             
              
@@ -266,15 +391,17 @@ function bookings() {
                     <option value="7"> 7 Guest - ($40 extra per night)</option>
                     <option value="8"> 8 Guest - ($80 extra per night)</option>
                     <option value="9"> 9 Guest - ($120 extra per night)</option>
-                    <option value="10"> 10 Guest - ($160 extra per night)</option>
-                  
+                    <option value="10">
+                      {" "}
+                      10 Guest - ($160 extra per night)
+                    </option>
                   </select>
                 </div>
               </div>
             </div>
-            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center rounded-3xl py-2 mx-10  px-5">
-              <MdPets className="text-1xl text-gray-500 mr-3" />
-              <div className="w-full " >
+            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center rounded-3xl py-2 mx-2  px-5">
+              <MdPets className="text-1xl text-gray-500 mr-1" />
+              <div className="w-full ">
                 <div>
                   <select
                     onChange={(e) => {
@@ -294,6 +421,7 @@ function bookings() {
                     w-full
               bg-white
               text-gray-700
+              text-xs
               rounded-md
               focus:outline-none
           
@@ -307,8 +435,6 @@ function bookings() {
                     <option value="1">none</option>
                     <option value="1"> 1 pet ($25 single fee)</option>
                     <option value="2"> 2 or more pets ($25 single fee)</option>
-
-                    
                   </select>
                 </div>
               </div>
@@ -329,11 +455,27 @@ function bookings() {
         </section>
       </div>
       <section>
-        <h1 style={{ fontFamily: "Quintessential" }}
-              className="text-center text-gray-500 mb-3 text-2xl">Reservation Details</h1>
-               <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
-        <div className=" mb-5 mx-10 border rounded-3xl shadow-lg h-[300px]">
-          <h1> </h1>
+        <h1
+          style={{ fontFamily: "Quintessential" }}
+          className="text-center text-gray-500 mb-3 text-2xl"
+        >
+          Reservation Details
+        </h1>
+        <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+        <div className=" mb-5 mx-2 border rounded-3xl shadow-lg h-[300px]">
+          {x === y ? (
+            <div></div>
+          ) : (
+            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+              Check In: (3PM {startDate.toDateString()}) <br /> Check Out: (11AM{" "}
+              {endDate.toDateString()}){" "}
+            </h1>
+          )}
+          <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+            <h1>Total Nights: {days}</h1>
+          <h1>{weekday} Nights x (weekday price $400): ${weekdayprice}</h1>
+          <h1>{weekend} Nights x (weekend price $500): ${weekendprice}</h1>
+          </div>
         </div>
       </section>
     </div>
