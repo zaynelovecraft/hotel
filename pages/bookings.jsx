@@ -179,10 +179,10 @@ function bookings() {
           >
             Check In / Check Out
           </h1>
-          <p className="text-gray-400 text-xs mt-2">
+          <p className="text-gray-600 text-xs mt-2">
             $400 per day (Sun - Thu)
           </p>
-          <p className="text-gray-400 text-xs mb-2">
+          <p className="text-gray-600 text-xs mb-2">
             $500 per day (Fri - Sat)
           </p>
         </div>
@@ -286,10 +286,11 @@ function bookings() {
               "
                   >
                     <option className="" value="" disabled selected>
-                      Pets ($25 single fee)
+                      Pets
                     </option>
-                    <option value="1"> 1 pet</option>
-                    <option value="2"> 2 or more pets</option>
+                    <option value="1">none</option>
+                    <option value="1"> 1 pet ($25 single fee)</option>
+                    <option value="2"> 2 or more pets ($25 single fee)</option>
 
                     
                   </select>
