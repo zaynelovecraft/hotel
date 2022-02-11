@@ -44,6 +44,8 @@ function Solocien() {
   const [modalShown, toggleModal] = useState(false);
   const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([]);
+  const [estemate, setEstemate] = useState(0);
+  console.log(estemate);
   // console.log("start", startDate);
   // console.log("end", endDate);
 
@@ -51,7 +53,63 @@ function Solocien() {
 
   useEffect(() => {
     setRerender(!rerender);
-  }, [data]);
+  }, [data, estemate]);
+
+  // console.log(startDate)
+  // console.log(endDate)
+
+  const price = () => {
+    let price = 0;
+    const addDays = (date, days = 1) => {
+      const result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    };
+    const dateRange = (start, end, range = []) => {
+      if (start > end) return range;
+      const next = addDays(start, 1);
+      return dateRange(next, end, [...range, start]);
+    };
+
+    const range = dateRange(new Date(startDate), new Date(endDate));
+
+    const days = range.map((date) => date.toDateString().slice(0, 3));
+    const priceperday = [];
+
+    console.log(days);
+
+    for (let i = 0; i < days.length; i++) {
+      if (days[i] == "Fri") {
+        price = price + 500;
+      }
+      if (days[i] == "Sat") {
+        price = price + 500;
+      }
+      if (days[i] == "Mon") {
+        price = price + 400;
+      }
+      if (days[i] == "Tue") {
+        price = price + 400;
+      }
+      if (days[i] == "Wed") {
+        price = price + 400;
+      }
+      if (days[i] == "Thu") {
+        price = price + 400;
+      }
+      if (days[i] == "Sun") {
+        price = price + 400;
+      }
+    }
+
+    setEstemate(price);
+
+    // if date is weekday = $400
+  };
+
+  useEffect(() => {
+    price();
+  }, [startDate, endDate]);
 
   useEffect(async () => {
     const response = await fetch("/api/hotel");
@@ -486,35 +544,35 @@ function Solocien() {
         </div>
       </div>
       <div className="flex justify-between mx-auto  max-w-[750px]   ">
-
-      <div className="sm:justify-center sm:ml-10 ml-2 sm:flex">
-        <div className=" max-w-[750px] mt-10 md:flex md:flex-row  text-gray-500">
-          <div className="flex mb-2  md:mr-5 items-center">
-            <AiOutlineHome className="text-3xl mr-2" />{" "}
-            <h1 className="font-light"> Entire Home</h1>
-          </div>
-          <div className="flex mb-2 md:mr-5 items-center">
-            <BsBuilding className="text-3xl mr-2" />{" "}
-            <h1 className="font-light"> Condos</h1>
-          </div>
-          <div className="flex mb-2 md:mr-5 items-center">
-            <BsFillPeopleFill className="text-3xl mr-2" />{" "}
-            <h1 className="font-light"> 6 Guest</h1>
-          </div>
-          <div className="flex mb-2 md:mr-5 items-center">
-            <GiBed className="text-3xl mr-2" />{" "}
-            <h1 className="font-light"> 3 Bedrooms</h1>
+        <div className="sm:justify-center sm:ml-10 ml-2 sm:flex">
+          <div className=" max-w-[750px] mt-10 md:flex md:flex-row  text-gray-500">
+            <div className="flex mb-2  md:mr-5 items-center">
+              <AiOutlineHome className="text-3xl mr-2" />{" "}
+              <h1 className="font-light"> Entire Home</h1>
+            </div>
+            <div className="flex mb-2 md:mr-5 items-center">
+              <BsBuilding className="text-3xl mr-2" />{" "}
+              <h1 className="font-light"> Condos</h1>
+            </div>
+            <div className="flex mb-2 md:mr-5 items-center">
+              <BsFillPeopleFill className="text-3xl mr-2" />{" "}
+              <h1 className="font-light"> 6 Guest</h1>
+            </div>
+            <div className="flex mb-2 md:mr-5 items-center">
+              <GiBed className="text-3xl mr-2" />{" "}
+              <h1 className="font-light"> 3 Bedrooms</h1>
+            </div>
           </div>
         </div>
-      </div>
-          <Link href={'/bookings'}>
+        <Link href={"/bookings"}>
           <a>
-
-        <div className="cursor-pointer">
-        <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">Book Now!</button>
-        </div>
+            <div className="cursor-pointer">
+              <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                Book Now!
+              </button>
+            </div>
           </a>
-          </Link>
+        </Link>
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
@@ -692,7 +750,7 @@ function Solocien() {
       </div>
       <div className="border-gray-300 border-b mx-24 mb-2"></div>
 
-      <div className="flex lg:hidden mb-6 mt-2 justify-center">
+      <div className="flex lg:hidden mb-2 mt-2 justify-center">
         <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
           <DateRange
             style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
@@ -720,7 +778,7 @@ function Solocien() {
           />
         </div>
       </div>
-
+              <h1  className="text-center font-light text-gray-600 mb-3">Your estemated price: <span className="text-lime-600 text-sm">${estemate}</span></h1>
       <div className="border-gray-300 border-b mx-24 mb-6"></div>
       <div className="flex mb-1 mt-8 items-center justify-center">
         <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
@@ -1038,13 +1096,35 @@ function Solocien() {
                   Check-out-hour: <span className="font-light"> 11:00 AM</span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
-                  Late Check In: <span className="font-light"> Before 11 PM </span>
+                  Late Check In:{" "}
+                  <span className="font-light"> Before 11 PM </span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
-                Optional Services: <span className="font-light"> Beach towels, beach chairs, umbrella, ice chest and beach wagon,Keurig coffee maker, Kitchen Aid blender, toaster, hand mixer, dishes/cooking essentials, dishwasher, reverse osmosis 6 step UV drinking water filtration system, ice maker, washer/dryer inside unit</span>
+                  Optional Services:{" "}
+                  <span className="font-light">
+                    {" "}
+                    Beach towels, beach chairs, umbrella, ice chest and beach
+                    wagon,Keurig coffee maker, Kitchen Aid blender, toaster,
+                    hand mixer, dishes/cooking essentials, dishwasher, reverse
+                    osmosis 6 step UV drinking water filtration system, ice
+                    maker, washer/dryer inside unit
+                  </span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
-                Outdoor Facilities:  <span className="font-light"> Patio 1- built in gas bbq/gas range/bar sink, hammock and seating area Patio 2- outdoor shower, 2 hammocks, wood burning terracota fireplace and seating area Patio 3- Hammock, bench and chairs, grass area (we have a small jumper for rent available for 2-3 children up to 8 years old that fits perfectly in this area, $25 dollars a day) 2 community pools and jacuzzi tub, private/gated community, 24/7 guard on duty, one block from beautiful Rosarito Beach (that’s 110 steps!!!) Beach towels, beach chairs, umbrella, ice chest and beach wagon are included. </span>
+                  Outdoor Facilities:{" "}
+                  <span className="font-light">
+                    {" "}
+                    Patio 1- built in gas bbq/gas range/bar sink, hammock and
+                    seating area Patio 2- outdoor shower, 2 hammocks, wood
+                    burning terracota fireplace and seating area Patio 3-
+                    Hammock, bench and chairs, grass area (we have a small
+                    jumper for rent available for 2-3 children up to 8 years old
+                    that fits perfectly in this area, $25 dollars a day) 2
+                    community pools and jacuzzi tub, private/gated community,
+                    24/7 guard on duty, one block from beautiful Rosarito Beach
+                    (that’s 110 steps!!!) Beach towels, beach chairs, umbrella,
+                    ice chest and beach wagon are included.{" "}
+                  </span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
                   Extra People:{" "}
@@ -1057,7 +1137,8 @@ function Solocien() {
                 <h1 className="text-sm font-semibold mb-3">
                   Cancellation:{" "}
                   <span className="font-light">
-                  Free cancellation 14+ days before check in date. 50 % charge if cancelled less than 7 days before check in.
+                    Free cancellation 14+ days before check in date. 50 % charge
+                    if cancelled less than 7 days before check in.
                   </span>
                 </h1>
               </div>
@@ -1221,12 +1302,13 @@ function Solocien() {
                 <h1 className="line-through">Drugs</h1>
               </div>
               <div className="flex mb-2 text-xl  items-center">
-
                 <h1 className="underline">Other Rules</h1>
               </div>
               <div className="flex mb-2 items-center">
-
-                <h1 className="">No smoking of any kind, No vaping/e-Cigarettes, No drugs allowed (including medical marijuana)</h1>
+                <h1 className="">
+                  No smoking of any kind, No vaping/e-Cigarettes, No drugs
+                  allowed (including medical marijuana)
+                </h1>
               </div>
             </div>
           )}

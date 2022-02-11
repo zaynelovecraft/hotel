@@ -7,8 +7,29 @@ import "react-date-range/dist/theme/default.css";
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [datesarray, setDatesarray] = useState([]);
+
+
+    const yo = new Date(1995, 11, 15)
+
+    console.log(yo)
+    
+
+
+
+    // console.log(data[0]?.start.dateTime)
+    // const date = data[0].start
+    // const date = ['2022-02-12T14:30:00']
+
+    // const dayOfWeek = new Date(date)
+    // const isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0)
+    // console.log(isWeekend)
+    // console.log(dayOfWeek)
+
+    // console.log(dayOfWeek)
+
+    // console.log(getDay())
 
   const selectionRange = {
     startDate: startDate,
@@ -30,15 +51,16 @@ function bookings() {
   useEffect(async () => {
     const response = await fetch("/api/hotel");
     const data = await response.json();
+
     setData(data);
-    // console.log(data[0].start.date)
-    // console.log(data[1].start.date)
-    // console.log(data[2].start.date)
+   
   }, []);
   useEffect(async () => {
     getdates();
   }, [data]);
 
+  
+  
   const getdates = () => {
     let dates = [];
 
@@ -109,6 +131,8 @@ function bookings() {
       // dates[i].append('')
     }
   };
+
+  
 
   return (
     <div>
