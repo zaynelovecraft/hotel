@@ -76,9 +76,9 @@ function Solocien() {
     const days = range.map((date) => date.toDateString().slice(0, 3));
     const priceperday = [];
 
-    console.log(days);
+    
 
-    for (let i = 0; i < days.length; i++) {
+    for (let i = 0; i < 7; i++) {
       if (days[i] == "Fri") {
         price = price + 500;
       }
@@ -100,6 +100,19 @@ function Solocien() {
       if (days[i] == "Sun") {
         price = price + 400;
       }
+    }
+
+    for (let i = 7; i < 30; i++) {
+      if (typeof days[i] === 'string' || days[i] instanceof String) {
+        price = price + 300;
+      }
+     
+    }
+    for (let i = 30; i < days.length; i++) {
+      if (typeof days[i] === 'string' || days[i] instanceof String) {
+        price = price + 150;
+      }
+     
     }
 
     setEstemate(price);
@@ -778,7 +791,10 @@ function Solocien() {
           />
         </div>
       </div>
-              <h1  className="text-center font-light text-gray-600 mb-3">Your estemated price: <span className="text-lime-600 text-sm">${estemate}</span></h1>
+      <h1 className="text-center font-light text-gray-600 mb-3">
+        Your estemated price:{" "}
+        <span className="text-lime-600 text-sm">${estemate}</span>
+      </h1>
       <div className="border-gray-300 border-b mx-24 mb-6"></div>
       <div className="flex mb-1 mt-8 items-center justify-center">
         <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
