@@ -409,7 +409,7 @@ function bookings() {
         {/*
          */}
         <div className="flex flex-col md:flex-row md:justify-center">
-          <div className="flex md:mr-[65px] justify-center ">
+          <div className="flex md:mr-[65px] justify-center md:mt-[20px] ">
             <div className="relative w-[400px] h-[400px] md:h-[300px] md:w-[300px] mb-20">
               <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
@@ -611,7 +611,7 @@ function bookings() {
             </form>
           </section>
         </div>
-        <section className="md:mr-[100px] mx-5 md:ml-[20px] md:-mt-[50px]">
+        <section className="md:mr-[100px] mx-5 md:ml-[20px] md:mt-[20px]">
           <h1
             style={{ fontFamily: "Quintessential" }}
             className="text-center text-gray-500 mb-3 text-2xl"
