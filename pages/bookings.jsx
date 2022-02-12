@@ -393,7 +393,7 @@ function bookings() {
           rel="stylesheet"
         ></link>
       </Head>
-      <section className="mx-10">
+      <section className="md:mx-10">
         <div className="flex justify-center mt-10">
           <h1
             className="text-3xl font-extralight text-gray-500"
@@ -461,7 +461,7 @@ function bookings() {
             )}
 
             <div className="flex mb-5 mt-2 justify-center">
-              <div className=" flex overflow-hidden md:w-[400px] w-[700px] mb-2 h-[325px]  justify-center">
+              <div className=" flex overflow-hidden  md:w-[400px] w-[700px] mb-2 h-[325px] justify-center">
                 <DateRange
                   style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
                   ranges={[selectionRange]}
@@ -478,7 +478,7 @@ function bookings() {
       </section>
       <div className="flex flex-col md:justify-center md:flex-row-reverse"> 
         
-      <div className=" md:mr-[100px]  mb-10">
+      <div className=" md:mr-[100px] mx-5 mb-10">
         <section className="  sm:rounded-md">
           <form onSubmit={contactForm} name="contact" id="contact-form">
             <h1
@@ -603,7 +603,7 @@ function bookings() {
           </form>
         </section>
       </div>
-      <section className="md:mr-[120px] md:ml-[20px] md:-mt-[50px]">
+      <section className="md:mr-[120px] mx-5 md:ml-[20px] md:-mt-[50px]">
         <h1
           style={{ fontFamily: "Quintessential" }}
           className="text-center text-gray-500 mb-3 text-2xl"
@@ -694,8 +694,8 @@ function bookings() {
                 </h1>
               </div>
               <div>
-                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                  Total: <span className="text-lime-700">{total}</span>
+                <h1 className="text-xl leading-relaxed text-center mt-5 text-gray-600">
+                  Total: <span className="text-lime-700 text-xl">{total}</span>
                 </h1>
               </div>
             </div>
