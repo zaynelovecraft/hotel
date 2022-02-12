@@ -21,15 +21,81 @@ function bookings() {
   const [dates, setDates] = useState([]);
   const [weekday, setWeekday] = useState(0);
   const [weekend, setWeekend] = useState(0);
+  const [discounted, setDiscounted] = useState(0)
+  const [monthlydiscount, setMonthlydiscount] = useState(0)
 
   const contactForm = async () => {
     event.preventDefault();
   };
 
-  const x = startDate.toDateString().slice(0, 3);
-  const y = endDate.toDateString().slice(0, 3);
+  const x = startDate.toDateString().slice(0, 11);
+  const y = endDate.toDateString().slice(0, 11);
+
+
   const weekendprice = weekend * 500
   const weekdayprice = weekday * 400
+
+
+  const monthdiscount = () => {
+    let discount = 0
+    if(days >= 30) {
+      for(let i = 30; i<dates.length ; i ++ ) {
+         if(dates[i] == "Fri") {
+           discount = discount + 350
+         }
+         if(dates[i] == "Sat") {
+           discount = discount + 350
+         }
+         if(dates[i] == "Sun") {
+           discount = discount + 250
+         }
+         if(dates[i] == "Mon") {
+           discount = discount + 250
+         }
+         if(dates[i] == "Tue") {
+           discount = discount + 250
+         }
+         if(dates[i] == "Wed") {
+           discount = discount + 250
+         }
+         if(dates[i] == "Thu") {
+           discount = discount + 250
+         }
+      }
+    }
+    setMonthlydiscount(discount) 
+  }
+
+  const discount = () => {
+    let discount = 0
+    if(days >= 7) {
+      for(let i = 7; i<30 ; i ++ ) {
+         if(dates[i] == "Fri") {
+           discount = discount + 200
+         }
+         if(dates[i] == "Sat") {
+           discount = discount + 200
+         }
+         if(dates[i] == "Sun") {
+           discount = discount + 100
+         }
+         if(dates[i] == "Mon") {
+           discount = discount + 100
+         }
+         if(dates[i] == "Tue") {
+           discount = discount + 100
+         }
+         if(dates[i] == "Wed") {
+           discount = discount + 100
+         }
+         if(dates[i] == "Thu") {
+           discount = discount + 100
+         }
+      }
+    }
+    setDiscounted(discount)
+    
+  }
   // console.log(data[0]?.start.dateTime)
   // const date = data[0].start
   // const date = ['2022-02-12T14:30:00']
@@ -72,6 +138,8 @@ function bookings() {
 
   useEffect(() => {
     totalweekday();
+    discount()
+    monthdiscount()
   }, [days]);
 
   const totalweekday = () => {
@@ -379,7 +447,7 @@ function bookings() {
              
               "
                   >
-                    <option className="" value="" disabled selected>
+                    <option className="" value="" disabled="disabled">
                       Guest
                     </option>
                     <option value="1"> 1 Guest</option>
@@ -429,7 +497,7 @@ function bookings() {
              
               "
                   >
-                    <option className="" value="" disabled selected>
+                    <option className="" value="" disabled="disabled" >
                       Pets
                     </option>
                     <option value="1">none</option>
@@ -473,8 +541,13 @@ function bookings() {
           )}
           <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
             <h1>Total Nights: {days}</h1>
-          <h1>{weekday} Nights x (weekday price $400): ${weekdayprice}</h1>
+          <h1>{weekday} Nights x (weekday price $400): ${weekdayprice} </h1>
           <h1>{weekend} Nights x (weekend price $500): ${weekendprice}</h1>
+          <h1>total ${weekdayprice + weekendprice}</h1>
+          </div>
+          <div>
+            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600" >Weekly Discount <span className="text-sm font-bold text-lime-500">-${discounted}</span> </h1>
+            <h1 className="text-xs leading-relaxed text-center text-gray-600">Monthly Discount <span className="text-sm font-bold text-lime-500">-${monthlydiscount}</span></h1>
           </div>
         </div>
       </section>
