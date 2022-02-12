@@ -383,7 +383,10 @@ function bookings() {
   return (
     <div>
       <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+        ></meta>
         <link
           href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
           rel="stylesheet"
@@ -504,6 +507,7 @@ function bookings() {
                       }}
                       placeholder="guest"
                       defaultValue={"DEFAULT"}
+                      required
                       className="
             
               
@@ -564,6 +568,7 @@ function bookings() {
                       }}
                       placeholder="guest"
                       defaultValue={"DEFAULT"}
+                      required
                       className="
             
               cursor-pointer
@@ -619,8 +624,8 @@ function bookings() {
               <div></div>
             ) : (
               <h1 className="text-xs underline leading-relaxed text-center mt-5 text-gray-600">
-                Check In: (3PM {startDate.toDateString()}) <br /> Check Out:
-                (11AM {endDate.toDateString()}){" "}
+                Check In: 3PM ({startDate.toDateString()}) <br /> Check Out:
+                11AM ({endDate.toDateString()}){" "}
               </h1>
             )}
             {days == 0 && (
@@ -651,18 +656,18 @@ function bookings() {
             <div>
               {days >= 8 && (
                 <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                  Weekly Discount{" "}
+                  (Weekly Discount) you save{" "}
                   <span className=" font-bold text-lime-600">
-                    -${discounted}
+                    ${discounted}
                   </span>{" "}
                 </h1>
               )}
 
               {days >= 31 && (
                 <h1 className="text-xs leading-relaxed text-center text-gray-600">
-                  Monthly Discount{" "}
+                  (Monthly Discount) you save{" "}
                   <span className="font-bold text-lime-600">
-                    -${monthlydiscount}
+                    ${monthlydiscount}
                   </span>
                 </h1>
               )}
@@ -690,7 +695,7 @@ function bookings() {
             <div>
               {petfee > 0 && (
                 <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                  pet fee ${petfee}
+                  pet fee <span className="font-bold">${petfee}</span>
                 </h1>
               )}
             </div>
@@ -701,16 +706,18 @@ function bookings() {
                     Cleaning Fee{" "}
                     <span className="text-gray-600 font-bold">$65</span>
                   </h1>
-                  <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  <h1 className="text-xs leading-relaxed text-center text-gray-600">
                     Security Deposit{" "}
                     <span className="text-gray-600 font-bold">$200</span>{" "}
                     (Refundable)
                   </h1>
                 </div>
                 <div>
-                  <h1 className="text-xl mb-2 leading-relaxed text-center mt-5 text-gray-600">
+                  <h1 className="text-xl mb-4 leading-relaxed text-center mt-5 text-gray-600">
                     Total:{" "}
-                    <span className="text-gray-600 font-bold text-xl">${total}</span>
+                    <span className="text-lime-600 font-bold text-xl">
+                      ${total}
+                    </span>
                   </h1>
                 </div>
               </div>
