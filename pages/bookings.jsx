@@ -22,9 +22,8 @@ function bookings() {
   const [discounted, setDiscounted] = useState(0);
   const [monthlydiscount, setMonthlydiscount] = useState(0);
   const [guestprice, setGuestprice] = useState(0);
-  const [pets, setPets] = useState()
-  const [total, setTotal] = useState(0)
-
+  const [pets, setPets] = useState();
+  const [total, setTotal] = useState(0);
 
   const contactForm = async () => {
     event.preventDefault();
@@ -35,56 +34,49 @@ function bookings() {
 
   const weekendprice = weekend * 500;
   const weekdayprice = weekday * 400;
-  const guesttotal = guestprice * days
-   
-  const petfee = (function() {
-    
-    if(pets >= 1) {
-      return 25
+  const guesttotal = guestprice * days;
+
+  const petfee = (function () {
+    if (pets >= 1) {
+      return 25;
     } else {
-      return 0
+      return 0;
     }
-  })() 
-  
+  })();
 
-const xguest = (function() {
-    if(guestamount >= 7) {
-      return guestamount - 6
+  const xguest = (function () {
+    if (guestamount >= 7) {
+      return guestamount - 6;
     }
-})(); 
+  })();
 
-
-  
   const masstotal = () => {
-    setTotal(0)
-    let total = 0
+    setTotal(0);
+    let total = 0;
 
-    if(estemate) {
-      total = total + estemate
+    if (estemate) {
+      total = total + estemate;
     }
-    if(guesttotal) {
-      total = total + guesttotal
-    } 
-
-    if(petfee) {
-      total = total + petfee
+    if (guesttotal) {
+      total = total + guesttotal;
     }
 
-    if(total > 0) {
-      total = total + 265
+    if (petfee) {
+      total = total + petfee;
     }
 
-    setTotal(total)
-  }
-  
-  
+    if (total > 0) {
+      total = total + 265;
+    }
 
+    setTotal(total);
+  };
 
   const numofguest = () => {
     let extra = 0;
     if (guestamount <= 6) {
-      extra = 0
-    };
+      extra = 0;
+    }
     if (guestamount == 7) {
       extra = extra + 40;
     }
@@ -97,8 +89,7 @@ const xguest = (function() {
     if (guestamount == 10) {
       extra = extra + 160;
     }
-    setGuestprice(extra)
-    
+    setGuestprice(extra);
   };
 
   const monthdiscount = () => {
@@ -201,7 +192,6 @@ const xguest = (function() {
   }, [data]);
 
   useEffect(() => {
-   
     totalweekday();
     discount();
     monthdiscount();
@@ -212,11 +202,11 @@ const xguest = (function() {
   }, [guestamount]);
 
   useEffect(() => {
-    masstotal()
-  },[estemate, guestprice, petfee])
-  
+    masstotal();
+  }, [estemate, guestprice, petfee]);
+
   const totalweekday = () => {
-    console.log(dates)
+    console.log(dates);
     if (dates.length === 0) return;
     let weekday = 0;
     let weekend = 0;
@@ -403,7 +393,7 @@ const xguest = (function() {
           rel="stylesheet"
         ></link>
       </Head>
-      <section className="">
+      <section className="mx-10">
         <div className="flex justify-center mt-10">
           <h1
             className="text-3xl font-extralight text-gray-500"
@@ -413,76 +403,83 @@ const xguest = (function() {
           </h1>
         </div>
         <div className=" flex max-w-[150px] mx-auto border border-b  mt-2 "></div>
-
-        <div className="flex justify-center">
-          <div className="relative w-[300px] h-[300px] mb-20">
-            <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
-              className=" justify-center"
-              alt="img"
-              layout="fill"
-              objectFit="contain"
-            />
-            <h1 className="absolute bottom-7 font-light text-gray-700 ">
-              Sol O Cien Condo
-            </h1>
-            <h1 className="absolute bottom-[30px] text-xs right-0 font-extralight text-gray-700 ">
-              -Baja California, Mexico
-            </h1>
-            <p className="absolute bottom-1 text-gray-500 text-[11px] mt-2">
-              $400 per night (Sun - Thu)
-            </p>
-            <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
-              $500 per night (Fri - Sat)
-            </p>
-            <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
-              Price per night (7d+): $ 300
-            </p>
-            <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
-              Price per night (30d+): $ 150
-            </p>
-            <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
-              Check in 3PM
-            </p>
-            <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
-              Check out 11AM
-            </p>
+        {/*
+         */}
+        <div className="flex flex-col md:flex-row md:justify-center">
+          <div className="flex md:mr-[70px] justify-center ">
+            <div className="relative w-[300px] h-[300px] mb-20">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
+                className=" justify-center"
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+              <h1 className="absolute bottom-7 font-light text-gray-700 ">
+                Sol O Cien Condo
+              </h1>
+              <h1 className="absolute bottom-[30px] text-xs right-0 font-extralight text-gray-700 ">
+                -Baja California, Mexico
+              </h1>
+              <p className="absolute bottom-1 text-gray-500 text-[11px] mt-2">
+                $400 per night (Sun - Thu)
+              </p>
+              <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
+                $500 per night (Fri - Sat)
+              </p>
+              <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
+                Price per night (7d+): $ 300
+              </p>
+              <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
+                Price per night (30d+): $ 150
+              </p>
+              <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
+                Check in 3PM
+              </p>
+              <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
+                Check out 11AM
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col text-center mt-10 justify-center">
-          <h1
-            className="text-gray-500 mb-1 text-2xl"
-            style={{ fontFamily: "Quintessential" }}
-          >
-            Check In / Check Out
-          </h1>
-        </div>
-        <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
-        {x === y ? (
-          <div></div>
-        ) : (
-          <h1 className="text-center text-gray-500 text-[15px]">
-            {days} {days === 1 ? "Night" : "Nights"} /{" "}
-            <span className="text-lime-600 text-[14px]">${estemate}</span>
-          </h1>
-        )}
+          <div className="">
+            <div className="flex flex-col text-center mt-10 justify-center">
+              <h1
+                className="text-gray-500 mb-1 text-2xl"
+                style={{ fontFamily: "Quintessential" }}
+              >
+                Check In / Check Out
+              </h1>
+            </div>
+            <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
+            {x === y ? (
+              <div></div>
+            ) : (
+              <h1 className="text-center text-gray-500 text-[15px]">
+                {days} {days === 1 ? "Night" : "Nights"} /{" "}
+                <span className="text-lime-600 text-[14px]">${estemate}</span>
+              </h1>
+            )}
 
-        <div className="flex mb-5 mt-2 justify-center">
-          <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px]  justify-center">
-            <DateRange
-              style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
-              ranges={[selectionRange]}
-              // disabledDates={[new Date(ree)]}
-              minDate={new Date()}
-              onChange={handleSelect}
-              rangeColors={["#03cffc"]}
-              disabledDates={datesarray.map((e) => new Date(e))}
-            />
+            <div className="flex mb-5 mt-2 justify-center">
+              <div className=" flex overflow-hidden md:w-[400px] w-[700px] mb-2 h-[325px]  justify-center">
+                <DateRange
+                  style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
+                  ranges={[selectionRange]}
+                  // disabledDates={[new Date(ree)]}
+                  minDate={new Date()}
+                  onChange={handleSelect}
+                  rangeColors={["#03cffc"]}
+                  disabledDates={datesarray.map((e) => new Date(e))}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <div className="w-full sm:w-[500px] lg:w-[700px] md:max-w-full mb-[50px] mx-auto">
-        <section className="   sm:rounded-md">
+      <div className="flex flex-col md:justify-center md:flex-row-reverse"> 
+        
+      <div className=" md:mr-[100px]  mb-10">
+        <section className="  sm:rounded-md">
           <form onSubmit={contactForm} name="contact" id="contact-form">
             <h1
               style={{ fontFamily: "Quintessential" }}
@@ -490,8 +487,8 @@ const xguest = (function() {
             >
               Number of guest
             </h1>
-            <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
-            <div className=" border-2 border-cyan-500 shadow-lg flex items-center rounded-3xl py-2 mx-2  px-5">
+            <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-4"></div>
+            <div className=" border-2 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
               <BsPeopleFill className="text-1xl text-gray-500 mr-1" />
               <div className="w-full">
                 <div>
@@ -546,7 +543,7 @@ const xguest = (function() {
                 </div>
               </div>
             </div>
-            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center rounded-3xl py-2 mx-2  px-5">
+            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center max-w-[300px] mx-auto  rounded-3xl py-2 px-5">
               <MdPets className="text-1xl text-gray-500 mr-1" />
               <div className="w-full ">
                 <div>
@@ -606,15 +603,15 @@ const xguest = (function() {
           </form>
         </section>
       </div>
-      <section>
+      <section className="md:mr-[120px] md:ml-[20px] md:-mt-[50px]">
         <h1
           style={{ fontFamily: "Quintessential" }}
           className="text-center text-gray-500 mb-3 text-2xl"
         >
           Reservation Details
         </h1>
-        <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
-        <div className=" mb-5 mx-2 border rounded-3xl shadow-lg ">
+        <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-2"></div>
+        <div className=" mb-5 border min-h-[100px] max-w-[350px] md:w-[600px] mx-auto rounded-3xl shadow-lg ">
           {x === y ? (
             <div></div>
           ) : (
@@ -623,48 +620,89 @@ const xguest = (function() {
               {endDate.toDateString()}){" "}
             </h1>
           )}
-          <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-            <h1>Total Nights: {days}</h1>
-            <h1>
-              {weekday} Nights x (weekday price $400): ${weekdayprice}{" "}
-            </h1>
-            <h1>
-              {weekend} Nights x (weekend price $500): ${weekendprice}
-            </h1>
-            <h1>total ${weekdayprice + weekendprice}</h1>
-          </div>
+          {days == 0 && (
+            <div>
+              <h1 className="text-xs  leading-relaxed text-center mt-5 text-gray-600">
+                {" "}
+                Please finish providing details.
+              </h1>
+            </div>
+          )}
+          {days > 0 && (
+            <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+              <h1>Total Nights: {days}</h1>
+              <h1>
+                {weekday} Nights x (weekday price $400): ${weekdayprice}{" "}
+              </h1>
+              <h1>
+                {weekend} Nights x (weekend price $500): ${weekendprice}
+              </h1>
+              <h1>total ${weekdayprice + weekendprice}</h1>
+            </div>
+          )}
           <div>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-              Weekly Discount{" "}
-              <span className="text-sm font-bold text-lime-500">
-                 -${discounted}
-              </span>{" "}
-            </h1>
-            <h1 className="text-xs leading-relaxed text-center text-gray-600">
-              Monthly Discount{" "}
-              <span className="text-sm font-bold text-lime-500">
-                 -${monthlydiscount}
-              </span>
-            </h1>
-          </div>
-          <div>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">Total Guest {guestamount} </h1>
-            <h1 className="text-xs leading-relaxed text-center  text-gray-600">{xguest} Extra Guest + ${guestprice} per Night</h1>
-            <h1 className="text-xs leading-relaxed text-center  text-gray-600">{days} Nights x ${guestprice} <br /> total ${guesttotal}</h1>
-          </div>
-          <div>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">pet fee ${petfee}</h1>
-          </div>
-          <div>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">Cleaning Fee $65</h1>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">Security Deposit $200 (Refundable)</h1>
-          </div>
+            {days >= 8 && (
+              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                Weekly Discount{" "}
+                <span className="text-sm font-bold text-lime-500">
+                  -${discounted}
+                </span>{" "}
+              </h1>
+            )}
 
-          <div>
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">Total: <span className="text-lime-700">{total}</span></h1>
+            {days >= 31 && (
+              <h1 className="text-xs leading-relaxed text-center text-gray-600">
+                Monthly Discount{" "}
+                <span className="text-sm font-bold text-lime-500">
+                  -${monthlydiscount}
+                </span>
+              </h1>
+            )}
           </div>
+          <div>
+            {guestamount > 0 && (
+              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                Total Guest {guestamount}{" "}
+              </h1>
+            )}
+            {guestamount >= 7 && (
+              <div>
+                <h1 className="text-xs leading-relaxed text-center  text-gray-600">
+                  {xguest} Extra Guest + ${guestprice} per Night
+                </h1>
+                <h1 className="text-xs leading-relaxed text-center  text-gray-600">
+                  {days} Nights x ${guestprice} <br /> total ${guesttotal}
+                </h1>
+              </div>
+            )}
+          </div>
+          <div>
+            {petfee > 0 && (
+              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                pet fee ${petfee}
+              </h1>
+            )}
+          </div>
+          {days > 0 && (
+            <div>
+              <div>
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  Cleaning Fee $65
+                </h1>
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  Security Deposit $200 (Refundable)
+                </h1>
+              </div>
+              <div>
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  Total: <span className="text-lime-700">{total}</span>
+                </h1>
+              </div>
+            </div>
+          )}
         </div>
       </section>
+      </div>
     </div>
   );
 }
