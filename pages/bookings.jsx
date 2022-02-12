@@ -206,7 +206,6 @@ function bookings() {
   }, [estemate, guestprice, petfee]);
 
   const totalweekday = () => {
-    console.log(dates);
     if (dates.length === 0) return;
     let weekday = 0;
     let weekend = 0;
@@ -384,6 +383,7 @@ function bookings() {
   return (
     <div>
       <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"></meta>
         <link
           href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
           rel="stylesheet"
@@ -406,8 +406,8 @@ function bookings() {
         {/*
          */}
         <div className="flex flex-col md:flex-row md:justify-center">
-          <div className="flex md:mr-[70px] justify-center ">
-            <div className="relative w-[300px] h-[300px] mb-20">
+          <div className="flex md:mr-[65px] justify-center ">
+            <div className="relative w-[400px] h-[400px] md:h-[300px] md:w-[300px] mb-20">
               <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
                 className=" justify-center"
@@ -476,35 +476,35 @@ function bookings() {
           </div>
         </div>
       </section>
-      <div className="flex flex-col md:justify-center md:flex-row-reverse"> 
-        
-      <div className=" md:mr-[100px] mx-5 mb-10">
-        <section className="  sm:rounded-md">
-          <form onSubmit={contactForm} name="contact" id="contact-form">
-            <h1
-              style={{ fontFamily: "Quintessential" }}
-              className="text-center text-gray-500 mb-3 text-2xl"
-            >
-              Number of guest
-            </h1>
-            <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-4"></div>
-            <div className=" border-2 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
-              <BsPeopleFill className="text-1xl text-gray-500 mr-1" />
-              <div className="w-full">
-                <div>
-                  <select
-                    onChange={(e) => {
-                      setGuestamount(e.target.value);
-                    }}
-                    style={{
-                      border: "none",
-                      webkitAppearance: "none",
-                      mozAppearance: "none",
-                      appearance: "none",
-                      msAppearance: "none",
-                    }}
-                    placeholder="guest"
-                    className="
+      <div className="flex flex-col md:justify-center md:flex-row-reverse">
+        <div className=" md:mr-[100px] mx-5 mb-10">
+          <section className="  sm:rounded-md">
+            <form onSubmit={contactForm} name="contact" id="contact-form">
+              <h1
+                style={{ fontFamily: "Quintessential" }}
+                className="text-center text-gray-500 mb-3 text-2xl"
+              >
+                Number of guest
+              </h1>
+              <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-4"></div>
+              <div className=" border-2 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
+                <BsPeopleFill className="text-1xl text-gray-500 mr-1" />
+                <div className="w-full">
+                  <div>
+                    <select
+                      onChange={(e) => {
+                        setGuestamount(e.target.value);
+                      }}
+                      style={{
+                        border: "none",
+                        webkitAppearance: "none",
+                        mozAppearance: "none",
+                        appearance: "none",
+                        msAppearance: "none",
+                      }}
+                      placeholder="guest"
+                      defaultValue={"DEFAULT"}
+                      className="
             
               
              cursor-pointer
@@ -517,49 +517,54 @@ function bookings() {
             
              
               "
-                  >
-                    <option
-                      className=""
-                      value=""
-                      selected="selected"
-                      disabled="disabled"
                     >
-                      Guest
-                    </option>
-                    <option value="1"> 1 Guest</option>
-                    <option value="2"> 2 Guest</option>
-                    <option value="3"> 3 Guest</option>
-                    <option value="4"> 4 Guest</option>
-                    <option value="5"> 5 Guest</option>
-                    <option value="6"> 6 Guest </option>
-                    <option value="7"> 7 Guest - ($40 extra per night)</option>
-                    <option value="8"> 8 Guest - ($80 extra per night)</option>
-                    <option value="9"> 9 Guest - ($120 extra per night)</option>
-                    <option value="10">
-                      {" "}
-                      10 Guest - ($160 extra per night)
-                    </option>
-                  </select>
+                      <option className="" value="DEFAULT" disabled="disabled">
+                        Guest
+                      </option>
+                      <option value="1"> 1 Guest</option>
+                      <option value="2"> 2 Guest</option>
+                      <option value="3"> 3 Guest</option>
+                      <option value="4"> 4 Guest</option>
+                      <option value="5"> 5 Guest</option>
+                      <option value="6"> 6 Guest </option>
+                      <option value="7">
+                        {" "}
+                        7 Guest - ($40 extra per night)
+                      </option>
+                      <option value="8">
+                        {" "}
+                        8 Guest - ($80 extra per night)
+                      </option>
+                      <option value="9">
+                        {" "}
+                        9 Guest - ($120 extra per night)
+                      </option>
+                      <option value="10">
+                        {" "}
+                        10 Guest - ($160 extra per night)
+                      </option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center max-w-[300px] mx-auto  rounded-3xl py-2 px-5">
-              <MdPets className="text-1xl text-gray-500 mr-1" />
-              <div className="w-full ">
-                <div>
-                  <select
-                    onChange={(e) => {
-                      setPets(e.target.value);
-                    }}
-                    style={{
-                      border: "none",
-                      webkitAppearance: "none",
-                      mozAppearance: "none",
-                      appearance: "none",
-                      msAppearance: "none",
-                    }}
-                    placeholder="guest"
-                    className="
+              <div className=" border-2 border-cyan-500 mt-5 shadow-lg flex items-center max-w-[300px] mx-auto  rounded-3xl py-2 px-5">
+                <MdPets className="text-1xl text-gray-500 mr-1" />
+                <div className="w-full ">
+                  <div>
+                    <select
+                      onChange={(e) => {
+                        setPets(e.target.value);
+                      }}
+                      style={{
+                        border: "none",
+                        webkitAppearance: "none",
+                        mozAppearance: "none",
+                        appearance: "none",
+                        msAppearance: "none",
+                      }}
+                      placeholder="guest"
+                      defaultValue={"DEFAULT"}
+                      className="
             
               cursor-pointer
                     w-full
@@ -572,24 +577,22 @@ function bookings() {
             
              
               "
-                  >
-                    <option
-                      className=""
-                      value=""
-                      selected="selected"
-                      disabled="disabled"
                     >
-                      Pets
-                    </option>
-                    <option value="0">none</option>
-                    <option value="1"> 1 pet ($25 single fee)</option>
-                    <option value="2"> 2 or more pets ($25 single fee)</option>
-                  </select>
+                      <option className="" value="DEFAULT" disabled="disabled">
+                        Pets
+                      </option>
+                      <option value="0">none</option>
+                      <option value="1"> 1 pet ($25 single fee)</option>
+                      <option value="2">
+                        {" "}
+                        2 or more pets ($25 single fee)
+                      </option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* <div>
+              {/* <div>
               <div className="text-center mt-5">
                 <button
                   disabled={loading}
@@ -600,108 +603,120 @@ function bookings() {
                 </button>
               </div>
             </div> */}
-          </form>
-        </section>
-      </div>
-      <section className="md:mr-[120px] mx-5 md:ml-[20px] md:-mt-[50px]">
-        <h1
-          style={{ fontFamily: "Quintessential" }}
-          className="text-center text-gray-500 mb-3 text-2xl"
-        >
-          Reservation Details
-        </h1>
-        <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-2"></div>
-        <div className=" mb-5 border min-h-[100px] max-w-[350px] md:w-[600px] mx-auto rounded-3xl shadow-lg ">
-          {x === y ? (
-            <div></div>
-          ) : (
-            <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-              Check In: (3PM {startDate.toDateString()}) <br /> Check Out: (11AM{" "}
-              {endDate.toDateString()}){" "}
-            </h1>
-          )}
-          {days == 0 && (
-            <div>
-              <h1 className="text-xs  leading-relaxed text-center mt-5 text-gray-600">
-                {" "}
-                Please finish providing details.
-              </h1>
-            </div>
-          )}
-          {days > 0 && (
-            <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-              <h1>Total Nights: {days}</h1>
-              <h1>
-                {weekday} Nights x (weekday price $400): ${weekdayprice}{" "}
-              </h1>
-              <h1>
-                {weekend} Nights x (weekend price $500): ${weekendprice}
-              </h1>
-              <h1>total ${weekdayprice + weekendprice}</h1>
-            </div>
-          )}
-          <div>
-            {days >= 8 && (
-              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                Weekly Discount{" "}
-                <span className="text-sm font-bold text-lime-500">
-                  -${discounted}
-                </span>{" "}
-              </h1>
-            )}
-
-            {days >= 31 && (
-              <h1 className="text-xs leading-relaxed text-center text-gray-600">
-                Monthly Discount{" "}
-                <span className="text-sm font-bold text-lime-500">
-                  -${monthlydiscount}
-                </span>
-              </h1>
-            )}
-          </div>
-          <div>
-            {guestamount > 0 && (
-              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                Total Guest {guestamount}{" "}
-              </h1>
-            )}
-            {guestamount >= 7 && (
-              <div>
-                <h1 className="text-xs leading-relaxed text-center  text-gray-600">
-                  {xguest} Extra Guest + ${guestprice} per Night
-                </h1>
-                <h1 className="text-xs leading-relaxed text-center  text-gray-600">
-                  {days} Nights x ${guestprice} <br /> total ${guesttotal}
-                </h1>
-              </div>
-            )}
-          </div>
-          <div>
-            {petfee > 0 && (
-              <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                pet fee ${petfee}
-              </h1>
-            )}
-          </div>
-          {days > 0 && (
-            <div>
-              <div>
-                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                  Cleaning Fee $65
-                </h1>
-                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
-                  Security Deposit $200 (Refundable)
-                </h1>
-              </div>
-              <div>
-                <h1 className="text-xl leading-relaxed text-center mt-5 text-gray-600">
-                  Total: <span className="text-lime-700 text-xl">{total}</span>
-                </h1>
-              </div>
-            </div>
-          )}
+            </form>
+          </section>
         </div>
-      </section>
+        <section className="md:mr-[100px] mx-5 md:ml-[20px] md:-mt-[50px]">
+          <h1
+            style={{ fontFamily: "Quintessential" }}
+            className="text-center text-gray-500 mb-3 text-2xl"
+          >
+            Reservation Details
+          </h1>
+          <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-2"></div>
+          <div className=" mb-5 border min-h-[100px] max-w-[350px] md:w-[600px] mx-auto rounded-3xl shadow-lg ">
+            {x === y ? (
+              <div></div>
+            ) : (
+              <h1 className="text-xs underline leading-relaxed text-center mt-5 text-gray-600">
+                Check In: (3PM {startDate.toDateString()}) <br /> Check Out:
+                (11AM {endDate.toDateString()}){" "}
+              </h1>
+            )}
+            {days == 0 && (
+              <div>
+                <h1 className="text-xs  leading-relaxed text-center mt-5 text-gray-600">
+                  {" "}
+                  Please finish providing details.
+                </h1>
+              </div>
+            )}
+            {days > 0 && (
+              <div className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                <h1>Total Nights: {days}</h1>
+                <h1>
+                  {weekday} Nights x (weekday price $400): ${weekdayprice}{" "}
+                </h1>
+                <h1>
+                  {weekend} Nights x (weekend price $500): ${weekendprice}
+                </h1>
+                <h1>
+                  total{" "}
+                  <span className="text-gray-600 font-bold">
+                    ${weekdayprice + weekendprice}
+                  </span>
+                </h1>
+              </div>
+            )}
+            <div>
+              {days >= 8 && (
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  Weekly Discount{" "}
+                  <span className=" font-bold text-lime-600">
+                    -${discounted}
+                  </span>{" "}
+                </h1>
+              )}
+
+              {days >= 31 && (
+                <h1 className="text-xs leading-relaxed text-center text-gray-600">
+                  Monthly Discount{" "}
+                  <span className="font-bold text-lime-600">
+                    -${monthlydiscount}
+                  </span>
+                </h1>
+              )}
+            </div>
+            <div>
+              {guestamount > 0 && (
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  Total Guest {guestamount}{" "}
+                </h1>
+              )}
+              {guestamount >= 7 && (
+                <div>
+                  <h1 className="text-xs leading-relaxed text-center  text-gray-600">
+                    {xguest} Extra Guest + ${guestprice} per Night
+                  </h1>
+                  <h1 className="text-xs leading-relaxed text-center  text-gray-600">
+                    {days} Nights x ${guestprice} <br /> total{" "}
+                    <span className="text-gray-600 font-bold">
+                      ${guesttotal}
+                    </span>
+                  </h1>
+                </div>
+              )}
+            </div>
+            <div>
+              {petfee > 0 && (
+                <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                  pet fee ${petfee}
+                </h1>
+              )}
+            </div>
+            {days > 0 && (
+              <div>
+                <div>
+                  <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                    Cleaning Fee{" "}
+                    <span className="text-gray-600 font-bold">$65</span>
+                  </h1>
+                  <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                    Security Deposit{" "}
+                    <span className="text-gray-600 font-bold">$200</span>{" "}
+                    (Refundable)
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="text-xl mb-2 leading-relaxed text-center mt-5 text-gray-600">
+                    Total:{" "}
+                    <span className="text-gray-600 font-bold text-xl">${total}</span>
+                  </h1>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );
