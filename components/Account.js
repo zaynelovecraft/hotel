@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../utils/supabase-client";
 import Avatar from "./Avatar";
-import ProductCard from "./ProductCard";
+
 import { useUser } from "../utils/useUser";
 
-export default function Account({ session, products }) {
-  const [likedpost, setLikedpost] = useState();
+export default function Account({ session, }) {
+
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
@@ -14,31 +14,10 @@ export default function Account({ session, products }) {
 
 
 
-  const returnLikedProducts = async () => {
-    const { data, error } = await supabase
-      .from("likedpost")
-      .select("userid, likedpost")
-      .match({ userid: user.id });
-
-    if (data[0] === undefined) {
-      return;
-    } else {
-      const productList = products;
-      const newlist = [];
-      for (let i = 0; i < productList.length; i++) {
-        for (let z = 0; z < data[0].likedpost.length; z++) {
-          if (productList[i].node.id === data[0].likedpost[z]) {
-            newlist.push(productList[i]);
-          }
-        }
-      }
-      setLikedpost(newlist);
-    
-    }
-  };
+  
 
   useEffect(() => {
-    returnLikedProducts();
+
     getProfile()
   }, []);
 
@@ -160,18 +139,7 @@ export default function Account({ session, products }) {
           </div>
         </div>
       </div>
-      <div className="bg-white">
-        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="text-2xl text-center font-extrabold text-gray-900 mb-6">
-            Liked Products
-          </h2>
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {likedpost?.map((product) => (
-              <ProductCard key={product.node.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 }

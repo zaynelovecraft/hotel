@@ -4,7 +4,7 @@ import Auth from '../components/Auth'
 import Account from '../components/Account'
 import { useRouter } from 'next/router'
 import { useUser } from '../utils/useUser';
-import { getProductsInCollection } from "../lib/shopify"
+
 ;
 export default function Home({products}) {
   // const [session, setSession] = useState(null)
@@ -34,13 +34,7 @@ export default function Home({products}) {
 }
 
 
-export async function getServerSideProps() {
-  const products = await getProductsInCollection();
 
-  return {
-    props: { products }, // will be passed to the page component as props
-  };
-}
 
 
 

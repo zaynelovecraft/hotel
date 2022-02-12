@@ -20,8 +20,8 @@ import Image from 'next/image'
 import { useUser } from "../utils/useUser";
 import s from "../components/Navbar.module.css";
 
-import MiniCart from "./MiniCart";
-import { CartContext } from "../context/shopContext";
+
+
 import { useContext, useState } from "react";
 import { BiHomeHeart } from "@react-icons/all-files/bi/BiHomeHeart";
 import { AiOutlineShop } from "@react-icons/all-files/ai/AiOutlineShop";
@@ -113,13 +113,10 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { cart, cartOpen, setCartOpen } = useContext(CartContext);
+
   const { user, signOut } = useUser();
 
-  let cartQuantity = 0;
-  cart.map((item) => {
-    return (cartQuantity += item?.variantQuantity);
-  });
+
 
   return (
     <Popover className="sticky top-0 z-50 shadow-lg lg:bg-white bg-gray-800">

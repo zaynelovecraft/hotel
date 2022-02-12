@@ -4,7 +4,7 @@ import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
 import { useEffect } from "react";
 import Layout from "../components/Layout";
-import ShopProvider from "../context/shopContext";
+;
 import { useRouter } from "next/router";
 import { UserContextProvider } from "../utils/useUser";
 
@@ -20,11 +20,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <UserContextProvider>
-        <ShopProvider>
           <Layout>
             <Component {...pageProps} key={router.asPath} />
           </Layout>
-        </ShopProvider>
+
       </UserContextProvider>
     </div>
   );
