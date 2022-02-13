@@ -613,7 +613,7 @@ function Solocien() {
               <a>
                 <div className="cursor-pointer">
                   <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                    Reservation Pending 
+                    Pending 
                   </button>
                 </div>
               </a>
