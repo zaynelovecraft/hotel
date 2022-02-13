@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { supabase } from "../utils/supabase-client";
+import Admin from '../components/Admin';
 
 
 
@@ -32,7 +33,7 @@ function admindashboard() {
 
           {admin === true && (
     
-              <div>admindashboard</div>
+              <Admin />
           ) }
       </div>
   )
