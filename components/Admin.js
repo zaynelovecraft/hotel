@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { supabase } from "../utils/supabase-client";
 
 function Admin() {
 const [resopen,setResopen] = useState(false)
@@ -8,7 +9,9 @@ const [approved, setApproved] = useState(false)
 const [declined, setDeclined] = useState(false)
    let today = new Date()
    let time = today.toDateString()
-    
+   
+   supabase.from('users').select('*').then(console.log)
+   
    const closeall = (x) => {
        if(x === 'res') {
 

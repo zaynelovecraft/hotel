@@ -9,6 +9,7 @@ import { MdPets } from "@react-icons/all-files/md/MdPets";
 import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
 import { BsPhone } from "@react-icons/all-files/bs/BsPhone";
 import { BsPersonPlus } from "@react-icons/all-files/bs/BsPersonPlus";
+import { useUser } from '../utils/useUser';
 
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
@@ -33,6 +34,9 @@ function bookings() {
   const [name,setName] = useState('')
   const [loading, setLoading] = useState(false);
   const [fill,setFill] = useState(false)
+
+  const { userLoaded, user, session, userDetails, subscription } = useUser();
+  console.log(user)
   
   const contactForm = async () => {
     event.preventDefault()
@@ -48,6 +52,9 @@ function bookings() {
       
 
   };
+
+
+  
 
   const x = startDate.toDateString().slice(0, 11);
   const y = endDate.toDateString().slice(0, 11);
@@ -739,20 +746,7 @@ function bookings() {
                   </div>
                 </div>
               </div>
-                <div>
-              <div className="text-center mt-5">
-                <button
-                  disabled={loading}
-                  className="border p-1 rounded-2xl px-3 bg-pink-400"
-                  type="submit"
-                >
-                  Submit
-                </button>
-                {fill === true && (
-                  <div className="mt-5"><h1 className="text-red-500"> * Select Days with Calendar</h1></div>
-                )}
-              </div>
-            </div> 
+            
             </form>
           </section>
         </div>
@@ -870,6 +864,21 @@ function bookings() {
           </div>
         </section>
       </div>
+      <div>
+              <div className="text-center mb-5 mt-5">
+                <button
+                  disabled={loading}
+                  className="text-black text-1xl  bg-cyan-400 borderborder-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300"
+                  type="submit"
+                  form="contact-form"
+                >
+                  Confirm Your Reservation
+                </button>
+                {fill === true && (
+                  <div className="mt-5"><h1 className="text-red-500"> * Select Days with Calendar</h1></div>
+                )}
+              </div>
+            </div> 
     </div>
   );
 }
