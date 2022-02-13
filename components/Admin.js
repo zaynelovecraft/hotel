@@ -163,7 +163,9 @@ function Admin() {
           </h1>
           {pendingg.map((post) => (
               <div key={post.user_id}>
-                  <div className="flex text-xs my-2 py-2 border-2 border-gray-700 w-full flex-col">
+                  <div className="flex text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
+                      <div className="ml-5">
+
                       <h1 className="text-center text-sm mb-2 underline">User Details</h1>
                       <h1>Name: {post.name}</h1>
                       <h1>Phone: {post.phone_number}</h1>
@@ -192,7 +194,8 @@ function Admin() {
                     <h1>Monthly discount: ${post.monthly_discount}</h1>
                     <h1>Cleaning fee: $65</h1>
                     <h1>Security deposit: $200</h1>
-                    <h1>Total: ${post.total}</h1>
+                    <h1 className="text-xl mt-2" >Total: ${post.total}</h1>
+                      </div>
 
 
                   </div>
