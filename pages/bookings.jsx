@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { DateRange } from "react-date-range";
@@ -9,15 +9,17 @@ import { MdPets } from "@react-icons/all-files/md/MdPets";
 import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
 import { BsPhone } from "@react-icons/all-files/bs/BsPhone";
 import { BsPersonPlus } from "@react-icons/all-files/bs/BsPersonPlus";
-import { useUser } from '../utils/useUser';
-
+import { useUser } from "../utils/useUser";
+import { useRouter } from "next/router";
+import { supabase } from "../utils/supabase-client";
+import { BsCheck } from "@react-icons/all-files/bs/BsCheck"
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [data, setData] = useState([]);
   const [datesarray, setDatesarray] = useState([]);
 
-  const [guestamount, setGuestamount] = useState("");
+  const [guestamount, setGuestamount] = useState(0);
 
   const [estemate, setEstemate] = useState(0);
   const [days, setDays] = useState(0);
@@ -27,34 +29,71 @@ function bookings() {
   const [discounted, setDiscounted] = useState(0);
   const [monthlydiscount, setMonthlydiscount] = useState(0);
   const [guestprice, setGuestprice] = useState(0);
-  const [pets, setPets] = useState();
+  const [pets, setPets] = useState(0);
   const [total, setTotal] = useState(0);
   const [email, setEmail] = useState("");
-  const [phone,setPhone] = useState('')
-  const [name,setName] = useState('')
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [fill,setFill] = useState(false)
+  const [fill, setFill] = useState(false);
+  const [reserved,setReserved] = useState(false)
+  const inputRef = useRef(null);
+  const [hotel, setHotel] = useState('Sol O Cien Condo')
 
   const { userLoaded, user, session, userDetails, subscription } = useUser();
-  console.log(user)
-  
-  const contactForm = async () => {
-    event.preventDefault()
-    setLoading(true)
-    if(days === 0) {
-      setLoading(false)
-      setFill(true)
 
-    } else {
-      event.preventDefault();
-      console.log('test')
-    }
-      
+  const focus = () => {
+
+    inputRef.current.scrollIntoView();
+  };
+
+  const pushdetails = async () => {
+    const { data, error } = await supabase.from("pending_reservations").insert([
+      {
+        user_id: user.id,
+        user_email: user.email,
+        name: name,
+        phone_number: phone,
+        email: email,
+        start_date: startDate.toDateString(),
+        end_date: endDate.toDateString(),
+        weekdays: weekday,
+        weekend_days: weekend,
+        weekday_price: weekdayprice,
+        weekend_price: weekendprice,
+        price: weekdayprice + weekendprice,
+        weekly_discount: discounted,
+        monthly_discount: monthlydiscount,
+        guest: guestamount,
+        nights: days,
+        extra_guest: xguest,
+        extra_guest_fee: guestprice,
+        guest_fee_total: guesttotal,
+        pets: pets,
+        pet_fee: petfee,
+        total: total,
+        hotel_name: hotel,
+      },
+    ]);
 
   };
 
+  const contactForm = async () => {
+    event.preventDefault();
+    setLoading(true);
+    if (days === 0) {
+      setLoading(false);
+      setFill(true);
+    } else {
+      event.preventDefault();
 
-  
+      pushdetails();
+      setReserved(true)
+      focus()
+    }
+  };
+
+  const router = useRouter();
 
   const x = startDate.toDateString().slice(0, 11);
   const y = endDate.toDateString().slice(0, 11);
@@ -178,18 +217,7 @@ function bookings() {
     }
     setDiscounted(discount);
   };
-  // console.log(data[0]?.start.dateTime)
-  // const date = data[0].start
-  // const date = ['2022-02-12T14:30:00']
 
-  // const dayOfWeek = new Date(date)
-  // const isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0)
-  // console.log(isWeekend)
-  // console.log(dayOfWeek)
-
-  // console.log(dayOfWeek)
-
-  // console.log(getDay())
 
   const selectionRange = {
     startDate: startDate,
@@ -231,6 +259,10 @@ function bookings() {
   useEffect(() => {
     masstotal();
   }, [estemate, guestprice, petfee]);
+
+  useEffect(() => {
+    if (!user) router.replace("/signin");
+  }, [user]);
 
   const totalweekday = () => {
     if (dates.length === 0) return;
@@ -285,7 +317,7 @@ function bookings() {
     }
 
     setDates(days);
-    setFill(false)
+    setFill(false);
 
     setDays(days.length);
 
@@ -329,7 +361,7 @@ function bookings() {
     setEstemate(price);
     totalweekday();
 
-    // if date is weekday = $400
+
   };
 
   useEffect(() => {
@@ -409,7 +441,7 @@ function bookings() {
   };
 
   return (
-    <div>
+    <div ref={inputRef}>
       <Head>
         <meta
           name="viewport"
@@ -424,6 +456,28 @@ function bookings() {
           rel="stylesheet"
         ></link>
       </Head>
+     
+      {reserved ? (
+     
+       <div>
+          <div className='h-screen max-w-[600px]  mx-auto'>
+        <div className='mx-5'>
+
+        <h1  className='text-center mt-10'>Your reservation has been sent!</h1>
+        <div className='flex text-xl  text-lime-700 justify-center mt-2'>
+
+        <BsCheck />
+        </div>
+        <h1 className='text-center mt-10 text-sm'>We are making the final arrangments for your reservation and we will respond to you as soon as possible. </h1>
+        <h1 className='text-center mt-5 text-sm'>You can keep track and access all your pending and approved reservations through your account page.</h1>
+
+        <h1 className='text-center mt-10 text-sm'>Thank you!</h1>
+        </div>
+    </div>
+       </div>
+      ) : (
+        <div>
+
       <section className="md:mx-10">
         <div className="flex justify-center mt-10">
           <h1
@@ -481,8 +535,10 @@ function bookings() {
                 Check In / Check Out
               </h1>
               {fill === true && (
-                  <div className=""><h1 className="text-red-500"> * Required</h1></div>
-                )}
+                <div className="">
+                  <h1 className="text-red-500"> * Required</h1>
+                </div>
+              )}
             </div>
             <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
             {x === y ? (
@@ -614,10 +670,10 @@ function bookings() {
              
               "
                     >
-                      <option className="" value="" >
+                      <option className="" value="">
                         Pets
                       </option>
-                      <option value="">none</option>
+                      <option value="0">none</option>
                       <option value="1"> 1 pet ($25 single fee)</option>
                       <option value="2">
                         {" "}
@@ -628,8 +684,6 @@ function bookings() {
                 </div>
               </div>
 
-           
-            
               <h1
                 style={{ fontFamily: "Quintessential" }}
                 className="text-center text-gray-500 mb-3 mt-10 text-2xl"
@@ -746,7 +800,6 @@ function bookings() {
                   </div>
                 </div>
               </div>
-            
             </form>
           </section>
         </div>
@@ -865,20 +918,25 @@ function bookings() {
         </section>
       </div>
       <div>
-              <div className="text-center mb-5 mt-5">
-                <button
-                  disabled={loading}
-                  className="text-black text-1xl  bg-cyan-400 borderborder-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300"
-                  type="submit"
-                  form="contact-form"
-                >
-                  Confirm Your Reservation
-                </button>
-                {fill === true && (
-                  <div className="mt-5"><h1 className="text-red-500"> * Select Days with Calendar</h1></div>
-                )}
-              </div>
-            </div> 
+        <div className="text-center mb-5 mt-5">
+          <button
+           
+            disabled={loading}
+            className="text-black text-1xl  bg-cyan-400 borderborder-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300"
+            type="submit"
+            form="contact-form"
+          >
+            Confirm Your Reservation
+          </button>
+          {fill === true && (
+            <div className="mt-5">
+              <h1 className="text-red-500"> * Select Days with Calendar</h1>
+            </div>
+          )}
+        </div>
+      </div>
+        </div>
+      )}
     </div>
   );
 }

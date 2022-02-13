@@ -6,7 +6,7 @@ import { BsFillPeopleFill } from "@react-icons/all-files/bs/BsFillPeopleFill";
 import { GiBed } from "@react-icons/all-files/gi/GiBed";
 import { BsFileEarmarkArrowDown } from "@react-icons/all-files/bs/BsFileEarmarkArrowDown";
 import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArrowUp";
-
+import { supabase } from "../utils/supabase-client";
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
 import { IoMdPhotos } from "@react-icons/all-files/io/IoMdPhotos";
@@ -20,7 +20,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 // import Calendi from "../components/Calendi";
 import { DateRangePicker } from "react-date-range";
-import { useUser } from '../utils/useUser';
+import { useUser } from "../utils/useUser";
+
 // export async function getServerSideProps() {
 //   const response = await fetch("/api/hotel");
 //   const data = await response.json();
@@ -46,22 +47,35 @@ function Solocien() {
   const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([]);
   const [estemate, setEstemate] = useState(0);
+  const [alreadyreserved, setAlreadyreserved] = useState(false);
   const { userLoaded, user, session, userDetails, subscription } = useUser();
-  // console.log("start", startDate);
-  // console.log("end", endDate);
-  console.log(user)
-  console.log(session)
-
-
-
   const [rerender, setRerender] = useState(false);
+
+
+
+  const reservecheck = async () => {
+    if (user) {
+      const { data, error } = await supabase
+        .from("pending_reservations")
+        .select("user_id, hotel_name")
+        .match({ user_id: user.id });
+
+      if (data[0]?.hotel_name == "Sol O Cien Condo") {
+        setAlreadyreserved(true);
+      } else {
+        return;
+      }
+    
+    }
+  };
+
+  useEffect(async () => {
+    reservecheck();
+  }, []);
 
   useEffect(() => {
     setRerender(!rerender);
   }, [data, estemate]);
-
-  // console.log(startDate)
-  // console.log(endDate)
 
   const price = () => {
     let price = 0;
@@ -76,14 +90,13 @@ function Solocien() {
       return dateRange(next, end, [...range, start]);
     };
 
-    const range = dateRange(new Date(startDate), new Date(endDate))
-   
+    const range = dateRange(new Date(startDate), new Date(endDate));
+
     const days = range.map((date) => date.toDateString().slice(0, 3));
-    if(days.length >= 2) {
-      
-      days.pop()
+    if (days.length >= 2) {
+      days.pop();
     }
-    
+
     const priceperday = [];
 
     for (let i = 0; i < 7; i++) {
@@ -593,30 +606,44 @@ function Solocien() {
         
         
         */}
-        {!user ? (
- <Link href={"/signup"}>
- <a>
-   <div className="cursor-pointer">
-     <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-       Book Now!
-     </button>
-  
-   </div>
- </a>
-</Link>
 
+        {alreadyreserved ? (
+          <div>
+            <Link href={"/account"}>
+              <a>
+                <div className="cursor-pointer">
+                  <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                    Reservation Pending 
+                  </button>
+                </div>
+              </a>
+            </Link>
+          </div>
         ) : (
-
-        <Link href={"/bookings"}>
-          <a>
-            <div className="cursor-pointer">
-              <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                Book Now!
-              </button>
-            </div>
-          </a>
-        </Link>
-        ) }
+          <div>
+            {!user ? (
+              <Link href={"/signup"}>
+                <a>
+                  <div className="cursor-pointer">
+                    <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                      Book Now!
+                    </button>
+                  </div>
+                </a>
+              </Link>
+            ) : (
+              <Link href={"/bookings"}>
+                <a>
+                  <div className="cursor-pointer">
+                    <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                      Book Now!
+                    </button>
+                  </div>
+                </a>
+              </Link>
+            )}
+          </div>
+        )}
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
