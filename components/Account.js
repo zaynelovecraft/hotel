@@ -3,6 +3,7 @@ import { supabase } from "../utils/supabase-client";
 import Avatar from "./Avatar";
 
 import { useUser } from "../utils/useUser";
+import Link from "next/link";
 
 export default function Account({ session, }) {
 
@@ -11,13 +12,26 @@ export default function Account({ session, }) {
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
   const { signUp, user, signIn } = useUser();
+  const [admin, setAdmin] = useState(false)
+
 
 
 
   
 
-  useEffect(() => {
 
+  const isadmin = async() => {
+    let {data, error} = await supabase
+    .from('is_admin')
+    .select('*')
+
+    if(data[0]?.admin === true) {
+      setAdmin(true)
+    }
+  }
+
+  useEffect(() => {
+    isadmin()
     getProfile()
   }, []);
 
@@ -136,6 +150,19 @@ export default function Account({ session, }) {
                 Sign Out
               </button>
             </a>
+          </div>
+          <div className="mt-20">
+
+          {admin === true && (
+          <div className="mb-2 border-2 border-black max-w-[150px] mx-auto shadow-2xl p-1  hover:bg-gray-300 rounded-3xl bg-gray-400 cursor-pointer">
+            <Link href={'/admindashboard'}>
+            <a>
+            <h1 className="text-center">Admin Dashboard</h1>
+
+            </a>
+            </Link>
+          </div>
+          )}
           </div>
         </div>
       </div>

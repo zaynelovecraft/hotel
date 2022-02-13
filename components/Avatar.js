@@ -4,6 +4,7 @@ import { supabase } from '../utils/supabase-client'
 export default function Avatar({ url, size, onUpload }) {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
+  
 
   useEffect(() => {
     if (url) downloadImage(url)
@@ -59,11 +60,12 @@ export default function Avatar({ url, size, onUpload }) {
           className='rounded-full'
           src={avatarUrl}
           alt="Avatar"
-         
-          style={{ height: size, width: size }}
+          style={{ height: size, width: size }} 
+          
         />
       ) : (
-        <div className="bg-black" style={{ height: size, width: size }} />
+       
+        <img alt='blank profile picture' className='rounded-full' style={{ height: size, width: size }}  src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' />
       )}
       <div className='' >
         <label className="flex justify-center" htmlFor="single">
