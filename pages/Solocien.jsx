@@ -20,7 +20,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 // import Calendi from "../components/Calendi";
 import { DateRangePicker } from "react-date-range";
-
+import { useUser } from '../utils/useUser';
 // export async function getServerSideProps() {
 //   const response = await fetch("/api/hotel");
 //   const data = await response.json();
@@ -46,9 +46,13 @@ function Solocien() {
   const [data, setData] = useState();
   const [datesarray, setDatesarray] = useState([]);
   const [estemate, setEstemate] = useState(0);
-
+  const { userLoaded, user, session, userDetails, subscription } = useUser();
   // console.log("start", startDate);
   // console.log("end", endDate);
+  console.log(user)
+  console.log(session)
+
+
 
   const [rerender, setRerender] = useState(false);
 
@@ -579,6 +583,30 @@ function Solocien() {
             </div>
           </div>
         </div>
+        {/* 
+        
+        
+        }
+        
+        
+        
+        
+        
+        */}
+        {!user ? (
+ <Link href={"/signup"}>
+ <a>
+   <div className="cursor-pointer">
+     <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+       Book Now!
+     </button>
+  
+   </div>
+ </a>
+</Link>
+
+        ) : (
+
         <Link href={"/bookings"}>
           <a>
             <div className="cursor-pointer">
@@ -588,6 +616,7 @@ function Solocien() {
             </div>
           </a>
         </Link>
+        ) }
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 

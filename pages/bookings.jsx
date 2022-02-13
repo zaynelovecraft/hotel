@@ -6,6 +6,10 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import { BsPeopleFill } from "@react-icons/all-files/bs/BsPeopleFill";
 import { MdPets } from "@react-icons/all-files/md/MdPets";
+import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
+import { BsPhone } from "@react-icons/all-files/bs/BsPhone";
+import { BsPersonPlus } from "@react-icons/all-files/bs/BsPersonPlus";
+
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -24,9 +28,25 @@ function bookings() {
   const [guestprice, setGuestprice] = useState(0);
   const [pets, setPets] = useState();
   const [total, setTotal] = useState(0);
-
+  const [email, setEmail] = useState("");
+  const [phone,setPhone] = useState('')
+  const [name,setName] = useState('')
+  const [loading, setLoading] = useState(false);
+  const [fill,setFill] = useState(false)
+  
   const contactForm = async () => {
-    event.preventDefault();
+    event.preventDefault()
+    setLoading(true)
+    if(days === 0) {
+      setLoading(false)
+      setFill(true)
+
+    } else {
+      event.preventDefault();
+      console.log('test')
+    }
+      
+
   };
 
   const x = startDate.toDateString().slice(0, 11);
@@ -258,6 +278,7 @@ function bookings() {
     }
 
     setDates(days);
+    setFill(false)
 
     setDays(days.length);
 
@@ -452,6 +473,9 @@ function bookings() {
               >
                 Check In / Check Out
               </h1>
+              {fill === true && (
+                  <div className=""><h1 className="text-red-500"> * Required</h1></div>
+                )}
             </div>
             <div className=" border-b mx-20 my-1 border-gray-300  mb-2"></div>
             {x === y ? (
@@ -522,7 +546,7 @@ function bookings() {
              
               "
                     >
-                      <option className="" value="DEFAULT" disabled="disabled">
+                      <option className="" value="">
                         Guest
                       </option>
                       <option value="1"> 1 Guest</option>
@@ -583,10 +607,10 @@ function bookings() {
              
               "
                     >
-                      <option className="" value="DEFAULT" disabled="disabled">
+                      <option className="" value="" >
                         Pets
                       </option>
-                      <option value="0">none</option>
+                      <option value="">none</option>
                       <option value="1"> 1 pet ($25 single fee)</option>
                       <option value="2">
                         {" "}
@@ -597,7 +621,125 @@ function bookings() {
                 </div>
               </div>
 
-              {/* <div>
+           
+            
+              <h1
+                style={{ fontFamily: "Quintessential" }}
+                className="text-center text-gray-500 mb-3 mt-10 text-2xl"
+              >
+                Guest Details
+              </h1>
+              <div className=" border-b max-w-[200px] mx-auto my-1 border-gray-300  mb-4"></div>
+
+              <div className=" border-2 mb-5 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
+                <BsPersonPlus className="text-1xl mt-1 text-gray-500 mr-1" />
+                <div className="w-full">
+                  <div>
+                    <input
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      style={{
+                        border: "none",
+                        webkitAppearance: "none",
+                        mozAppearance: "none",
+                        appearance: "none",
+                        msAppearance: "none",
+                      }}
+                      placeholder="Full Name"
+                      type="text"
+                      required
+                      className="
+            
+              
+             cursor-pointer
+              bg-white
+              w-full
+              rounded-md
+              focus:outline-none
+              text-xs
+             text-gray-700
+             placeholder-gray-700
+            
+             
+              "
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className=" border-2 mb-5 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
+                <BsPhone className="text-1xl mt-1 text-gray-500 mr-1" />
+                <div className="w-full">
+                  <div>
+                    <input
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                      }}
+                      style={{
+                        border: "none",
+                        webkitAppearance: "none",
+                        mozAppearance: "none",
+                        appearance: "none",
+                        msAppearance: "none",
+                      }}
+                      placeholder="Phone Number"
+                      type="tel"
+                      required
+                      className="
+            
+              
+             cursor-pointer
+              bg-white
+              w-full
+              rounded-md
+              focus:outline-none
+              text-xs
+             text-gray-700
+             placeholder-gray-700
+            
+             
+              "
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className=" border-2 border-cyan-500 shadow-lg flex items-center max-w-[300px] mx-auto rounded-3xl py-2  px-5">
+                <AiOutlineMail className="text-1xl mt-1 text-gray-500 mr-1" />
+                <div className="w-full">
+                  <div>
+                    <input
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      style={{
+                        border: "none",
+                        webkitAppearance: "none",
+                        mozAppearance: "none",
+                        appearance: "none",
+                        msAppearance: "none",
+                      }}
+                      placeholder="Email"
+                      type="email"
+                      required
+                      className="
+            
+              
+             cursor-pointer
+              bg-white
+              w-full
+              rounded-md
+              focus:outline-none
+              text-xs
+             text-gray-700
+             placeholder-gray-700
+            
+             
+              "
+                    />
+                  </div>
+                </div>
+              </div>
+                <div>
               <div className="text-center mt-5">
                 <button
                   disabled={loading}
@@ -606,8 +748,11 @@ function bookings() {
                 >
                   Submit
                 </button>
+                {fill === true && (
+                  <div className="mt-5"><h1 className="text-red-500"> * Select Days with Calendar</h1></div>
+                )}
               </div>
-            </div> */}
+            </div> 
             </form>
           </section>
         </div>

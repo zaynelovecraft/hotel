@@ -40,15 +40,15 @@ const [declined, setDeclined] = useState(false)
    }
   return (
      <div className='h-screen'>
-         <section className='py-2 mb-5'>
+         <section className='py-2 mt-5 mb-5'>
              <h1 className='text-center text-gray-500'>Admin Dashboard</h1>
             <h1 className='text-center text-[12px] text-gray-400'>{time}</h1>
          </section>
          <section>
-             <div className=' pb-2 border-b'>
+             <div className=' pb-3 border-b'>
                 <div className='flex justify-center'>
                     <h1 onClick={()=>{setResopen(!resopen), closeall('res')}} className={`mr-4 relative  text-gray-700  cursor-pointer ${resopen === true && 'text-cyan-500'} hover:text-cyan-500 text-sm`}>Reservations {resopen === false && (<span className='absolute text-red-500 text-[10px] animate-pulse font-bold -top-1 -right-2 '>2</span>)} </h1>
-                    <h1 onClick={()=>{setUseropen(!useropen), closeall('user')}} className='mr-4 cursor-pointer  text-gray-700  hover:text-cyan-500 text-sm'>Users</h1>
+                    <h1 onClick={()=>{setUseropen(!useropen), closeall('user')}} className={`mr-4 cursor-pointer ${useropen === true && 'text-cyan-500'}  text-gray-700  hover:text-cyan-500 text-sm`}>Users</h1>
                     <h1 className='text-sm relative cursor-pointer text-gray-700 hover:text-cyan-500'>Messages <span className='absolute text-red-500 text-[10px] -right-6 animate-pulse font-bold -top-1 '>99+</span></h1>
                 </div>
              </div>
@@ -68,7 +68,7 @@ const [declined, setDeclined] = useState(false)
 
                  <div><h1 onClick={()=>{setPending(!pending),closeall('pen')}} className={`mr-4 cursor-pointer ${pending === true && 'text-cyan-500'}  relative hover:text-cyan-500 text-[12px]`}>Pending <span className='absolute text-red-500 -right-2 text-[10px] animate-pulse font-bold -top-1 '>2</span> </h1></div>
                  <div><h1 onClick={()=> {setApproved(!approved), closeall('app')}} className={`mr-4  cursor-pointer hover:text-cyan-500 text-[12px] ${approved === true && 'text-cyan-500'}`}>Approved</h1></div>
-                 <div><h1 onClick={()=>{setDeclined(!declined), closeall('dec')}} className=' text-[12px] cursor-pointer  hover:text-cyan-500'>Declined</h1></div>
+                 <div><h1 onClick={()=>{setDeclined(!declined), closeall('dec')}} className={` text-[12px] cursor-pointer ${declined === true && 'text-cyan-500'}  hover:text-cyan-500`}>Declined</h1></div>
 </div>
              </div>
          </section>
