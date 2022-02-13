@@ -49,7 +49,7 @@ const [declined, setDeclined] = useState(false)
                 <div className='flex justify-center'>
                     <h1 onClick={()=>{setResopen(!resopen), closeall('res')}} className={`mr-4 relative  text-gray-700  cursor-pointer ${resopen === true && 'text-cyan-500'} hover:text-cyan-500 text-sm`}>Reservations {resopen === false && (<span className='absolute text-red-500 text-[10px] animate-pulse font-bold -top-1 -right-2 '>2</span>)} </h1>
                     <h1 onClick={()=>{setUseropen(!useropen), closeall('user')}} className='mr-4 cursor-pointer  text-gray-700  hover:text-cyan-500 text-sm'>Users</h1>
-                    <h1 className='text-sm relative cursor-pointer text-gray-700 hover:text-cyan-500'>Messages <span className='absolute text-red-500 text-[10px] -right-2 animate-pulse font-bold -top-1 '>99+</span></h1>
+                    <h1 className='text-sm relative cursor-pointer text-gray-700 hover:text-cyan-500'>Messages <span className='absolute text-red-500 text-[10px] -right-6 animate-pulse font-bold -top-1 '>99+</span></h1>
                 </div>
              </div>
          </section>
