@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useUser } from '../utils/useUser';
 
 ;
-export default function Home({products}) {
+export default function Home() {
   // const [session, setSession] = useState(null)
 
   // useEffect(() => {
@@ -28,7 +28,7 @@ export default function Home({products}) {
 
   return (
     <div className=" overflow-hidden" >
-      {user && (<Account products={products} key={session.user.id} session={session} />) }
+      {user && (<Account key={session.user.id} session={session} />) }
     </div>
   )
 }

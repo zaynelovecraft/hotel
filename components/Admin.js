@@ -172,7 +172,7 @@ function Admin() {
                       <h1>Email: {post.email}</h1>
                       <h1>User Email: {post.user_email}</h1>
                       <h1>USID: {post.user_id}</h1>
-                      <h1 className="text-center text-sm  mb-2 underline">Booking Details</h1>
+                      <h1 className="text-center text-sm mt-3 mb-2 underline">Booking Details</h1>
                       <h1>Hotel: {post.hotel_name}</h1>
                       <h1>Created at: {post.created_at}</h1>
                       <h1>Check In: {post.start_date}</h1>
