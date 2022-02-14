@@ -230,25 +230,25 @@ export default function Account({ session }) {
 {/*  */}
           {pendingg.map((post)=>(
 
-            <div key={post.user_id} className="w-[300px] max-w-[300px] shadow-lg mb-5 mt-5 rounded-2xl border">
-              <h1 className="text-center" >Hotel Name {post.hotel_name}</h1>
-            <h1 className="text-center">Check-in 3 PM {post.start_date}</h1>
-            <h1 className="text-center">Check-out 11 AM {post.end_date}</h1>
-            <h1 className="text-center">Total Nights {post.nights}</h1>
-            <h1 className="text-center">{post.weekdays} Nights x (weekday price $400) = ${post.weekday_price} </h1>
-            <h1 className="text-center">{post.weekend_days} Nights x (weekend price $500) = ${post.weekend_price} </h1>
-            <h1 className="text-center">Total = ${post.price}</h1>
-            <h1 className="text-center">Weekly Discount : ${post.weekly_discount}</h1>
-            <h1 className="text-center">Monthly Discount : ${post.monthly_discount}</h1>
-            <h1 className="text-center">Total guest: {post.guest} </h1>
-            <h1 className="text-center">{post.extra_guest} Extra guest + ${post.extra_guest_fee} per night </h1>
-            <h1 className="text-center">{post.nights} Nights x ${post.extra_guest_fee} = ${post.guest_fee_total} </h1>
-            <h1 className="text-center">Pets {post.pets} </h1>
-            <h1 className="text-center"> Pet fee ${post.pet_fee} </h1>
-            <h1 className="text-center">cleaning fee $65 </h1>
-            <h1 className="text-center">Security Deposit $200 </h1>
-            <h1 className="text-center"> Total : ${post.total} </h1>
-            <h1 className="text-center"> </h1>
+            <div key={post.user_id} className="w-[400px] p-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+              <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
+            <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
+            <h1 className="text-center text-sm ">Check-in: <span className="text-gray-600 text-base">3 PM {post.start_date}</span> </h1>
+            <h1 className="text-center text-sm mb-5">Check-out: <span className="text-gray-600 text-base">11 AM {post.end_date}</span> </h1>
+            <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekdays} )</span> Night x (weekday price $400) =  <span className='text-lime-500 text-base'>${post.weekday_price} </span></h1>
+            <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekend_days} )</span> Night x (weekend price $500) = <span className="text-lime-500 text-base" >${post.weekend_price}</span> </h1>
+            <h1 className="text-center mb-5 text-sm">Total = <span className="text-lime-500 text-base">${post.price}</span></h1>
+            <h1 className="text-center text-sm">Weekly Discount : <span className='text-lime-500 text-base'>${post.weekly_discount}</span></h1>
+            <h1 className="text-center mb-5 text-sm">Monthly Discount : <span className="text-lime-500 text-base">${post.monthly_discount}</span> </h1>
+            <h1 className="text-center text-sm">Total guest: <span className='text-gray-600 text-base'>{post.guest}</span>  </h1>
+            <h1 className="text-center text-sm"><span className='text-gray-600 text-base'>{post.extra_guest} </span>Extra guest +<span className='text-base text-lime-500'> ${post.extra_guest_fee}</span>  per night </h1>
+            <h1 className="text-center mb-5 text-sm"><span className="text-base text-gray-600">{post.nights}</span> Nights x <span className="text-base text-lime-500">${post.extra_guest_fee}</span> = <span className="text-base text-lime-500">${post.guest_fee_total}</span> </h1>
+            <h1 className="text-center text-sm">Pets <span className="text-gray-600 text-base">{post.pets}</span>  </h1>
+            <h1 className="text-center text-sm mb-5"> Pet fee: <span className='text-base text-lime-500'>${post.pet_fee}</span> </h1>
+            <h1 className="text-center text-sm">cleaning fee <span className="text-base text-lime-500">$65</span>  </h1>
+            <h1 className="text-center text-sm">Security Deposit <span className="text-base text-lime-500">$200</span>  </h1>
+            <h1 className="text-center mt-5 text-2xl"> Total : <span className='text-lime-500 font-bold'>${post.total}</span> </h1>
+            <h1 className="text-center text-sm"> </h1>
 
 
 
