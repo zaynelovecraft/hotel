@@ -117,6 +117,7 @@ function bookings() {
     if (guestamount >= 7) {
       return guestamount - 6;
     }
+    return 0
   })();
 
   const masstotal = () => {
@@ -921,6 +922,7 @@ function bookings() {
                   </div>
                 )}
               </div>
+              
             </section>
           </div>
           <div>
