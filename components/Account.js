@@ -230,7 +230,7 @@ export default function Account({ session }) {
 {/*  */}
           {pendingg.map((post)=>(
 
-            <div key={post.user_id} className="w-[400px] p-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+            <div key={post.hotel_name} className="w-[400px] py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
               <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
             <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
             <h1 className="text-center text-sm ">Check-in: <span className="text-gray-600 text-base">3 PM {post.start_date}</span> </h1>

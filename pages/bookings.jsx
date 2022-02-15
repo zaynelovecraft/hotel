@@ -41,7 +41,7 @@ function bookings() {
   const [hotel, setHotel] = useState("Sol O Cien Condo");
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   useEffect(() => {
-    console.log(user)
+    
 
     if (!user) router.replace("/signin");
   }, [user]);
@@ -49,7 +49,22 @@ function bookings() {
   const focus = () => {
     inputRef.current.scrollIntoView();
   };
+
+  const check = async() => {
+
+    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user.id})
+
+   if(data[0].user_id === user.id) {
+    router.replace("/account"); 
+   }
+    
+  }
+
+  useEffect(() => {
+    check()
+  },[user])
   
+
   
   const pushdetails = async () => {
     const { data, error } = await supabase.from("pending_reservations").insert([
