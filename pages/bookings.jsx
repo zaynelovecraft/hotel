@@ -54,7 +54,7 @@ function bookings() {
 
     const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user.id})
 
-   if(data[0].user_id === user.id) {
+   if(data[0]?.user_id === user.id) {
     router.replace("/account"); 
    }
     
@@ -92,6 +92,7 @@ function bookings() {
         pet_fee: petfee,
         total: total,
         hotel_name: hotel,
+        status: 'pending',
       },
     ]);
   };

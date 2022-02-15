@@ -15,17 +15,29 @@ export default function Account({ session }) {
   const [pending, setPending] = useState(false);
   const [approved, setApproved] = useState(false);
   const [pendingg, setPendingg] = useState();
-  console.log(pendingg)
+
+
+  const deleteres = async() => {
+    const { data, error } = await supabase
+  .from('pending_reservations')
+  .delete('*')
+  .match({ user_id: user.id })
+  getpending()
+  }
+
+
+
+
   const getpending = async () => {
     const { data, error } = await supabase
       .from("pending_reservations")
       .select("*")
       .match({ user_id: user.id });
 
-    // console.log(data)
+
     setPendingg(data);
-    if(data) {setPending(true)}
-    // console.log(pendingg)
+    if(data[0]?.user_id === user.id)  {setPending(true)}
+    
   };
 
 
@@ -184,7 +196,8 @@ export default function Account({ session }) {
 
         <div>
           <section>
-            <div className="flex mb-5 mt-5">
+            <div className="flex mb-5 mt-10">
+              
               <div
                 onClick={() => {
                   setPending(!pending), setApproved(false);
@@ -197,7 +210,7 @@ export default function Account({ session }) {
                   Pending
                 {pendingg?.length > 0 && (
 
-                  <span className="absolute -top-4 text-lg animate-pulse text-red-500 ">
+                  <span className="absolute bg-white rounded-full px-2 -top-4 text-base animate-pulse text-red-500 ">
                     {pendingg.length}
              
                   </span>
@@ -210,7 +223,7 @@ export default function Account({ session }) {
                 }}
                 className={`border cursor-pointer ${
                   approved === true ? "bg-cyan-300" : "bg-lime-400"
-                } py-1 font-semibold hover:bg-cyan-300   rounded-lg px-3`}
+                } py-1 font-semibold hover:bg-cyan-300 ml-5  rounded-lg px-3`}
               >
                 <h1 className="opacity-80">Approved</h1>
               </div>
@@ -221,6 +234,7 @@ export default function Account({ session }) {
 
         {pending && (
           <section className=" w-full ">
+            
             <div>
               <h1 className="text-center text-gray-500 mb-2">Pending Reservations</h1>
             </div>
@@ -230,7 +244,10 @@ export default function Account({ session }) {
 {/*  */}
           {pendingg.map((post)=>(
 
-            <div key={post.hotel_name} className="w-[400px] py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+            <div key={post.hotel_name} className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+              <div onClick={()=>{deleteres()}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
+                <h1 className="text-[10px] font-semibold">Delete </h1>
+              </div>
               <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
             <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
             <h1 className="text-center text-sm ">Check-in: <span className="text-gray-600 text-base">3 PM {post.start_date}</span> </h1>

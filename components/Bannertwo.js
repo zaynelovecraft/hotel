@@ -72,7 +72,7 @@ const hi = [
             <Link href="/accommodations">
             <a>
 
-            <div className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105" key={item.title}>
+            <div key={item.title} className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105" key={item.title}>
              <div className="relative mr-10 h-80 w-80">
                <Image src={item.img} className="rounded-xl " objectFit="cover" layout="fill" /> 
 
