@@ -52,7 +52,7 @@ function bookings() {
 
   const check = async() => {
 
-    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user.id})
+    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user.id, status: 'pending'})
 
    if(data[0]?.user_id === user.id) {
     router.replace("/account"); 

@@ -15,26 +15,75 @@ export default function Account({ session }) {
   const [pending, setPending] = useState(false);
   const [approved, setApproved] = useState(false);
   const [pendingg, setPendingg] = useState();
+  const [declineddd,setDeclineddd] = useState(false)
+  const [decpost,setDecpost] = useState()
+  const [modal, setModal] = useState(false);
+  const [del,setDel] = useState()
+  const [appy, setAppy] = useState()
 
+
+
+  // const decline = async (post) => {
+  //   // const {x,y} = await supabase
+  //   // .from('declined_post')
+  //   // .insert(pendingg.id.post)
+  //   const { data, error } = await supabase
+  //     .from("pending_reservations")
+  //     .update({ status: "declined" })
+  //     .match({ id: post });
+
+    
+   
+  // };
+  const dell = async() => {
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .update({ status: "declined" })
+      .match({ id: del });
+    setModal(false)
+    getdeclined()
+    getpending()
+    getapproved()
+  }
+
+  const confirmdel = (id) => {
+    setDel(id)
+    setModal(!modal)
+
+  };
 
   const deleteres = async() => {
     const { data, error } = await supabase
-  .from('pending_reservations')
-  .delete('*')
-  .match({ user_id: user.id })
+    .from("pending_reservations")
+    .update({ status: "declined" })
+    .match({ user_id: user.id, status: 'pending' });
+    getdeclined()
   getpending()
   }
 
-
+  const getdeclined = async () => {
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .select("*")   
+      .match({ user_id: user.id, status: "declined" });
+    setDecpost(data);
+  };
+  const getapproved = async () => {
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .select("*")   
+      .match({ user_id: user.id, status: "approved" });
+    setAppy(data);
+  };
 
 
   const getpending = async () => {
     const { data, error } = await supabase
       .from("pending_reservations")
       .select("*")
-      .match({ user_id: user.id });
+      .match({ user_id: user.id, status: 'pending' });
 
-
+// set pending tab open if pending post
     setPendingg(data);
     if(data[0]?.user_id === user.id)  {setPending(true)}
     
@@ -42,8 +91,9 @@ export default function Account({ session }) {
 
 
   useEffect(async () => {
-   
+    getdeclined()
     getpending();
+    getapproved()
   }, []);
 
   const isadmin = async () => {
@@ -117,6 +167,23 @@ export default function Account({ session }) {
 
   return (
     <div>
+      <div className={`bg-black bg-opacity-50 justify-center items-center ${modal ? 'flex' : 'hidden'}  fixed inset-0 z-10 `}>
+<div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl" >
+  <div className="flex justify-between items-center">
+    <h4 className="text-lg font-bold">Confirm Decline? </h4>
+    <h4 onClick={()=>{setModal(false)}} className="text-lg cursor-pointer font-bold">X </h4>
+  </div>
+  <div className="mt-2 text-sm">
+    <p>
+      This reservation will be Declined forever!
+    </p>
+  </div>
+  <div className="mt-3 flex justify-end space-x-3">
+    <button onClick={()=>{setModal(false)}} className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">Cancel</button>
+    <button onClick={()=>{dell()}} className="px-3 py-1 bg-red-800 hover:bg-red-600 text-gray-200 rounded">Decline</button>
+  </div>
+</div>
+</div>
       <div className="flex flex-col items-center justify-center border ">
         <div className="w-[260px] lg:w-auto">
           <div className=" mt-5">
@@ -162,7 +229,7 @@ export default function Account({ session }) {
 
             <div className="  text-center p-3 ">
               <button
-                className="border bg-pink-400 rounded-lg px-3"
+                className="border bg-gray-300 rounded-lg px-3"
                 onClick={() => updateProfile({ username, website, avatar_url })}
                 disabled={loading}
               >
@@ -173,7 +240,7 @@ export default function Account({ session }) {
             <div className="flex flex-row-reverse">
               <a href="/">
                 <button
-                  className="border bg-pink-400 rounded-lg px-3"
+                  className="border bg-gray-300 rounded-lg px-3"
                   onClick={() => supabase.auth.signOut()}
                 >
                   Sign Out
@@ -196,15 +263,16 @@ export default function Account({ session }) {
 
         <div>
           <section>
-            <div className="flex mb-5 mt-10">
+            <div className="flex mt-10 justify-center"><h1>Reservations</h1></div>
+            <div className="flex space-x-2 mb-5 mt-2">
               
               <div
                 onClick={() => {
-                  setPending(!pending), setApproved(false);
+                  setPending(!pending), setApproved(false), setDeclineddd(false);
                 }}
                 className={`${
                   pending === true ? "bg-cyan-300" : "bg-gray-300"
-                } border py-1 cursor-pointer font-semibold hover:bg-cyan-300   px-2 rounded-lg mr-5`}
+                } border py-1 cursor-pointer font-semibold hover:bg-cyan-300  text-sm px-2 rounded-lg `}
               >
                 <h1 className="opacity-80 relative">
                   Pending
@@ -219,13 +287,31 @@ export default function Account({ session }) {
               </div>
               <div
                 onClick={() => {
-                  setApproved(!approved), setPending(false);
+                  setApproved(!approved), setPending(false), setDeclineddd(false);
                 }}
                 className={`border cursor-pointer ${
                   approved === true ? "bg-cyan-300" : "bg-lime-400"
-                } py-1 font-semibold hover:bg-cyan-300 ml-5  rounded-lg px-3`}
+                } py-1 font-semibold  hover:bg-cyan-300  text-sm  rounded-lg px-3`}
               >
-                <h1 className="opacity-80">Approved</h1>
+                <h1 className="opacity-80 relative">Approved 
+                {appy?.length > 0 && (
+
+<span className="absolute bg-white rounded-full px-2 -top-4 text-base animate-pulse text-red-500 ">
+  {appy.length}
+
+</span>
+)}
+                </h1>
+              </div>
+              <div
+                onClick={() => {
+                  setDeclineddd(!declineddd), setPending(false), setApproved(false);
+                }}
+                className={`border cursor-pointer ${
+                  declineddd === true ? "bg-cyan-300" : "bg-red-400"
+                } py-1 font-semibold hover:bg-cyan-300 text-sm  rounded-lg px-3`}
+              >
+                <h1 className="opacity-80">Declined</h1>
               </div>
             </div>
           </section>
@@ -236,17 +322,17 @@ export default function Account({ session }) {
           <section className=" w-full ">
             
             <div>
-              <h1 className="text-center text-gray-500 mb-2">Pending Reservations</h1>
+              <h1 className="text-center text-gray-600 mb-2">Pending Reservations</h1>
             </div>
-            <div className="border-b max-w-[300px] mx-auto"></div>
+            <div className="border mt-2 w-[200px] mx-auto mb-2"></div>
             <div className=" w-full">
               <div className="flex justify-around flex-wrap">
 {/*  */}
           {pendingg.map((post)=>(
 
-            <div key={post.hotel_name} className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
-              <div onClick={()=>{deleteres()}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
-                <h1 className="text-[10px] font-semibold">Delete </h1>
+            <div key={post.id} className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+              <div onClick={()=>{confirmdel(post.id)}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
+                <h1 className="text-[10px] font-semibold">Decline </h1>
               </div>
               <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
             <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
@@ -282,13 +368,103 @@ export default function Account({ session }) {
         )}
      
         {approved && (
-          <section className="flex justify-center">
-            <div className="text-center">
-              <h1 className="text-gray-600">Approved</h1>
-              <div className="border mt-2 w-[200px] mb-2"></div>
+          <section className=" w-full ">
+            
+          <div>
+            <h1 className="text-center text-gray-600 mb-2">Approved</h1>
+          </div>
+          <div className="border mt-2 w-[200px] mx-auto mb-2"></div>
+          <div className=" w-full">
+            <div className="flex justify-around flex-wrap">
+{/*  */}
+        {appy.map((post)=>(
+
+          <div key={post.id} className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+            {/* <div onClick={()=>{deleteres()}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
+              <h1 className="text-[10px] font-semibold">Delete </h1>
+            </div> */}
+            <div onClick={()=>{confirmdel(post.id)}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
+                <h1 className="text-[10px] font-semibold">Decline </h1>
+              </div>
+            <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
+          <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
+          <h1 className="text-center text-sm ">Check-in: <span className="text-gray-600 text-base">3 PM {post.start_date}</span> </h1>
+          <h1 className="text-center text-sm mb-5">Check-out: <span className="text-gray-600 text-base">11 AM {post.end_date}</span> </h1>
+          <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekdays} )</span> Night x (weekday price $400) =  <span className='text-lime-500 text-base'>${post.weekday_price} </span></h1>
+          <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekend_days} )</span> Night x (weekend price $500) = <span className="text-lime-500 text-base" >${post.weekend_price}</span> </h1>
+          <h1 className="text-center mb-5 text-sm">Total = <span className="text-lime-500 text-base">${post.price}</span></h1>
+          <h1 className="text-center text-sm">Weekly Discount : <span className='text-lime-500 text-base'>${post.weekly_discount}</span></h1>
+          <h1 className="text-center mb-5 text-sm">Monthly Discount : <span className="text-lime-500 text-base">${post.monthly_discount}</span> </h1>
+          <h1 className="text-center text-sm">Total guest: <span className='text-gray-600 text-base'>{post.guest}</span>  </h1>
+          <h1 className="text-center text-sm"><span className='text-gray-600 text-base'>{post.extra_guest} </span>Extra guest +<span className='text-base text-lime-500'> ${post.extra_guest_fee}</span>  per night </h1>
+          <h1 className="text-center mb-5 text-sm"><span className="text-base text-gray-600">{post.nights}</span> Nights x <span className="text-base text-lime-500">${post.extra_guest_fee}</span> = <span className="text-base text-lime-500">${post.guest_fee_total}</span> </h1>
+          <h1 className="text-center text-sm">Pets <span className="text-gray-600 text-base">{post.pets}</span>  </h1>
+          <h1 className="text-center text-sm mb-5"> Pet fee: <span className='text-base text-lime-500'>${post.pet_fee}</span> </h1>
+          <h1 className="text-center text-sm">cleaning fee <span className="text-base text-lime-500">$65</span>  </h1>
+          <h1 className="text-center text-sm">Security Deposit <span className="text-base text-lime-500">$200</span>  </h1>
+          <h1 className="text-center mt-5 text-2xl"> Total : <span className='text-lime-500 font-bold'>${post.total}</span> </h1>
+          <h1 className="text-center text-sm"> </h1>
+
+
+
+
+          </div>
+        ))}
+
+
+
+          {/*  */}
             </div>
-            <div></div>
-          </section>
+          </div>
+        </section>
+        )}
+        {declineddd && (
+          <section className=" w-full ">
+            
+          <div>
+            <h1 className="text-center text-gray-600 mb-2">Declined Post</h1>
+          </div>
+          <div className="border mt-2 w-[200px] mx-auto mb-2"></div>
+          <div className=" w-full">
+            <div className="flex justify-around flex-wrap">
+{/*  */}
+        {decpost.map((post)=>(
+
+          <div key={post.id} className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border">
+            {/* <div onClick={()=>{deleteres()}} className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 ">
+              <h1 className="text-[10px] font-semibold">Delete </h1>
+            </div> */}
+            <h1 className="text-center mt-5" >Hotel Name:<span className="text-gray-600 text-base"> {post.hotel_name}</span> </h1>
+          <h1 className="text-center text-sm mt-5 mb-5 ">Total Nights: <span className="text-gray-600 text-base">{post.nights}</span> </h1>
+          <h1 className="text-center text-sm ">Check-in: <span className="text-gray-600 text-base">3 PM {post.start_date}</span> </h1>
+          <h1 className="text-center text-sm mb-5">Check-out: <span className="text-gray-600 text-base">11 AM {post.end_date}</span> </h1>
+          <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekdays} )</span> Night x (weekday price $400) =  <span className='text-lime-500 text-base'>${post.weekday_price} </span></h1>
+          <h1 className="text-center text-sm"><span className="text-gray-600 text-base">( {post.weekend_days} )</span> Night x (weekend price $500) = <span className="text-lime-500 text-base" >${post.weekend_price}</span> </h1>
+          <h1 className="text-center mb-5 text-sm">Total = <span className="text-lime-500 text-base">${post.price}</span></h1>
+          <h1 className="text-center text-sm">Weekly Discount : <span className='text-lime-500 text-base'>${post.weekly_discount}</span></h1>
+          <h1 className="text-center mb-5 text-sm">Monthly Discount : <span className="text-lime-500 text-base">${post.monthly_discount}</span> </h1>
+          <h1 className="text-center text-sm">Total guest: <span className='text-gray-600 text-base'>{post.guest}</span>  </h1>
+          <h1 className="text-center text-sm"><span className='text-gray-600 text-base'>{post.extra_guest} </span>Extra guest +<span className='text-base text-lime-500'> ${post.extra_guest_fee}</span>  per night </h1>
+          <h1 className="text-center mb-5 text-sm"><span className="text-base text-gray-600">{post.nights}</span> Nights x <span className="text-base text-lime-500">${post.extra_guest_fee}</span> = <span className="text-base text-lime-500">${post.guest_fee_total}</span> </h1>
+          <h1 className="text-center text-sm">Pets <span className="text-gray-600 text-base">{post.pets}</span>  </h1>
+          <h1 className="text-center text-sm mb-5"> Pet fee: <span className='text-base text-lime-500'>${post.pet_fee}</span> </h1>
+          <h1 className="text-center text-sm">cleaning fee <span className="text-base text-lime-500">$65</span>  </h1>
+          <h1 className="text-center text-sm">Security Deposit <span className="text-base text-lime-500">$200</span>  </h1>
+          <h1 className="text-center mt-5 text-2xl"> Total : <span className='text-lime-500 font-bold'>${post.total}</span> </h1>
+          <h1 className="text-center text-sm"> </h1>
+
+
+
+
+          </div>
+        ))}
+
+
+
+          {/*  */}
+            </div>
+          </div>
+        </section>
         )}
       </div>
     </div>

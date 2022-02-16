@@ -56,7 +56,7 @@ function Solocien() {
       const { data, error } = await supabase
         .from("pending_reservations")
         .select("user_id, hotel_name")
-        .match({ user_id: user.id });
+        .match({ user_id: user.id, status: 'pending' });
 
       if (data[0]?.hotel_name == "Sol O Cien Condo") {
         setAlreadyreserved(true);

@@ -1,4 +1,4 @@
-import { set } from "date-fns";
+
 import React, { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase-client";
 import { useUser } from "../utils/useUser";
@@ -15,7 +15,11 @@ function Admin() {
   const [declinedd, setDeclinedd] = useState();
   const [approvedd, setApprovedd] = useState();
   const [modal, setModal] = useState(false);
-  const [del,setDel] = useState(false)
+  const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [del,setDel] = useState()
+  const [apr, setApr] = useState()
+  const [declinee, setDeclinee] = useState()
  
   // useEffect(() => {
   //   setRerender(!rerender);
@@ -24,23 +28,34 @@ function Admin() {
   let today = new Date();
   let time = today.toDateString();
 
-  const decline = async (post) => {
+  const decline = async () => {
     // const {x,y} = await supabase
     // .from('declined_post')
     // .insert(pendingg.id.post)
     const { data, error } = await supabase
       .from("pending_reservations")
       .update({ status: "declined" })
-      .match({ id: post });
-
+      .match({ id: declinee});
+      setModal2(false)
+    getapproved()
+    getdeclined()
+    getpending()
     
-    getdeclined();
-    getpending();
-    getapproved();
+   
   };
   const confirmdel = (id) => {
     setDel(id)
     setModal(!modal)
+
+  };
+  const confirmaprov = (id) => {
+    setApr(id)
+    setModal1(!modal1)
+
+  };
+  const confirmdecline = (id) => {
+    setDeclinee(id)
+    setModal2(!modal1)
 
   };
   const dell = async() => {
@@ -52,19 +67,20 @@ function Admin() {
     getdeclined()
   }
 
-  const approve = async (post) => {
+  const approve = async () => {
     // const {x,y} = await supabase
     // .from('declined_post')
     // .insert(pendingg.id.post)
     const { data, error } = await supabase
       .from("pending_reservations")
       .update({ status: "approved" })
-      .match({ id: post });
+      .match({ id: apr });
 
     // const {data, error} = await supabase
     // .from('pending_reservations')
     // .delete()
     // .match({id: post})
+    setModal1(false)
     getapproved();
     getpending();
   };
@@ -153,7 +169,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
 
 </div> */}
 
-<div className={`bg-black bg-opacity-50 justify-center items-center ${modal ? 'flex' : 'hidden'}  fixed inset-0 z-10 `}>
+<div className={`bg-black bg-opacity-50 justify-center items-center ${modal ? 'flex' : 'hidden'}  fixed inset-0 z-20 `}>
 <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl" >
   <div className="flex justify-between items-center">
     <h4 className="text-lg font-bold">Confirm Delete? </h4>
@@ -167,6 +183,40 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
   <div className="mt-3 flex justify-end space-x-3">
     <button onClick={()=>{setModal(false)}} className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">Cancel</button>
     <button onClick={()=>{dell()}} className="px-3 py-1 bg-red-800 hover:bg-red-600 text-gray-200 rounded">Delete</button>
+  </div>
+</div>
+</div>
+<div className={`bg-black bg-opacity-50 justify-center items-center ${modal1 ? 'flex' : 'hidden'}  fixed inset-0 z-20 `}>
+<div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl" >
+  <div className="flex justify-between items-center">
+    <h4 className="text-lg font-bold">Confirm Approve? </h4>
+    <h4 onClick={()=>{setModal1(false)}} className="text-lg cursor-pointer font-bold">X </h4>
+  </div>
+  <div className="mt-2 text-sm">
+    <p>
+      This will Approve This Reservation.
+    </p>
+  </div>
+  <div className="mt-3 flex justify-end space-x-3">
+    <button onClick={()=>{setModal1(false)}} className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">Cancel</button>
+    <button onClick={()=>{approve()}} className="px-3 py-1 bg-lime-500 hover:bg-lime-400 text-black rounded">Approve</button>
+  </div>
+</div>
+</div>
+<div className={`bg-black bg-opacity-50 justify-center items-center ${modal2 ? 'flex' : 'hidden'}  fixed inset-0 z-20 `}>
+<div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl" >
+  <div className="flex justify-between items-center">
+    <h4 className="text-lg font-bold">Confirm Decline? </h4>
+    <h4 onClick={()=>{setModal2(false)}} className="text-lg cursor-pointer font-bold">X </h4>
+  </div>
+  <div className="mt-2 text-sm">
+    <p>
+      This will Decline This Reservation.
+    </p>
+  </div>
+  <div className="mt-3 flex justify-end space-x-3">
+    <button onClick={()=>{setModal2(false)}} className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">Cancel</button>
+    <button onClick={()=>{decline()}} className="px-3 py-1 bg-red-800 hover:bg-red-600 text-black rounded">Decline</button>
   </div>
 </div>
 </div>
@@ -236,7 +286,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
         <section>
           <div className="border flex-row  bg-gray-200">
             <div className="flex mt-2 mb-2 justify-center">
-              <div>
+              <div className="z-1">
                 <h1
                   onClick={() => {
                     setPending(!pending), closeall("pen");
@@ -293,9 +343,9 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
                   onClick={() => {
-                    decline(post.id);
+                    confirmdecline(post.id);
                   }}
-                  className="absolute z-20 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4"
+                  className="absolute bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4"
                 >
                   <h1 className="font-semibold">Decline</h1>
                 </div>
@@ -351,17 +401,15 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
                   onClick={() => {
-                    decline(post.id);
+                    confirmdecline(post.id);
                   }}
                   className="absolute z-20 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4"
                 >
                   <h1 className="font-semibold">Decline</h1>
                 </div>
                 <div
-                  onClick={() => {
-                    approve(post.id);
-                  }}
-                  className="absolute z-20 bottom-4 border cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-2 py-1 right-24"
+                  onClick={()=>{confirmaprov(post.id)}}
+                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-2 py-1 right-24"
                 >
                   <h1 className="font-semibold">Approve</h1>
                 </div>
