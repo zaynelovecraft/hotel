@@ -135,8 +135,8 @@ function bookings() {
   })();
 
   const xguest = (function () {
-    if (guestamount >= 7) {
-      return guestamount - 6;
+    if (guestamount >= 9) {
+      return guestamount - 8;
     }
     return 0
   })();
@@ -165,19 +165,19 @@ function bookings() {
 
   const numofguest = () => {
     let extra = 0;
-    if (guestamount <= 6) {
+    if (guestamount <= 8) {
       extra = 0;
     }
-    if (guestamount == 7) {
+    if (guestamount == 9) {
       extra = extra + 40;
     }
-    if (guestamount == 8) {
+    if (guestamount == 10) {
       extra = extra + 80;
     }
-    if (guestamount == 9) {
+    if (guestamount == 11) {
       extra = extra + 120;
     }
-    if (guestamount == 10) {
+    if (guestamount == 12) {
       extra = extra + 160;
     }
     setGuestprice(extra);
@@ -648,19 +648,27 @@ function bookings() {
                           <option value="6"> 6 Guest </option>
                           <option value="7">
                             {" "}
-                            7 Guest - ($40 extra per night)
+                            7 Guest 
                           </option>
                           <option value="8">
                             {" "}
-                            8 Guest - ($80 extra per night)
+                            8 Guest 
                           </option>
                           <option value="9">
                             {" "}
-                            9 Guest - ($120 extra per night)
+                            9 Guest - ($40 extra per night)
                           </option>
                           <option value="10">
                             {" "}
-                            10 Guest - ($160 extra per night)
+                            10 Guest - ($80 extra per night)
+                          </option>
+                          <option value="12">
+                            {" "}
+                            11 Guest - ($120 extra per night)
+                          </option>
+                          <option value="12">
+                            {" "}
+                            12 Guest - ($160 extra per night)
                           </option>
                         </select>
                       </div>
