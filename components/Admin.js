@@ -342,7 +342,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           <h1 className="text-center text-sm  text-gray-600">
             Approved Reservations
           </h1>
-          {approvedd.map((post) => (
+          {approvedd.map((post, index) => (
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
@@ -354,8 +354,11 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   <h1 className="font-semibold">Decline</h1>
                 </div>
                 <div className="ml-5">
-                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
-                    POST ID {post.id}
+                  <h1 className=" text-sm ">
+                    {index + 1}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2">
+                    RESERVATION ID {post.id}
                   </h1>
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
@@ -403,7 +406,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           <h1 className="text-center text-sm  text-gray-600">
             Pending Reservations
           </h1>
-          {pendingg.map((post) => (
+          {pendingg.map((post, index) => (
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
@@ -421,8 +424,11 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   <h1 className="font-semibold">Approve</h1>
                 </div>
                 <div className="ml-5">
-                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
-                    POST ID {post.id}
+                  <h1 className="text-sm ">
+                    {index + 1}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 ">
+                    RESERVATION ID {post.id}
                   </h1>
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
@@ -470,7 +476,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           <h1 className="text-center text-sm  text-gray-600">
             Declined Reservations
           </h1>
-          {declinedd.map((post) => (
+          {declinedd.map((post, index) => (
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <button onClick={()=>{confirmdel(post.id)}} className="absolute z-1 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4">
@@ -478,8 +484,11 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                 </button>
 
                 <div className="ml-5">
-                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
-POST ID {post.id}
+                  <h1 className=" text-sm">
+{index + 1}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 ">
+RESERVATION ID {post.id}
                   </h1>
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
