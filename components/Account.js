@@ -247,9 +247,9 @@ export default function Account({ session }) {
                 </button>
               </a>
             </div>
-            <div className="absolute top-20 right-2">
+            <div className="absolute text-xs lg:top-[100px] text-gray-500 top-16 left-2">
               {admin === true && (
-                <div className="mb-2 border-2 border-black max-w-[150px] mx-auto shadow-2xl p-1  hover:bg-gray-300 rounded-3xl bg-gray-400 cursor-pointer">
+                <div className=" cursor-pointer">
                   <Link href={"/admindashboard"}>
                     <a>
                       <h1 className="text-center">Admin Dashboard</h1>
