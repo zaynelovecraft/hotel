@@ -105,6 +105,7 @@ function bookings() {
 
   const contactForm = async () => {
     event.preventDefault();
+    check()
     setLoading(true);
     if (days === 0) {
       setLoading(false);

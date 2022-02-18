@@ -104,6 +104,7 @@ function bookings() {
 
   const contactForm = async () => {
     event.preventDefault();
+    check()
     setLoading(true);
     if (days === 0) {
       setLoading(false);
@@ -388,7 +389,7 @@ function bookings() {
 
   const getdates = () => {
     let dates = [];
-
+  
     for (let i = 0; i < data?.length; i++) {
       const addDays = (date, days = 1) => {
         const result = new Date(date);
@@ -961,6 +962,7 @@ function bookings() {
                 className="text-black text-1xl  bg-cyan-400 borderborder-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300"
                 type="submit"
                 form="contact-form"
+               
               >
                 Confirm Your Reservation
               </button>
