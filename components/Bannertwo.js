@@ -19,12 +19,16 @@ const hi = [
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1261-Copy-2.jpg',
-      title: 'Sol O Cien Condo'
+      img: 'https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2795.jpg',
+      title: 'Estrella Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1233-Copy-2.jpg',
-      title: 'Sol O Cien Condo'
+      img: 'https://images.unsplash.com/photo-1581661665191-26f2ee761f9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1429&q=80',
+      title: 'Glamping'
+    },
+    {
+      img: 'https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2883.jpg',
+      title: 'Estrella Condo'
     },
     {
       img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1236-Copy-2.jpg',
