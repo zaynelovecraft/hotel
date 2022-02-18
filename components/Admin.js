@@ -355,6 +355,9 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                 </div>
                 <div className="ml-5">
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
+                    POST ID {post.id}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
                   </h1>
                   <h1>Name: {post.name}</h1>
@@ -419,6 +422,9 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                 </div>
                 <div className="ml-5">
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
+                    POST ID {post.id}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
                   </h1>
                   <h1>Name: {post.name}</h1>
@@ -472,6 +478,9 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                 </button>
 
                 <div className="ml-5">
+                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
+POST ID {post.id}
+                  </h1>
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
                   </h1>
