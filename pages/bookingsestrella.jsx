@@ -39,6 +39,7 @@ function bookings() {
   const [reserved, setReserved] = useState(false);
   const inputRef = useRef(null);
   const [hotel, setHotel] = useState("Estrella Sol-O-Cien Condo");
+  const [show, setShow] = useState(false)
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   useEffect(() => {
     
@@ -418,6 +419,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
+          setShow(true)
         }
       } else if (startcheck == endcheck - 1) {
         const wet = data[i].start.date;
@@ -426,6 +428,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
+          setShow(true)
         }
       } else {
         const dateRange = (start, end, range = []) => {
@@ -446,6 +449,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
+          setShow(true)
         }
       }
 
@@ -474,6 +478,18 @@ function bookings() {
           rel="stylesheet"
         ></link>
       </Head>
+      {!show && (
+      <div className={`bg-black bg-opacity-50 justify-center items-center flex  fixed inset-0 z-20 `}>
+<div className="bg-gray-200 max-w-sm animate-pulse py-2 px-3 text-gray-800 rounded shadow-xl" >
+  <div className="flex justify-between items-center">
+    <h4 className="text-lg font-bold">Loading Please Wait...</h4>
+  
+  </div>
+  
+  
+</div>
+</div>  
+      )}
 
       {reserved ? (
         <div>
