@@ -9,13 +9,13 @@ const hotels = [
   {
     name: "Sol-O-Cien Condo",
     location: "de Rosarito, Predios Urbanos",
-    href: "/",
+    href: "/Solocien",
     img: "https://solocienadventures.com/wp-content/uploads/2020/08/WhatsApp-Image-2020-04-20-at-1.10.46-PM-3.jpeg",
   },
   {
     name: "Estrella Sol-O-Cien Condo",
     location: "de Rosarito, Predios Urbanos",
-    href: "/",
+    href: "/estrella",
     img: "https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg",
   },
   

@@ -20,11 +20,13 @@ function Admin() {
   const [del,setDel] = useState()
   const [apr, setApr] = useState()
   const [declinee, setDeclinee] = useState()
- 
+
   // useEffect(() => {
   //   setRerender(!rerender);
   // }, []);
 
+
+  
   let today = new Date();
   let time = today.toDateString();
 
@@ -38,8 +40,8 @@ function Admin() {
       .match({ id: declinee});
       setModal2(false)
     getapproved()
-    getdeclined()
     getpending()
+    getdeclined()
     
    
   };
@@ -49,13 +51,16 @@ function Admin() {
 
   };
   const confirmaprov = (id) => {
+    
     setApr(id)
     setModal1(!modal1)
 
   };
   const confirmdecline = (id) => {
     setDeclinee(id)
+
     setModal2(!modal1)
+   
 
   };
   const dell = async() => {
@@ -68,21 +73,20 @@ function Admin() {
   }
 
   const approve = async () => {
-    // const {x,y} = await supabase
-    // .from('declined_post')
-    // .insert(pendingg.id.post)
+   
     const { data, error } = await supabase
       .from("pending_reservations")
       .update({ status: "approved" })
       .match({ id: apr });
 
-    // const {data, error} = await supabase
-    // .from('pending_reservations')
-    // .delete()
-    // .match({id: post})
+  
+    
     setModal1(false)
-    getapproved();
-    getpending();
+    getpending()
+    getapproved()
+  
+    
+ 
   };
 
   useEffect(() => {
@@ -274,7 +278,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           </h1>
           <div>
             {users.map((user) => (
-              <div className="border mx-auto border-cyan-500  p-2 pl-7 max-w-[600px] text-sm rounded-3xl mt-5">
+              <div key={user.id} className="border mx-auto border-cyan-500  p-2 pl-7 max-w-[600px] text-sm rounded-3xl mt-5">
                 <h1 className="mb-2">User Name: {user.full_name}</h1>
                 <h1>User Id:{user.id}</h1>
               </div>
@@ -339,7 +343,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
             Approved Reservations
           </h1>
           {approvedd.map((post) => (
-            <div className="" key={post.user_id}>
+            <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
                   onClick={() => {
@@ -397,19 +401,19 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
             Pending Reservations
           </h1>
           {pendingg.map((post) => (
-            <div className="" key={post.user_id}>
+            <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
                   onClick={() => {
                     confirmdecline(post.id);
                   }}
-                  className="absolute z-20 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4"
+                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-2"
                 >
                   <h1 className="font-semibold">Decline</h1>
                 </div>
                 <div
                   onClick={()=>{confirmaprov(post.id)}}
-                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-2 py-1 right-24"
+                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-2 py-1 right-20"
                 >
                   <h1 className="font-semibold">Approve</h1>
                 </div>

@@ -58,19 +58,19 @@ function Solocien() {
       const { data, error } = await supabase
         .from("pending_reservations")
         .select('status')
-        .match({ user_id: user.id, hotel_name: 'Sol O Cien Condo' });
-      console.log(data)
+        .match({ user_id: user.id, hotel_name: 'Estrella Sol-O-Cien Condo' });
 
-      for(let i = 0; i < data.length; i++) {
+        for(let i = 0; i < data.length; i ++) {
 
-        if (data[i].status === 'pending') {
-          setAlreadyreserved(true);
-        } 
-  
-        if (data[i].status === 'approved') {
-          setAlreadyreserved(true)
+            if (data[0]?.status === 'pending') {
+              setAlreadyreserved(true);
+            } 
+      
+            if (data[0]?.status === 'approved') {
+              setAlreadyreserved(true)
+            }
         }
-      }
+
     }
   };
 
@@ -297,7 +297,7 @@ function Solocien() {
           <Carousel className="">
             <div className="w-full -mt-[300px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1230-Copy.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -306,7 +306,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8843_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2790.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -315,7 +315,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8831_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2795.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -324,7 +324,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8832_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2801-1.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -333,7 +333,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8833_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2825.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -342,7 +342,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8834_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2845.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -351,7 +351,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8835_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2866.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -360,7 +360,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8836_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2854.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -369,7 +369,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8837_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2608.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -378,7 +378,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8838_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2786.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -387,7 +387,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8839_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2789.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -396,7 +396,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8840_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2790.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -405,7 +405,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8841_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2791.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -414,7 +414,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8842_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2792.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -423,7 +423,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1259-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2793.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -432,7 +432,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1260-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2794.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -441,7 +441,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1261-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2796.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -450,7 +450,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1262-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2797.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -459,7 +459,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1263-Copy.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2798.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -468,7 +468,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1264-Copy.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2800.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -477,7 +477,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1265.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2801.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -486,7 +486,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1266-Copy.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2802.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -495,7 +495,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1267.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2819.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -504,7 +504,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8830_Original-scaled.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2819.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -513,7 +513,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1233-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2822-1.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -522,7 +522,7 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1234-Copy-2.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2823.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -531,7 +531,79 @@ function Solocien() {
             </div>
             <div className="w-full -mt-40 h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1235-Copy.jpg"
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2825.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2826.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2828.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2829.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2830.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2831.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2832.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2833.jpg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-40 h-screen">
+              <Image
+                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2835.jpg"
                 className=""
                 alt="img"
                 layout="fill"
@@ -557,7 +629,7 @@ function Solocien() {
           <h1></h1>
         </div>
         <Image
-          src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1230-Copy.jpg"
+          src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg"
           layout="fill"
           objectFit="cover"
           alt="img"
@@ -565,7 +637,7 @@ function Solocien() {
         />
         <div className="absolute z-10 text-white mt-1 lg:mt-0 lg:left-36 left-5 bottom-5">
           <h1 ref={inputRef} className="text-3xl">
-            Sol-O-Cien Condo
+          Estrella Sol-O-Cien Condo
           </h1>
           <p className="my-3 font-light text-lg ">
             Playas de Rosarito, Predios Urbanos
@@ -597,7 +669,7 @@ function Solocien() {
             </div>
             <div className="flex mb-2 md:mr-5 items-center">
               <GiBed className="text-3xl mr-2" />{" "}
-              <h1 className="font-light"> 3 Bedrooms</h1>
+              <h1 className="font-light"> 4 Bedrooms</h1>
             </div>
           </div>
         </div>
@@ -637,7 +709,7 @@ function Solocien() {
                 </a>
               </Link>
             ) : (
-              <Link href={"/bookings"}>
+              <Link href={"/bookingsestrella"}>
                 <a>
                   <div className="cursor-pointer">
                     <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
@@ -658,140 +730,7 @@ function Solocien() {
         {clicked ? (
           <div>
             <p className="font-light text-sm leading-relaxed mt-4">
-              Welcome to Sol-O-Cien, your comfort is our priority, here are some
-              helpful tips/instructions to make your visit an enjoyable
-              experience.
-              <br />
-              <br />
-              —We’ve provided a welcome basket with drinks (local beer, coke and
-              water) and snacks (potato chips, cookies, peanuts) for your
-              enjoyment, go ahead and help yourself (free of charge)
-              <br />
-              <br />
-              —We have a 6 step U/V reverse osmosis drinking water filter
-              system, the faucet spigot is located to the right of the regular
-              water faucet on the kitchen sink, this water is perfectly safe to
-              drink. We also have a filtered water ice maker inside the freezer.
-              (feel free to refill water bottles and save some money while
-              exploring the town)
-              <br />
-              <br />
-              —Ceiling fan/light in living room is operated by remote control on
-              top of media cabinet
-              <br />
-              <br />
-              —AC/Heater unit can be operated manually or with a remote which is
-              located on top of the media cabinet
-              <br />
-              <br />
-              —The kitchen cabinets and drawers are baby-proofed, press on the
-              small white latch to be able to open the door/drawer.
-              <br />
-              <br />
-              —Trash cans are located inside the cabinet to the right of the
-              stove
-              <br />
-              <br />
-              —If you need fresh/extra towels/linens/toilet paper, please send
-              me a message or contact condo #9-B (the building behind, right
-              across from the pool) and they will provide them for you right
-              away.
-              <br />
-              <br />
-              —Did you forget something? Toothpaste, toothbrush, deodorant,
-              feminine products, baby diapers/wipes, we are happy to provide
-              these items for you as a courtesy, all you have to do is ask.
-              <br />
-              <br />
-              —We have dark colored towels/pillow covers in case you have dyed
-              hair that bleeds/stains, just let us know so that we can provide
-              them for you.
-              <br />
-              <br />
-              —You can find a wide wheeled beach wagon and a wheeled ice chest
-              inside the storage closet under the stairs. Feel free to use it to
-              transport your pool/beach gear with ease. Pool/beach towels,
-              folding chairs, umbrella are provided.
-              <br />
-              <br />
-              —We have a high chair, folding playpen, portable changing table,
-              sand toys and swimming vests for the little ones traveling with
-              you. Please ask and we will provide them. (Free of charge)
-              <br />
-              <br />
-              —We are pet friendly, we have a small space designated for your
-              fur babies under the reading nook in the living room. We have 2
-              doggie beds, toys and 2 feeding bowls for their comfort. Please
-              clean up after your pet (there is a cleaning fee of $25 for pets)
-              and be conscious of excessive barking and keep them on a leash
-              while outside of the condo. Absolutely no pets allowed on any
-              furniture/beds. OUR SPACE
-              <br />
-              <br />
-              — Bedroom 1- Queen size bed
-              <br />
-              <br />
-              Bedroom 2- Bunk bed (full size on bottom/twin size on top)
-              <br />
-              <br />
-              Bedroom 3- Bunk bed (twin/twin)
-              <br />
-              <br />
-              Kids loft- twin size loft bed, hammock
-              <br />
-              <br />
-              Living room- 2 twin size beds that double as couches
-              <br />
-              <br />
-              2 full bathrooms stocked with shampoo, conditioner, body wash,
-              hair dryer, iron, plenty of full size towels, plenty of hot water
-              (hard water/chlorine removal filter throughout the condo)
-              <br />
-              <br />
-              Dinning room has a dinning set for 6 and a bar height set with
-              stools for 4
-              <br />
-              <br />
-              Fully stocked kitchen with all appliances (Keurig coffee maker,
-              Kitchen Aid blender, toaster, hand mixer, electric can
-              opener,etc.) and dishes/cooking essentials, dishwasher, reverse
-              osmosis 6 step UV drinking water filtration system, ice maker,
-              washer/dryer inside unit (no need to go out of the comfort of the
-              condo or worry about change to wash sandy clothes)
-              <br />
-              <br />
-              Each room has a Smart TV and Netflix, unlimited wi-fi and a land
-              line (phone calls to the USA are available upon request).
-              <br />
-              <br />
-              Patio 1- built in gas bbq/gas range/bar sink, hammock and seating
-              area
-              <br />
-              <br />
-              Patio 2- outdoor shower, 2 hammocks, wood burning terracota
-              fireplace and seating area
-              <br />
-              <br />
-              Patio 3- Hammock, bench and chairs, grass area (we have a small
-              jumper for rent available for 2-3 children up to 8 years old that
-              fits perfectly in this area, $25 dollars a day)
-              <br />
-              <br />
-              2 community pools and jacuzzi tub, private/gated community, 24/7
-              guard on duty, one block from beautiful Rosarito Beach (that’s 110
-              steps!!!)
-              <br />
-              <br />
-              Beach towels, beach chairs, umbrella, ice chest and beach wagon
-              are included.
-              <br />
-              <br />
-              Small/medium sized- well behaved dogs are welcomed
-              (deposit/cleaning fee apply)
-              <br />
-              <br />
-              This vacation getaway was planned with every detail in mind, just
-              show up and relax.
+            Stay in our one of a kind vintage air travel inspired condo. We have created a space that allows our guests to relax and enjoy everything we have to offer… Your comfort is our priority and we are certain that you’ll love it as much as we loved creating it…
             </p>
 
             <button
@@ -806,18 +745,16 @@ function Solocien() {
         ) : (
           <div>
             <p className="font-light text-sm leading-relaxed mt-4">
-              Welcome to Sol-O-Cien, your comfort is our priority, here are some
-              helpful tips/instructions to make your visit an enjoyable
-              experience.
+            Stay in our one of a kind vintage air travel inspired condo. We have created a space that allows our guests to relax and enjoy everything we have to offer… Your comfort is our priority and we are certain that you’ll love it as much as we loved creating it…
             </p>
-            <button
+            {/* <button
               onClick={() => {
                 setClicked(true);
               }}
               className="text-sm text-yellow-600 hover:text-yellow-800 mb-4"
             >
               Read More
-            </button>
+            </button> */}
           </div>
         )}
       </div>
@@ -877,7 +814,7 @@ function Solocien() {
         <div className="">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8840_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2825.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -886,7 +823,7 @@ function Solocien() {
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8831_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2866.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -895,7 +832,7 @@ function Solocien() {
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8832_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2854.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -906,7 +843,7 @@ function Solocien() {
         <div className="sm:mt-10">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8834_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2790.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -915,7 +852,7 @@ function Solocien() {
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8835_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2786.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -933,7 +870,7 @@ function Solocien() {
               <h1></h1>
             </div>
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8839_Original-scaled.jpg"
+              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2828.jpg"
               className=""
               alt="img"
               layout="fill"
@@ -1047,25 +984,25 @@ function Solocien() {
           {sleeping && (
             <div className="mx-3">
               <div className="flex justify-around mb-10 mt-5">
-                <div className="border w-[75px] flex flex-col h-[100px]">
+                <div className="border lg:w-[100px] lg:h-[50px] w-[75px] flex flex-col h-[100px]">
                   <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
                     Bedroom 1
                   </h1>
                   <h1 className="mx-1 text-sm text-gray-500">1 Queen Bed</h1>
                 </div>
-                <div className="border w-[75px] flex flex-col h-[100px]">
+                <div className="border w-[75px] lg:w-[100px] lg:h-[50px] flex flex-col h-[100px]">
                   <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
                     Bedroom 2
                   </h1>
                   <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
                 </div>
-                <div className="border w-[75px] flex flex-col h-[100px]">
+                <div className="border w-[75px] lg:w-[100px] lg:h-[50px] flex flex-col h-[100px]">
                   <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
                     Bedroom 3
                   </h1>
                   <h1 className="mx-1 text-sm text-gray-500">1 Bunk beds</h1>
                 </div>
-                <div className="border w-[75px] flex flex-col h-[100px]">
+                <div className="border w-[75px] lg:w-[100px] lg:h-[50px] flex flex-col h-[100px]">
                   <h1 className="text-sm mt-2 mx-1 text-gray-800 font-semibold">
                     Bedroom 4
                   </h1>
@@ -1157,10 +1094,10 @@ function Solocien() {
             <div>
               <div className="mx-10 text-gray-600 mt-3">
                 <h1 className="text-sm font-semibold mb-3">
-                  Property ID: <span className="font-light">28171</span>
+                  Property ID: <span className="font-light">28278</span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
-                  Bedrooms:<span className="font-light"> 3</span>
+                  Bedrooms:<span className="font-light"> 4</span>
                 </h1>
                 <h1 className="text-sm font-semibold mb-3">
                   Rooms:<span className="font-light"> 6</span>

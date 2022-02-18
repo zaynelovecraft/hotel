@@ -38,7 +38,7 @@ function bookings() {
   const [fill, setFill] = useState(false);
   const [reserved, setReserved] = useState(false);
   const inputRef = useRef(null);
-  const [hotel, setHotel] = useState("Sol O Cien Condo");
+  const [hotel, setHotel] = useState("Estrella Sol-O-Cien Condo");
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   useEffect(() => {
     
@@ -52,16 +52,15 @@ function bookings() {
 
   const check = async() => {
 
-    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user.id, hotel_name: hotel})
-    console.log(data)
-    for(let i = 0; i<data.length; i ++) {
+    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user?.id, hotel_name: hotel})
+    for(let i =0; i < data.length; i ++) {
 
-      if(data[0]?.status === 'pending') {
-       router.replace("/account"); 
-      }
-      if(data[0]?.status === 'approved') {
-       router.replace("/account"); 
-      }
+        if(data[0]?.status === 'pending') {
+         router.replace("/account"); 
+        }
+        if(data[0]?.status === 'approved') {
+         router.replace("/account"); 
+        }
     }
     
   }
@@ -517,40 +516,40 @@ function bookings() {
               <div className="flex md:mr-[65px] justify-center md:mt-[20px] ">
                 <div className="relative w-[400px] h-[400px] md:h-[300px] md:w-[300px] mb-20">
                   <Image
-                    src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1231-Copy-2.jpg"
+                    src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2790.jpg"
                     className=" justify-center"
                     alt="img"
                     layout="fill"
                     objectFit="contain"
                   />
-                  <h1 className="absolute bottom-7 font-light text-gray-700 ">
-                    Sol O Cien Condo
+                  <h1 className="absolute -bottom-[35px] font-light text-gray-700 ">
+                    Estrella Sol-O-Cien Condo
                   </h1>
-                  <h1 className="absolute bottom-[30px] text-xs right-0 font-extralight text-gray-700 ">
+                  <h1 className="absolute -bottom-[30px] text-[8px] lg:text-[10px] right-0 font-extralight text-gray-700 ">
                     -Baja California, Mexico
                   </h1>
-                  <p className="absolute bottom-1 text-gray-500 text-[11px] mt-2">
+                  <p className="absolute -bottom-[50px] text-gray-500 text-[11px] mt-2">
                     $400 per night (Sun - Thu)
                   </p>
-                  <p className="absolute -bottom-5 text-gray-500 text-[11px] mb-2">
+                  <p className="absolute -bottom-[71px] text-gray-500 text-[11px] mb-2">
                     $500 per night (Fri - Sat)
                   </p>
-                  <p className="absolute -bottom-9 text-gray-500 text-[11px] mb-2">
+                  <p className="absolute -bottom-[85px] text-gray-500 text-[11px] mb-2">
                     Price per night (7d+): $ 300
                   </p>
-                  <p className="absolute -bottom-[52px] text-gray-500 text-[11px] mb-2">
+                  <p className="absolute -bottom-[98px] text-gray-500 text-[11px] mb-2">
                     Price per night (30d+): $ 150
                   </p>
-                  <p className="absolute -bottom-[68px] text-gray-500 text-[11px] mb-2">
+                  <p className="absolute -bottom-[111px] text-gray-500 text-[11px] mb-2">
                     Check in 3PM
                   </p>
-                  <p className="absolute -bottom-[83px] text-gray-500 text-[11px] mb-2">
+                  <p className="absolute -bottom-[125px] text-gray-500 text-[11px] mb-2">
                     Check out 11AM
                   </p>
                 </div>
               </div>
               <div className="">
-                <div className="flex flex-col text-center mt-10 justify-center">
+                <div className="flex flex-col text-center mt-20 lg:mt-10 justify-center">
                   <h1
                     className="text-gray-500 mb-1 text-2xl"
                     style={{ fontFamily: "Quintessential" }}

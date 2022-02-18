@@ -322,7 +322,7 @@ export default function Account({ session }) {
           <section className=" w-full ">
             
             <div>
-              <h1 className="text-center text-gray-600 mb-2">Pending Reservations</h1>
+              <h1 className="text-center text-gray-600 mb-2">Pending</h1>
             </div>
             <div className="border mt-2 w-[200px] mx-auto mb-2"></div>
             <div className=" w-full">
@@ -422,7 +422,7 @@ export default function Account({ session }) {
           <section className=" w-full ">
             
           <div>
-            <h1 className="text-center text-gray-600 mb-2">Declined Post</h1>
+            <h1 className="text-center text-gray-600 mb-2">Declined</h1>
           </div>
           <div className="border mt-2 w-[200px] mx-auto mb-2"></div>
           <div className=" w-full">

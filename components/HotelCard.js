@@ -8,7 +8,7 @@ function HotelCard({hotel}) {
    console.log(hotel)
   return (
     <div>
-<Link href="/Solocien">
+<Link href={hotel.href}>
 <a>
 
     <div className="flex md:mx-10 hover:opacity-80 hover:cursor-pointer justify-center">
