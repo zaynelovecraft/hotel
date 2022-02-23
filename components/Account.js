@@ -380,7 +380,7 @@ export default function Account({ session }) {
                       onClick={() => {
                         confirmdel(post.id);
                       }}
-                      className="absolute top-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-4 "
+                      className="absolute top-3 text-center hover:bg-red-500 border bg-red-200 shadow-lg cursor-pointer border-red-500 px-[5px] py-[2px] rounded-lg right-4 "
                     >
                       <h1 className="text-[10px] font-semibold">Decline </h1>
                     </div>
@@ -439,10 +439,16 @@ export default function Account({ session }) {
                         ${post.weekly_discount}
                       </span>
                     </h1>
-                    <h1 className="text-center mb-5 text-sm">
+                    <h1 className="text-center text-sm">
                       Monthly Discount :{" "}
                       <span className="text-lime-500 text-base">
                         ${post.monthly_discount}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      Early Bird Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.early_discount}
                       </span>{" "}
                     </h1>
                     <h1 className="text-center text-sm">
@@ -534,13 +540,13 @@ export default function Account({ session }) {
                       onClick={() => {
                         confirmdel(post.id);
                       }}
-                      className="absolute bottom-4 text-center hover:bg-red-500 border cursor-pointer border-red-500 px-2 py-1 rounded-lg right-2 "
+                      className="absolute bottom-4 text-center hover:bg-red-500 border bg-red-200 shadow-lg cursor-pointer border-red-500 px-[5px] py-[2px] rounded-lg right-2 "
                     >
                       <h1 className="text-[10px] font-semibold">Decline </h1>
                     </div>
                     <div
                      onClick={()=>{createCheckoutSession(post)}}
-                      className="absolute top-4 text-center hover:bg-lime-400 border cursor-pointer border-lime-400 px-2 py-1 rounded-lg right-2 "
+                      className="absolute top-4 text-center hover:bg-lime-400 border shadow-lg bg-lime-200 cursor-pointer border-lime-400 px-[5px] py-[2px] rounded-lg right-2 "
                     >
                       <h1 className="text-[10px] font-semibold">Pay Now</h1>
                     </div>
@@ -603,6 +609,12 @@ export default function Account({ session }) {
                       Monthly Discount :{" "}
                       <span className="text-lime-500 text-base">
                         ${post.monthly_discount}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      Early Bird Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.early_discount}
                       </span>{" "}
                     </h1>
                     <h1 className="text-center text-sm">
@@ -744,10 +756,16 @@ export default function Account({ session }) {
                         ${post.weekly_discount}
                       </span>
                     </h1>
-                    <h1 className="text-center mb-5 text-sm">
+                    <h1 className="text-center text-sm">
                       Monthly Discount :{" "}
                       <span className="text-lime-500 text-base">
                         ${post.monthly_discount}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      Early Bird Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.early_discount}
                       </span>{" "}
                     </h1>
                     <h1 className="text-center text-sm">

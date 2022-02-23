@@ -148,10 +148,10 @@ export default function NavBar() {
               </a>
               <MiniCart user={user} cart={cart} />
             </div> */}
-            <div className="-mr-2 flex items-center -my-2 lg:hidden">
-              <Popover.Button className="bg-gray-600  rounded-md p-1 inline-flex items-center justify-center text-white hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-inset focus:text-white focus:ring-white">
+            <div className="-mr-1 flex items-center -my-2 lg:hidden">
+              <Popover.Button className="bg-gray-200  rounded-md p-1 inline-flex items-center justify-center text-black  hover:bg-cyan-200 focus:outline-none  focus:text-black">
                 <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                <MenuIcon className="h-4 w-4" aria-hidden="true" />
               </Popover.Button>
             </div>
           </div>

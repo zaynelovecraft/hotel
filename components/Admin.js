@@ -349,7 +349,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   onClick={() => {
                     confirmdecline(post.id);
                   }}
-                  className="absolute bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4"
+                  className="absolute bottom-4 border shadow-lg bg-red-200 cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
                 >
                   <h1 className="font-semibold">Decline</h1>
                 </div>
@@ -392,6 +392,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   <h1>Pet fee: ${post.pet_fee}</h1>
                   <h1>Weekly discount: ${post.weekly_discount}</h1>
                   <h1>Monthly discount: ${post.monthly_discount}</h1>
+                  <h1>Early Bird Discount: ${post.early_discount}</h1>
                   <h1>Cleaning fee: $65</h1>
                   <h1>Security deposit: $200</h1>
                   <h1 className="text-xl mt-2">Total: ${post.total}</h1>
@@ -413,13 +414,13 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   onClick={() => {
                     confirmdecline(post.id);
                   }}
-                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-2"
+                  className="absolute z-10 bottom-4 border shadow-lg bg-red-200 cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-2"
                 >
                   <h1 className="font-semibold">Decline</h1>
                 </div>
                 <div
                   onClick={()=>{confirmaprov(post.id)}}
-                  className="absolute z-10 bottom-4 border cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-2 py-1 right-20"
+                  className="absolute z-10 bottom-4 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-[5px] py-[2px] right-[70px]"
                 >
                   <h1 className="font-semibold">Approve</h1>
                 </div>
@@ -462,6 +463,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   <h1>Pet fee: ${post.pet_fee}</h1>
                   <h1>Weekly discount: ${post.weekly_discount}</h1>
                   <h1>Monthly discount: ${post.monthly_discount}</h1>
+                  <h1>Early Bird Discount: ${post.early_discount}</h1>
                   <h1>Cleaning fee: $65</h1>
                   <h1>Security deposit: $200</h1>
                   <h1 className="text-xl mt-2">Total: ${post.total}</h1>
@@ -479,7 +481,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           {declinedd.map((post, index) => (
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
-                <button onClick={()=>{confirmdel(post.id)}} className="absolute z-1 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-2 py-1 right-4">
+                <button onClick={()=>{confirmdel(post.id)}} className="absolute z-1 shadow-lg bg-red-200 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4">
                   <h1 className="font-semibold">Delete</h1>
                 </button>
 
@@ -522,6 +524,7 @@ RESERVATION ID {post.id}
                   <h1>Pet fee: ${post.pet_fee}</h1>
                   <h1>Weekly discount: ${post.weekly_discount}</h1>
                   <h1>Monthly discount: ${post.monthly_discount}</h1>
+                  <h1>Early Bird Discount: ${post.early_discount}</h1>
                   <h1>Cleaning fee: $65</h1>
                   <h1>Security deposit: $200</h1>
                   <h1 className="text-xl mt-2">Total: ${post.total}</h1>

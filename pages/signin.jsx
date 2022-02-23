@@ -172,14 +172,14 @@ const SignIn = () => {
             ></div>
           </div>
           <Button
-            className="animate-bounce mb-20"
+            className=" mb-20"
             variant="slim"
             type="submit"
             disabled={loading}
             onClick={() => handleOAuthSignIn("google")}
           >
-            <FcGoogle />
-            <span className="ml-2">Continue with Google</span>
+            <FcGoogle className="w-[25px] h-[25px]" />
+            <span className="ml-2 text-xs md:text-base">Continue with Google</span>
           </Button>
         </div>
       </div>

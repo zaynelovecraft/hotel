@@ -558,7 +558,7 @@ function bookings() {
                 Reservations
               </h1>
             </div>
-            <div className=" flex max-w-[150px] mx-auto border border-b  mt-2 "></div>
+            <div className=" flex max-w-[150px] mx-auto border border-b mb-2 mt-2 "></div>
             {/*
              */}
             <div className="flex flex-col md:flex-row md:justify-center">
