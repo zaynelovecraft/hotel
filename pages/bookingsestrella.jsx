@@ -40,6 +40,8 @@ function bookings() {
   const inputRef = useRef(null);
   const [hotel, setHotel] = useState("Estrella Sol-O-Cien Condo");
   const [show, setShow] = useState(false)
+  const [earlydiscount, setEarlydiscount] = useState(0);
+
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   useEffect(() => {
     
@@ -99,6 +101,7 @@ function bookings() {
         total: total,
         hotel_name: hotel,
         status: 'pending',
+        early_discount: earlydiscount,
       },
     ]);
   };
@@ -143,8 +146,27 @@ function bookings() {
   })();
 
   const masstotal = () => {
+    setEarlydiscount(0);
     setTotal(0);
+    let today = new Date();
+    let start = startDate;
     let total = 0;
+    const getNumberOfDays = (start, end) => {
+      const date1 = new Date(start);
+      const date2 = new Date(end);
+
+      // One day in milliseconds
+      const oneDay = 1000 * 60 * 60 * 24;
+
+      // Calculating the time difference between two dates
+      const diffInTime = date2.getTime() - date1.getTime();
+
+      // Calculating the no. of days between two dates
+      const diffInDays = Math.round(diffInTime / oneDay);
+
+      return diffInDays;
+    };
+    const diff = getNumberOfDays(today, start);
 
     if (estemate) {
       total = total + estemate;
@@ -161,7 +183,18 @@ function bookings() {
       total = total + 265;
     }
 
-    setTotal(total);
+
+    if (diff >= 14) {
+      let number = total;
+      let percentToGet = 10;
+      let percent = (percentToGet / 100) * number;
+      let n = Math.floor(percent)
+      setEarlydiscount(n);
+      total = total - percent + 1;
+    }
+
+    let x = Math.floor(total);
+    setTotal(x);
   };
 
   const numofguest = () => {
@@ -915,6 +948,17 @@ function bookings() {
                       </span>
                     </h1>
                   )}
+                </div>
+                <div>
+                  {earlydiscount>0 &&
+                    <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
+                      (Early Bird Discount) you save{" "}
+                      <span className="font-bold text-lime-600">
+                        ${earlydiscount}
+                      </span>
+                    </h1>
+                 
+                  }
                 </div>
                 <div>
                   {guestamount > 0 && (
