@@ -140,7 +140,7 @@ export default function NavBar() {
             {/* <div className="mr-2">
               
               <a
-                className="text-base flex items-center hover:text-pink-500 font-medium cursor-pointer"
+                className="text-sm flex items-center hover:text-pink-500 font-medium cursor-pointer"
                 onClick={() => setCartOpen(!cartOpen)}
               >
               <CgShoppingCart className="" />
