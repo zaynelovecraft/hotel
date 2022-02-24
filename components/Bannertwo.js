@@ -72,11 +72,11 @@ const hi = [
           <section className=" mx-auto max-w-5xl ">
             <div className="flex scrollbar-hide space-x-3 p-3 ml-2 overflow-scroll">
 
-          {cardsData?.map(item => (
-            <Link href="/accommodations">
+          {cardsData?.map((item, index) => (
+            <Link key={index} href="/accommodations">
             <a>
 
-            <div key={item.title} className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105" key={item.title}>
+            <div  className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105" key={item.title}>
              <div className="relative mr-10 h-80 w-80">
                <Image src={item.img} className="rounded-xl " objectFit="cover" layout="fill" /> 
 
