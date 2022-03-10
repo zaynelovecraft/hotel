@@ -6,6 +6,26 @@ import Stripe from 'stripe';
 // This entire file should be removed and moved to supabase-admin
 // It's not a react hook, so it shouldn't have useDatabase format
 // It should also properly catch and throw errors
+
+const checkOut = async (data) => {
+  const { error } = await supabaseAdmin.from('successful_payment').insert([
+    {
+      res_id: data.metadata.id,
+      email: data.metadata.email,
+      amount: data.amount_total / 100
+
+    }
+  ])
+  const { info, err } = await supabaseAdmin
+  .from('pending_reservations')
+  .update({ status: 'Payed' })
+  .match({ id: data.metadata.id })
+  if (error) throw error;
+  console.log(`error ${error}`);
+  
+}
+
+
 const upsertProductRecord = async (product) => {
   const productData = {
     id: product.id,
@@ -129,4 +149,4 @@ const manageSubscriptionStatusChange = async (subscriptionId, customerId, create
     await copyBillingDetailsToCustomer(uuid, subscription.default_payment_method);
 };
 
-export { upsertProductRecord, upsertPriceRecord, createOrRetrieveCustomer, manageSubscriptionStatusChange };
+export { upsertProductRecord, upsertPriceRecord, checkOut, createOrRetrieveCustomer, manageSubscriptionStatusChange };
