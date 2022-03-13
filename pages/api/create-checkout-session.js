@@ -1,7 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
-  const { price, email, id, name, description, s, e } = req.body;
+  const { price,  id, name, description, } = req.body;
 
   const transformedItems = [{
     description: `total Nights ${description}`, 
@@ -22,10 +22,9 @@ export default async (req, res) => {
     success_url: `${process.env.HOST}/success`,
     cancel_url: `${process.env.HOST}/account`,
     metadata: {
-      email: email,
+      
       id: id,
-      s: s,
-      e: e
+      
 
       
     },

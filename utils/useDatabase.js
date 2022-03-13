@@ -11,20 +11,8 @@ import axios from 'axios';
 
 
 const checkOut = async (data) => {
-
-  await axios.post("/api/add-google-date");
-  // this doesnt run ^^
   
-
   
-  const { error } = await supabaseAdmin.from('successful_payment').insert([
-    {
-      res_id: data.metadata.id,
-      email: data.metadata.email,
-      amount: data.amount_total / 100
-
-    }
-  ])
   const { info, err } = await supabaseAdmin
   .from('pending_reservations')
   .update({ status: 'Payed' })

@@ -35,8 +35,8 @@ export default function Account({ session }) {
       name: post.hotel_name,
       description: post.nights,
       id: post.id,
-      s: post.s,
-      e: post.e
+      
+   
     })
 
     const result = await stripe.redirectToCheckout({
