@@ -3,11 +3,20 @@ import { stripe } from './stripe';
 import { toDateTime } from './helpers';
 import Stripe from 'stripe';
 
+import axios from 'axios';
+
 // This entire file should be removed and moved to supabase-admin
 // It's not a react hook, so it shouldn't have useDatabase format
 // It should also properly catch and throw errors
 
+
 const checkOut = async (data) => {
+
+  await axios.post("/api/add-google-date");
+  // this doesnt run ^^
+  
+
+  
   const { error } = await supabaseAdmin.from('successful_payment').insert([
     {
       res_id: data.metadata.id,

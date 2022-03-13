@@ -72,7 +72,8 @@ function bookings() {
     check()
   },[user])
   
-
+  const startt = startDate.toISOString().slice(0,10) + 'T22:00:00.000Z'
+  const endd = endDate.toISOString().slice(0,10) + 'T18:00:00.000Z'
   
   const pushdetails = async () => {
     const { data, error } = await supabase.from("pending_reservations").insert([
@@ -102,6 +103,8 @@ function bookings() {
         hotel_name: hotel,
         status: 'pending',
         early_discount: earlydiscount,
+        s: startt,
+        e: endd,
       },
     ]);
   };

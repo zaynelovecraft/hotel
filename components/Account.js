@@ -34,7 +34,9 @@ export default function Account({ session }) {
       email: user.email,
       name: post.hotel_name,
       description: post.nights,
-      id: post.id
+      id: post.id,
+      s: post.s,
+      e: post.e
     })
 
     const result = await stripe.redirectToCheckout({
@@ -551,7 +553,7 @@ export default function Account({ session }) {
                       <h1 className="text-[10px] font-semibold">Pay Now</h1>
                     </div>
                     <h1 className="text-center mt-5">
-                      Hotel Name:
+                      Hotel Name:  
                       <span className="text-gray-600 text-base">
                         {" "}
                         {post.hotel_name}
