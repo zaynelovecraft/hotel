@@ -289,12 +289,13 @@ function Solocien() {
       </Head>
       <Modal
         shown={modalShown}
+        
         close={() => {
           toggleModal(false);
         }}
       >
         <section className="">
-          <Carousel className="">
+          <Carousel useKeyboardArrows={true} emulateTouch={true} showIndicators={false} className="">
             <div className="w-full -mt-[300px] h-screen">
               <Image
                 src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg"
