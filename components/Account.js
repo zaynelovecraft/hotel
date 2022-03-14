@@ -24,7 +24,7 @@ export default function Account({ session }) {
   const [modal, setModal] = useState(false);
   const [del, setDel] = useState();
   const [appy, setAppy] = useState();
-
+  console.log(user.id)
 
   const createCheckoutSession = async (post) => {
     // console.log(post)

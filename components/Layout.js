@@ -13,7 +13,7 @@ export default function Layout({ children }) {
       {/* <Nav/> */}
       <NavBar />
 
-      <main className='bg-white'>
+      <main >
         {children}
       </main>
       
