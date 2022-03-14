@@ -17,8 +17,7 @@ const checkOut = async (data) => {
   .from('pending_reservations')
   .update({ status: 'Payedd' })
   .match({ id: data.metadata.id })
-  if (error) throw error;
-  console.log(`error ${error}`);
+  
   
 }
 
