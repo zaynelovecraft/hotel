@@ -292,6 +292,7 @@ function Solocien() {
         close={() => {
           toggleModal(false);
         }}
+        className=""
       >
         <section className="">
           <Carousel emulateTouch={true} useKeyboardArrows={true} showIndicators={false} className="">

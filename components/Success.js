@@ -29,7 +29,7 @@ export default function success() {
 
       setSuccessdata(data)
 
-      // updatestatus()
+      updatestatus()
   };
 
   useEffect(() => {
