@@ -149,7 +149,7 @@ function Solocien() {
   }, [startDate, endDate]);
 
   useEffect(async () => {
-    const response = await fetch("/api/hotel");
+    const response = await fetch("/api/hotel-two");
     const data = await response.json();
     setData(data);
     // console.log(data[0].start.date)

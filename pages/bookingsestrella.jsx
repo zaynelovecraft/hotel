@@ -298,7 +298,7 @@ function bookings() {
   }, [data, estemate]);
 
   useEffect(async () => {
-    const response = await fetch("/api/hotel");
+    const response = await fetch("/api/hotel-two");
     const data = await response.json();
 
     setData(data);

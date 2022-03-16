@@ -6,6 +6,7 @@ export default function handler(req, res) {
   // Provide the required configuration
   const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
   const calendarId = process.env.CALENDAR_ID;
+  const calendarIdEst = process.env.CALENDAR_ID_ESTREALLA
 
   // Google calendar API settings
   const SCOPES = "https://www.googleapis.com/auth/calendar";
@@ -18,15 +19,25 @@ export default function handler(req, res) {
     SCOPES
   );
 
-  const { s, e } = req.body
+  const { s, e, hotel, details } = req.body
 
   const insertEvent = async (event) => {
     try {
-      let response = await calendar.events.insert({
-        auth: auth,
-        calendarId: calendarId,
-        resource: event,
-      });
+      if(hotel == 'Sol O Cien Condo') {
+
+        let response = await calendar.events.insert({
+          auth: auth,
+          calendarId: calendarId,
+          resource: event,
+        });
+      }
+      if(hotel == 'Estrella Sol-O-Cien Condo') {
+        let response = await calendar.events.insert({
+          auth: auth,
+          calendarId: calendarIdEst,
+          resource: event,
+        });
+      }
 
       if (response["status"] == 200 && response["statusText"] === "OK") {
         return 1;
@@ -42,14 +53,14 @@ export default function handler(req, res) {
   
 
   let event = {
-    'summary': `This is the summary.`,
-    'description': `This is the description.`,
+    'summary': hotel,
+    'description': details,
     'start': {
-        'dateTime': '2022-03-22T22:00:00.000Z',
+        'dateTime': s,
         'timeZone': 'America/Los_Angeles'
     },
     'end': {
-        'dateTime': '2022-03-24T18:00:00.000Z',
+        'dateTime': e,
         'timeZone': 'America/Los_Angeles'
     }
 };
