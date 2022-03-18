@@ -71,14 +71,28 @@ function Admin() {
     console.log(data);
     let s = data[0].s;
     let e = data[0].e;
-    let details = "name: " + data[0].name + " email: " + data[0].email + " phone number: " + data[0].phone_number;
+    let details =
+      "name: " +
+      data[0].name +
+      " email: " +
+      data[0].email +
+      " phone number: " +
+      data[0].phone_number;
     let hotel = data[0].hotel_name;
-    await axios.post("/api/add-google-date", {
-      s: s,
-      e: e,
-      details: details,
-      hotel: hotel,
-    });
+    const res = await axios
+      .post("/api/add-google-date", {
+        s: s,
+        e: e,
+        details: details,
+        hotel: hotel,
+      })
+      
+
+      const { dataa, errorr } = await supabase
+  .from('pending_reservations')
+  .update({ google_date_id: res.data.data.id })
+  .match({id: apr})
+
   };
 
   const approve = async () => {
