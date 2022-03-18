@@ -57,11 +57,26 @@ export default function Account({ session }) {
   //     .match({ id: post });
 
   // };
+
+  const delgoogledate = async() => {
+    const { data, error } = await supabase
+  .from('pending_reservations')
+  .select('google_date_id, hotel_name')
+  .match({id: del})
+
+    // console.log(data[0].hotel_name)
+
+  await axios.post('/api/delete-google-date', {
+    hotel: data[0].hotel_name,
+    id: data[0].google_date_id
+  })
+  } 
   const dell = async () => {
     const { data, error } = await supabase
       .from("pending_reservations")
       .update({ status: "declined" })
       .match({ id: del });
+      delgoogledate()
     setModal(false);
     getdeclined();
     getpending();

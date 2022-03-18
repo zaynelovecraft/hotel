@@ -28,6 +28,20 @@ function Admin() {
   let today = new Date();
   let time = today.toDateString();
 
+  const delgoogledate = async() => {
+    const { data, error } = await supabase
+  .from('pending_reservations')
+  .select('google_date_id, hotel_name')
+  .match({id: declinee})
+
+    // console.log(data[0].hotel_name)
+
+  await axios.post('/api/delete-google-date', {
+    hotel: data[0].hotel_name,
+    id: data[0].google_date_id
+  })
+  } 
+ 
   const decline = async () => {
     // const {x,y} = await supabase
     // .from('declined_post')
@@ -36,10 +50,12 @@ function Admin() {
       .from("pending_reservations")
       .update({ status: "declined" })
       .match({ id: declinee });
+    delgoogledate()
     setModal2(false);
     getapproved();
     getpending();
     getdeclined();
+
   };
   const confirmdel = (id) => {
     setDel(id);
@@ -94,6 +110,7 @@ function Admin() {
   .match({id: apr})
 
   };
+  
 
   const approve = async () => {
     const { data, error } = await supabase
@@ -312,6 +329,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
       </div>
 
       <section className="py-2 mt-5 mb-5">
+
         <h1 className="text-center text-gray-500">Admin Dashboard</h1>
         <h1 className="text-center text-[12px] text-gray-400">{time}</h1>
       </section>
