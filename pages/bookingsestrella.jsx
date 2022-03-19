@@ -528,7 +528,7 @@ function bookings() {
       )}
 
       {reserved ? (
-        <div>
+        <div className="mt-[200px]">
           <div className="h-screen max-w-[600px]  mx-auto">
             <div className="mx-5">
               <h1 className="text-center mt-10">

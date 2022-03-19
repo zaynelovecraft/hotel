@@ -9,6 +9,8 @@ function Admin() {
   const [pending, setPending] = useState(false);
   const [approved, setApproved] = useState(false);
   const [declined, setDeclined] = useState(false);
+  const [payed, setPayed] = useState(false);
+  const [payedd, setPayedd] = useState(false);
   const [pendingg, setPendingg] = useState();
   const [rerender, setRerender] = useState(false);
   const [users, setUsers] = useState();
@@ -55,6 +57,7 @@ function Admin() {
     getapproved();
     getpending();
     getdeclined();
+    getpayed()
 
   };
   const confirmdel = (id) => {
@@ -122,6 +125,7 @@ function Admin() {
     setModal1(false);
     getpending();
     getapproved();
+    getpayed()
   };
 
   useEffect(() => {
@@ -161,11 +165,24 @@ function Admin() {
     // console.log(data)
     setPendingg(data);
   };
+  const getpayed = async () => {
+    //   const { data, error } = await supabase
+    // .from('pending_reservations')
+    // .select()
+
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .select("*")
+      .match({ status: "payed" });
+    // console.log(data)
+    setPayedd(data);
+  };
 
   useEffect(() => {
     getpending();
     getdeclined();
     getapproved();
+    getpayed()
   }, []);
 
   const closeall = (x) => {
@@ -174,25 +191,35 @@ function Admin() {
       setPending(false);
       setApproved(false);
       setDeclined(false);
+      setPayed(false)
     }
     if (x === "user") {
       setResopen(false);
       setPending(false);
       setApproved(false);
       setDeclined(false);
+      setPayed(false)
     }
 
     if (x === "app") {
       setPending(false);
       setDeclined(false);
+      setPayed(false)
     }
     if (x === "pen") {
       setApproved(false);
       setDeclined(false);
+      setPayed(false)
     }
     if (x === "dec") {
       setApproved(false);
       setPending(false);
+      setPayed(false)
+    }
+    if (x === "pay") {
+      setApproved(false);
+      setPending(false);
+      setDeclined(false)
     }
   };
   return (
@@ -433,11 +460,23 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                   onClick={() => {
                     setDeclined(!declined), closeall("dec");
                   }}
-                  className={` text-[12px] cursor-pointer ${
+                  className={` text-[12px] mr-4 cursor-pointer ${
                     declined === true && "text-cyan-500"
                   }  hover:text-cyan-500`}
                 >
                   Declined
+                </h1>
+              </div>
+              <div>
+                <h1
+                  onClick={() => {
+                    setPayed(!payed), closeall("pay");
+                  }}
+                  className={` text-[12px] cursor-pointer ${
+                    payed === true && "text-cyan-500"
+                  }  hover:text-cyan-500`}
+                >
+                  Payed
                 </h1>
               </div>
             </div>
@@ -594,6 +633,70 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
                 >
                   <h1 className="font-semibold">Delete</h1>
                 </button>
+
+                <div className="ml-5">
+                  <h1 className=" text-sm">{index + 1}</h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 ">
+                    RESERVATION ID {post.id}
+                  </h1>
+                  <h1 className="text-center -ml-5 text-sm mb-2 underline">
+                    User Details
+                  </h1>
+                  <h1>Name: {post.name}</h1>
+                  <h1>Phone: {post.phone_number}</h1>
+                  <h1>Email: {post.email}</h1>
+                  <h1>User Email: {post.user_email}</h1>
+                  <h1>USID: {post.user_id}</h1>
+                  <h1 className="text-center -ml-5 text-sm mt-3 mb-2 underline">
+                    Booking Details
+                  </h1>
+                  <h1>Hotel: {post.hotel_name}</h1>
+                  <h1>Created at: {post.created_at}</h1>
+                  <h1>Check In: {post.start_date}</h1>
+                  <h1>Check Out: {post.end_date}</h1>
+                  <h1>Total Nights: {post.nights}</h1>
+                  <h1>Weekdays: {post.weekdays}</h1>
+                  <h1>Weekend days: {post.weekend_days}</h1>
+                  <h1>Guest amount: {post.guest}</h1>
+                  <h1>Extra guest: {post.extra_guest}</h1>
+                  <h1>Pets: {post.pets}</h1>
+                  <h1 className="text-center text-sm -ml-5 mb-2 underline">
+                    Payment Details
+                  </h1>
+                  <h1>Weekday price: ${post.weekday_price}</h1>
+                  <h1>Weekend price: ${post.weekend_price}</h1>
+                  <h1>Total:${post.price}</h1>
+                  <h1>Extra guest fee: ${post.extra_guest_fee}</h1>
+                  <h1>Guest fee total: ${post.guest_fee_total}</h1>
+                  <h1>Pet fee: ${post.pet_fee}</h1>
+                  <h1>Weekly discount: ${post.weekly_discount}</h1>
+                  <h1>Monthly discount: ${post.monthly_discount}</h1>
+                  <h1>Early Bird Discount: ${post.early_discount}</h1>
+                  <h1>Cleaning fee: $65</h1>
+                  <h1>Security deposit: $200</h1>
+                  <h1 className="text-xl mt-2">Total: ${post.total}</h1>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {payed === true && (
+        <div className="mt-4">
+          <h1 className="text-center text-sm  text-gray-600">
+            Payed Reservations
+          </h1>
+          {payedd.map((post, index) => (
+            <div className="" key={post.id}>
+              <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
+                {/* <button
+                  onClick={() => {
+                    confirmdel(post.id);
+                  }}
+                  className="absolute z-1 shadow-lg bg-red-200 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
+                >
+                  <h1 className="font-semibold">Delete</h1>
+                </button> */}
 
                 <div className="ml-5">
                   <h1 className=" text-sm">{index + 1}</h1>

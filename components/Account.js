@@ -24,7 +24,8 @@ export default function Account({ session }) {
   const [modal, setModal] = useState(false);
   const [del, setDel] = useState();
   const [appy, setAppy] = useState();
-  console.log(user.id)
+  const [payed, setPayed] = useState()
+  console.log(user)
 
   const createCheckoutSession = async (post) => {
     // console.log(post)
@@ -111,6 +112,13 @@ export default function Account({ session }) {
       .match({ user_id: user.id, status: "approved" });
     setAppy(data);
   };
+  const getpayed = async () => {
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .select("*")
+      .match({ user_id: user.id, status: "payed" });
+    setPayed(data);
+  };
 
   const getpending = async () => {
     const { data, error } = await supabase
@@ -126,6 +134,7 @@ export default function Account({ session }) {
   };
 
   useEffect(async () => {
+    getpayed()
     getdeclined();
     getpending();
     getapproved();
@@ -242,8 +251,172 @@ export default function Account({ session }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center border ">
-        <div className="w-[260px] lg:w-auto">
+      <div className="flex flex-col items-center min-h-[500px] ">
+        <div className="h-12 w-full justify-between flex items-center bg-gray-200">
+          <div className="flex items-center lg:ml-[100px] flex-row-reverse">
+              <div className="ml-5"><h1 className="text-sm font-light">{user.user_metadata.name}</h1></div>
+          <div className="h-8 w-8">
+            <img className="rounded-full ml-2" src={user.user_metadata.avatar_url}></img>
+          </div>
+          </div>
+        <div className=" mr-2 ">
+              <a href="/">
+                <button
+                  className=" border border-black rounded-lg px-1 lg:mr-[100px] text-sm"
+                  onClick={() => supabase.auth.signOut()}
+                >
+                  Sign Out
+                </button>
+              </a>
+            </div>
+        </div>
+        {payed && (
+          <section className=" w-full mt-3 ">
+            <div className=" w-full">
+              <div className="flex justify-around flex-wrap">
+                {/*  */}
+                {payed.map((post) => (
+                  <div
+                    key={post.id}
+                    className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border"
+                  >
+                    <h1 className="text-center mb-2 text-sm font-light">Receipt</h1>
+                    <h1 className="text-center text-lime-600">Status <span>Payed</span></h1>
+                    <h1 className="text-center mt-5">
+                      Hotel Name:
+                      <span className="text-gray-600 text-base">
+                        {" "}
+                        {post.hotel_name}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm mt-5 mb-5 ">
+                      Total Nights:{" "}
+                      <span className="text-gray-600 text-base">
+                        {post.nights}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm ">
+                      Check-in:{" "}
+                      <span className="text-gray-600 text-base">
+                        3 PM {post.start_date}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm mb-5">
+                      Check-out:{" "}
+                      <span className="text-gray-600 text-base">
+                        11 AM {post.end_date}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      <span className="text-gray-600 text-base">
+                        ( {post.weekdays} )
+                      </span>{" "}
+                      Night x (weekday price $400) ={" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.weekday_price}{" "}
+                      </span>
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      <span className="text-gray-600 text-base">
+                        ( {post.weekend_days} )
+                      </span>{" "}
+                      Night x (weekend price $500) ={" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.weekend_price}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      Total ={" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.price}
+                      </span>
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      Weekly Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.weekly_discount}
+                      </span>
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      Monthly Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.monthly_discount}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      Early Bird Discount :{" "}
+                      <span className="text-lime-500 text-base">
+                        ${post.early_discount}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      Total guest:{" "}
+                      <span className="text-gray-600 text-base">
+                        {post.guest}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      <span className="text-gray-600 text-base">
+                        {post.extra_guest}{" "}
+                      </span>
+                      Extra guest +
+                      <span className="text-base text-lime-500">
+                        {" "}
+                        ${post.extra_guest_fee}
+                      </span>{" "}
+                      per night{" "}
+                    </h1>
+                    <h1 className="text-center mb-5 text-sm">
+                      <span className="text-base text-gray-600">
+                        {post.nights}
+                      </span>{" "}
+                      Nights x{" "}
+                      <span className="text-base text-lime-500">
+                        ${post.extra_guest_fee}
+                      </span>{" "}
+                      ={" "}
+                      <span className="text-base text-lime-500">
+                        ${post.guest_fee_total}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      Pets{" "}
+                      <span className="text-gray-600 text-base">
+                        {post.pets}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm mb-5">
+                      {" "}
+                      Pet fee:{" "}
+                      <span className="text-base text-lime-500">
+                        ${post.pet_fee}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      cleaning fee{" "}
+                      <span className="text-base text-lime-500">$65</span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm">
+                      Security Deposit{" "}
+                      <span className="text-base text-lime-500">$200</span>{" "}
+                    </h1>
+                    <h1 className="text-center mt-5 text-2xl">
+                      {" "}
+                      Total :{" "}
+                      <span className="text-lime-500 font-bold">
+                        ${post.total}
+                      </span>{" "}
+                    </h1>
+                    <h1 className="text-center text-sm"> </h1>
+                  </div>
+                ))}
+
+                {/*  */}
+              </div>
+            </div>
+          </section>
+        )}
+        {/* <div className="w-[260px] lg:w-auto">
           <div className=" mt-5">
             <Avatar
               url={avatar_url}
@@ -305,7 +478,12 @@ export default function Account({ session }) {
                 </button>
               </a>
             </div>
-            <div className="absolute text-xs lg:top-[100px] text-gray-500 top-16 left-2">
+          </div>
+        </div> */}
+
+        <div>
+          <section>
+            <div className="absolute text-xs text-gray-500 lg:top-[150px] top-[110px] left-2">
               {admin === true && (
                 <div className=" cursor-pointer">
                   <Link href={"/admindashboard"}>
@@ -316,12 +494,8 @@ export default function Account({ session }) {
                 </div>
               )}
             </div>
-          </div>
-        </div>
-
-        <div>
-          <section>
-            <div className="flex mt-10 justify-center">
+           
+            <div className="flex justify-center">
               <h1>Reservations</h1>
             </div>
             <div className="flex space-x-2 mb-5 mt-2">
