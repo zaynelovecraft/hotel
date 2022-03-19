@@ -299,6 +299,9 @@ function bookings() {
   useEffect(async () => {
     const response = await fetch("/api/hotel");
     const data = await response.json();
+    if (data.length == 0) {
+      setShow(true)
+    }
 
     setData(data);
   }, []);
