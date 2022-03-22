@@ -48,6 +48,7 @@ function Solocien() {
   const [datesarray, setDatesarray] = useState([]);
   const [estemate, setEstemate] = useState(0);
   const [alreadyreserved, setAlreadyreserved] = useState(false);
+  const [alreadyreservedd, setAlreadyreservedd] = useState(false);
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   const [rerender, setRerender] = useState(false);
 
@@ -69,6 +70,7 @@ function Solocien() {
   
         if (data[i].status === 'approved') {
           setAlreadyreserved(true)
+          setAlreadyreservedd(true)
         }
       }
     }
@@ -618,9 +620,17 @@ function Solocien() {
             <Link href={"/account"}>
               <a>
                 <div className="cursor-pointer">
+                  {alreadyreservedd ? (
+                  <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                    Approved
+                  </button>
+
+                  ) : (
                   <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
                     Pending
                   </button>
+
+                  )}
                 </div>
               </a>
             </Link>
