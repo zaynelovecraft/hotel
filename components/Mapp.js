@@ -6,8 +6,8 @@ function Mapp() {
   const [viewstate, setViewstate] = useState({
     width: "100vw",
     height: "100vh",
-    longitude: -117.055626,
-    latitude: 32.3648126,
+    longitude: -117.064967,
+    latitude: 32.359337,
     zoom: 12,
   });
 
@@ -25,8 +25,8 @@ function Mapp() {
         />
       </Head>
       <Marker
-        longitude={-117.055626}
-        latitude={32.3648126}
+        longitude={-117.064967}
+        latitude={32.359337}
         anchor="center"
       ></Marker>
     </Map>
