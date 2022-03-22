@@ -53,24 +53,21 @@ function Solocien() {
   const [rerender, setRerender] = useState(false);
 
   const reservecheck = async () => {
-
-
     if (user) {
       const { data, error } = await supabase
         .from("pending_reservations")
-        .select('status')
-        .match({ user_id: user.id, hotel_name: 'Sol O Cien Condo' });
-      console.log(data)
+        .select("status")
+        .match({ user_id: user.id, hotel_name: "Sol O Cien Condo" });
+      console.log(data);
 
-      for(let i = 0; i < data.length; i++) {
-
-        if (data[i].status === 'pending') {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].status === "pending") {
           setAlreadyreserved(true);
-        } 
-  
-        if (data[i].status === 'approved') {
-          setAlreadyreserved(true)
-          setAlreadyreservedd(true)
+        }
+
+        if (data[i].status === "approved") {
+          setAlreadyreserved(true);
+          setAlreadyreservedd(true);
         }
       }
     }
@@ -126,7 +123,6 @@ function Solocien() {
         price = price + 400;
       }
       if (days[i] == "Sun") {
-        price = price + 400;
       }
     }
 
@@ -297,7 +293,12 @@ function Solocien() {
         className=""
       >
         <section className="">
-          <Carousel emulateTouch={true} useKeyboardArrows={true} showIndicators={false} className="">
+          <Carousel
+            emulateTouch={true}
+            useKeyboardArrows={true}
+            showIndicators={false}
+            className=""
+          >
             <div className="w-full -mt-[300px] h-screen">
               <Image
                 src="https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1230-Copy.jpg"
@@ -621,15 +622,13 @@ function Solocien() {
               <a>
                 <div className="cursor-pointer">
                   {alreadyreservedd ? (
-                  <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                    Approved
-                  </button>
-
+                    <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                      Approved
+                    </button>
                   ) : (
-                  <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                    Pending
-                  </button>
-
+                    <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
+                      Pending
+                    </button>
                   )}
                 </div>
               </a>
