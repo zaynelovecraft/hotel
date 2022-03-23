@@ -298,321 +298,610 @@ function Solocien() {
       >
         <section className="">
           <Carousel useKeyboardArrows={true} emulateTouch={true} showIndicators={false} className="">
-            <div className="w-full -mt-[300px] h-screen">
+          <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg"
+                src="/images/condos/est1.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2790.jpg"
+                src="/images/condos/est2.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2795.jpg"
+                src="/images/condos/est3.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2801-1.jpg"
+                src="/images/condos/est4.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2825.jpg"
+                src="/images/condos/est5.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2845.jpg"
+                src="/images/condos/est6.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2866.jpg"
+                src="/images/condos/est7.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2854.jpg"
+                src="/images/condos/est8.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2608.jpg"
+                src="/images/condos/est9.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2786.jpg"
+                src="/images/condos/est10.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2789.jpg"
+                src="/images/condos/est11.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2790.jpg"
+                src="/images/condos/est12.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2791.jpg"
+                src="/images/condos/est13.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2792.jpg"
+                src="/images/condos/est14.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2793.jpg"
+                src="/images/condos/est15.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2794.jpg"
+                src="/images/condos/est16.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2796.jpg"
+                src="/images/condos/est17.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2797.jpg"
+                src="/images/condos/est18.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2798.jpg"
+                src="/images/condos/est19.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2800.jpg"
+                src="/images/condos/est20.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2801.jpg"
+                src="/images/condos/est21.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2802.jpg"
+                src="/images/condos/est22.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2819.jpg"
+                src="/images/condos/est23.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2819.jpg"
+                src="/images/condos/est24.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2822-1.jpg"
+                src="/images/condos/est25.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2823.jpg"
+                src="/images/condos/est26.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2825.jpg"
+                src="/images/condos/est27.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2826.jpg"
+                src="/images/condos/est28.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2828.jpg"
+                src="/images/condos/est29.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2829.jpg"
+                src="/images/condos/est30.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2830.jpg"
+                src="/images/condos/est31.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2831.jpg"
+                src="/images/condos/est32.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2832.jpg"
+                src="/images/condos/est33.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2833.jpg"
+                src="/images/condos/est34.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
-            <div className="w-full -mt-40 h-screen">
+            <div className="w-full -mt-[130px] h-screen">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2835.jpg"
+                src="/images/condos/est35.jpeg"
                 className=""
                 alt="img"
                 layout="fill"
                 objectFit="contain"
               />
             </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est36.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est37.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est38.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est39.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est40.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est41.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est42.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est43.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est44.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est45.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est46.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est47.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est48.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est49.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est50.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est51.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est52.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est53.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est54.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est55.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est56.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est57.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est58.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est59.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est60.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est61.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est62.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est63.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est64.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est65.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est66.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="w-full -mt-[130px] h-screen">
+              <Image
+                src="/images/condos/est67.jpeg"
+                className=""
+                alt="img"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          
           </Carousel>
         </section>
       </Modal>
@@ -632,7 +921,7 @@ function Solocien() {
           <h1></h1>
         </div>
         <Image
-          src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg"
+          src="/images/condos/est1.jpeg"
           layout="fill"
           objectFit="cover"
           alt="img"
@@ -825,49 +1114,59 @@ function Solocien() {
         <div className="">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2825.jpg"
+              src="/images/condos/est5.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2866.jpg"
+              src="/images/condos/est7.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2854.jpg"
+              src="/images/condos/est8.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
         </div>
         <div className="sm:mt-10">
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2790.jpg"
+              src="/images/condos/est2.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2786.jpg"
+              src="/images/condos/est10.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative mb-10 hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -881,11 +1180,13 @@ function Solocien() {
               <h1></h1>
             </div>
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2828.jpg"
+              src="/images/condos/est29.jpeg"
               className=""
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
             <div className="absolute bottom-[50px] z-[1] right-[100px]">
               <h1 className="text-white font-bold text-xl">
