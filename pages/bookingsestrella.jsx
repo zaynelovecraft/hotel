@@ -570,7 +570,7 @@ function bookings() {
               <div className="flex md:mr-[65px] justify-center md:mt-[20px] ">
                 <div className="relative w-[400px] h-[400px] md:h-[300px] md:w-[300px] mb-20">
                   <Image
-                    src="https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2790.jpg"
+                    src="/images/condos/est2.jpeg"
                     className=" justify-center"
                     alt="img"
                     layout="fill"
