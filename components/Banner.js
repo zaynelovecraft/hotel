@@ -5,7 +5,7 @@ function Banner() {
     <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]">
       <div style={{background: 'linear-gradient(to bottom, transparent 0%, black 300%)'}} className="absolute z-[1] w-full h-full"><h1></h1></div>
       <Image
-        src="/images/banner1.avif"
+        src="/2.jpg"
         layout="fill"
         objectFit="cover"
         alt="img"

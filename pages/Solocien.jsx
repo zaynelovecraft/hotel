@@ -1271,6 +1271,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -1280,6 +1282,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -1289,6 +1293,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
         </div>
@@ -1300,6 +1306,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -1309,6 +1317,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
           </div>
           <div className="relative mb-10 hover:opacity-80 flex border w-[360px] h-[160px] lg:w-[450px] lg:h-[400px] ">
@@ -1327,6 +1337,8 @@ function Solocien() {
               alt="img"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+                  blurDataURL="data:..."
             />
             <div className="absolute bottom-[50px] z-[1] right-[100px]">
               <h1 className="text-white font-bold text-xl">

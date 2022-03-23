@@ -149,6 +149,8 @@ const hi = [
                   alt="img"
                   layout="fill"
                   objectFit="cover"
+                  placeholder="blur"
+                  blurDataURL="data:..."
                 />
               </div>
               <p
@@ -168,6 +170,8 @@ const hi = [
                 alt="img"
                 layout="fill"
                 objectFit="cover"
+                placeholder="blur"
+                blurDataURL="data:..."
               />
             </div>
             <p
@@ -188,6 +192,8 @@ const hi = [
                 alt="img"
                 layout="fill"
                 objectFit="cover"
+                placeholder="blur"
+                blurDataURL="data:..."
               />
             </div>
             <p
@@ -206,6 +212,8 @@ const hi = [
                 alt="img"
                 layout="fill"
                 objectFit="cover"
+                placeholder="blur"
+                blurDataURL="data:..."
               />
             </div>
             <p

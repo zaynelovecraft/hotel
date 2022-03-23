@@ -46,7 +46,7 @@ function accommodations() {
           <h1></h1>
         </div>
       <Image
-        src="/beach.avif"
+        src="/1.jpg"
         layout="fill"
         objectFit="cover"
         alt="img"
