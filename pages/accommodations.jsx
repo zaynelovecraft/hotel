@@ -10,13 +10,13 @@ const hotels = [
     name: "Sol-O-Cien Condo",
     location: "de Rosarito, Predios Urbanos",
     href: "/Solocien",
-    img: "https://solocienadventures.com/wp-content/uploads/2020/08/WhatsApp-Image-2020-04-20-at-1.10.46-PM-3.jpeg",
+    img: "/images/condos/sol57.jpeg",
   },
   {
     name: "Estrella Sol-O-Cien Condo",
     location: "de Rosarito, Predios Urbanos",
     href: "/estrella",
-    img: "https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2791.jpg",
+    img: "/images/condos/est1.jpeg",
   },
   
 ]
@@ -46,7 +46,7 @@ function accommodations() {
           <h1></h1>
         </div>
       <Image
-        src="https://images.unsplash.com/photo-1529171099841-94c0c0d7a49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80"
+        src="/beach.avif"
         layout="fill"
         objectFit="cover"
         alt="img"

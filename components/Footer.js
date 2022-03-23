@@ -66,7 +66,7 @@ export default function Footer() {
 
           <div className="relative my-4 rounded-lg sm:w-[350px] sm:h-[350px]  w-[150px] h-[150px]">
           <Image
-            src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-blanco-232x300.png"
+            src="/images/logowhite.png"
             className="rounded-2xl justify-center"
             alt="img"
             layout="fill"

@@ -128,7 +128,7 @@ export default function NavBar() {
                 <div className="relative lg:w-[60px] lg:h-[60px] w-[40px] h-[40px]">
 
                 <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-amarillo.png"
+                src="/images/LOGO.png"
                 layout="fill"
                 objectFit="contain"
                 />

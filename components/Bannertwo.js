@@ -15,39 +15,39 @@ const hi = [
 ]
   const cardsData = [
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_8841_Original-scaled.jpg',
+      img: '/images/condos/sol37.jpeg',
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2021/06/IMG_2795.jpg',
+      img: '/images/condos/est3.jpeg',
       title: 'Estrella Condo'
     },
     {
-      img: 'https://images.unsplash.com/photo-1581661665191-26f2ee761f9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1429&q=80',
+      img: '/images/condos/gla1.webp',
       title: 'Glamping'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2021/07/IMG_2883.jpg',
+      img: '/images/condos/est65.jpeg',
       title: 'Estrella Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1236-Copy-2.jpg',
+      img: '/images/condos/sol62.jpeg',
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1256-Copy.jpg',
+      img: '/images/condos/sol65.jpeg',
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1257-Copy.jpg',
+      img: '/images/condos/sol57.jpeg',
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1215-Copy.jpg',
+      img: '/images/condos/sol53.jpeg',
       title: 'Sol O Cien Condo'
     },
     {
-      img: 'https://solocienadventures.com/wp-content/uploads/2020/08/IMG_1221-Copy.jpg',
+      img: '/images/condos/sol40.jpeg',
       title: 'Sol O Cien Condo'
     },
   ]
@@ -60,7 +60,7 @@ const hi = [
          
           <div className="relative my-4 rounded-lg sm:w-[350px] sm:h-[350px] md:w-[350px] md:h-[250px] w-[250px] h-[250px]">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-blanco-232x300.png"
+              src="/images/logowhite.png"
               className="rounded-2xl"
               alt="img"
               layout="fill"
@@ -142,13 +142,13 @@ const hi = [
         <div className="flex flex-col items-center ">
           <div className="flex  flex-col sm:flex-row">
             <div className="flex flex-col">
-              <div className="relative sm:flex sm:flex-col lg:w-[450px]  rounded-full sm:w-[300px] sm:h-[300px] mb-4 w-[250px] h-[320px]">
+              <div className="relative sm:flex sm:flex-col lg:w-[450px] sm:mr-8  rounded-full sm:w-[300px] sm:h-[300px] mb-4 w-[250px] h-[320px]">
                 <Image
-                  src="https://solocienadventures.com/wp-content/uploads/2020/08/alojamiento-1.jpg"
-                  className=" justify-center"
+                  src="/images/condos/sol65.jpeg"
+                  className=" justify-center rounded-lg"
                   alt="img"
                   layout="fill"
-                  objectFit="contain"
+                  objectFit="cover"
                 />
               </div>
               <p
@@ -163,11 +163,11 @@ const hi = [
                
             <div className="relative lg:w-[450px]  rounded-full mb-4 sm:w-[300px] sm:h-[300px] w-[250px] h-[320px]">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/alojamiento-2.jpg"
-                className=" justify-center"
+                src="/images/condos/est59.jpeg"
+                className=" justify-center rounded-lg"
                 alt="img"
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
               />
             </div>
             <p
@@ -181,13 +181,13 @@ const hi = [
           <div className="flex  flex-col sm:flex-row">
               <div className="flex flex-col">
 
-            <div className="relative lg:w-[450px]  rounded-full mb-4 sm:w-[300px] sm:h-[300px] w-[250px] h-[320px]">
+            <div className="relative lg:w-[450px] sm:mr-8  rounded-full mb-4 sm:w-[300px] sm:h-[300px] w-[250px] h-[320px]">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/alojamiento-3.jpg"
-                className=" justify-center"
+                src="/images/condos/sol13.jpeg"
+                className=" justify-center rounded-lg"
                 alt="img"
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
               />
             </div>
             <p
@@ -201,11 +201,11 @@ const hi = [
 
             <div className="relative lg:w-[450px] rounded-full mb-4 sm:w-[300px] sm:h-[300px]  w-[250px] h-[320px]">
               <Image
-                src="https://solocienadventures.com/wp-content/uploads/2020/08/alojamiento-4.jpg"
-                className=" justify-center"
+                src="/images/condos/gla1.webp"
+                className=" justify-center rounded-lg"
                 alt="img"
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
               />
             </div>
             <p
