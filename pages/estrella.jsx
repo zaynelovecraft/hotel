@@ -63,11 +63,11 @@ function Solocien() {
 
         for(let i = 0; i < data.length; i ++) {
 
-            if (data[0]?.status === 'pending') {
+            if (data[i].status === 'pending') {
               setAlreadyreserved(true);
             } 
       
-            if (data[0]?.status === 'approved') {
+            if (data[i].status === 'approved') {
               setAlreadyreserved(true)
               setAlreadyreservedd(true)
             }
