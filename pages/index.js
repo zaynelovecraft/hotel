@@ -4,7 +4,7 @@ import Hero from "../components/Hero"
 import Head from 'next/head'
 import Banner from "../components/Banner"
 import Bannertwo from "../components/Bannertwo"
-
+import Avatarr from '../components/Avatarr'
 
 
 export default function Home() {
@@ -31,6 +31,7 @@ export default function Home() {
      
       <Banner />
       <Bannertwo />
+      <Avatarr />
       
     </div>
   )
