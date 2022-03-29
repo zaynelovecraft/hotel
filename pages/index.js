@@ -4,11 +4,11 @@ import Hero from "../components/Hero"
 import Head from 'next/head'
 import Banner from "../components/Banner"
 import Bannertwo from "../components/Bannertwo"
-import Avatarr from '../components/Avatarr'
+import SupportEngine from "../components/SupportWindow/SupportEngine"
 
 
 export default function Home() {
-
+  
   return (
     <div className="">
       <Head>
@@ -27,11 +27,13 @@ export default function Home() {
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Sol O Cien Adventures" />
       </Head>
-     {/* <Hero />  */}
+
      
       <Banner />
       <Bannertwo />
-      <Avatarr />
+      <SupportEngine/>
+
+
       
     </div>
   )
