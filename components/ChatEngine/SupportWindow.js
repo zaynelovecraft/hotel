@@ -4,7 +4,7 @@ import Emailform from './Emailform'
 ;
 import {useUser} from '../../utils/useUser'
 
-function Supportwindow({visible}) {
+function SupportWindow({visible}) {
   const { signUp, user, signIn } = useUser();
   const [chatuser, setChatuser] = useState(null)
   const [chat, setChat] = useState(null)
@@ -28,4 +28,4 @@ function Supportwindow({visible}) {
   )
 }
 
-export default Supportwindow
+export default SupportWindow

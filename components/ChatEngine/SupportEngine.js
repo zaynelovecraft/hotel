@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
-import Supportwindow from "./Supportwindow";
+import Supportwindow from './SupportWindow'
 function SupportEngine() {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
