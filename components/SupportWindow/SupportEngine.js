@@ -21,7 +21,7 @@ function SupportEngine() {
 
   return (
     <div ref={ref}>
-      <Avatarr onClick={() => setVisible(true)} />
+      <Avatarr visible={visible}  onClick={() => setVisible(!visible)} />
       
       <Supportwindow visible={visible} />
       
