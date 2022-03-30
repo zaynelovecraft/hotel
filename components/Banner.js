@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Bannertwo from "./Bannertwo";
 function Banner() {
   return (
+    <div>
+
     <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]">
       <div style={{background: 'linear-gradient(to bottom, transparent 0%, black 300%)'}} className="absolute z-[1] w-full h-full"><h1></h1></div>
       <Image
@@ -27,6 +30,8 @@ function Banner() {
         <div></div>
         {/* <button className='text-purple-500 bg-white px-10 py-4 shadow-md rounded-full font-bold my-3 hover:shadow-xl active:scale-90 transition duration-150'>I am flexible!</button> */}
       </div>
+    </div>
+      <Bannertwo /> 
     </div>
   );
 }
