@@ -3,9 +3,9 @@ import React, { useState } from "react";
 function Avatarr(props) {
   const [hovered, setHovered] = useState(false)
   return (
-    <div  className="z-20">
-      <div className={`transition ease-in-out bg-white py-2 shadow-lg ${hovered === true ? `opacity-100 bg-opacity-90` : `opacity-0`} fixed bottom-[37px] border-cyan-500 border right-[65px] sm:right-[100px]  px-5 rounded-full duration-300`}>
-        <h2 className="text-black text-center text-xs">
+    <div  className="z-30">
+      <div className={`transition ease-in-out bg-white py-2 shadow-lg ${hovered === true ? `opacity-100 bg-opacity-90` : `opacity-0`} fixed bottom-[37px] lg:bottom-[25px] border-cyan-500 border right-[65px] sm:right-[120px] z-30  px-5 rounded-full duration-300`}>
+        <h2 className="text-black text-center lg:text-base z-30 text-xs">
           Welcome! <br /> How may we help you?
         </h2>
       </div>
@@ -13,7 +13,7 @@ function Avatarr(props) {
         onClick={() => props.onClick && props.onClick()}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`fixed transition ease-in ${hovered === true ? `border-yellow-300`: `border-cyan-500 `} shadow-lg border-[4px] cursor-pointer bottom-2 right-1 sm:right-4 sm:bottom-4 rounded-full hover:border-[1px] hover:border-yellow-300 sm:w-[84px] sm:h-[84px]  w-[60px] h-[60px]`}
+        className={`fixed z-30 transition ease-in ${hovered === true ? `border-yellow-300`: `border-cyan-500 `} shadow-lg border-[4px] cursor-pointer bottom-2 right-1 sm:right-4 sm:bottom-4 rounded-full hover:border-[1px] hover:border-yellow-300 sm:w-[84px] sm:h-[84px]  w-[60px] h-[60px]`}
       >
         <img className="rounded-full bg-cover" src="/chat.webp" />
       </div>

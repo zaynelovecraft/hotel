@@ -5,13 +5,17 @@ import Button from '../ui/Button/Button';
 import { FcGoogle } from '@react-icons/all-files/fc/FcGoogle'
 import Link from 'next/link';
 import {useUser} from '../../utils/useUser'
+import axios from 'axios';
+import { useEffect } from 'react';
 
-function Emailform() {
+function Emailform(props) {
     const [email,setEmail]=useState('')
     const [loading,setLoading]=useState(false)
     const [loadingg, setLoadingg] = useState(false);
     const { signUp, user, signIn } = useUser();
-
+    console.log(email)
+    
+    
     const handleOAuthSignIn = async (provider) => {
         setLoadingg(true);
         const { error } = await signIn({ provider });
@@ -21,9 +25,56 @@ function Emailform() {
         setLoading(false);
       };
 
+      function getOrCreateUser(callback) {
+        axios.put(
+            'https://api.chatengine.io/users/',
+            {username: email, email: email, secret: email},
+            {headers: {"Private-Key": process.env.CHATAPP_KEY}}
+        )
+        .then(r => callback(r.data))
+        .catch(e => console.log('Get or create user error', e))
+    }
+
+    function getOrCreateChat(callback) {
+        axios.put(
+            'https://api.chatengine.io/chats/',
+            {usernames: ['Admin', email], is_direct_chat: true},
+            {headers: {
+                "Private-Key": process.env.CHATAPP_KEY,
+                
+            }}
+        )
+        .then(r => callback(r.data))
+        .catch(e => console.log('Get or create chat error', e))
+    }
+
+      useEffect(()=>{
+        getOrCreateUser(
+
+          chatuser => {
+            props.setChatuser(chatuser)
+
+            getOrCreateChat(
+              chat => 
+              
+                props.setChat(chat)
+         
+              
+                
+            )
+        })
+      },[email])
+
+      useEffect(() => {
+        if(user){
+          setEmail(user.email)
+        
+
+        }
+      }, [user])
 
   return (
-    <div className='transition  ease-in-out h-full opacity-100 w-full overflow-hidden'>
+    <div className={`transition ${props.visible ?  `h-full opacity-100` :  `h-0 opacity-0`}  ease-in-out   w-full overflow-hidden`}>
         
     <div className='h-0'>
         <div className='relative -top-[45px] -skew-y-12 z-20 w-[421px] h-[309px] bg-cyan-300'></div>
