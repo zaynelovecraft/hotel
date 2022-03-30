@@ -4,7 +4,7 @@ import Hero from "../components/Hero"
 import Head from 'next/head'
 import Banner from "../components/Banner"
 
-import SupportEngine from "../components/SupportWindow/SupportEngine"
+
 
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
      
       <Banner />
 
-      <SupportEngine/>
+
 
 
       
