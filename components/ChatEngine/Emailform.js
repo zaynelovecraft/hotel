@@ -68,18 +68,7 @@ function Emailform(props) {
     }
   }, [user]);
 
-  useEffect(() => {
-    if(loading === true) {
-      const timer = setTimeout(() => {
-        handleOAuthSignIn('google')
-      }, 700);
-      return () => clearTimeout(timer);
-
-
-      
-    }
-  }, [loading]);
-
+  
   return (
     <div
       className={`transition ${
@@ -89,16 +78,7 @@ function Emailform(props) {
       <div className="h-0">
         <div className="relative -top-[45px] -skew-y-12 z-20 w-[421px] h-[309px] bg-cyan-300"></div>
       </div>
-      <div
-        className={`transition ease-in-out absolute h-full w-full text-center ${
-          loading ? `` : `hidden`
-        } z-50 bg-white opacity-50 duration-300  `}
-      ></div>
-      <LoadingOutlined
-        className={`text-pink-400 z-50 absolute bottom-[11rem] ${
-          loading ? `` : `hidden`
-        }  sm:right-[8.3rem] right-[7.2rem] lg:right-[9.3rem] lg:bottom-[13rem] lg:text-[100px] font-extrabold text-[70px]`}
-      />
+    
       <div className="absolute h-full w-full z-30 text-center">
         <img
           className="relative top-10 sm:left-[7.7rem] lg:left-[9.6rem] left-[6.9rem] h-[120px] w-auto"
@@ -108,17 +88,17 @@ function Emailform(props) {
           Chat with <br /> Support
         </h1>
       </div>
-      <div className="absolute cursor-pointer hover:bg-cyan-400 border-2 bg-cyan-300  py-2 rounded-lg px-3 bottom-[4rem] lg:bottom-[5rem] z-40 lg:left-[6.5rem] sm:left-[4.5rem] left-[4rem]">
+      <div className="absolute cursor-pointer active:bg-pink-200 hover:bg-cyan-400 border-2 bg-cyan-300  py-2 rounded-lg px-3 bottom-[4rem] lg:bottom-[5rem] z-40 lg:left-[6.5rem] sm:left-[4.5rem] left-[4rem]">
         <button
           disabled={loadingg}
-          onClick={() => setLoading(true) }
+          onClick={() => handleOAuthSignIn('google') }
           className="z-30  items-center flex flex-row"
         >
           <FcGoogle className="w-[25px] h-[25px]" />
           <span className="ml-2 text-xs ">Continue with Google</span>
         </button>
       </div>
-      <div className="absolute bottom-[8rem] lg:bottom-[10rem] border-2 py-1 px-4 rounded-lg cursor-pointer hover:bg-cyan-400 bg-cyan-300 lg:left-[9.8rem] sm:left-[7.7rem] left-[7.2rem] z-30">
+      <div className="absolute bottom-[8rem] active:bg-pink-200 lg:bottom-[10rem] border-2 py-1 px-4 rounded-lg cursor-pointer hover:bg-cyan-400 bg-cyan-300 lg:left-[9.8rem] sm:left-[7.7rem] left-[7.2rem] z-30">
         <Link href="/signin">
           <a>
             <h1>Sign In</h1>
