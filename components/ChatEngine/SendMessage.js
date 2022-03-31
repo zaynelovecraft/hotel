@@ -1,19 +1,53 @@
 import React, { useState } from "react";
-
+import { supabase } from "../../utils/supabase-client";
 function SendMessage({ endRef, user }) {
-
   const [message, setMessage] = useState("");
-//   console.log(user?.email); 
-console.log(message)
 
-  const sendMessage = (e) => {
+  //   console.log(user?.email);
+  // console.log(message);
+  // console.log(user?.id);
+
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (!message) return;
-    setMessage('')
+
+    const { data, error } = await supabase
+      .from("Messages")
+      .select("*")
+      .match({ user_id: user.id });
+
+    if (data.length === 0) {
+      await supabase.from("Messages").insert({
+        user_id: user.id,
+        Message_data: [
+          {
+            text: message,
+            user: user.email,
+            userid: user.id,
+          },
+        ],
+      });
+    }
+    if (data.length > 0) {
+      let messages = data[0].Message_data;
+      messages.push({
+        text: message,
+        user: user.email,
+        userid: user.id,
+      });
+
+      const { dataa, errorr } = await supabase
+        .from("Messages")
+        .update({ Message_data: messages })
+        .match({ user_id: user.id });
+    }
+
+    endRef.current.scrollIntoView({ behavior: "smooth" });
+    setMessage("");
   };
 
   return (
-    <form className="flex absolute bottom-0 items-center align-middle rounded-lg w-[99%] mb-[0.10rem] border-2 border-gray-200 pl-4 pr-2 py-2  ">
+    <form className="flex absolute bottom-0 bg-white items-center align-middle rounded-lg w-[99%] mb-[0.10rem] border-2 border-gray-200 pl-4 pr-2 py-2  ">
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}

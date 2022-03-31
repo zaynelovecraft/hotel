@@ -9,7 +9,7 @@ function SupportWindow({visible}) {
   const { signUp, user, signIn } = useUser();
   const [chatuser, setChatuser] = useState(null)
   const [chat, setChat] = useState(null)
-  console.log(chatuser)
+
 
   return (
     <div>

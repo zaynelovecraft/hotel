@@ -1,26 +1,95 @@
-import React, {useRef} from 'react'
-import SendMessage from './SendMessage'
+import React, { useRef, useState, useEffect } from "react";
+import SendMessage from "./SendMessage";
+import { supabase } from "../../utils/supabase-client";
+import Message from "./Message";
 
-function Messages({user}) {
-    const endRef = useRef(null); 
+function Messages({ user }) {
+  const [data, setData] = useState([]);
+  const [newData, handleNewData] = useState(null);
+  const endRef = useRef(null);
+
+  console.log(data);
+
+  const fetchData = async () => {
+    const { data, error } = await supabase
+      .from("Messages")
+      .select("Message_data")
+      .match({ user_id: user?.id });
+    if (data) {
+      return data[0]?.Message_data;
+    }
+  };
+
+  const getChange = async () => {
+    const mySubscription = supabase
+      .from("Messages")
+
+      .on("INSERT", (payload) => {
+        if (payload.new.user_id === user?.id) {
+          handleNewData(payload.new);
+        }
+        // console.log(user?.id)
+        // console.log(payload.new.user_id);
+      })
+      .on("UPDATE", (payload) => {
+        // console.log(user?.id)
+        // console.log(payload.new.user_id);
+        if (payload.new.user_id === user?.id) {
+          handleNewData(payload.new);
+        }
+      })
+      .subscribe();
+    return mySubscription;
+  };
+
+  const getData = async () => {
+    const data = await fetchData();
+
+    setData(data);
+
+    
+  };
+
+  useEffect(() => {
+    getData();
+  }, [user]);
+
+  useEffect(() => {
+    const mySubscription = getChange();
+
+    return () => {
+      supabase.removeSubscription(mySubscription);
+    };
+  }, [user]);
+
+  useEffect(() => {
+    // console.log("newData value", newData);
+
+    if (newData) {
+      setData(newData?.Message_data);
+      handleNewData(null);
+    }
+  }, [newData]);
+  
+
   return (
-    <div className='pb-56'>
-        <div>
-            {/* Messages */}
- 
-        </div>
+    <div className="pb-[115px]">
 
-        <div className='flex justify-center'>
-         <SendMessage user={user} endRef={endRef} />
-        </div>
+      <div className="space-y-10 p-4">
+        {data?.map((item, index) => (
+          <Message key={index} item={item} />
+        ))}
+      </div>
 
-        <div ref={endRef} className='text-center mt-5'>
-             <p>
-                 You are up to date
-             </p>
-        </div>
+      <div className="flex justify-center">
+        <SendMessage user={user} endRef={endRef} />
+      </div>
+
+      <div ref={endRef} className="text-center mt-5">
+        <p className="text-xs text-gray-400">You are up to date</p>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Messages
+export default Messages;
