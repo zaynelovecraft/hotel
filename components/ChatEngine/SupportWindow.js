@@ -3,11 +3,13 @@ import Emailform from './Emailform'
 // import Chatengine from './Chatengine'
 ;
 import {useUser} from '../../utils/useUser'
+import Chatengine from './Chatengine';
 
 function SupportWindow({visible}) {
   const { signUp, user, signIn } = useUser();
   const [chatuser, setChatuser] = useState(null)
   const [chat, setChat] = useState(null)
+  console.log(chatuser)
 
   return (
     <div>
@@ -17,11 +19,11 @@ function SupportWindow({visible}) {
     <div className={`transition ease-in-out fixed bottom-[116px] ${visible === true ? `fixed ` : `hidden`} opacity-100 z-40 right-[24px] w-[310px] sm:w-[335px] sm:h-[489px] lg:w-[400px] lg:h-[550px] h-[490px] bg-white rounded-lg overflow-hidden duration-300`} >
       <Emailform 
         setChatuser={chatuser => setChatuser(chatuser)}
-        setChat={chat => setChat(chat)}
-        visible={chatuser === null || chat === null}
+
+        visible={chatuser === null}
         // visible={visible}
       />
-
+      <Chatengine visible={chatuser !== null} user={user} />
       {/* <Chatengine chat={chat} chatuser={chatuser} visible={chatuser !== null || chat !== null} /> */}
     </div>
     </div>

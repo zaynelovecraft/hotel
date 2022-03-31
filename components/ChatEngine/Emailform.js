@@ -71,7 +71,7 @@ function Emailform(props) {
         if(user){
           setEmail(user.email)
           props.setChatuser(email)
-          props.setChat(email)
+
         
 
         }
