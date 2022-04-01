@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../utils/supabase-client";
-import Avatar from "./Avatar";
+
 
 import { useUser } from "../utils/useUser";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../utils/supabase-client'
-import Auth from '../components/Auth'
+
+
 import Account from '../components/Account'
 import { useRouter } from 'next/router'
 import { useUser } from '../utils/useUser';

@@ -1,6 +1,6 @@
 
 
-import Hero from "../components/Hero"
+
 import Head from 'next/head'
 import Banner from "../components/Banner"
 import SupportEngine from "../components/ChatEngine/SupportEngine"
