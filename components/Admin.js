@@ -6,7 +6,6 @@ import { AiOutlineMessage } from "@react-icons/all-files/ai/AiOutlineMessage";
 import TimeAgo from "timeago-react";
 import AdminChatEngine from "./AdminChat/AdminChatEngine";
 
-
 function Admin() {
   const [resopen, setResopen] = useState(false);
   const [useropen, setUseropen] = useState(false);
@@ -33,16 +32,14 @@ function Admin() {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRefr = useRef(null);
-  console.log(usermessage)
-  console.log(newData)
-  
+  console.log(usermessage);
+  console.log(newData);
+
   const fetchData = async () => {
-    const { data, error } = await supabase
-      .from("Messages")
-      .select("*")
-    
+    const { data, error } = await supabase.from("Messages").select("*");
+
     if (data) {
-      console.log(data)
+      console.log(data);
       return data;
     }
   };
@@ -51,11 +48,11 @@ function Admin() {
     const data = await fetchData();
 
     setUsermessage(data);
-    console.log(usermessage)
+    console.log(usermessage);
   };
 
-
   const getChange = async () => {
+
     const mySubscription = supabase
       .from("Messages")
       .on("INSERT", (payload) => {
@@ -70,9 +67,10 @@ function Admin() {
   };
 
   useEffect(() => {
+    console.log('test')
     getData();
     const mySubscription = getChange();
-    
+
     return () => {
       supabase.removeSubscription(mySubscription);
     };
@@ -82,11 +80,10 @@ function Admin() {
     // console.log("newData value", newData);
 
     if (newData) {
-      getData()
+      getData();
     }
   }, [newData]);
-  
-  
+
   const lastmessage = (x) => {
     const last = x[x.length - 1].text;
 
@@ -99,10 +96,9 @@ function Admin() {
   };
 
   const unread = () => {
-
     let ammount = 0;
     for (let i = 0; i < usermessage.length; i++) {
-      console.log(usermessage[i].read)
+      console.log(usermessage[i].read);
       if (usermessage[i].read === false) {
         ammount++;
       }
@@ -317,8 +313,6 @@ function Admin() {
     }
   };
 
-
-
   // useEffect(async () => {
   //   const { data, error } = await supabase.from("Messages").select("*");
   //   setUsermessage(data);
@@ -446,8 +440,8 @@ function Admin() {
         </div>
       </div>
       <div ref={endRefr} className="absolute -top-[100px] right-0"></div>
-      <section  className="py-2 mt-5 mb-5">
-        <h1  className="text-center text-gray-500">Admin Dashboard</h1>
+      <section className="py-2 mt-5 mb-5">
+        <h1 className="text-center text-gray-500">Admin Dashboard</h1>
         <h1 className="text-center text-[12px] text-gray-400">{time}</h1>
       </section>
       <section>
@@ -488,34 +482,42 @@ function Admin() {
                   setShowusermessages(true),
                   closeall("messages"),
                   getData()
+
               }}
               className={`text-sm ${
                 messages && "text-cyan-500"
               } relative cursor-pointer text-gray-700 hover:text-cyan-500`}
             >
               Messages{" "}
-              {unread()=== 0 ? (<div></div>) : (  <span className="absolute text-red-500 text-[12px] -right-2 animate-pulse font-bold -top-1 ">
-                {unread()}
-              </span>)}
-            
+              {unread() === 0 ? (
+                <div></div>
+              ) : (
+                <span className="absolute text-red-500 text-[12px] -right-2 animate-pulse font-bold -top-1 ">
+                  {unread()}
+                </span>
+              )}
             </h1>
           </div>
         </div>
       </section>
-      
-      
 
       {messages && (
         <section className="w-full flex overflow-y-scroll overflow-hidden flex-col h-screen bg-gray-200">
           <h1 className="text-center border-b border-white text-gray-500">
-            {showusermessages ? "Messages" : <><span>Messaging  </span> <span className="text-xs ml-2">  {talk.user_email}</span> 
-            </> }
+            {showusermessages ? (
+              "Messages"
+            ) : (
+              <>
+                <span>Messaging </span>{" "}
+                <span className="text-xs ml-2"> {talk.user_email}</span>
+              </>
+            )}
           </h1>
-         {showusermessages === false && (
-          <div className=" relative h-full w-full">
-            <AdminChatEngine end={endRefr} talk={talk} />
-          </div>
-      )}
+          {showusermessages === false && (
+            <div className=" relative h-full w-full">
+              <AdminChatEngine end={endRefr} talk={talk} />
+            </div>
+          )}
           {showusermessages && (
             <div>
               {usermessage?.map((item, index) => (
@@ -564,7 +566,6 @@ function Admin() {
               ))}
             </div>
           )}
-         
         </section>
       )}
 
