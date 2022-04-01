@@ -24,6 +24,7 @@ function SendMessage({ endRef, user }) {
             text: message,
             user: user.email,
             userid: user.id,
+            time: new Date()
           },
         ],
       });
@@ -34,6 +35,7 @@ function SendMessage({ endRef, user }) {
         text: message,
         user: user.email,
         userid: user.id,
+        time: new Date()
       });
 
       const { dataa, errorr } = await supabase
@@ -42,23 +44,23 @@ function SendMessage({ endRef, user }) {
         .match({ user_id: user.id });
     }
 
-    endRef.current.scrollIntoView({ behavior: "smooth" });
+    
     setMessage("");
   };
 
   return (
-    <form className="flex absolute bottom-0 bg-white items-center align-middle rounded-lg w-[99%] mb-[0.10rem] border-2 border-gray-200 pl-4 pr-2 py-2  ">
+    <form className="flex absolute bottom-0 bg-white items-center align-middle rounded-lg w-[99%] border-2 border-gray-200 pl-4 pr-2 py-2  ">
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Enter a Message "
-        className="flex-grow pr-5  outline-none bg-transparent text-black placeholder-gray-500 "
+        className="flex-grow pr-[50px]  outline-none bg-transparent text-black placeholder-gray-500 "
         type="text"
       />
       <button
         type="submit"
         onClick={sendMessage}
-        className="font-bold align-middle absolute -right-[1px] p-[0.64rem] active:bg-cyan-200 hover:bg-gray-300  bg-gray-200 border-gray-500 rounded-lg text-sm text-pink-500"
+        className="font-bold align-middle absolute -right-[2px] p-[0.70rem] active:bg-cyan-200 hover:bg-gray-300  bg-gray-200 border-gray-500 rounded-lg text-sm text-pink-500"
       >
         Send
       </button>

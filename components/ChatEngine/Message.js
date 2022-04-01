@@ -1,11 +1,29 @@
 import React from 'react'
 import { useUser } from '../../utils/useUser';
+import TimeAgo from 'timeago-react'
 
 function Message({item}) {
     const { signUp, user, signIn } = useUser();
-    console.log(item.text)
+
+
+    const isUserMessage = item.userid === user?.id;
+    
   return (
-    <div>{item.text}</div>
+      <div className={`flex items-end space-x-2 relative ${isUserMessage && 'justify-end'}`}>
+
+      <div className={`space-x-4 p-3 max-w-[200px] lg:max-w-[300px] sm:max-w-[250px]  rounded-lg ${isUserMessage ? 'rounded-br-none bg-pink-200' : 'rounded-bl-none bg-blue-400'}`}>
+
+          <p className='break-words'>{item.text}</p>
+      </div>
+
+      <TimeAgo 
+      className={`text-[10px] italic text-gray-400 ${isUserMessage ? 'order-first pr-1' : ''}`}
+        datetime={item.time}
+      />
+      <p className={`absolute -bottom-5 ${isUserMessage ? 'hidden' : 'text-blue-400'}`} text-xs>
+          Admin
+      </p>
+      </div>
   )
 }
 

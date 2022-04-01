@@ -70,10 +70,17 @@ function Messages({ user }) {
       handleNewData(null);
     }
   }, [newData]);
+
+  useEffect(() => {
+    endRef.current.scrollIntoView({ behavior: "smooth",  });
+  }
+  ), [data];
   
 
   return (
-    <div className="pb-[115px]">
+
+
+    <div  className="pb-[50px] ">
 
       <div className="space-y-10 p-4">
         {data?.map((item, index) => (
@@ -81,14 +88,21 @@ function Messages({ user }) {
         ))}
       </div>
 
-      <div className="flex justify-center">
+      <div  className="flex justify-center">
         <SendMessage user={user} endRef={endRef} />
+        
+        
       </div>
 
-      <div ref={endRef} className="text-center mt-5">
-        <p className="text-xs text-gray-400">You are up to date</p>
+      <div ref={endRef} className="text-center mt-10">
+        <p className="text-xs  text-gray-400">You are up to date</p>
       </div>
+
+
+
     </div>
+   
+
   );
 }
 
