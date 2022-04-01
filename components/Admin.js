@@ -32,6 +32,7 @@ function Admin() {
   const [talk, setTalk] = useState();
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
+  const endRefr = useRef(null);
   console.log(usermessage)
   console.log(newData)
   
@@ -444,9 +445,9 @@ function Admin() {
           </div>
         </div>
       </div>
-
-      <section className="py-2 mt-5 mb-5">
-        <h1 className="text-center text-gray-500">Admin Dashboard</h1>
+      <div ref={endRefr} className="absolute -top-[100px] right-0"></div>
+      <section  className="py-2 mt-5 mb-5">
+        <h1  className="text-center text-gray-500">Admin Dashboard</h1>
         <h1 className="text-center text-[12px] text-gray-400">{time}</h1>
       </section>
       <section>
@@ -512,7 +513,7 @@ function Admin() {
           </h1>
          {showusermessages === false && (
           <div className=" relative h-full w-full">
-            <AdminChatEngine talk={talk} />
+            <AdminChatEngine end={endRefr} talk={talk} />
           </div>
       )}
           {showusermessages && (

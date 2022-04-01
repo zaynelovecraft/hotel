@@ -3,8 +3,9 @@ import AdminSendMessage from "./AdminSendMessage";
 import { supabase } from "../../utils/supabase-client";
 import { ta } from "date-fns/locale";
 import AdminMessage from "./AdminMessage";
+import { BiArrowFromBottom } from "@react-icons/all-files/bi/BiArrowFromBottom";
 
-function AdminMessages({talk}) {
+function AdminMessages({talk, end}) {
 
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
@@ -77,6 +78,10 @@ function AdminMessages({talk}) {
     endRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
   }),
     [data];
+
+    const move = () => {
+        end.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   return (
     <div ref={endRef} className="pb-[50px]">
 
@@ -91,16 +96,27 @@ function AdminMessages({talk}) {
 
       {/* sendMessage */}
 
-      <div className="flex justify-center">
+      <div className="flex z-40 justify-center">
         <AdminSendMessage talk={talk} />
       </div>
 
       <div
         
-        className="text-center mt-10"
+        className="text-center"
       >
         <p className="text-xs text-gray-400">You are up to date</p>
+
+
       </div>
+      
+
+<div onClick={()=>move()} className="flex flex-col ml-2 animate-pulse items-center mt-[20px] border border-cyan-400 rounded-lg w-[80px] cursor-pointer text-cyan-500 justify-center">
+
+      <BiArrowFromBottom className="text-[18px]" />
+      <h1 className="text-[10px] text-cyan-700 font-bold">scroll to top</h1>
+</div>
+   
+
     </div>
   );
 }
