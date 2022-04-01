@@ -265,8 +265,8 @@ export default function Account({ session }) {
             <div className=" w-full">
               <div className="flex justify-around flex-wrap">
                 {/*  */}
-                {payed.map((post) => (
-                 <Reciept post={post}/>
+                {payed.map((post, index) => (
+                 <Reciept key={index} post={post}/>
                 ))}
 
                 {/*  */}

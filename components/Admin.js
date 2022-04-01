@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../utils/supabase-client";
 import { useUser } from "../utils/useUser";
 import axios from "axios";
-import {AiOutlineMessage} from "@react-icons/all-files/ai/AiOutlineMessage";
-import TimeAgo from 'timeago-react'
+import { AiOutlineMessage } from "@react-icons/all-files/ai/AiOutlineMessage";
+import TimeAgo from "timeago-react";
+import AdminChatEngine from "./AdminChat/AdminChatEngine";
+
 
 function Admin() {
   const [resopen, setResopen] = useState(false);
@@ -26,21 +28,90 @@ function Admin() {
   const [declinee, setDeclinee] = useState();
   const [messages, setMessages] = useState(false);
   const [usermessage, setUsermessage] = useState([]);
+  const [showusermessages, setShowusermessages] = useState(false);
+  const [talk, setTalk] = useState();
+  const [data, setData] = useState([]);
+  const [newData, handleNewData] = useState(null);
+  console.log(usermessage)
+  console.log(newData)
+  
+  const fetchData = async () => {
+    const { data, error } = await supabase
+      .from("Messages")
+      .select("*")
+    
+    if (data) {
+      console.log(data)
+      return data;
+    }
+  };
 
-  // useEffect(() => {
-  //   setRerender(!rerender);
-  // }, []);
+  const getData = async () => {
+    const data = await fetchData();
+
+    setUsermessage(data);
+    console.log(usermessage)
+  };
+
+
+  const getChange = async () => {
+    const mySubscription = supabase
+      .from("Messages")
+      .on("INSERT", (payload) => {
+        handleNewData(payload.new);
+      })
+      .on("UPDATE", (payload) => {
+        console.log(payload.new);
+        handleNewData(payload.new);
+      })
+      .subscribe();
+    return mySubscription;
+  };
+
+  useEffect(() => {
+    getData();
+    const mySubscription = getChange();
+    
+    return () => {
+      supabase.removeSubscription(mySubscription);
+    };
+  }, []);
+
+  useEffect(() => {
+    // console.log("newData value", newData);
+
+    if (newData) {
+      getData()
+    }
+  }, [newData]);
+  
+  
   const lastmessage = (x) => {
-    console.log(x)
-    const last = x[x.length - 1].text
-    console.log(last)
-    return last
-  }
+    const last = x[x.length - 1].text;
+
+    return last;
+  };
 
   const lastsent = (x) => {
-    const last = x[x.length - 1].time
-   return last
-  }
+    const last = x[x.length - 1].time;
+    return last;
+  };
+
+  const unread = () => {
+
+    let ammount = 0;
+    for (let i = 0; i < usermessage.length; i++) {
+      console.log(usermessage[i].read)
+      if (usermessage[i].read === false) {
+        ammount++;
+      }
+    }
+    return ammount;
+  };
+
+  const setmessagedata = (item) => {
+    setTalk(item);
+  };
 
   let today = new Date();
   let time = today.toDateString();
@@ -101,7 +172,7 @@ function Admin() {
       .from("pending_reservations")
       .select("s, e, hotel_name, name, email, phone_number")
       .match({ id: apr });
-    console.log(data);
+
     let s = data[0].s;
     let e = data[0].e;
     let details =
@@ -211,6 +282,7 @@ function Admin() {
       setDeclined(false);
       setPayed(false);
       setMessages(false);
+      setShowusermessages(false);
     }
     if (x === "user") {
       setResopen(false);
@@ -219,6 +291,7 @@ function Admin() {
       setDeclined(false);
       setPayed(false);
       setMessages(false);
+      setShowusermessages(false);
     }
 
     if (x === "app") {
@@ -243,12 +316,12 @@ function Admin() {
     }
   };
 
-  useEffect(async() => {
-    const { data, error } = await supabase
-  .from('Messages')
-  .select("*")
-  setUsermessage(data)
-   }, []);
+
+
+  // useEffect(async () => {
+  //   const { data, error } = await supabase.from("Messages").select("*");
+  //   setUsermessage(data);
+  // }, []);
   return (
     <div className="min-h-screen">
       <div
@@ -410,66 +483,89 @@ function Admin() {
             </h1>
             <h1
               onClick={() => {
-                setMessages(!messages), closeall("messages");
+                setMessages(!messages),
+                  setShowusermessages(true),
+                  closeall("messages"),
+                  getData()
               }}
               className={`text-sm ${
                 messages && "text-cyan-500"
               } relative cursor-pointer text-gray-700 hover:text-cyan-500`}
             >
               Messages{" "}
-              <span className="absolute text-red-500 text-[10px] -right-6 animate-pulse font-bold -top-1 ">
-                99+
-              </span>
+              {unread()=== 0 ? (<div></div>) : (  <span className="absolute text-red-500 text-[12px] -right-2 animate-pulse font-bold -top-1 ">
+                {unread()}
+              </span>)}
+            
             </h1>
           </div>
         </div>
       </section>
-     
+      
+      
 
       {messages && (
         <section className="w-full flex overflow-y-scroll overflow-hidden flex-col h-screen bg-gray-200">
-            <h1 className="text-center border-b border-white text-gray-500">Messages</h1>
-            {usermessage?.map((item, index) => (
-
-            <div key={index} className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full">
-              <div className="w-full flex  items-center h-[100px]">
-          
-
-                <img className="object-cover ml-6 mr-4 h-[80px] w-[80px] rounded-full" src="/user.png" />
-                <div className="flex w-full space-y-1  flex-col">
-                  <div>
-                    <h1 className="font-bold text-[13px]">{item.user_email}</h1>
-                  </div>
-                  <div className=" w-[205px]">
-                    <h1 className="text-gray-500 truncate  text-sm">{lastmessage(item.Message_data)}</h1>
-                  </div>
-                  <div className="flex">
-                    {item.read === false && (
-                      
-                    <TimeAgo datetime={lastsent(item.Message_data)} className="text-xs text-pink-600" />
-                    )}
-                    {item.read === false && (
-
-                      <h1 className="text-xs ml-6 text-pink-600">Unread Message</h1>
-                    )
-                    }
+          <h1 className="text-center border-b border-white text-gray-500">
+            {showusermessages ? "Messages" : <><span>Messaging  </span> <span className="text-xs ml-2">  {talk.user_email}</span> 
+            </> }
+          </h1>
+         {showusermessages === false && (
+          <div className=" relative h-full w-full">
+            <AdminChatEngine talk={talk} />
+          </div>
+      )}
+          {showusermessages && (
+            <div>
+              {usermessage?.map((item, index) => (
+                <div
+                  onClick={() => {
+                    setShowusermessages(false), setmessagedata(item);
+                  }}
+                  key={index}
+                  className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
+                >
+                  <div className="w-full flex  items-center h-[100px]">
+                    <img
+                      className="object-cover ml-6 mr-4 h-[80px] w-[80px] rounded-full"
+                      src="/user.png"
+                    />
+                    <div className="flex w-full space-y-1  flex-col">
+                      <div>
+                        <h1 className="font-bold text-[13px]">
+                          {item.user_email}
+                        </h1>
+                      </div>
+                      <div className=" w-[205px]">
+                        <h1 className="text-gray-500 truncate  text-sm">
+                          {lastmessage(item.Message_data)}
+                        </h1>
+                      </div>
+                      <div className="flex">
+                        {item.read === false && (
+                          <TimeAgo
+                            datetime={lastsent(item.Message_data)}
+                            className="text-xs text-pink-600"
+                          />
+                        )}
+                        {item.read === false && (
+                          <h1 className="text-xs ml-6 text-pink-600">
+                            Unread Message
+                          </h1>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <AiOutlineMessage className="text-[40px] text-pink-400 mr-5 mt-2" />
+                    </div>
                   </div>
                 </div>
-                  <div>
-                    <AiOutlineMessage className="text-[40px] text-pink-400 mr-5 mt-2" />
-                  </div>
-            
-              </div>
+              ))}
             </div>
-        ))}
-            {/* <div className="flex h-full w-full">
-              <div className="w-[80px] h-full border-r border-white ">
-              <h1 className="text-center border-b border-white text-gray-500 py-2">Users</h1>
-              </div>
-            </div> */}
+          )}
+         
         </section>
       )}
- 
 
       {useropen === true && (
         <div className="mt-2">

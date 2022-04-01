@@ -1,23 +1,34 @@
 import React, { useRef, useState, useEffect } from "react";
-import SendMessage from "./SendMessage";
+import AdminSendMessage from "./AdminSendMessage";
 import { supabase } from "../../utils/supabase-client";
-import Message from "./Message";
+import { ta } from "date-fns/locale";
+import AdminMessage from "./AdminMessage";
 
-function Messages({ user }) {
+function AdminMessages({talk}) {
+
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
+  console.log(data.Message_data)
 
-  console.log(data);
+
 
   const fetchData = async () => {
     const { data, error } = await supabase
       .from("Messages")
       .select("Message_data")
-      .match({ user_id: user?.id });
+      .match({ id: talk.id });
     if (data) {
       return data[0]?.Message_data;
+      
     }
+  };
+
+  const getData = async () => {
+    const data = await fetchData();
+
+    setData(data);
+
   };
 
   const getChange = async () => {
@@ -25,7 +36,7 @@ function Messages({ user }) {
       .from("Messages")
 
       .on("INSERT", (payload) => {
-        if (payload.new.user_id === user?.id) {
+        if (payload.new.id === talk?.id) {
           handleNewData(payload.new);
         }
         // console.log(user?.id)
@@ -34,7 +45,7 @@ function Messages({ user }) {
       .on("UPDATE", (payload) => {
         // console.log(user?.id)
         // console.log(payload.new.user_id);
-        if (payload.new.user_id === user?.id) {
+        if (payload.new.id === talk?.id) {
           handleNewData(payload.new);
         }
       })
@@ -42,55 +53,56 @@ function Messages({ user }) {
     return mySubscription;
   };
 
-  const getData = async () => {
-    const data = await fetchData();
-
-    setData(data);
-  };
-
-  useEffect(() => {
-    getData();
-  }, [user]);
+  
 
   useEffect(() => {
     const mySubscription = getChange();
-
+    getData();
+    
     return () => {
       supabase.removeSubscription(mySubscription);
     };
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     // console.log("newData value", newData);
 
     if (newData) {
-      setData(newData?.Message_data);
+      setData(newData.Message_data);
       handleNewData(null);
     }
   }, [newData]);
 
   useEffect(() => {
-    endRef.current.scrollIntoView({ behavior: "smooth" });
+    endRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
   }),
     [data];
-
   return (
-    <div className="pb-[50px] ">
+    <div ref={endRef} className="pb-[50px]">
+
+
+      {/* message */}
       <div className="space-y-10 p-4">
-        {data?.map((item, index) => (
-          <Message key={index} item={item} />
-        ))}
+
+      {data.map((message, index) => (
+        <AdminMessage key={index} talk={talk} message={message} />
+      ))}
       </div>
+
+      {/* sendMessage */}
 
       <div className="flex justify-center">
-        <SendMessage user={user} />
+        <AdminSendMessage talk={talk} />
       </div>
 
-      <div ref={endRef} className="text-center mt-10">
-        <p className="text-xs  text-gray-400">You are up to date</p>
+      <div
+        
+        className="text-center mt-10"
+      >
+        <p className="text-xs text-gray-400">You are up to date</p>
       </div>
     </div>
   );
 }
 
-export default Messages;
+export default AdminMessages;

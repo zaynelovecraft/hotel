@@ -20,7 +20,7 @@ function Message({item}) {
       className={`text-[10px] italic text-gray-400 ${isUserMessage ? 'order-first pr-1' : ''}`}
         datetime={item.time}
       />
-      <p className={`absolute -bottom-5 ${isUserMessage ? 'hidden' : 'text-blue-400'}`} text-xs>
+      <p className={`absolute -bottom-4 -left-2 ${isUserMessage ? 'hidden' : 'text-blue-400 text-xs'}`} >
           Admin
       </p>
       </div>
