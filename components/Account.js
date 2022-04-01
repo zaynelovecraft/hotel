@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../utils/supabase-client";
-
+import { RiAdminLine } from "@react-icons/all-files/ri/RiAdminLine";
 
 import { useUser } from "../utils/useUser";
 import Link from "next/link";
@@ -341,12 +341,13 @@ export default function Account({ session }) {
 
         <div>
           <section>
-            <div className="absolute text-xs text-gray-500 lg:top-[150px] top-[110px] left-2">
+            <div className="absolute text-sm text-black lg:top-[106px] hover:bg-cyan-200  border border-black top-[62px] bg-gray-200 lg:right-[200px]  cursor-pointer  rounded-lg px-2  right-[85px]">
+              <RiAdminLine className="absolute  top-[0px] text-[20px] text-gray-600 -left-[20px]" />
               {admin === true && (
                 <div className=" cursor-pointer">
                   <Link href={"/admindashboard"}>
                     <a>
-                      <h1 className="text-center">Admin Dashboard</h1>
+                      <h1 className="text-center">Admin</h1>
                     </a>
                   </Link>
                 </div>

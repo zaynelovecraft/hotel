@@ -21,7 +21,7 @@ function Message({item}) {
         datetime={item.time}
       />
       <p className={`absolute -bottom-4 -left-2 ${isUserMessage ? 'hidden' : 'text-blue-400 text-xs'}`} >
-          Admin
+          Sol O Cien
       </p>
       </div>
   )

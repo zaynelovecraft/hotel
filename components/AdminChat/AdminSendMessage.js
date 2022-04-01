@@ -40,6 +40,7 @@ function AdminSendMessage({talk}) {
     <div>
         <form className='flex absolute -bottom-[0.1rem] left-[0.1rem] z-40 bg-white items-center align-middle rounded-lg w-[100%] mr-[0.1rem] border-2 border-gray-200 pl-4 pr-2 py-2 '>
         <input
+            autoFocus
             value={message}
             placeholder='Enter a Message '
             onChange={(e) => setMessage(e.target.value)}
