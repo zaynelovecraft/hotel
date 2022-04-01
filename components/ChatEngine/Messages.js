@@ -7,6 +7,7 @@ function Messages({ user }) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
+ 
 
   console.log(data);
 
@@ -81,7 +82,7 @@ function Messages({ user }) {
 
 
     <div  className="pb-[50px] ">
-
+   
       <div className="space-y-10 p-4">
         {data?.map((item, index) => (
           <Message key={index} item={item} />

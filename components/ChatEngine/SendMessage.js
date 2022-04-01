@@ -19,6 +19,8 @@ function SendMessage({ endRef, user }) {
     if (data.length === 0) {
       await supabase.from("Messages").insert({
         user_id: user.id,
+        user_email: user.email,
+        read: false,
         Message_data: [
           {
             text: message,
@@ -40,7 +42,7 @@ function SendMessage({ endRef, user }) {
 
       const { dataa, errorr } = await supabase
         .from("Messages")
-        .update({ Message_data: messages })
+        .update({ Message_data: messages, read: false })
         .match({ user_id: user.id });
     }
 

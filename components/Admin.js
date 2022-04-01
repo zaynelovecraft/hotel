@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase-client";
 import { useUser } from "../utils/useUser";
 import axios from "axios";
+import {AiOutlineMessage} from "@react-icons/all-files/ai/AiOutlineMessage";
+import TimeAgo from 'timeago-react'
 
 function Admin() {
   const [resopen, setResopen] = useState(false);
@@ -22,28 +24,41 @@ function Admin() {
   const [del, setDel] = useState();
   const [apr, setApr] = useState();
   const [declinee, setDeclinee] = useState();
+  const [messages, setMessages] = useState(false);
+  const [usermessage, setUsermessage] = useState([]);
 
   // useEffect(() => {
   //   setRerender(!rerender);
   // }, []);
+  const lastmessage = (x) => {
+    console.log(x)
+    const last = x[x.length - 1].text
+    console.log(last)
+    return last
+  }
+
+  const lastsent = (x) => {
+    const last = x[x.length - 1].time
+   return last
+  }
 
   let today = new Date();
   let time = today.toDateString();
 
-  const delgoogledate = async() => {
+  const delgoogledate = async () => {
     const { data, error } = await supabase
-  .from('pending_reservations')
-  .select('google_date_id, hotel_name')
-  .match({id: declinee})
+      .from("pending_reservations")
+      .select("google_date_id, hotel_name")
+      .match({ id: declinee });
 
     // console.log(data[0].hotel_name)
 
-  await axios.post('/api/delete-google-date', {
-    hotel: data[0].hotel_name,
-    id: data[0].google_date_id
-  })
-  } 
- 
+    await axios.post("/api/delete-google-date", {
+      hotel: data[0].hotel_name,
+      id: data[0].google_date_id,
+    });
+  };
+
   const decline = async () => {
     // const {x,y} = await supabase
     // .from('declined_post')
@@ -52,13 +67,12 @@ function Admin() {
       .from("pending_reservations")
       .update({ status: "declined" })
       .match({ id: declinee });
-    delgoogledate()
+    delgoogledate();
     setModal2(false);
     getapproved();
     getpending();
     getdeclined();
-    getpayed()
-
+    getpayed();
   };
   const confirmdel = (id) => {
     setDel(id);
@@ -98,22 +112,18 @@ function Admin() {
       " phone number: " +
       data[0].phone_number;
     let hotel = data[0].hotel_name;
-    const res = await axios
-      .post("/api/add-google-date", {
-        s: s,
-        e: e,
-        details: details,
-        hotel: hotel,
-      })
-      
+    const res = await axios.post("/api/add-google-date", {
+      s: s,
+      e: e,
+      details: details,
+      hotel: hotel,
+    });
 
-      const { dataa, errorr } = await supabase
-  .from('pending_reservations')
-  .update({ google_date_id: res.data.data.id })
-  .match({id: apr})
-
+    const { dataa, errorr } = await supabase
+      .from("pending_reservations")
+      .update({ google_date_id: res.data.data.id })
+      .match({ id: apr });
   };
-  
 
   const approve = async () => {
     const { data, error } = await supabase
@@ -125,7 +135,7 @@ function Admin() {
     setModal1(false);
     getpending();
     getapproved();
-    getpayed()
+    getpayed();
   };
 
   useEffect(() => {
@@ -182,58 +192,65 @@ function Admin() {
     getpending();
     getdeclined();
     getapproved();
-    getpayed()
+    getpayed();
   }, []);
 
   const closeall = (x) => {
+    if (x === "messages") {
+      setUseropen(false);
+      setPending(false);
+      setApproved(false);
+      setDeclined(false);
+      setPayed(false);
+      setResopen(false);
+    }
     if (x === "res") {
       setUseropen(false);
       setPending(false);
       setApproved(false);
       setDeclined(false);
-      setPayed(false)
+      setPayed(false);
+      setMessages(false);
     }
     if (x === "user") {
       setResopen(false);
       setPending(false);
       setApproved(false);
       setDeclined(false);
-      setPayed(false)
+      setPayed(false);
+      setMessages(false);
     }
 
     if (x === "app") {
       setPending(false);
       setDeclined(false);
-      setPayed(false)
+      setPayed(false);
     }
     if (x === "pen") {
       setApproved(false);
       setDeclined(false);
-      setPayed(false)
+      setPayed(false);
     }
     if (x === "dec") {
       setApproved(false);
       setPending(false);
-      setPayed(false)
+      setPayed(false);
     }
     if (x === "pay") {
       setApproved(false);
       setPending(false);
-      setDeclined(false)
+      setDeclined(false);
     }
   };
+
+  useEffect(async() => {
+    const { data, error } = await supabase
+  .from('Messages')
+  .select("*")
+  setUsermessage(data)
+   }, []);
   return (
     <div className="min-h-screen">
-      {/* <div className ={`top-60 ${modal ? 'fixed' : 'hidden'} right-14 right rounded-3xl bg-gray-200 border w-[300px] fixed h-[300px] z-20`}>
-
-<h1 onClick={()=>{setModal(!modal)}} className="absolute bottom-3 px-2 cursor-pointer rounded-3xl hover:bg-gray-300 bg-gray-400 left-6">Cancel</h1>
-<h1 onClick={()=>{deletee(post.id)}} className="
-bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-300 absolute">Delete</h1>
-
-<h1 className="text-center mt-10 text-xl" >Are you sure you want to delete this reservation?</h1>
-
-</div> */}
-
       <div
         className={`bg-black bg-opacity-50 justify-center items-center ${
           modal ? "flex" : "hidden"
@@ -356,7 +373,6 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
       </div>
 
       <section className="py-2 mt-5 mb-5">
-
         <h1 className="text-center text-gray-500">Admin Dashboard</h1>
         <h1 className="text-center text-[12px] text-gray-400">{time}</h1>
       </section>
@@ -392,7 +408,14 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
             >
               Users
             </h1>
-            <h1 className="text-sm relative cursor-pointer text-gray-700 hover:text-cyan-500">
+            <h1
+              onClick={() => {
+                setMessages(!messages), closeall("messages");
+              }}
+              className={`text-sm ${
+                messages && "text-cyan-500"
+              } relative cursor-pointer text-gray-700 hover:text-cyan-500`}
+            >
               Messages{" "}
               <span className="absolute text-red-500 text-[10px] -right-6 animate-pulse font-bold -top-1 ">
                 99+
@@ -401,6 +424,52 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           </div>
         </div>
       </section>
+     
+
+      {messages && (
+        <section className="w-full flex overflow-y-scroll overflow-hidden flex-col h-screen bg-gray-200">
+            <h1 className="text-center border-b border-white text-gray-500">Messages</h1>
+            {usermessage?.map((item, index) => (
+
+            <div key={index} className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full">
+              <div className="w-full flex  items-center h-[100px]">
+          
+
+                <img className="object-cover ml-6 mr-4 h-[80px] w-[80px] rounded-full" src="/user.png" />
+                <div className="flex w-full space-y-1  flex-col">
+                  <div>
+                    <h1 className="font-bold text-[13px]">{item.user_email}</h1>
+                  </div>
+                  <div className=" w-[205px]">
+                    <h1 className="text-gray-500 truncate  text-sm">{lastmessage(item.Message_data)}</h1>
+                  </div>
+                  <div className="flex">
+                    {item.read === false && (
+                      
+                    <TimeAgo datetime={lastsent(item.Message_data)} className="text-xs text-pink-600" />
+                    )}
+                    {item.read === false && (
+
+                      <h1 className="text-xs ml-6 text-pink-600">Unread Message</h1>
+                    )
+                    }
+                  </div>
+                </div>
+                  <div>
+                    <AiOutlineMessage className="text-[40px] text-pink-400 mr-5 mt-2" />
+                  </div>
+            
+              </div>
+            </div>
+        ))}
+            {/* <div className="flex h-full w-full">
+              <div className="w-[80px] h-full border-r border-white ">
+              <h1 className="text-center border-b border-white text-gray-500 py-2">Users</h1>
+              </div>
+            </div> */}
+        </section>
+      )}
+ 
 
       {useropen === true && (
         <div className="mt-2">
@@ -420,6 +489,7 @@ bottom-3 right-8 border rounded-3xl cursor-pointer bg-red-400 px-2 hover:bg-red-
           </div>
         </div>
       )}
+
       {resopen === true && (
         <section>
           <div className="border flex-row  bg-gray-200">
