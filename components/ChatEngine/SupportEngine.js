@@ -1,16 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 import Avatar from "./Avatar";
 import Supportwindow from './SupportWindow'
+// import { useUser } from "../../utils/useUser";
+
 function SupportEngine() {
   const [visible, setVisible] = useState(false);
   const [loadchat, setLoadchat] = useState(false);
   const ref = useRef(null);
+  // const{ signUp, user, signIn } = useUser();
+  console.log(loadchat)
+
+  // useEffect(() => {
+  //   setLoadchat(false)
+  //   setVisible(false)
+  // },[user])
 
 
   useEffect(() => {
     const handleClick = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setVisible(false);
+        setLoadchat(false)
       }
     };
 
