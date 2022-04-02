@@ -1,9 +1,7 @@
 import { stripe } from "../../utils/stripe";
 import {
   checkOut,
-  upsertProductRecord,
-  upsertPriceRecord,
-  manageSubscriptionStatusChange,
+
 } from "../../utils/useDatabase";
 
 export const config = {
@@ -52,21 +50,17 @@ const webhookHandler = async (req, res) => {
         switch (event.type) {
           case "product.created":
           case "product.updated":
-            await upsertProductRecord(event.data.object);
+
             break;
           case "price.created":
           case "price.updated":
-            await upsertPriceRecord(event.data.object);
+
             break;
           case "customer.subscription.created":
           case "customer.subscription.updated":
           case "customer.subscription.deleted":
             const subscription = event.data.object;
-            await manageSubscriptionStatusChange(
-              subscription.id,
-              subscription.customer,
-              event.type === "customer.subscription.created"
-            );
+           
             break;
           case "checkout.session.completed":
             const checkoutSession = event.data.object;
