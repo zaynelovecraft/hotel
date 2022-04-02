@@ -1,37 +1,37 @@
-export const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2
-})
+// export const formatter = new Intl.NumberFormat('en-US', {
+//   style: 'currency',
+//   currency: 'USD',
+//   minimumFractionDigits: 2
+// })
 
-export const getURL = () => {
-  const url =
-    process?.env?.URL && process.env.URL !== ''
-      ? process.env.URL
-      : process?.env?.VERCEL_URL && process.env.VERCEL_URL !== ''
-      ? process.env.VERCEL_URL
-      : 'http://localhost:3000';
-  return url.includes('http') ? url : `https://${url}`;
-};
+// export const getURL = () => {
+//   const url =
+//     process?.env?.URL && process.env.URL !== ''
+//       ? process.env.URL
+//       : process?.env?.VERCEL_URL && process.env.VERCEL_URL !== ''
+//       ? process.env.VERCEL_URL
+//       : 'http://localhost:3000';
+//   return url.includes('http') ? url : `https://${url}`;
+// };
 
-export const postData = async ({ url, token, data }) => {
-  console.log('posting,', url, token, data);
+// export const postData = async ({ url, token, data }) => {
+//   console.log('posting,', url, token, data);
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json', token }),
-    credentials: 'same-origin',
-    body: JSON.stringify(data)
-  });
+//   const res = await fetch(url, {
+//     method: 'POST',
+//     headers: new Headers({ 'Content-Type': 'application/json', token }),
+//     credentials: 'same-origin',
+//     body: JSON.stringify(data)
+//   });
 
-  if (!res.ok) {
-    console.log('Error in postData', { url, token, data, res });
+//   if (!res.ok) {
+//     console.log('Error in postData', { url, token, data, res });
 
-    throw Error(res.statusText);
-  }
+//     throw Error(res.statusText);
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
 export const toDateTime = (secs) => {
   var t = new Date('1970-01-01T00:30:00Z'); // Unix epoch start.
