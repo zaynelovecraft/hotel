@@ -336,6 +336,10 @@ function Admin() {
       setDeclined(false);
     }
   };
+  const cast = () => {
+    console.log('cast remove')
+    supabase.removeAllSubscriptions()
+  }
 
   // useEffect(async () => {
   //   const { data, error } = await supabase.from("Messages").select("*");
@@ -547,7 +551,7 @@ function Admin() {
               {usermessage?.map((item, index) => (
                 <div
                   onClick={() => {
-                    setShowusermessages(false), setmessagedata(item);
+                    setShowusermessages(false), cast(), setmessagedata(item);
                   }}
                   key={index}
                   className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"

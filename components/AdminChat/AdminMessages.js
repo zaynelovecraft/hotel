@@ -61,14 +61,17 @@ function AdminMessages({talk, end}) {
 
   useEffect(() => {
     getData();
+    const timer = setTimeout(() => {
 
-    const mySubscription = getChange();
-
-    
-    return () => {
-      console.log('unsbscribing') 
-      supabase.removeSubscription(mySubscription);
-    };
+      const mySubscription = getChange();
+  
+      
+      return () => {
+        console.log('unsbscribing') 
+        supabase.removeSubscription(mySubscription);
+      };
+    }, 250);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {

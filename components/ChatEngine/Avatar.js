@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../utils/supabase-client";
 import { useUser } from "../../utils/useUser";
-import { AiFillBell } from "@react-icons/all-files/ai/AiFillBell";
+
 
 function Avatar(props) {
 
@@ -42,7 +42,7 @@ useEffect(() => {
       > 
         <img className="rounded-full bg-cover" src="/chat.webp" />
         {
-          data === true && <div className="absolute -top-[11px] text-[25px] text-pink-500 font-bold  left-[1px]"><AiFillBell/></div>
+          data === true && <div className="absolute -top-[11px] text-[18px] text-white font-bold border bg-red-600 rounded-full px-2 left-[1px]"> 1 </div>
         }
       </div>
     </div>
