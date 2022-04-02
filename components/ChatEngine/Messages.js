@@ -11,9 +11,13 @@ function Messages({ user, loadchat }) {
 
   useEffect(() => {
       if(loadchat === true) {
-        console.log('reloading user chat from avatar click')
-        
-        setReload(!reload)
+        console.log('unsubing for new reload')
+        supabase.removeAllSubscriptions() 
+        const timer = setTimeout(() => {
+          console.log('reinitalizing sub to changes ')
+          setReload(!reload)
+        }, 250);
+        return () => clearTimeout(timer);
       }
       if(loadchat === false) {
         console.log('closing chat then removing all subscriptions for user chat')
