@@ -3,7 +3,7 @@ import { supabase } from '../../utils/supabase-client'
 
 function AdminSendMessage({talk}) {
     const [message, setMessage] = useState('')
-    console.log(talk.id)
+
 
 
     const sendMessage = async (e) => {

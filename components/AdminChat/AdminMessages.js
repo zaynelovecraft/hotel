@@ -10,7 +10,7 @@ function AdminMessages({talk, end}) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
-  console.log(data.Message_data)
+  console.log(newData)
 
 
 
@@ -29,16 +29,18 @@ function AdminMessages({talk, end}) {
     const data = await fetchData();
 
     setData(data);
-
+    console.log('getting initial data')
   };
 
   const getChange = async () => {
+    console.log('subing to changes')
     const mySubscription = supabase
       .from("Messages")
 
       .on("INSERT", (payload) => {
         if (payload.new.id === talk?.id) {
           handleNewData(payload.new);
+          console.log('insert')
         }
         // console.log(user?.id)
         // console.log(payload.new.user_id);
@@ -48,6 +50,7 @@ function AdminMessages({talk, end}) {
         // console.log(payload.new.user_id);
         if (payload.new.id === talk?.id) {
           handleNewData(payload.new);
+          console.log('update')
         }
       })
       .subscribe();
@@ -57,17 +60,20 @@ function AdminMessages({talk, end}) {
   
 
   useEffect(() => {
-    const mySubscription = getChange();
     getData();
+
+    const mySubscription = getChange();
+
     
     return () => {
+      console.log('unsbscribing') 
       supabase.removeSubscription(mySubscription);
     };
   }, []);
 
   useEffect(() => {
     // console.log("newData value", newData);
-
+    console.log('newdata')
     if (newData) {
       setData(newData.Message_data);
       handleNewData(null);

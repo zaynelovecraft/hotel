@@ -10,7 +10,7 @@ function Avatar(props) {
   const { signUp, user, signIn } = useUser();
   const [show, setShow] = useState(false);
 
-console.log(data)
+
 
 const getalert = async() => {
 

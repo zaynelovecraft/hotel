@@ -32,53 +32,70 @@ function Admin() {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRefr = useRef(null);
-  console.log(usermessage);
-  console.log(newData);
+  const [render, setRender] = useState(false);
+  console.log(messages)
+
 
   const fetchData = async () => {
     const { data, error } = await supabase.from("Messages").select("*");
 
     if (data) {
-      console.log(data);
+
       return data;
     }
   };
 
   const getData = async () => {
+    console.log('getting initial data XX')
     const data = await fetchData();
 
     setUsermessage(data);
-    console.log(usermessage);
+
   };
 
-  const getChange = async () => {
+  
 
+  const getChange = async () => {
+    console.log('subing to changes XX')
     const mySubscription = supabase
       .from("Messages")
-      .on("INSERT", (payload) => {
+      .on("*", (payload) => {
         handleNewData(payload.new);
+        console.log('update XX')
       })
-      .on("UPDATE", (payload) => {
-        console.log(payload.new);
-        handleNewData(payload.new);
-      })
+      // .on("UPDATE", (payload) => {
+      //   console.log(payload.new);
+      //   handleNewData(payload.new);
+      //   console.log('update XX')
+      // })
       .subscribe();
     return mySubscription;
   };
 
   useEffect(() => {
-    console.log('test')
+
     getData();
     const mySubscription = getChange();
 
     return () => {
+      console.log('unsubing XX')
       supabase.removeSubscription(mySubscription);
     };
-  }, []);
+  }, [render]);
+
+  useEffect(() => {
+    if (messages === true ) {
+      setRender(!render);
+    } 
+    if(messages === false) {
+      supabase.removeAllSubscriptions()
+      console.log('unsubing ALL SUBS')
+    }
+  },[messages])
 
   useEffect(() => {
     // console.log("newData value", newData);
-
+    console.log('newdata XX')
     if (newData) {
       getData();
     }
@@ -98,7 +115,7 @@ function Admin() {
   const unread = () => {
     let ammount = 0;
     for (let i = 0; i < usermessage.length; i++) {
-      console.log(usermessage[i].read);
+
       if (usermessage[i].read === false) {
         ammount++;
       }
@@ -487,8 +504,8 @@ function Admin() {
               onClick={() => {
                 setMessages(!messages),
                   setShowusermessages(true),
-                  closeall("messages"),
-                  getData()
+                  closeall("messages")
+
 
               }}
               className={`text-sm ${

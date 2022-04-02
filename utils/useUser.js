@@ -41,25 +41,25 @@ export const UserContextProvider = (props) => {
       .in('status', ['trialing', 'active'])
       .single();
 
-  useEffect(() => {
-    if (user) {
-      Promise.allSettled([getUserDetails(), getSubscription()]).then(
-        (results) => {
-          const userDetailsPromise = results[0];
-          const subscriptionPromise = results[1];
+  // useEffect(() => {
+  //   if (user) {
+  //     Promise.allSettled([getUserDetails(), getSubscription()]).then(
+  //       (results) => {
+  //         const userDetailsPromise = results[0];
+  //         const subscriptionPromise = results[1];
 
-          console.log('subscription', subscriptionPromise);
-          if (userDetailsPromise.status === 'fulfilled')
-            setUserDetails(userDetailsPromise.value.data);
+  //         console.log('subscription', subscriptionPromise);
+  //         if (userDetailsPromise.status === 'fulfilled')
+  //           setUserDetails(userDetailsPromise.value.data);
 
-          if (subscriptionPromise.status === 'fulfilled')
-            setSubscription(subscriptionPromise.value.data);
+  //         if (subscriptionPromise.status === 'fulfilled')
+  //           setSubscription(subscriptionPromise.value.data);
 
-          setUserLoaded(true);
-        }
-      );
-    }
-  }, [user]);
+  //         setUserLoaded(true);
+  //       }
+  //     );
+  //   }
+  // }, [user]);
 
   const value = {
     session,

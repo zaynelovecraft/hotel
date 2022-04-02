@@ -7,8 +7,8 @@ function Messages({ user }) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
+  console.log(newData)
 
-  console.log(data);
 
   const fetchData = async () => {
     const { data, error } = await supabase
@@ -21,12 +21,14 @@ function Messages({ user }) {
   };
 
   const getChange = async () => {
+    console.log('subing to changes')
     const mySubscription = supabase
       .from("Messages")
 
       .on("INSERT", (payload) => {
         if (payload.new.user_id === user?.id) {
           handleNewData(payload.new);
+          console.log('insert')
         }
         // console.log(user?.id)
         // console.log(payload.new.user_id);
@@ -36,6 +38,7 @@ function Messages({ user }) {
         // console.log(payload.new.user_id);
         if (payload.new.user_id === user?.id) {
           handleNewData(payload.new);
+          console.log('update')
         }
       })
       .subscribe();
@@ -43,6 +46,7 @@ function Messages({ user }) {
   };
 
   const getData = async () => {
+    console.log('getting initial data')
     const data = await fetchData();
 
     setData(data);
@@ -56,13 +60,14 @@ function Messages({ user }) {
     const mySubscription = getChange();
 
     return () => {
+      console.log('unsbscribing') 
       supabase.removeSubscription(mySubscription);
     };
   }, [user]);
 
   useEffect(() => {
     // console.log("newData value", newData);
-
+    console.log('newdata')
     if (newData) {
       setData(newData?.Message_data);
       handleNewData(null);

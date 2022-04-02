@@ -14,7 +14,7 @@ function admindashboard() {
         let {data, error} = await supabase
         .from('is_admin')
         .select('*')
-        console.log(data)
+
         if(data[0]?.admin === undefined) {
          router.replace('/signin')
         }

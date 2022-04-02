@@ -28,7 +28,7 @@ export default function Account({ session }) {
   const [payed, setPayed] = useState()
   const [viewmore, setViewmore] = useState(false)
   const inputRef = useRef(null);
-  console.log(user)
+
 
   const focus = () => {
     inputRef.current.scrollIntoView();
@@ -166,35 +166,35 @@ export default function Account({ session }) {
 
   useEffect(() => {
     isadmin();
-    getProfile();
+    // getProfile();
   }, []);
 
-  async function getProfile() {
-    try {
-      setLoading(true);
-      const user = supabase.auth.user();
+  // async function getProfile() {
+  //   try {
+  //     setLoading(true);
+  //     const user = supabase.auth.user();
 
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
+  //     let { data, error, status } = await supabase
+  //       .from("profiles")
+  //       .select(`username, website, avatar_url`)
+  //       .eq("id", user.id)
+  //       .single();
 
-      if (error && status !== 406) {
-        throw error;
-      }
+  //     if (error && status !== 406) {
+  //       throw error;
+  //     }
 
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  //     if (data) {
+  //       setUsername(data.username);
+  //       setWebsite(data.website);
+  //       setAvatarUrl(data.avatar_url);
+  //     }
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   
 
