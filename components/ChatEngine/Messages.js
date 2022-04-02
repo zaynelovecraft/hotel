@@ -3,11 +3,23 @@ import SendMessage from "./SendMessage";
 import { supabase } from "../../utils/supabase-client";
 import Message from "./Message";
 
-function Messages({ user }) {
+function Messages({ user, loadchat }) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
-  console.log(newData)
+  const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+      if(loadchat === true) {
+        console.log('reloading user chat from avatar click')
+        setReload(!reload)
+      }
+      if(loadchat === false) {
+        console.log('closing chat then removing all subscriptions for user chat')
+        supabase.removeAllSubscriptions()
+      }
+  }, [loadchat]);
+    
 
 
   const fetchData = async () => {
@@ -54,7 +66,7 @@ function Messages({ user }) {
 
   useEffect(() => {
     getData();
-  }, [user]);
+  }, [user, reload]);
 
   useEffect(() => {
     const mySubscription = getChange();
@@ -63,7 +75,7 @@ function Messages({ user }) {
       console.log('unsbscribing') 
       supabase.removeSubscription(mySubscription);
     };
-  }, [user]);
+  }, [user, reload]);
 
   useEffect(() => {
     // console.log("newData value", newData);

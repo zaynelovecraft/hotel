@@ -5,7 +5,7 @@ import Emailform from './Emailform'
 import {useUser} from '../../utils/useUser'
 import Chatengine from './Chatengine';
 
-function SupportWindow({visible}) {
+function SupportWindow({visible, loadchat}) {
   const { signUp, user, signIn } = useUser();
   const [chatuser, setChatuser] = useState(null)
   const [chat, setChat] = useState(null)
@@ -23,7 +23,7 @@ function SupportWindow({visible}) {
         visible={chatuser === null}
         // visible={visible}
       />
-      <Chatengine visible={chatuser !== null} user={user} />
+      <Chatengine loadchat={loadchat} visible={chatuser !== null} user={user} />
       {/* <Chatengine chat={chat} chatuser={chatuser} visible={chatuser !== null || chat !== null} /> */}
     </div>
     </div>

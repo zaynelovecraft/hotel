@@ -3,7 +3,9 @@ import Avatar from "./Avatar";
 import Supportwindow from './SupportWindow'
 function SupportEngine() {
   const [visible, setVisible] = useState(false);
+  const [loadchat, setLoadchat] = useState(false);
   const ref = useRef(null);
+
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -21,10 +23,10 @@ function SupportEngine() {
 
   return (
     <div ref={ref}>
-      <Avatar visible={visible}  onClick={() => setVisible(!visible)} />
+      <Avatar visible={visible}  onClick={() => {setVisible(!visible), setLoadchat(!loadchat)}} />
       
       <Supportwindow
-      
+      loadchat={loadchat}
       visible={visible} 
       
       />
