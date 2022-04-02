@@ -256,6 +256,13 @@ function Admin() {
     setPayedd(data);
   };
 
+  const run = () => {
+    getpending();
+    getdeclined();
+    getapproved();
+    getpayed(); 
+  }
+
   useEffect(() => {
     getpending();
     getdeclined();
@@ -449,7 +456,7 @@ function Admin() {
           <div className="flex justify-center">
             <h1
               onClick={() => {
-                setResopen(!resopen), closeall("res");
+                setResopen(!resopen), closeall("res"), run();
               }}
               className={`mr-4 relative  text-gray-700  cursor-pointer ${
                 resopen === true && "text-cyan-500"
