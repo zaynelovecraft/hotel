@@ -42,7 +42,7 @@ useEffect(() => {
       > 
         <img className="rounded-full bg-cover" src="/chat.webp" />
         {
-          data === true && <div className="absolute -top-[11px] text-[18px] text-white font-bold border bg-red-600 rounded-full px-2 left-[1px]"> 1 </div>
+          data === true && <div className="absolute -top-[11px] text-[10px] sm:text-[13px] sm:px-[6px] text-white font-bold border bg-red-600 rounded-full px-[5px] left-[1px]"> 1 </div>
         }
       </div>
     </div>

@@ -12,6 +12,7 @@ function Messages({ user, loadchat }) {
   useEffect(() => {
       if(loadchat === true) {
         console.log('reloading user chat from avatar click')
+        
         setReload(!reload)
       }
       if(loadchat === false) {
