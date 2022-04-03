@@ -598,6 +598,60 @@ function Admin() {
           {showusermessages && (
             <div>
               {usermessage?.map((item, index) => (
+              <div>
+                {item.read === false && (
+
+                <div
+                  onClick={() => {
+                    setShowusermessages(false), cast(), setmessagedata(item);
+                  }}
+                  key={index}
+                  className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
+                >
+                  <div className="w-full flex  items-center h-[100px]">
+                  
+                    <img
+                      className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
+                      src="/user.png"
+                    />
+                    <div className="flex w-full space-y-1 flex-col">
+                      <div className=" w-[230px] ">
+                        <h1 className="font-bold truncate text-[11px]">
+                          {item.user_email}
+                        </h1>
+                      </div>
+                      <div className=" w-[230px]">
+                        <h1 className="text-gray-500 truncate  text-sm">
+                          {lastmessage(item.Message_data)}
+
+                        </h1>
+                      </div>
+                      <div className="flex">
+                        {item.read === false && (
+                          <TimeAgo
+                            datetime={lastsent(item.Message_data)}
+                            className="text-xs text-pink-600"
+                          />
+                        )}
+                        {item.read === false && (
+                          <h1 className="text-xs ml-6 text-pink-600">
+                            Unread Message
+                          </h1>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <AiOutlineMessage className={`text-[40px] ${item.read ? 'text-gray-400' : 'text-pink-400'}  mr-5 mt-2 `}/>
+                    </div>
+                  </div>
+                </div>
+                )}
+              </div>
+              ))}
+              {usermessage?.map((item, index) => (
+                <div>
+                  {item.read === true && (
+
                 <div
                   onClick={() => {
                     setShowusermessages(false), cast(), setmessagedata(item);
@@ -640,6 +694,8 @@ function Admin() {
                       <AiOutlineMessage className={`text-[40px] ${item.read ? 'text-gray-400' : 'text-pink-400'}  mr-5 mt-2 `}/>
                     </div>
                   </div>
+                </div>
+                  )}
                 </div>
               ))}
             </div>
