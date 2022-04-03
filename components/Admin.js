@@ -37,42 +37,45 @@ function Admin() {
   const endRefr = useRef(null);
   const [render, setRender] = useState(false);
   const [pay, setPay] = useState();
-  const [reason, setReason] = useState('');
+  const [reason, setReason] = useState("");
   const [alert, setAlert] = useState(false);
   const [cancel, setCancel] = useState();
   const [note, setNote] = useState();
-  const [original, setOriginal] = useState('');
-  const [x, setX] = useState('');
-  
+  const [original, setOriginal] = useState("");
+  const [x, setX] = useState("");
+  const [help, setHelp] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+     
+      run()
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [help]);
 
 
   const fetchData = async () => {
     const { data, error } = await supabase.from("Messages").select("*");
 
     if (data) {
-
       return data;
     }
   };
 
   const getData = async () => {
-    console.log('getting initial data XX')
+    console.log("getting initial data XX");
     const data = await fetchData();
 
     setUsermessage(data);
-
   };
 
-  
-
   const getChange = async () => {
-    console.log('subing to changes XX')
+    console.log("subing to changes XX");
     const mySubscription = supabase
       .from("Messages")
       .on("*", (payload) => {
         handleNewData(payload.new);
-        console.log('update XX')
+        console.log("update XX");
       })
       // .on("UPDATE", (payload) => {
       //   console.log(payload.new);
@@ -84,29 +87,28 @@ function Admin() {
   };
 
   useEffect(() => {
-
     getData();
     const mySubscription = getChange();
 
     return () => {
-      console.log('unsubing XX')
+      console.log("unsubing XX");
       supabase.removeSubscription(mySubscription);
     };
   }, [render]);
 
   useEffect(() => {
-    if (messages === true ) {
+    if (messages === true) {
       setRender(!render);
-    } 
-    if(messages === false) {
-      supabase.removeAllSubscriptions()
-      console.log('unsubing ALL SUBS')
     }
-  },[messages])
+    if (messages === false) {
+      supabase.removeAllSubscriptions();
+      console.log("unsubing ALL SUBS");
+    }
+  }, [messages]);
 
   useEffect(() => {
     // console.log("newData value", newData);
-    console.log('newdata XX')
+    console.log("newdata XX");
     if (newData) {
       getData();
     }
@@ -126,7 +128,6 @@ function Admin() {
   const unread = () => {
     let ammount = 0;
     for (let i = 0; i < usermessage.length; i++) {
-
       if (usermessage[i].read === false) {
         ammount++;
       }
@@ -154,74 +155,62 @@ function Admin() {
       id: data[0].google_date_id,
     });
   };
- 
-  const setpayed = async() => {
 
-      if(reason === '') {
-        setAlert(true)
-      }
-
-      if(reason !== '') {
-        setModal3(false)
-        setReason('')
-        const { data, error } = await supabase
-          .from('pending_reservations')
-          .update({ status: 'payed', payment_method: reason })
-          .match({id: pay})
-       
-          
-          getapproved();
-          getpending();
-          getdeclined();
-          getpayed();
-
-      }
-
-  }
-
-  const setcancled = async() => {
-
-    if(reason === '') {
-      setAlert(true)
+  const setpayed = async () => {
+    if (reason === "") {
+      setAlert(true);
     }
-    if(reason !== '') {
-      setModal4(false)
-      setReason('')
+
+    if (reason !== "") {
+      setModal3(false);
+      setReason("");
       const { data, error } = await supabase
-          .from('pending_reservations')
-          .update({ canceled: reason, })
-          .match({id: cancel.id})
+        .from("pending_reservations")
+        .update({ status: "payed", payment_method: reason })
+        .match({ id: pay });
+
+      getapproved();
+      getpending();
+      getdeclined();
+      getpayed();
+    }
+  };
+
+  const setcancled = async () => {
+    if (reason === "") {
+      setAlert(true);
+    }
+    if (reason !== "") {
+      setModal4(false);
+      setReason("");
+      const { data, error } = await supabase
+        .from("pending_reservations")
+        .update({ canceled: reason })
+        .match({ id: cancel.id });
       // console.log(cancel.google, cancel.hotel)
       await axios.post("/api/delete-google-date", {
         hotel: cancel.hotel,
         id: cancel.google,
-      }); 
-
-      
+      });
     }
+  };
 
-
-  }
-
-  const setnote = async() => {
-    if(x === original) {
-      setAlert(true)
+  const setnote = async () => {
+    if (x === original) {
+      setAlert(true);
     }
-    if(x !== original) {
-      setModal5(false)
+    if (x !== original) {
+      setModal5(false);
       const { data, error } = await supabase
-          .from('pending_reservations')
-          .update({ canceled: original, })
-          .match({id: note}) 
-          
+        .from("pending_reservations")
+        .update({ canceled: original })
+        .match({ id: note });
     }
-
-  }
+  };
 
   useEffect(() => {
-    setAlert(false)
-  } , [reason, original])
-
+    setAlert(false);
+  }, [reason, original]);
 
   const decline = async () => {
     // const {x,y} = await supabase
@@ -244,17 +233,16 @@ function Admin() {
   };
 
   const confirmcan = (id, google, hotel) => {
-    setCancel({id, google, hotel});
+    setCancel({ id, google, hotel });
     setModal4(!modal4);
-  }
+  };
 
   const notes = (id, original) => {
     setNote(id);
     setModal5(!modal5);
     setOriginal(original);
     setX(original);
-
-  }
+  };
 
   const confirmaprov = (id) => {
     setApr(id);
@@ -264,14 +252,13 @@ function Admin() {
   const confirmpayed = (id) => {
     setPay(id);
     setModal3(!modal3);
-  }
+  };
 
   const confirmdecline = (id) => {
     setDeclinee(id);
 
     setModal2(!modal1);
   };
-
 
   const dell = async () => {
     const { data, error } = await supabase
@@ -365,7 +352,7 @@ function Admin() {
     //   const { data, error } = await supabase
     // .from('pending_reservations')
     // .select()
-    console.log('getting payed')
+    console.log("getting payed");
 
     const { data, error } = await supabase
       .from("pending_reservations")
@@ -379,8 +366,8 @@ function Admin() {
     getpending();
     getdeclined();
     getapproved();
-    getpayed(); 
-  }
+    getpayed();
+  };
 
   useEffect(() => {
     getpending();
@@ -439,9 +426,9 @@ function Admin() {
     }
   };
   const cast = () => {
-    console.log('cast remove')
-    supabase.removeAllSubscriptions()
-  }
+    console.log("cast remove");
+    supabase.removeAllSubscriptions();
+  };
 
   // useEffect(async () => {
   //   const { data, error } = await supabase.from("Messages").select("*");
@@ -579,10 +566,7 @@ function Admin() {
             <h4 className="text-lg font-bold">Confirm Payed? </h4>
             <h4
               onClick={() => {
-                setModal3(false),
-                setAlert(false),
-                setReason('')
-                
+                setModal3(false), setAlert(false), setReason("");
               }}
               className="text-lg cursor-pointer font-bold"
             >
@@ -594,39 +578,37 @@ function Admin() {
           </div>
           <form className="">
             <input
-            autoFocus
-            type="text"
-            onChange={(e) => setReason(e.target.value)}
+              autoFocus
+              type="text"
+              onChange={(e) => setReason(e.target.value)}
               value={reason}
-              placeholder='Enter payment method'
+              placeholder="Enter payment method"
               className="flex-grow w-full pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
             />
           </form>
           {alert && (
-
-          <h1 className="text-xs mt-1 text-red-500"> * Please enter a payment method</h1>
+            <h1 className="text-xs mt-1 text-red-500">
+              {" "}
+              * Please enter a payment method
+            </h1>
           )}
           <div className="mt-3 flex justify-end space-x-3">
             <button
-
               onClick={() => {
-                setModal3(false),
-                  setAlert(false),
-                  setReason('')
-
+                setModal3(false), setAlert(false), setReason("");
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
             >
               Cancel
             </button>
             <button
-            type="submit"
+              type="submit"
               onClick={() => {
                 setpayed();
               }}
               className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
             >
-              Confirm 
+              Confirm
             </button>
           </div>
         </div>
@@ -641,10 +623,7 @@ function Admin() {
             <h4 className="text-lg font-bold">Cancel Reservation? </h4>
             <h4
               onClick={() => {
-                setModal4(false),
-                setAlert(false),
-                setReason('')
-                
+                setModal4(false), setAlert(false), setReason("");
               }}
               className="text-lg cursor-pointer font-bold"
             >
@@ -652,44 +631,44 @@ function Admin() {
             </h4>
           </div>
           <div className="mt-2 mb-2 text-sm">
-            <p>This will cancel the reservation and remove the event from google calendar</p>
+            <p>
+              This will cancel the reservation and remove the event from google
+              calendar
+            </p>
           </div>
           <form className="">
             <input
-            autoFocus
-            type="text"
-            onChange={(e) => setReason(e.target.value)}
+              autoFocus
+              type="text"
+              onChange={(e) => setReason(e.target.value)}
               value={reason}
-              placeholder='cancellation notes'
+              placeholder="cancellation notes"
               className="flex-grow w-full pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
             />
           </form>
           {alert && (
-
-          <h1 className="text-xs mt-1 text-red-500"> * Please enter a description </h1>
+            <h1 className="text-xs mt-1 text-red-500">
+              {" "}
+              * Please enter a description{" "}
+            </h1>
           )}
           <div className="mt-3 flex justify-end space-x-3">
             <button
-
               onClick={() => {
-                setModal4(false),
-                  setAlert(false),
-                  setReason('')
-
+                setModal4(false), setAlert(false), setReason("");
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
             >
               Cancel
             </button>
             <button
-            type="submit"
+              type="submit"
               onClick={() => {
-                setcancled(),
-                run()
+                setcancled(), setHelp(!help);
               }}
               className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
             >
-              Confirm 
+              Confirm
             </button>
           </div>
         </div>
@@ -701,14 +680,13 @@ function Admin() {
       >
         <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
           <div className="flex justify-between items-center">
-            <h4 className="text-lg mr-5  font-bold">Edit cancellation notes </h4>
+            <h4 className="text-lg mr-5  font-bold">
+              Edit cancellation notes{" "}
+            </h4>
             <h4
               onClick={() => {
-                setModal5(false)
-                setAlert(false)
-
-             
-                
+                setModal5(false);
+                setAlert(false);
               }}
               className="text-lg -mt-3 -mr-1 cursor-pointer font-bold"
             >
@@ -720,42 +698,39 @@ function Admin() {
           </div>
           <form className="">
             <textarea
-            autoFocus
-            type="text"
-            onChange={(e) => setOriginal(e.target.value)}
+              autoFocus
+              type="text"
+              onChange={(e) => setOriginal(e.target.value)}
               defaultValue={original}
               value={original}
-              placeholder='notes'
+              placeholder="notes"
               className="flex-grow w-full h-[100px] pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
             />
           </form>
           {alert && (
-
-          <h1 className="text-xs mt-1 text-red-500"> * Please edit notes first</h1>
+            <h1 className="text-xs mt-1 text-red-500">
+              {" "}
+              * Please edit notes first
+            </h1>
           )}
           <div className="mt-3 flex justify-end space-x-3">
             <button
-
               onClick={() => {
-                setModal5(false)
-                  setAlert(false)
-
-               
-
+                setModal5(false);
+                setAlert(false);
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
             >
               Cancel
             </button>
             <button
-            type="submit"
+              type="submit"
               onClick={() => {
-                setnote(),
-                run()
+                setnote(), setHelp(!help);
               }}
               className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
             >
-              Confirm 
+              Confirm
             </button>
           </div>
         </div>
@@ -801,9 +776,7 @@ function Admin() {
               onClick={() => {
                 setMessages(!messages),
                   setShowusermessages(true),
-                  closeall("messages")
-
-
+                  closeall("messages");
               }}
               className={`text-sm ${
                 messages && "text-cyan-500"
@@ -842,103 +815,110 @@ function Admin() {
           {showusermessages && (
             <div>
               {usermessage?.map((item, index) => (
-              <div>
-                {item.read === false && (
-
-                <div
-                  onClick={() => {
-                    setShowusermessages(false), cast(), setmessagedata(item);
-                  }}
-                  key={index}
-                  className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
-                >
-                  <div className="w-full flex  items-center h-[100px]">
-                  
-                    <img
-                      className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
-                      src="/user.png"
-                    />
-                    <div className="flex w-full space-y-1 flex-col">
-                      <div className=" w-[230px] ">
-                        <h1 className="font-bold truncate text-[11px]">
-                          {item.user_email}
-                        </h1>
-                      </div>
-                      <div className=" w-[230px]">
-                        <h1 className="text-gray-500 truncate  text-sm">
-                          {lastmessage(item.Message_data)}
-
-                        </h1>
-                      </div>
-                      <div className="flex">
-                        {item.read === false && (
-                          <TimeAgo
-                            datetime={lastsent(item.Message_data)}
-                            className="text-xs text-pink-600"
+                <div>
+                  {item.read === false && (
+                    <div
+                      onClick={() => {
+                        setShowusermessages(false),
+                          cast(),
+                          setmessagedata(item);
+                      }}
+                      key={index}
+                      className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
+                    >
+                      <div className="w-full flex  items-center h-[100px]">
+                        <img
+                          className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
+                          src="/user.png"
+                        />
+                        <div className="flex w-full space-y-1 flex-col">
+                          <div className=" w-[230px] ">
+                            <h1 className="font-bold truncate text-[11px]">
+                              {item.user_email}
+                            </h1>
+                          </div>
+                          <div className=" w-[230px]">
+                            <h1 className="text-gray-500 truncate  text-sm">
+                              {lastmessage(item.Message_data)}
+                            </h1>
+                          </div>
+                          <div className="flex">
+                            {item.read === false && (
+                              <TimeAgo
+                                datetime={lastsent(item.Message_data)}
+                                className="text-xs text-pink-600"
+                              />
+                            )}
+                            {item.read === false && (
+                              <h1 className="text-xs ml-6 text-pink-600">
+                                Unread Message
+                              </h1>
+                            )}
+                          </div>
+                        </div>
+                        <div>
+                          <AiOutlineMessage
+                            className={`text-[40px] ${
+                              item.read ? "text-gray-400" : "text-pink-400"
+                            }  mr-5 mt-2 `}
                           />
-                        )}
-                        {item.read === false && (
-                          <h1 className="text-xs ml-6 text-pink-600">
-                            Unread Message
-                          </h1>
-                        )}
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <AiOutlineMessage className={`text-[40px] ${item.read ? 'text-gray-400' : 'text-pink-400'}  mr-5 mt-2 `}/>
-                    </div>
-                  </div>
+                  )}
                 </div>
-                )}
-              </div>
               ))}
               {usermessage?.map((item, index) => (
                 <div>
                   {item.read === true && (
-
-                <div
-                  onClick={() => {
-                    setShowusermessages(false), cast(), setmessagedata(item);
-                  }}
-                  key={index}
-                  className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
-                >
-                  <div className="w-full flex  items-center h-[100px]">
-                    <img
-                      className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
-                      src="/user.png"
-                    />
-                    <div className="flex w-full space-y-1 flex-col">
-                      <div className=" w-[230px] ">
-                        <h1 className="font-bold truncate text-[11px]">
-                          {item.user_email}
-                        </h1>
-                      </div>
-                      <div className=" w-[230px]">
-                        <h1 className="text-gray-500 truncate  text-sm">
-                          {lastmessage(item.Message_data)}
-
-                        </h1>
-                      </div>
-                      <div className="flex">
-                        {item.read === false && (
-                          <TimeAgo
-                            datetime={lastsent(item.Message_data)}
-                            className="text-xs text-pink-600"
+                    <div
+                      onClick={() => {
+                        setShowusermessages(false),
+                          cast(),
+                          setmessagedata(item);
+                      }}
+                      key={index}
+                      className="flex cursor-pointer hover:opacity-80 hover:bg-pink-200 active:bg-pink-300 flex-row w-full"
+                    >
+                      <div className="w-full flex  items-center h-[100px]">
+                        <img
+                          className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
+                          src="/user.png"
+                        />
+                        <div className="flex w-full space-y-1 flex-col">
+                          <div className=" w-[230px] ">
+                            <h1 className="font-bold truncate text-[11px]">
+                              {item.user_email}
+                            </h1>
+                          </div>
+                          <div className=" w-[230px]">
+                            <h1 className="text-gray-500 truncate  text-sm">
+                              {lastmessage(item.Message_data)}
+                            </h1>
+                          </div>
+                          <div className="flex">
+                            {item.read === false && (
+                              <TimeAgo
+                                datetime={lastsent(item.Message_data)}
+                                className="text-xs text-pink-600"
+                              />
+                            )}
+                            {item.read === false && (
+                              <h1 className="text-xs ml-6 text-pink-600">
+                                Unread Message
+                              </h1>
+                            )}
+                          </div>
+                        </div>
+                        <div>
+                          <AiOutlineMessage
+                            className={`text-[40px] ${
+                              item.read ? "text-gray-400" : "text-pink-400"
+                            }  mr-5 mt-2 `}
                           />
-                        )}
-                        {item.read === false && (
-                          <h1 className="text-xs ml-6 text-pink-600">
-                            Unread Message
-                          </h1>
-                        )}
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <AiOutlineMessage className={`text-[40px] ${item.read ? 'text-gray-400' : 'text-pink-400'}  mr-5 mt-2 `}/>
-                    </div>
-                  </div>
-                </div>
                   )}
                 </div>
               ))}
@@ -1052,7 +1032,6 @@ function Admin() {
                   className="absolute bottom-4 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-500 border-lime-500 rounded-lg px-[5px] py-[2px] right-[87px]"
                 >
                   <h1 className="font-semibold">Payed</h1>
-
                 </div>
                 <div className="ml-5">
                   <h1 className=" text-sm ">{index + 1}</h1>
@@ -1245,25 +1224,24 @@ function Admin() {
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 {post.canceled === null && (
-
-              <button
-                  onClick={() => {
-                    confirmcan(post.id, post.google_date_id, post.hotel_name);
-                  }}
-                  className="absolute z-1 shadow-lg bg-red-200 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
-                >
-                  <h1 className="font-semibold">Cancel Reservation</h1>
-                </button>
+                  <button
+                    onClick={() => {
+                      confirmcan(post.id, post.google_date_id, post.hotel_name);
+                    }}
+                    className="absolute z-1 shadow-lg bg-red-200 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
+                  >
+                    <h1 className="font-semibold">Cancel Reservation</h1>
+                  </button>
                 )}
                 {post.canceled !== null && (
-                 <button
-                 onClick={() => {
-                   notes(post.id, post.canceled);
-                 }}
-                 className="absolute z-1 shadow-lg bg-yellow-200 bottom-4 border cursor-pointer hover:bg-yellow-500 border-yellow-500 rounded-lg px-[5px] py-[2px] right-4"
-               >
-                 <h1 className="font-semibold">Edit Notes</h1>
-               </button> 
+                  <button
+                    onClick={() => {
+                      notes(post.id, post.canceled);
+                    }}
+                    className="absolute z-1 shadow-lg bg-yellow-200 bottom-4 border cursor-pointer hover:bg-yellow-500 border-yellow-500 rounded-lg px-[5px] py-[2px] right-4"
+                  >
+                    <h1 className="font-semibold">Edit Notes</h1>
+                  </button>
                 )}
 
                 <div className="ml-5">
@@ -1271,14 +1249,21 @@ function Admin() {
                   <h1 className="text-center -ml-5 text-sm mb-2 ">
                     RESERVATION ID {post.id}
                   </h1>
-                  <h1 className="mb-6 -ml-5 mt-4 text-sm text-center">Payment Method: {post.payment_method}</h1>
+                  <h1 className="mb-6 -ml-5 mt-4 text-sm text-center">
+                    Payment Method: {post.payment_method}
+                  </h1>
                   {post.canceled !== null && (
-<div className="mx-10">
-
-  <h1 className="text-center -mt-2 font-bold text-red-600 text-lg -ml-5">*CANCELED*</h1>
-  <h1 className="text-center -ml-5 -mt-2 text-red-600 text-[10px] underline">Cancellation Notes</h1>
-    <h1 className="text-red-600 mb-4 text-center -ml-5">{post.canceled}</h1>
-</div>
+                    <div className="mx-10">
+                      <h1 className="text-center -mt-2 font-bold text-red-600 text-lg -ml-5">
+                        *CANCELED*
+                      </h1>
+                      <h1 className="text-center -ml-5 -mt-2 text-red-600 text-[10px] underline">
+                        Cancellation Notes
+                      </h1>
+                      <h1 className="text-red-600 mb-4 text-center -ml-5">
+                        {post.canceled}
+                      </h1>
+                    </div>
                   )}
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
