@@ -23,6 +23,8 @@ function Admin() {
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
+  const [modal4, setModal4] = useState(false);
+  const [modal5, setModal5] = useState(false);
   const [del, setDel] = useState();
   const [apr, setApr] = useState();
   const [declinee, setDeclinee] = useState();
@@ -37,6 +39,12 @@ function Admin() {
   const [pay, setPay] = useState();
   const [reason, setReason] = useState('');
   const [alert, setAlert] = useState(false);
+  const [cancel, setCancel] = useState();
+  const [note, setNote] = useState();
+  const [original, setOriginal] = useState('');
+  const [x, setX] = useState('');
+  
+
 
 
   const fetchData = async () => {
@@ -170,9 +178,49 @@ function Admin() {
       }
 
   }
+
+  const setcancled = async() => {
+
+    if(reason === '') {
+      setAlert(true)
+    }
+    if(reason !== '') {
+      setModal4(false)
+      setReason('')
+      const { data, error } = await supabase
+          .from('pending_reservations')
+          .update({ canceled: reason, })
+          .match({id: cancel.id})
+      // console.log(cancel.google, cancel.hotel)
+      await axios.post("/api/delete-google-date", {
+        hotel: cancel.hotel,
+        id: cancel.google,
+      }); 
+
+      
+    }
+
+
+  }
+
+  const setnote = async() => {
+    if(x === original) {
+      setAlert(true)
+    }
+    if(x !== original) {
+      setModal5(false)
+      const { data, error } = await supabase
+          .from('pending_reservations')
+          .update({ canceled: original, })
+          .match({id: note}) 
+          
+    }
+
+  }
+
   useEffect(() => {
     setAlert(false)
-  } , [reason])
+  } , [reason, original])
 
 
   const decline = async () => {
@@ -194,6 +242,20 @@ function Admin() {
     setDel(id);
     setModal(!modal);
   };
+
+  const confirmcan = (id, google, hotel) => {
+    setCancel({id, google, hotel});
+    setModal4(!modal4);
+  }
+
+  const notes = (id, original) => {
+    setNote(id);
+    setModal5(!modal5);
+    setOriginal(original);
+    setX(original);
+
+  }
+
   const confirmaprov = (id) => {
     setApr(id);
     setModal1(!modal1);
@@ -303,6 +365,7 @@ function Admin() {
     //   const { data, error } = await supabase
     // .from('pending_reservations')
     // .select()
+    console.log('getting payed')
 
     const { data, error } = await supabase
       .from("pending_reservations")
@@ -560,6 +623,135 @@ function Admin() {
             type="submit"
               onClick={() => {
                 setpayed();
+              }}
+              className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
+            >
+              Confirm 
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`bg-black bg-opacity-50 justify-center items-center ${
+          modal4 ? "flex" : "hidden"
+        }  fixed inset-0 z-20 `}
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg font-bold">Cancel Reservation? </h4>
+            <h4
+              onClick={() => {
+                setModal4(false),
+                setAlert(false),
+                setReason('')
+                
+              }}
+              className="text-lg cursor-pointer font-bold"
+            >
+              X{" "}
+            </h4>
+          </div>
+          <div className="mt-2 mb-2 text-sm">
+            <p>This will cancel the reservation and remove the event from google calendar</p>
+          </div>
+          <form className="">
+            <input
+            autoFocus
+            type="text"
+            onChange={(e) => setReason(e.target.value)}
+              value={reason}
+              placeholder='cancellation notes'
+              className="flex-grow w-full pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
+            />
+          </form>
+          {alert && (
+
+          <h1 className="text-xs mt-1 text-red-500"> * Please enter a description </h1>
+          )}
+          <div className="mt-3 flex justify-end space-x-3">
+            <button
+
+              onClick={() => {
+                setModal4(false),
+                  setAlert(false),
+                  setReason('')
+
+              }}
+              className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
+            >
+              Cancel
+            </button>
+            <button
+            type="submit"
+              onClick={() => {
+                setcancled(),
+                run()
+              }}
+              className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
+            >
+              Confirm 
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`bg-black bg-opacity-50 justify-center items-center ${
+          modal5 ? "flex" : "hidden"
+        }  fixed inset-0 z-20 `}
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg mr-5  font-bold">Edit cancellation notes </h4>
+            <h4
+              onClick={() => {
+                setModal5(false)
+                setAlert(false)
+
+             
+                
+              }}
+              className="text-lg -mt-3 -mr-1 cursor-pointer font-bold"
+            >
+              X{" "}
+            </h4>
+          </div>
+          <div className="mt-2 mb-2 text-sm">
+            <p>This will edit the notes</p>
+          </div>
+          <form className="">
+            <textarea
+            autoFocus
+            type="text"
+            onChange={(e) => setOriginal(e.target.value)}
+              defaultValue={original}
+              value={original}
+              placeholder='notes'
+              className="flex-grow w-full h-[100px] pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
+            />
+          </form>
+          {alert && (
+
+          <h1 className="text-xs mt-1 text-red-500"> * Please edit notes first</h1>
+          )}
+          <div className="mt-3 flex justify-end space-x-3">
+            <button
+
+              onClick={() => {
+                setModal5(false)
+                  setAlert(false)
+
+               
+
+              }}
+              className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
+            >
+              Cancel
+            </button>
+            <button
+            type="submit"
+              onClick={() => {
+                setnote(),
+                run()
               }}
               className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
             >
@@ -857,7 +1049,7 @@ function Admin() {
                   onClick={() => {
                     confirmpayed(post.id);
                   }}
-                  className="absolute bottom-12 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-500 border-lime-500 rounded-lg px-[5px] py-[2px] right-4"
+                  className="absolute bottom-4 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-500 border-lime-500 rounded-lg px-[5px] py-[2px] right-[87px]"
                 >
                   <h1 className="font-semibold">Payed</h1>
 
@@ -1052,14 +1244,27 @@ function Admin() {
           {payedd.map((post, index) => (
             <div className="" key={post.id}>
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
-                {/* <button
+                {post.canceled === null && (
+
+              <button
                   onClick={() => {
-                    confirmdel(post.id);
+                    confirmcan(post.id, post.google_date_id, post.hotel_name);
                   }}
                   className="absolute z-1 shadow-lg bg-red-200 bottom-4 border cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
                 >
-                  <h1 className="font-semibold">Delete</h1>
-                </button> */}
+                  <h1 className="font-semibold">Cancel Reservation</h1>
+                </button>
+                )}
+                {post.canceled !== null && (
+                 <button
+                 onClick={() => {
+                   notes(post.id, post.canceled);
+                 }}
+                 className="absolute z-1 shadow-lg bg-yellow-200 bottom-4 border cursor-pointer hover:bg-yellow-500 border-yellow-500 rounded-lg px-[5px] py-[2px] right-4"
+               >
+                 <h1 className="font-semibold">Edit Notes</h1>
+               </button> 
+                )}
 
                 <div className="ml-5">
                   <h1 className=" text-sm">{index + 1}</h1>
@@ -1067,6 +1272,14 @@ function Admin() {
                     RESERVATION ID {post.id}
                   </h1>
                   <h1 className="mb-6 -ml-5 mt-4 text-sm text-center">Payment Method: {post.payment_method}</h1>
+                  {post.canceled !== null && (
+<div className="mx-10">
+
+  <h1 className="text-center -mt-2 font-bold text-red-600 text-lg -ml-5">*CANCELED*</h1>
+  <h1 className="text-center -ml-5 -mt-2 text-red-600 text-[10px] underline">Cancellation Notes</h1>
+    <h1 className="text-red-600 mb-4 text-center -ml-5">{post.canceled}</h1>
+</div>
+                  )}
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
                   </h1>
