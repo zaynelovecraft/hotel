@@ -20,11 +20,11 @@ export const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || '',
 //   return data || [];
 // };
 
-// export const updateUserName = async (user, name) => {
-//   await supabase
-//     .from('users')
-//     .update({
-//       full_name: name
-//     })
-//     .eq('id', user.id);
-// };
+export const updateUserName = async (user, name) => {
+  await supabase
+    .from('users')
+    .update({
+      full_name: name
+    })
+    .eq('id', user.id);
+};
