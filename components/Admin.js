@@ -517,7 +517,8 @@ function Admin() {
             <h4
               onClick={() => {
                 setModal3(false),
-                setAlert(false)
+                setAlert(false),
+                setReason('')
                 
               }}
               className="text-lg cursor-pointer font-bold"
@@ -547,7 +548,8 @@ function Admin() {
 
               onClick={() => {
                 setModal3(false),
-                  setAlert(false);
+                  setAlert(false),
+                  setReason('')
 
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
