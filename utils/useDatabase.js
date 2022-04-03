@@ -15,7 +15,7 @@ const checkOut = async (data) => {
   
   const { info, err } = await supabaseAdmin
   .from('pending_reservations')
-  .update({ status: 'Payedd' })
+  .update({ status: 'Payedd', payment_method: 'Stripe' })
   .match({ id: data.metadata.id })
   
   

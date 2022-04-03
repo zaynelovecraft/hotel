@@ -35,7 +35,8 @@ function Admin() {
   const endRefr = useRef(null);
   const [render, setRender] = useState(false);
   const [pay, setPay] = useState();
-
+  const [reason, setReason] = useState('');
+  const [alert, setAlert] = useState(false);
 
 
   const fetchData = async () => {
@@ -145,6 +146,34 @@ function Admin() {
       id: data[0].google_date_id,
     });
   };
+ 
+  const setpayed = async() => {
+
+      if(reason === '') {
+        setAlert(true)
+      }
+
+      if(reason !== '') {
+        setModal3(false)
+        setReason('')
+        const { data, error } = await supabase
+          .from('pending_reservations')
+          .update({ status: 'payed', payment_method: reason })
+          .match({id: pay})
+       
+          
+          getapproved();
+          getpending();
+          getdeclined();
+          getpayed();
+
+      }
+
+  }
+  useEffect(() => {
+    setAlert(false)
+  } , [reason])
+
 
   const decline = async () => {
     // const {x,y} = await supabase
@@ -169,6 +198,7 @@ function Admin() {
     setApr(id);
     setModal1(!modal1);
   };
+
   const confirmpayed = (id) => {
     setPay(id);
     setModal3(!modal3);
@@ -483,35 +513,55 @@ function Admin() {
       >
         <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
           <div className="flex justify-between items-center">
-            <h4 className="text-lg font-bold">Confirm Decline? </h4>
+            <h4 className="text-lg font-bold">Confirm Payed? </h4>
             <h4
               onClick={() => {
-                setModal3(false);
+                setModal3(false),
+                setAlert(false)
+                
               }}
               className="text-lg cursor-pointer font-bold"
             >
               X{" "}
             </h4>
           </div>
-          <div className="mt-2 text-sm">
-            <p>This will Decline This Reservation.</p>
+          <div className="mt-2 mb-2 text-sm">
+            <p>This will confirm the reservation has been payed</p>
           </div>
+          <form>
+            <input
+            autoFocus
+            type="text"
+            onChange={(e) => setReason(e.target.value)}
+              value={reason}
+              placeholder='Enter payment method'
+              className="flex-grow w-full placeholder-gray-500 text-black outline-none"
+            />
+          </form>
+          {alert && (
+
+          <h1 className="text-xs mt-1 text-red-500"> * Please enter a payment method</h1>
+          )}
           <div className="mt-3 flex justify-end space-x-3">
             <button
+
               onClick={() => {
-                setModal3(false);
+                setModal3(false),
+                  setAlert(false);
+
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
             >
               Cancel
             </button>
             <button
-              // onClick={() => {
-              //   decline();
-              // }}
-              className="px-3 py-1 bg-red-800 hover:bg-red-600 text-black rounded"
+            type="submit"
+              onClick={() => {
+                setpayed();
+              }}
+              className="px-3 py-1 bg-lime-700 hover:bg-lime-600 text-black rounded"
             >
-              Decline
+              Confirm 
             </button>
           </div>
         </div>
@@ -808,6 +858,7 @@ function Admin() {
                   className="absolute bottom-12 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-500 border-lime-500 rounded-lg px-[5px] py-[2px] right-4"
                 >
                   <h1 className="font-semibold">Payed</h1>
+
                 </div>
                 <div className="ml-5">
                   <h1 className=" text-sm ">{index + 1}</h1>
@@ -1013,6 +1064,7 @@ function Admin() {
                   <h1 className="text-center -ml-5 text-sm mb-2 ">
                     RESERVATION ID {post.id}
                   </h1>
+                  <h1 className="mb-6 -ml-5 mt-4 text-sm text-center">Payment Method: {post.payment_method}</h1>
                   <h1 className="text-center -ml-5 text-sm mb-2 underline">
                     User Details
                   </h1>
