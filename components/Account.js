@@ -4,17 +4,14 @@ import { RiAdminLine } from "@react-icons/all-files/ri/RiAdminLine";
 
 import { useUser } from "../utils/useUser";
 import Link from "next/link";
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import Reciept from "./ Reciept";
 
-const stripePromise = loadStripe(process.env.stripe_public_key)
+const stripePromise = loadStripe(process.env.stripe_public_key);
 
 export default function Account({ session }) {
-  const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
+
   const { signUp, user, signIn } = useUser();
   const [admin, setAdmin] = useState(false);
   const [pending, setPending] = useState(false);
@@ -25,36 +22,50 @@ export default function Account({ session }) {
   const [modal, setModal] = useState(false);
   const [del, setDel] = useState();
   const [appy, setAppy] = useState();
-  const [payed, setPayed] = useState()
-  const [viewmore, setViewmore] = useState(false)
+  const [payed, setPayed] = useState();
+  const [viewmore, setViewmore] = useState(false);
   const inputRef = useRef(null);
 
-
-  const focus = () => {
-    inputRef.current.scrollIntoView();
-    setViewmore(false)
-  };
+  // const focus = () => {
+  //   inputRef.current.scrollIntoView();
+  //   setViewmore(false);
+  // };
 
   const createCheckoutSession = async (post) => {
     // console.log(post)
-    const stripe = await stripePromise 
-    const checkoutSession = await axios.post('/api/create-checkout-session',{
+
+    const { data, error } = await supabase
+  .from('pending_reservations')
+  .select('status')
+  .match({id: post.id})
+    if(data[0].status !== "approved"){
+      getpayed();
+      getdeclined();
+      getpending();
+      getapproved(); 
+    }
+  if (data[0].status === "approved") {
+
+    const stripe = await stripePromise;
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
       price: post.total,
       email: user.email,
       name: post.hotel_name,
       description: post.nights,
       id: post.id,
-      
-   
-    })
-
+    });
+  
     const result = await stripe.redirectToCheckout({
-      sessionId: checkoutSession.data.id
-    })
+      sessionId: checkoutSession.data.id,
+    });
     if (result.error) {
-      alert(result.error.message)
+      alert(result.error.message);
     }
+ 
   }
+
+
+  };
 
   // const decline = async (post) => {
   //   // const {x,y} = await supabase
@@ -67,25 +78,25 @@ export default function Account({ session }) {
 
   // };
 
-  const delgoogledate = async() => {
+  const delgoogledate = async () => {
     const { data, error } = await supabase
-  .from('pending_reservations')
-  .select('google_date_id, hotel_name')
-  .match({id: del})
+      .from("pending_reservations")
+      .select("google_date_id, hotel_name")
+      .match({ id: del });
 
     // console.log(data[0].hotel_name)
 
-  await axios.post('/api/delete-google-date', {
-    hotel: data[0].hotel_name,
-    id: data[0].google_date_id
-  })
-  } 
+    await axios.post("/api/delete-google-date", {
+      hotel: data[0].hotel_name,
+      id: data[0].google_date_id,
+    });
+  };
   const dell = async () => {
     const { data, error } = await supabase
       .from("pending_reservations")
       .update({ status: "declined" })
       .match({ id: del });
-      delgoogledate()
+    delgoogledate();
     setModal(false);
     getdeclined();
     getpending();
@@ -121,7 +132,7 @@ export default function Account({ session }) {
     setAppy(data);
     if (data[0]?.user_id === user.id) {
       setApproved(true);
-      setPending(false)
+      setPending(false);
     }
   };
   const getpayed = async () => {
@@ -141,16 +152,14 @@ export default function Account({ session }) {
     // set pending tab open if pending post
     setPendingg(data);
     if (data[0]?.user_id === user.id) {
-      if (approved === false ) {
-
+      if (approved === false) {
         setPending(true);
       }
-
     }
   };
 
   useEffect(async () => {
-    getpayed()
+    getpayed();
     getdeclined();
     getpending();
     getapproved();
@@ -196,10 +205,8 @@ export default function Account({ session }) {
   //   }
   // }
 
-  
-
   return (
-    <div >
+    <div>
       <div ref={inputRef} className="absolute -top-10"></div>
       <div
         className={`bg-black bg-opacity-50 justify-center items-center ${
@@ -244,21 +251,26 @@ export default function Account({ session }) {
       <div className="flex flex-col items-center min-h-[500px] ">
         <div className="h-12 w-full justify-between flex items-center bg-gray-200">
           <div className="flex items-center lg:ml-[100px] flex-row-reverse">
-              <div className="ml-5"><h1 className="text-sm font-light">{user.user_metadata.name}</h1></div>
-          <div className="h-8 w-8">
-            <img className="rounded-full ml-2" src={user.user_metadata.avatar_url}></img>
-          </div>
-          </div>
-        <div className=" mr-2 ">
-              <a href="/">
-                <button
-                  className=" border border-black rounded-lg px-1 lg:mr-[100px] text-sm"
-                  onClick={() => supabase.auth.signOut()}
-                >
-                  Sign Out
-                </button>
-              </a>
+            <div className="ml-5">
+              <h1 className="text-sm font-light">{user.user_metadata.name}</h1>
             </div>
+            <div className="h-8 w-8">
+              <img
+                className="rounded-full ml-2"
+                src={user.user_metadata.avatar_url}
+              ></img>
+            </div>
+          </div>
+          <div className=" mr-2 ">
+            <a href="/">
+              <button
+                className=" border border-black rounded-lg px-1 lg:mr-[100px] text-sm"
+                onClick={() => supabase.auth.signOut()}
+              >
+                Sign Out
+              </button>
+            </a>
+          </div>
         </div>
         {payed && (
           <section className=" w-full mt-3 ">
@@ -266,7 +278,7 @@ export default function Account({ session }) {
               <div className="flex justify-around flex-wrap">
                 {/*  */}
                 {payed.map((post, index) => (
-                 <Reciept key={index} post={post}/>
+                  <Reciept key={index} post={post} />
                 ))}
 
                 {/*  */}
@@ -341,9 +353,9 @@ export default function Account({ session }) {
 
         <div>
           <section>
-              {admin === true && (
-            <div className="absolute text-sm text-black lg:top-[106px] hover:bg-cyan-200  border border-black top-[62px] bg-gray-200 lg:right-[200px]  cursor-pointer  rounded-lg px-2  right-[85px]">
-              <RiAdminLine className="absolute  top-[0px] text-[20px] text-gray-600 -left-[20px]" />
+            {admin === true && (
+              <div className="absolute text-sm text-black lg:top-[106px] hover:bg-cyan-200  border border-black top-[62px] bg-gray-200 lg:right-[200px]  cursor-pointer  rounded-lg px-2  right-[85px]">
+                <RiAdminLine className="absolute  top-[0px] text-[20px] text-gray-600 -left-[20px]" />
                 <div className=" cursor-pointer">
                   <Link href={"/admindashboard"}>
                     <a>
@@ -351,9 +363,9 @@ export default function Account({ session }) {
                     </a>
                   </Link>
                 </div>
-            </div>
-              )}
-           
+              </div>
+            )}
+
             <div className="flex justify-center">
               <h1>Reservations</h1>
             </div>
@@ -595,13 +607,15 @@ export default function Account({ session }) {
                       <h1 className="text-[10px] font-semibold">Decline </h1>
                     </div>
                     <div
-                     onClick={()=>{createCheckoutSession(post)}}
+                      onClick={() => {
+                        createCheckoutSession(post);
+                      }}
                       className="absolute top-4 text-center hover:bg-lime-400 border shadow-lg bg-lime-200 cursor-pointer border-lime-400 px-[5px] py-[2px] rounded-lg right-2 "
                     >
                       <h1 className="text-[10px] font-semibold">Pay Now</h1>
                     </div>
                     <h1 className="text-center mt-5">
-                      Hotel Name:  
+                      Hotel Name:
                       <span className="text-gray-600 text-base">
                         {" "}
                         {post.hotel_name}
