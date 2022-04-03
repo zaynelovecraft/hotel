@@ -83,9 +83,9 @@ export default function Footer() {
               &copy; 2022 Sol O Cien Adventures, All right reserved.
             </p>
           </div>
-          <div className="flex items-center align-center">
-            <a rel="noreferrer" alt="githublink" href="https://github.com/">
-              <AiOutlineGithub className="items-center text-black ml-2 w-6 h-6 justify-center text-center" />
+          <div className="flex items-center mt-2 align-center">
+            <a target="_blank" rel="noreferrer" alt="githublink" href="https://github.com/EpicDevv">
+              <AiOutlineGithub className="items-center text-black ml-2 w-[30px] h-[30px] justify-center text-center" />
             </a>
           </div>
         </div>

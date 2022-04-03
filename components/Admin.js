@@ -22,6 +22,7 @@ function Admin() {
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
   const [del, setDel] = useState();
   const [apr, setApr] = useState();
   const [declinee, setDeclinee] = useState();
@@ -33,7 +34,8 @@ function Admin() {
   const [newData, handleNewData] = useState(null);
   const endRefr = useRef(null);
   const [render, setRender] = useState(false);
-  console.log(messages)
+  const [pay, setPay] = useState();
+
 
 
   const fetchData = async () => {
@@ -167,11 +169,18 @@ function Admin() {
     setApr(id);
     setModal1(!modal1);
   };
+  const confirmpayed = (id) => {
+    setPay(id);
+    setModal3(!modal3);
+  }
+
   const confirmdecline = (id) => {
     setDeclinee(id);
 
     setModal2(!modal1);
   };
+
+
   const dell = async () => {
     const { data, error } = await supabase
       .from("pending_reservations")
@@ -467,6 +476,46 @@ function Admin() {
           </div>
         </div>
       </div>
+      <div
+        className={`bg-black bg-opacity-50 justify-center items-center ${
+          modal3 ? "flex" : "hidden"
+        }  fixed inset-0 z-20 `}
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg font-bold">Confirm Decline? </h4>
+            <h4
+              onClick={() => {
+                setModal3(false);
+              }}
+              className="text-lg cursor-pointer font-bold"
+            >
+              X{" "}
+            </h4>
+          </div>
+          <div className="mt-2 text-sm">
+            <p>This will Decline This Reservation.</p>
+          </div>
+          <div className="mt-3 flex justify-end space-x-3">
+            <button
+              onClick={() => {
+                setModal3(false);
+              }}
+              className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
+            >
+              Cancel
+            </button>
+            <button
+              // onClick={() => {
+              //   decline();
+              // }}
+              className="px-3 py-1 bg-red-800 hover:bg-red-600 text-black rounded"
+            >
+              Decline
+            </button>
+          </div>
+        </div>
+      </div>
       <div ref={endRefr} className="absolute -top-[100px] right-0"></div>
       <section className="py-2 mt-5 mb-5">
         <h1 className="text-center text-gray-500">Admin Dashboard</h1>
@@ -558,18 +607,19 @@ function Admin() {
                 >
                   <div className="w-full flex  items-center h-[100px]">
                     <img
-                      className="object-cover ml-6 mr-4 h-[80px] w-[80px] rounded-full"
+                      className="object-cover ml-4 mr-2 h-[60px] w-[60px] rounded-full"
                       src="/user.png"
                     />
-                    <div className="flex w-full space-y-1  flex-col">
-                      <div>
-                        <h1 className="font-bold text-[13px]">
+                    <div className="flex w-full space-y-1 flex-col">
+                      <div className=" w-[230px] ">
+                        <h1 className="font-bold truncate text-[11px]">
                           {item.user_email}
                         </h1>
                       </div>
-                      <div className=" w-[205px]">
+                      <div className=" w-[230px]">
                         <h1 className="text-gray-500 truncate  text-sm">
                           {lastmessage(item.Message_data)}
+
                         </h1>
                       </div>
                       <div className="flex">
@@ -587,7 +637,7 @@ function Admin() {
                       </div>
                     </div>
                     <div>
-                      <AiOutlineMessage className="text-[40px] text-pink-400 mr-5 mt-2" />
+                      <AiOutlineMessage className={`text-[40px] ${item.read ? 'text-gray-400' : 'text-pink-400'}  mr-5 mt-2 `}/>
                     </div>
                   </div>
                 </div>
@@ -694,6 +744,14 @@ function Admin() {
                   className="absolute bottom-4 border shadow-lg bg-red-200 cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
                 >
                   <h1 className="font-semibold">Decline</h1>
+                </div>
+                <div
+                  onClick={() => {
+                    confirmpayed(post.id);
+                  }}
+                  className="absolute bottom-12 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-500 border-lime-500 rounded-lg px-[5px] py-[2px] right-4"
+                >
+                  <h1 className="font-semibold">Payed</h1>
                 </div>
                 <div className="ml-5">
                   <h1 className=" text-sm ">{index + 1}</h1>

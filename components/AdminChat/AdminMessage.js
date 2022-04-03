@@ -9,7 +9,7 @@ function AdminMessage({message, talk}) {
   return (
     <div>
         <div className={`flex items-end space-x-2 relative ${isUserMessage && 'justify-end'}`}>
-            <div className={`space-x-4 p-3 max-w-[200px] lg:max-w-[300px] sm:max-w-[250px]  rounded-lg ${isUserMessage ? 'rounded-br-none bg-pink-200' : 'rounded-bl-none bg-blue-400'}`}>
+            <div className={`space-x-4 p-3 max-w-[200px] lg:max-w-[300px] sm:max-w-[250px]  rounded-lg ${isUserMessage ? 'rounded-br-none bg-yellow-300' : 'rounded-bl-none bg-gray-200'}`}>
                 <p className='break-words'>{message.text}</p>
             </div>
             <TimeAgo 
