@@ -14,6 +14,7 @@ function  Reciept({post}) {
                     key={post.id}
                     className="w-[400px] relative py-5 max-w-[400px] shadow-lg mb-5 mt-5 rounded-2xl border"
                   >
+                    {post.canceled !== null && <h1 className="text-center  text-red-600 font-bold"><span>*Canceled*</span></h1>}
                     <h1 className="text-center mb-2 text-sm font-light">Receipt</h1>
                     <h1 className="text-center text-lime-600">Status <span>Payed</span></h1>
                     <h1 className="text-center mt-5">
