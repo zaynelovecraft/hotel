@@ -252,13 +252,19 @@ export default function Account({ session }) {
         <div className="h-12 w-full justify-between flex items-center bg-gray-200">
           <div className="flex items-center lg:ml-[100px] flex-row-reverse">
             <div className="ml-5">
-              <h1 className="text-sm font-light">{user.user_metadata.name}</h1>
+              <h1 className="text-sm font-light">{user.user_metadata.name || user.email} </h1>
             </div>
             <div className="h-8 w-8">
+              {user.user_metadata.avatar_url ? (
+
               <img
                 className="rounded-full ml-2"
                 src={user.user_metadata.avatar_url}
               ></img>
+              ) : (
+                <img className="rounded-full h-[32px] w-[32px] object-cover" src="/user.png" />
+              )}
+      
             </div>
           </div>
           <div className=" mr-2 ">
