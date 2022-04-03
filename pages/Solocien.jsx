@@ -123,6 +123,7 @@ function Solocien() {
         price = price + 400;
       }
       if (days[i] == "Sun") {
+        price = price + 400;
       }
     }
 
