@@ -529,14 +529,14 @@ function Admin() {
           <div className="mt-2 mb-2 text-sm">
             <p>This will confirm the reservation has been payed</p>
           </div>
-          <form>
+          <form className="">
             <input
             autoFocus
             type="text"
             onChange={(e) => setReason(e.target.value)}
               value={reason}
               placeholder='Enter payment method'
-              className="flex-grow w-full placeholder-gray-500 text-black outline-none"
+              className="flex-grow w-full pl-2 py-1 pr-2 placeholder-gray-500 text-black outline-none"
             />
           </form>
           {alert && (
