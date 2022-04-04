@@ -11,8 +11,8 @@ import Link from "next/link";
 
 
 const navigation = [
-  { name: "About", href: "/underwork" },
-  { name: "Store", href: "/underwork" },
+  { name: "Blog", href: "/underwork" },
+  { name: "FAQ", href: "/underwork" },
   { name: "Contact", href: "/contact" },
   { name: "Terms and Conditions", href: "/underwork" },
 ];
@@ -85,7 +85,7 @@ export default function Footer() {
           </div>
           <div className="mt-2 ">
             <a target="_blank" href="https://github.com/EpicDevv">
-              <AiOutlineGithub className=" text-black w-[40px] h-[40px] " />
+              <AiOutlineGithub className=" text-black w-[30px] h-[30px] " />
             </a>
           </div>
         </div>

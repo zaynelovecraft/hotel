@@ -29,7 +29,7 @@ useEffect(() => {
 
   return (
     <div  className="z-30">
-      <div className={`transition ease-in-out bg-white py-2 shadow-lg ${hovered === true ? `opacity-100 bg-opacity-90` : `opacity-0`} fixed bottom-[37px] lg:bottom-[25px] border-cyan-500 border right-[65px] sm:right-[120px] z-30  px-5 rounded-full duration-300`}>
+      <div className={`transition ease-in-out bg-white py-2 shadow-lg ${hovered === true ? `` : `hidden`} fixed bottom-[37px] lg:bottom-[25px] border-cyan-500 border right-[65px] sm:right-[120px] z-30  px-5 rounded-full duration-300`}>
         <h2 className="text-black text-center lg:text-base z-30 text-xs">
           Welcome! <br /> How may we help you?
         </h2>
