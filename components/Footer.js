@@ -77,15 +77,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex mt-4 flex-col items-center align-middle text-center justify-center">
+        <div className="flex mt-4 items-center flex-col  ">
           <div>
             <p className=" text-center text-black">
               &copy; 2022 Sol O Cien Adventures, All right reserved.
             </p>
           </div>
-          <div className="flex items-center mt-2 align-center">
-            <a className="w-[40px] h-[40px]"  target="_blank" rel="noreferrer" alt="githublink" href="https://github.com/EpicDevv">
-              <AiOutlineGithub className="items-center text-black w-[40px] h-[40px] justify-center text-center" />
+          <div className="mt-2 ">
+            <a target="_blank" href="https://github.com/EpicDevv">
+              <AiOutlineGithub className=" text-black w-[40px] h-[40px] " />
             </a>
           </div>
         </div>
