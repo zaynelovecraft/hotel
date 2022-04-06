@@ -532,7 +532,7 @@ export default function NavBar() {
                 )}
                 {!user && (
                   <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
+                    Existing guest?{" "}
                     <Popover.Button className=""  onClick={() => (open = false)}>
 
                     <Link href="/signin">

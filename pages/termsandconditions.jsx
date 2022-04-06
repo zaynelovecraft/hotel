@@ -337,7 +337,7 @@ function termsandconditions() {
         Service constitutes acceptance of those changes.
       </h1>
 
-      <h1>
+      <h1 className="mb-6">
         <span className="font-semibold">MISCELLANEOUS PROVISIONS. </span>These
         Terms constitute the entire agreement of the parties with respect to the
         subject matter hereof and supersede all prior oral and written
