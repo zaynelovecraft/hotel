@@ -216,7 +216,7 @@ export default function NavBar() {
  </Popover.Button>
                           ))}
                         </div>
-                        <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                        {/* <div className="px-5 py-5 bg-gray-50 flex justify-center space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                           {callsToAction.map((item) => (
                             <Popover.Button className="" key={item.name} onClick={() => (open = false)}>
                             <Link href={item.href} key={item.name}>
@@ -235,7 +235,7 @@ export default function NavBar() {
                             </Link>
                             </Popover.Button> 
                           ))}
-                        </div>
+                        </div> */}
                       </div>
                     </Popover.Panel>
                   </Transition>
@@ -246,7 +246,7 @@ export default function NavBar() {
             <Link href="/underwork">
             <a
               
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              className="text-base font-medium text-black hover:text-gray-900"
             >
               Pricing
             </a>
@@ -254,9 +254,9 @@ export default function NavBar() {
             <Link href="/underwork">
             <a
               
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              className="text-base font-medium text-black hover:text-gray-900"
             >
-              Docs
+              About
             </a>
             </Link>
 
@@ -452,7 +452,7 @@ export default function NavBar() {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+              {/* <div className="grid grid-cols-2 gap-y-4 gap-x-8">
               <Popover.Button className=""  onClick={() => (open = false)}>
                 <Link href="/underwork">
                 <a
@@ -487,7 +487,7 @@ export default function NavBar() {
                   </Link>
                   </Popover.Button>
                 ))}
-              </div>
+              </div> */}
               <div className="flex flex-col text-center justify-center">
                 {user && (
                   <Popover.Button className=""  onClick={() => (open = false)}>

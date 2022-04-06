@@ -20,7 +20,7 @@ function contact() {
         ></link>
       </Head>
 
-      <div className=" flex flex-col lg:flex-row-reverse lg:justify-center lg:pb-[100px]  lg:pt-[100px] bg-gray-200">
+      <div className=" flex flex-col lg:flex-row-reverse lg:justify-center lg:pb-[100px]  lg:pt-[30px] bg-gray-200">
         <div className="lg:flex-col lg:mt-[50px] lg:w-full">
           <div className="pt-5">
             <h1

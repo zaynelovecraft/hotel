@@ -72,9 +72,8 @@ function bookings() {
     check();
   }, [user]);
 
-  const startt = startDate.toISOString().slice(0,10) + 'T22:00:00.000Z'
-  const endd = endDate.toISOString().slice(0,10) + 'T18:00:00.000Z'
-  
+  const startt = startDate.toISOString().slice(0, 10) + "T22:00:00.000Z";
+  const endd = endDate.toISOString().slice(0, 10) + "T18:00:00.000Z";
 
   const pushdetails = async () => {
     const { data, error } = await supabase.from("pending_reservations").insert([
@@ -190,7 +189,7 @@ function bookings() {
       let number = total;
       let percentToGet = 10;
       let percent = (percentToGet / 100) * number;
-      let n = Math.floor(percent)
+      let n = Math.floor(percent);
       setEarlydiscount(n);
       total = total - percent + 1;
     }
@@ -300,7 +299,7 @@ function bookings() {
     const response = await fetch("/api/hotel");
     const data = await response.json();
     if (data.length == 0) {
-      setShow(true)
+      setShow(true);
     }
 
     setData(data);
@@ -517,7 +516,7 @@ function bookings() {
           rel="stylesheet"
         ></link>
       </Head>
-      
+
       <div>
         {!show && (
           <div
@@ -949,15 +948,14 @@ function bookings() {
                   )}
                 </div>
                 <div>
-                  {earlydiscount>0 &&
+                  {earlydiscount > 0 && (
                     <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
                       (Early Bird Discount) you save{" "}
                       <span className="font-bold text-lime-600">
                         ${earlydiscount}
                       </span>
                     </h1>
-                 
-                  }
+                  )}
                 </div>
                 <div>
                   {guestamount > 0 && (

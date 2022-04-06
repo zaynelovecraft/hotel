@@ -2,6 +2,7 @@
 
 
 import Head from 'next/head'
+import { useEffect } from 'react'
 import Banner from "../components/Banner"
 import SupportEngine from "../components/ChatEngine/SupportEngine"
 
@@ -9,6 +10,7 @@ import SupportEngine from "../components/ChatEngine/SupportEngine"
 
 // h
 export default function Home() {
+ 
   
   return (
     <div className="">

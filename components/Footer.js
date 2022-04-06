@@ -14,7 +14,8 @@ const navigation = [
   { name: "Blog", href: "/underwork" },
   { name: "FAQ", href: "/underwork" },
   { name: "Contact", href: "/contact" },
-  { name: "Terms and Conditions", href: "/underwork" },
+  { name: "Terms of service", href: "/underwork" },
+  { name: "Privacy Policy ", href: "/privacypolicy" },
 ];
 
 export default function Footer() {
