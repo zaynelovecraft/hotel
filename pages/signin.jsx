@@ -7,6 +7,7 @@ import GitHub from "../components/icons/GitHub";
 import LoadingDots from "../components/ui/LoadingDots/LoadingDots";
 import { useUser } from "../utils/useUser";
 import { FcGoogle } from '@react-icons/all-files/fc/FcGoogle'
+import Consent from '../components/Consent'
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -181,8 +182,10 @@ const SignIn = () => {
             <FcGoogle className="w-[25px] h-[25px]" />
             <span className="ml-2 text-xs md:text-base">Continue with Google</span>
           </Button>
+        <Consent text='By creating a guest account,' />
         </div>
       </div>
+
     );
 
   return (

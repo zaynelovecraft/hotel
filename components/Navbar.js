@@ -55,7 +55,7 @@ const solutions = [
   {
     name: "FAQ",
     description: "frequently asked questions",
-    href: "/underwork",
+    href: "/faq",
     icon: FaQuestion,
   },
   {
@@ -452,7 +452,7 @@ export default function NavBar() {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              {/* <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
               <Popover.Button className=""  onClick={() => (open = false)}>
                 <Link href="/underwork">
                 <a
@@ -469,7 +469,7 @@ export default function NavBar() {
                   
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
-                  Docs
+                  About
                 </a>
                     </Link>
                     </Popover.Button>
@@ -487,7 +487,7 @@ export default function NavBar() {
                   </Link>
                   </Popover.Button>
                 ))}
-              </div> */}
+              </div>
               <div className="flex flex-col text-center justify-center">
                 {user && (
                   <Popover.Button className=""  onClick={() => (open = false)}>
@@ -532,7 +532,7 @@ export default function NavBar() {
                 )}
                 {!user && (
                   <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing guest?{" "}
+                    Existing Guest?{" "}
                     <Popover.Button className=""  onClick={() => (open = false)}>
 
                     <Link href="/signin">

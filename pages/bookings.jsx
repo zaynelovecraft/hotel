@@ -1028,7 +1028,7 @@ function bookings() {
               )}
             </div>
           </div>
-              <Consent />
+              <Consent text='By booking a reservation with us,'  />
         </div>
       )}
     </div>

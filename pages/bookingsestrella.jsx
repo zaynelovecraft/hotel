@@ -13,6 +13,7 @@ import { useUser } from "../utils/useUser";
 import { useRouter } from "next/router";
 import { supabase } from "../utils/supabase-client";
 import { BsCheck } from "@react-icons/all-files/bs/BsCheck";
+import Consent from "../components/Consent";
 function bookings() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -1036,6 +1037,7 @@ function bookings() {
               )}
             </div>
           </div>
+          <Consent text='By booking a reservation with us,'  />
         </div>
       )}
     </div>

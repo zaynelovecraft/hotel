@@ -9,6 +9,7 @@ import { updateUserName } from "../utils/supabase-client";
 import { useUser } from '../utils/useUser';
 ;
 import { FcGoogle } from '@react-icons/all-files/fc/FcGoogle'
+import Consent from "../components/Consent";
 
 const SignUp = () => {
   const [newUser, setNewUser] = useState(null);
@@ -137,7 +138,7 @@ const SignUp = () => {
             <FcGoogle className="w-[25px] h-[25px]" />
             <span className="ml-2 text-xs md:text-base">Continue with Google</span>
           </Button>
-        
+          <Consent text='By creating a guest account,' /> 
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const navigation = [
   { name: "Blog", href: "/underwork" },
-  { name: "FAQ", href: "/underwork" },
+  { name: "FAQ", href: "/faq" },
   { name: "Contact", href: "/contact" },
   { name: "Terms & Conditions", href: "/termsandconditions" },
   { name: "Privacy Policy ", href: "/privacypolicy" },
