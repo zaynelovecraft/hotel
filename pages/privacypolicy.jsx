@@ -2,7 +2,8 @@ import React from "react";
 
 function privacypolicy() {
   return (
-    <div className="px-10 pb-6 sm:px-20 md:px-[100px] lg:px-[160px] xl:px-[200px] bg-gray-200">
+    <div className="px-10 pb-6 sm:px-20 md:px-[100px] lg:px-[160px] xl:px-[200px] bg-gray-100">
+      
       <h1 className="text-center pt-[100px] font-semibold text-[25px] mb-12">Privacy Policy for Sol O Cien Adventures</h1>
 
       <p className="mb-6"> Last updated: April 3, 2022</p>

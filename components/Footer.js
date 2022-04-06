@@ -14,7 +14,7 @@ const navigation = [
   { name: "Blog", href: "/underwork" },
   { name: "FAQ", href: "/underwork" },
   { name: "Contact", href: "/contact" },
-  { name: "Terms of service", href: "/underwork" },
+  { name: "Terms & Conditions", href: "/termsandconditions" },
   { name: "Privacy Policy ", href: "/privacypolicy" },
 ];
 
