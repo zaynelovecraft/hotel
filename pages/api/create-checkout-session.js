@@ -19,8 +19,8 @@ export default async (req, res) => {
     payment_method_types: ["card"],
     line_items: transformedItems,
     mode: "payment",
-    success_url: `${process.env.HOST}/success`,
-    cancel_url: `${process.env.HOST}/account`,
+    success_url: `https://www.solocienadventures.com/success`,
+    cancel_url: `https://www.solocienadventures.com/account`,
     metadata: {
       
       id: id,

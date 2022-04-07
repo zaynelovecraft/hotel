@@ -49,7 +49,7 @@ const solutions = [
   {
     name: "Blog",
     description: "Join our journey and stay upto date with our life style",
-    href: "/underwork",
+    href: "/blog",
     icon: GiNewspaper,
   },
   {

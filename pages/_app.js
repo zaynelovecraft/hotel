@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 ;
 import { useRouter } from "next/router";
 import { UserContextProvider } from "../utils/useUser";
+import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

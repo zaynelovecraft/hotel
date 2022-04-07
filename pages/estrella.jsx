@@ -1092,7 +1092,7 @@ function Solocien() {
         </div>
       </div>
       <h1 className="text-center font-light text-gray-600 mb-3">
-        Your estemated price:{" "}
+        Your estimated price:{" "}
         <span className="text-lime-600 text-sm">${estemate}</span>
       </h1>
       <div className="border-gray-300 border-b mx-24 mb-6"></div>
