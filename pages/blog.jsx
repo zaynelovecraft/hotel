@@ -8,7 +8,7 @@ import { getPosts } from '../services'
 function blog({posts}) {
   return (
     <div className="bg-gray-200">
-      <h1 className="text-center py-10 font-semibold text-[30px] text-gray-500">Sol O Cien Blog</h1>
+
     <div className="container pt-10  mx-auto px-10 pb-8 ">
       <Head>
         <title>Blog</title>
