@@ -1,3 +1,4 @@
+import '../styles/globals.scss'
 import "tailwindcss/tailwind.css";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
@@ -8,7 +9,6 @@ import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import { UserContextProvider } from "../utils/useUser";
 // import '../styles/globals.scss';
-import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
