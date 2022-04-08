@@ -11,7 +11,7 @@ import Link from "next/link";
 
 
 const navigation = [
-  { name: "Blog", href: "/underwork" },
+  { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/faq" },
   { name: "Contact", href: "/contact" },
   { name: "Terms & Conditions", href: "/termsandconditions" },
