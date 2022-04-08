@@ -16,11 +16,9 @@ import {
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 import { useUser } from "../utils/useUser";
 import s from "../components/Navbar.module.css";
-
-
 
 import { useContext, useState } from "react";
 import { BiHomeHeart } from "@react-icons/all-files/bi/BiHomeHeart";
@@ -88,7 +86,7 @@ const resources = [
     name: "Events",
     description:
       "See what meet-ups and other events we might be planning near you.",
-    href: "/underwork",
+    href: "/category/events",
     icon: CalendarIcon,
   },
   {
@@ -113,10 +111,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-
   const { user, signOut } = useUser();
-
-
 
   return (
     <Popover className="sticky top-0 z-50 shadow-lg lg:bg-white bg-gray-800">
@@ -126,12 +121,11 @@ export default function NavBar() {
             <Link href="/" passHref>
               <a className="cursor-pointer">
                 <div className="relative lg:w-[60px] lg:h-[60px] w-[40px] h-[40px]">
-
-                <Image
-                src="/images/LOGO.png"
-                layout="fill"
-                objectFit="contain"
-                />
+                  <Image
+                    src="/images/LOGO.png"
+                    layout="fill"
+                    objectFit="contain"
+                  />
                 </div>
               </a>
             </Link>
@@ -155,7 +149,7 @@ export default function NavBar() {
               </Popover.Button>
             </div>
           </div>
-        
+
           <Popover.Group as="nav" className="hidden lg:flex space-x-10">
             <Popover className="relative">
               {({ open }) => (
@@ -187,33 +181,37 @@ export default function NavBar() {
                   >
                     <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                        
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-
                           {solutions.map((item) => (
- <Popover.Button className="" key={item.name}  onClick={() => (open = false)}>
-
-                            <Link className="border" key={item.name} href={item.href}>
-                            <a
+                            <Popover.Button
+                              className=""
                               key={item.name}
-                              
-                              className="-m-3 p-3 flex hover:bg-cyan-100 items-start rounded-lg "
+                              onClick={() => (open = false)}
                             >
-                              <item.icon
-                                className="flex-shrink-0 h-6 w-6 text-cyan-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base flex font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 flex text-left text-sm text-gray-500">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </a>
-                            </Link>
- </Popover.Button>
+                              <Link
+                                className="border"
+                                key={item.name}
+                                href={item.href}
+                              >
+                                <a
+                                  key={item.name}
+                                  className="-m-3 p-3 flex hover:bg-cyan-100 items-start rounded-lg "
+                                >
+                                  <item.icon
+                                    className="flex-shrink-0 h-6 w-6 text-cyan-600"
+                                    aria-hidden="true"
+                                  />
+                                  <div className="ml-4">
+                                    <p className="text-base flex font-medium text-gray-900">
+                                      {item.name}
+                                    </p>
+                                    <p className="mt-1 flex text-left text-sm text-gray-500">
+                                      {item.description}
+                                    </p>
+                                  </div>
+                                </a>
+                              </Link>
+                            </Popover.Button>
                           ))}
                         </div>
                         {/* <div className="px-5 py-5 bg-gray-50 flex justify-center space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
@@ -244,20 +242,14 @@ export default function NavBar() {
             </Popover>
 
             <Link href="/underwork">
-            <a
-              
-              className="text-base font-medium text-black hover:text-gray-900"
-            >
-              Pricing
-            </a>
+              <a className="text-base font-medium text-black hover:text-gray-900">
+                Pricing
+              </a>
             </Link>
             <Link href="/underwork">
-            <a
-              
-              className="text-base font-medium text-black hover:text-gray-900"
-            >
-              About
-            </a>
+              <a className="text-base font-medium text-black hover:text-gray-900">
+                About
+              </a>
             </Link>
 
             <Popover className="relative">
@@ -292,29 +284,30 @@ export default function NavBar() {
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           {resources.map((item) => (
-                            <Popover.Button className="" key={item.name} onClick={() => (open = false)}>
-
-                            <Link key={item.name}
-                            href={item.href} >
-                            <a
+                            <Popover.Button
+                              className=""
                               key={item.name}
-                              
-                              className="-m-3 p-3  hover:bg-cyan-100 flex items-start rounded-xl "
+                              onClick={() => (open = false)}
                             >
-                              <item.icon
-                                className="flex-shrink-0 h-6 w-6 text-cyan-600"
-                                aria-hidden="true"
-                              />
-                              <div className="ml-4">
-                                <p className="text-base flex font-medium text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mt-1 text-left text-sm text-gray-500">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </a>
-                            </Link>
+                              <Link key={item.name} href={item.href}>
+                                <a
+                                  key={item.name}
+                                  className="-m-3 p-3  hover:bg-cyan-100 flex items-start rounded-xl "
+                                >
+                                  <item.icon
+                                    className="flex-shrink-0 h-6 w-6 text-cyan-600"
+                                    aria-hidden="true"
+                                  />
+                                  <div className="ml-4">
+                                    <p className="text-base flex font-medium text-gray-900">
+                                      {item.name}
+                                    </p>
+                                    <p className="mt-1 text-left text-sm text-gray-500">
+                                      {item.description}
+                                    </p>
+                                  </div>
+                                </a>
+                              </Link>
                             </Popover.Button>
                           ))}
                         </div>
@@ -360,31 +353,26 @@ export default function NavBar() {
           </Popover.Group>
           <div className="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
             <div className="ml-3">
-              
-              
               {user && (
-                <div className="ml-1 border border-black rounded-full px-1 text-sm hover:shadow-md  " >
-
-                <Link href="/account">
-                  <a className="flex p-2 px-3 items-center" >
-                  <MdAccountCircle className="text-cyan-500 mr-1" />
-
-                    Account
+                <div className="ml-1 border border-black rounded-full px-1 text-sm hover:shadow-md  ">
+                  <Link href="/account">
+                    <a className="flex p-2 px-3 items-center">
+                      <MdAccountCircle className="text-cyan-500 mr-1" />
+                      Account
                     </a>
-                </Link>
+                  </Link>
                 </div>
               )}
             </div>
 
             <div>
               {user ? (
-                <div className="ml-3 p-2 px-3 border border-black rounded-full  text-sm hover:shadow-md " >
-
-                <Link href="/">
-                  <a  onClick={() => signOut()}>
-                    <span>Sign Out</span>
-                  </a>
-                </Link>
+                <div className="ml-3 p-2 px-3 border border-black rounded-full  text-sm hover:shadow-md ">
+                  <Link href="/">
+                    <a onClick={() => signOut()}>
+                      <span>Sign Out</span>
+                    </a>
+                  </Link>
                 </div>
               ) : (
                 <Link href="/signin">
@@ -428,24 +416,24 @@ export default function NavBar() {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   {solutions.map((item) => (
-                    <Popover.Button key={item.name}  onClick={() => (open = false)}>
-
-                    <Link key={item.name}
-                    href={item.href}>
-                    <a
+                    <Popover.Button
                       key={item.name}
-                     
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                      onClick={() => (open = false)}
                     >
-                      <item.icon
-                        className="flex-shrink-0 h-6 w-6 text-cyan-600"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-3 text-base font-medium text-gray-900">
-                        {item.name}
-                      </span>
-                    </a>
-                    </Link>
+                      <Link key={item.name} href={item.href}>
+                        <a
+                          key={item.name}
+                          className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                        >
+                          <item.icon
+                            className="flex-shrink-0 h-6 w-6 text-cyan-600"
+                            aria-hidden="true"
+                          />
+                          <span className="ml-3 text-base font-medium text-gray-900">
+                            {item.name}
+                          </span>
+                        </a>
+                      </Link>
                     </Popover.Button>
                   ))}
                 </nav>
@@ -453,96 +441,80 @@ export default function NavBar() {
             </div>
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-              <Popover.Button className=""  onClick={() => (open = false)}>
-                <Link href="/underwork">
-                <a
-                 
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </a>
-                </Link>
-                </Popover.Button>
-                <Popover.Button className=""  onClick={() => (open = false)}>
-                    <Link href="/underwork">
-                <a
-                  
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  About
-                </a>
-                    </Link>
-                    </Popover.Button>
-                {resources.map((item) => (
-                  <Popover.Button key={item.name} className=""  onClick={() => (open = false)}>
-
-                  <Link key={item.name}
-                  href={item.href}>
-                  <a
-                    key={item.name}
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    {item.name}
-                  </a>
+                <Popover.Button className="" onClick={() => (open = false)}>
+                  <Link href="/underwork">
+                    <a className="text-base font-medium text-gray-900 hover:text-gray-700">
+                      Pricing
+                    </a>
                   </Link>
+                </Popover.Button>
+                <Popover.Button className="" onClick={() => (open = false)}>
+                  <Link href="/underwork">
+                    <a className="text-base font-medium text-gray-900 hover:text-gray-700">
+                      About
+                    </a>
+                  </Link>
+                </Popover.Button>
+                {resources.map((item) => (
+                  <Popover.Button
+                    key={item.name}
+                    className=""
+                    onClick={() => (open = false)}
+                  >
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        key={item.name}
+                        className="text-base font-medium text-gray-900 hover:text-gray-700"
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
                   </Popover.Button>
                 ))}
               </div>
               <div className="flex flex-col text-center justify-center">
                 {user && (
-                  <Popover.Button className=""  onClick={() => (open = false)}>
-                    
-                  <Link  href="/account" >
-                  <a
-                  
-                    className="w-full mb-3 flex items-center pr-9 justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500"
-                  >
-                   <MdAccountCircle className="mr-2 text-black" /> 
-                    Account
-                  </a>
-                  </Link>
+                  <Popover.Button className="" onClick={() => (open = false)}>
+                    <Link href="/account">
+                      <a className="w-full mb-3 flex items-center pr-9 justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500">
+                        <MdAccountCircle className="mr-2 text-black" />
+                        Account
+                      </a>
+                    </Link>
                   </Popover.Button>
                 )}
                 {user ? (
-                  <Popover.Button className=""  onClick={() => (open = false)}>
-
-                  <Link href="/">
-                  <a
-                    onClick={() => signOut()}
-                    
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500"
-                  >
-                    Log Out
-                  </a>
-                  </Link>
+                  <Popover.Button className="" onClick={() => (open = false)}>
+                    <Link href="/">
+                      <a
+                        onClick={() => signOut()}
+                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500"
+                      >
+                        Log Out
+                      </a>
+                    </Link>
                   </Popover.Button>
                 ) : (
-                  <Popover.Button className=""  onClick={() => (open = false)}>
-
-<Link className="flex justify-center items-center border" href="/signup">
-                  <a
-                    
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-500 hover:bg-cyan-300 hover:shadow-lg"
-                  >
-                    Sign up
-                  </a>
-</Link>
+                  <Popover.Button className="" onClick={() => (open = false)}>
+                    <Link
+                      className="flex justify-center items-center border"
+                      href="/signup"
+                    >
+                      <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-500 hover:bg-cyan-300 hover:shadow-lg">
+                        Sign up
+                      </a>
+                    </Link>
                   </Popover.Button>
-
                 )}
                 {!user && (
                   <p className="mt-6 text-center text-base font-medium text-gray-500">
                     Existing Guest?{" "}
-                    <Popover.Button className=""  onClick={() => (open = false)}>
-
-                    <Link href="/signin">
-                    <a
-                      
-                      className="text-cyan-500 hover:text-black"
-                    >
-                      Sign in
-                    </a>
-                    </Link>
+                    <Popover.Button className="" onClick={() => (open = false)}>
+                      <Link href="/signin">
+                        <a className="text-cyan-500 hover:text-black">
+                          Sign in
+                        </a>
+                      </Link>
                     </Popover.Button>
                   </p>
                 )}
