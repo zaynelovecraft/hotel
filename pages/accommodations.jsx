@@ -52,7 +52,7 @@ function accommodations() {
         alt="img"
         priority
       />
-      <div className="absolute mt-1 lg:mt-0 top-1/3 w-full text-center">
+      <div className="absolute mt-1 z-20 lg:mt-0 top-1/3 w-full text-center">
         <p
           style={{ fontFamily: "Quintessential" }}
           className="text-4xl mx-1 sm:text-5xl md:text-6xl sm:mb-36 md:mb-26 lg:mb-20  font-black text-white "

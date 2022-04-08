@@ -182,7 +182,7 @@ const SignIn = () => {
             <FcGoogle className="w-[25px] h-[25px]" />
             <span className="ml-2 text-xs md:text-base">Continue with Google</span>
           </Button>
-        <Consent text='By creating a guest account,' />
+        <Consent text='By creating a account,' />
         </div>
       </div>
 
