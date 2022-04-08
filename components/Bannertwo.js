@@ -83,7 +83,7 @@ const hi = [
              </div>
              <div className="flex items-center justify-between" >
 
-             <h3 className="text-2xl ml-3 text-white mt-1">{item.title}</h3>
+             <h3 className="text-lg ml-3 text-white mt-2">{item.title}</h3>
              <button className="mr-14 text-white border mt-2 rounded-xl  px-2 shadow-lg hover:bg-cyan-300">Book Now!</button>
              </div>
             </div>

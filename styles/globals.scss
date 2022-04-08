@@ -24,6 +24,11 @@ body {
     // background-position: 50% 50%;
     // background-repeat: no-repeat;
     // background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    // 'Helvetica', sans-serif;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    @apply text-black bg-white antialiased;
   }
 }
 
@@ -81,14 +86,7 @@ html {
   font-feature-settings: 'case' 1, 'rlig' 1, 'calt' 0;
 }
 
-html,
-body {
-  font-family: 'Montserrat', sans-serif,
-  'Helvetica', sans-serif;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  @apply text-black bg-white antialiased;
-}
+
 
 body {
   position: relative;
