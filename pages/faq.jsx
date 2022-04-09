@@ -52,7 +52,7 @@ function faq() {
             <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
               <div class="w-full lg:w-1/2 px-4 ">
                 <details class="mb-4">
-                  <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer   bg-gray-200 rounded-md py-2 px-4">
                     
                   How do I request an early check-in or late check-out with the hotel?
                   </summary>
@@ -63,7 +63,7 @@ function faq() {
                   </span>
                 </details>
                 <details class="mb-4">
-                  <summary class="font-semibold bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer bg-gray-200 rounded-md py-2 px-4">
 
                   What is your policy regarding cancellations?                   </summary>
 
@@ -72,7 +72,7 @@ function faq() {
                   </span>
                 </details>
                 <details class="mb-4">
-                  <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer  bg-gray-200 rounded-md py-2 px-4">
                     
                   Will I be charged for extra guests occupying my room? 
                   </summary>
@@ -84,7 +84,7 @@ function faq() {
               </div>
               <div class="w-full lg:w-1/2 px-4 ">
                 <details class="mb-4">
-                  <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer  bg-gray-200 rounded-md py-2 px-4">
                   
                   I'm having trouble making an online reservation. Is there a toll-free number I can call for help?
                   </summary>
@@ -94,7 +94,7 @@ function faq() {
                   </span>
                 </details>
                 <details class="mb-4">
-                  <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer  bg-gray-200 rounded-md py-2 px-4">
                    
                   Do I need an account to make a reservation online? How long does it take to get an account? 
                   </summary>
@@ -105,7 +105,7 @@ function faq() {
                   </span>
                 </details>
                 <details class="mb-4">
-                  <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  <summary class="font-semibold cursor-pointer  bg-gray-200 rounded-md py-2 px-4">
                    
                   How do I indicate a special request with my reservation?
                   </summary>
