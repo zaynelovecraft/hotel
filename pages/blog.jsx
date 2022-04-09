@@ -22,7 +22,7 @@ function blog({posts}) {
           ))}
         </div>
         <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative lg:top-[133px]">
+            <div className="lg:sticky relative lg:top-[100px]">
               <PostWidget />
               <Categories />
             </div>
