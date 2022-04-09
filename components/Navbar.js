@@ -72,14 +72,14 @@ const resources = [
     name: "Help Center",
     description:
       "Get all of your questions answered in our forums or contact support.",
-    href: "/underwork",
+    href: "/contact",
     icon: SupportIcon,
   },
   {
     name: "Guides",
     description:
       "Learn how to maximize our platform to get the most out of it.",
-    href: "/underwork",
+    href: "/faq",
     icon: BookmarkAltIcon,
   },
   {
@@ -92,7 +92,7 @@ const resources = [
   {
     name: "Security",
     description: "Understand how we take your privacy seriously.",
-    href: "/underwork",
+    href: "/privacypolicy",
     icon: ShieldCheckIcon,
   },
 ];
@@ -241,12 +241,12 @@ export default function NavBar() {
               )}
             </Popover>
 
-            <Link href="/underwork">
+            <Link href="/pricing">
               <a className="text-base font-medium text-black hover:text-gray-900">
                 Pricing
               </a>
             </Link>
-            <Link href="/underwork">
+            <Link href="/about">
               <a className="text-base font-medium text-black hover:text-gray-900">
                 About
               </a>
@@ -442,14 +442,14 @@ export default function NavBar() {
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 <Popover.Button className="" onClick={() => (open = false)}>
-                  <Link href="/underwork">
+                  <Link href="/pricing">
                     <a className="text-base font-medium text-gray-900 hover:text-gray-700">
                       Pricing
                     </a>
                   </Link>
                 </Popover.Button>
                 <Popover.Button className="" onClick={() => (open = false)}>
-                  <Link href="/underwork">
+                  <Link href="/about">
                     <a className="text-base font-medium text-gray-900 hover:text-gray-700">
                       About
                     </a>
