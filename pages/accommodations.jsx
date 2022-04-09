@@ -72,7 +72,7 @@ function accommodations() {
 
       <div className='border-b w-[600px] mb-10'></div>
     </div>
-    <div className='flex overflow-scroll flex-col justify-center md:flex-row'>
+    <div className='flex overflow-hidden flex-col justify-center md:flex-row'>
 
     {hotels.map((hotel) => (
               <HotelCard key={hotel.name} hotel={hotel} />
