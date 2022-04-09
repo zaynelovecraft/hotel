@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }) {
     document.body.classList?.remove("loading");
   }, []);
 
-  
+ useEffect(() => {
+  window.scrollTo(0, 0)
+ }, []); 
 
   return (
     <div>
