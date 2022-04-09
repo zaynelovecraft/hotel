@@ -13,11 +13,11 @@ function HotelCard({hotel}) {
 
     <div className="flex md:mx-10 hover:opacity-80 hover:cursor-pointer justify-center">
       <div className="flex mt-10 overflow-hidden flex-col justify-center">
-        <div className="relative flex border border-black w-[360px] h-[300px] lg:w-[450px] lg:h-[400px] ">
-          <div style={{background: 'linear-gradient(to bottom, transparent 0%, black 300%)'}} className="absolute z-[1] w-full h-full"><h1></h1></div>
+        <div className="relative flex shadow-lg rounded-2xl  w-[360px] h-[300px] lg:w-[450px] lg:h-[400px] ">
+          <div style={{background: 'linear-gradient(to bottom, transparent 0%, black 300%)'}} className="absolute z-[1] rounded-2xl w-full h-full"><h1></h1></div>
           <Image
             src={hotel.img}
-            className=""
+            className="rounded-2xl"
             alt="img"
             layout="fill"
             objectFit="cover"

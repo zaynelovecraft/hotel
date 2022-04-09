@@ -68,7 +68,10 @@ function accommodations() {
     <div className='flex justify-center mt-6 '>
       <h1 className='text-center text-2xl mx-3 my-10  text-gray-600 leading-8'>The perfect accommodations for your holidays</h1>
     </div>
-      <div className='border-b mx-5 mb-10'></div>
+    <div className='flex justify-center mx-10'>
+
+      <div className='border-b w-[600px] mb-10'></div>
+    </div>
     <div className='flex overflow-scroll flex-col justify-center md:flex-row'>
 
     {hotels.map((hotel) => (
