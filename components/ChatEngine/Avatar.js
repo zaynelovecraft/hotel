@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../utils/supabase-client";
 import { useUser } from "../../utils/useUser";
@@ -40,7 +41,14 @@ useEffect(() => {
         onMouseLeave={() => setHovered(false)}
         className={`fixed z-30 transition ease-in ${hovered === true ? `border-yellow-300`: `border-cyan-500 `} shadow-lg border-[4px] cursor-pointer bottom-2 right-1 sm:right-4 sm:bottom-4 rounded-full hover:border-[1px] hover:border-yellow-300 sm:w-[84px] sm:h-[84px]  w-[60px] h-[60px]`}
       > 
-        <img className="rounded-full bg-cover" src="/chat.webp" />
+        {/* <img className="rounded-full bg-cover" src="/chat.webp" /> */}
+        <Image
+          layout="fill"
+          objectFit="contain"
+          src="/chat.webp"
+          alt="img"
+          className="rounded-full bg-cover"
+        />
         {
           data === true && <div className="absolute -top-[11px] text-[10px] sm:text-[13px] sm:px-[6px] text-white font-bold border bg-red-600 rounded-full px-[5px] left-[1px]"> 1 </div>
         }

@@ -1649,7 +1649,7 @@ function Solocien() {
         <div className="mx-10 flex justify-around items-center">
           <div className="relative my-4 border-4  rounded-full w-[150px] h-[150px]">
             <Image
-              src="https://solocienadventures.com/wp-content/uploads/2020/08/SOLCIEN-LOGO-blanco-232x300.png"
+              src="/images/logowhite.png"
               className="rounded-2xl justify-center"
               alt="img"
               layout="fill"
