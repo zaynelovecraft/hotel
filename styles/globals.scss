@@ -47,6 +47,16 @@ body {
     }
   }
 }
+*{
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
 
 .react-multi-carousel-list {
   & .arrow-btn{
@@ -107,6 +117,6 @@ a {
   animation-fill-mode: both;
 }
 
-.height-screen-helper {
-  height: calc(100vh - 80px);
-}
+// .height-screen-helper {
+//   height: calc(100vh - 80px);
+// }

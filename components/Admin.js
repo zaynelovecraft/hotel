@@ -21,6 +21,7 @@ function Admin() {
   const [approvedd, setApprovedd] = useState();
   const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
+  const [modal22, setModal22] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
   const [modal4, setModal4] = useState(false);
@@ -222,6 +223,7 @@ function Admin() {
       .match({ id: declinee });
     delgoogledate();
     setModal2(false);
+    setModal22(false);
     getapproved();
     getpending();
     getdeclined();
@@ -257,7 +259,12 @@ function Admin() {
   const confirmdecline = (id) => {
     setDeclinee(id);
 
-    setModal2(!modal1);
+    setModal2(!modal2);
+  };
+  const confirmdecline2 = (id) => {
+    setDeclinee(id);
+
+    setModal22(!modal22);
   };
 
   const dell = async () => {
@@ -494,7 +501,7 @@ function Admin() {
             </h4>
           </div>
           <div className="mt-2 text-sm">
-            <p>This will Approve This Reservation.</p>
+            <p>This will Approve This Reservation, and add the dates to the calendar</p>
           </div>
           <div className="mt-3 flex justify-end space-x-3">
             <button
@@ -534,12 +541,52 @@ function Admin() {
             </h4>
           </div>
           <div className="mt-2 text-sm">
-            <p>This will Decline This Reservation.</p>
+            <p>This will Decline This Reservation </p>
           </div>
           <div className="mt-3 flex justify-end space-x-3">
             <button
               onClick={() => {
                 setModal2(false);
+              }}
+              className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                decline();
+              }}
+              className="px-3 py-1 bg-red-800 hover:bg-red-600 text-black rounded"
+            >
+              Decline
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`bg-black bg-opacity-50 justify-center items-center ${
+          modal22 ? "flex" : "hidden"
+        }  fixed inset-0 z-20 `}
+      >
+        <div className="bg-gray-200 max-w-sm py-2 px-3 text-gray-800 rounded shadow-xl">
+          <div className="flex justify-between items-center">
+            <h4 className="text-lg font-bold">Confirm Decline? </h4>
+            <h4
+              onClick={() => {
+                setModal22(false);
+              }}
+              className="text-lg cursor-pointer font-bold"
+            >
+              X{" "}
+            </h4>
+          </div>
+          <div className="mt-2 text-sm">
+            <p>This will Decline This Reservation and remove the event from all calendars</p>
+          </div>
+          <div className="mt-3 flex justify-end space-x-3">
+            <button
+              onClick={() => {
+                setModal22(false);
               }}
               className="px-3 py-1  rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900"
             >
@@ -1019,7 +1066,7 @@ function Admin() {
               <div className="flex relative text-xs my-2 py-2 border-2 max-w-xl mx-auto border-gray-700 w-full flex-col">
                 <div
                   onClick={() => {
-                    confirmdecline(post.id);
+                    confirmdecline2(post.id);
                   }}
                   className="absolute bottom-4 border shadow-lg bg-red-200 cursor-pointer hover:bg-red-500 border-red-500 rounded-lg px-[5px] py-[2px] right-4"
                 >
@@ -1100,7 +1147,7 @@ function Admin() {
                   onClick={() => {
                     confirmaprov(post.id);
                   }}
-                  className="absolute z-10 bottom-4 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-[5px] py-[2px] right-[70px]"
+                  className="absolute z-10 bottom-4 border shadow-lg bg-lime-200 cursor-pointer hover:bg-lime-400 border-lime-500 rounded-lg px-[5px] py-[2px] right-[80px]"
                 >
                   <h1 className="font-semibold">Approve</h1>
                 </div>
