@@ -22,34 +22,7 @@ const hi = [
       img: '/images/condos/est3.jpeg',
       title: 'Estrella Condo'
     },
-    {
-      img: '/images/condos/gla1.webp',
-      title: 'Glamping'
-    },
-    {
-      img: '/images/condos/est65.jpeg',
-      title: 'Estrella Condo'
-    },
-    {
-      img: '/images/condos/sol62.jpeg',
-      title: 'Sol O Cien Condo'
-    },
-    {
-      img: '/images/condos/sol65.jpeg',
-      title: 'Sol O Cien Condo'
-    },
-    {
-      img: '/images/condos/sol57.jpeg',
-      title: 'Sol O Cien Condo'
-    },
-    {
-      img: '/images/condos/sol53.jpeg',
-      title: 'Sol O Cien Condo'
-    },
-    {
-      img: '/images/condos/sol40.jpeg',
-      title: 'Sol O Cien Condo'
-    },
+
   ]
 
 
@@ -69,7 +42,7 @@ const hi = [
           </div>
             </div>
         <div className="">
-          <section className=" mx-auto max-w-5xl ">
+          <section className=" mx-auto max-w-[730px] ">
             <div className="flex scrollbar-hide space-x-3 p-3 ml-2 overflow-scroll">
 
           {cardsData?.map((item, index) => (
@@ -139,7 +112,7 @@ const hi = [
             Our featured accommodations
           </p>
         </div>
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center pb-10 ">
           <div className="flex  flex-col sm:flex-row">
             <div className="flex flex-col">
               <div className="relative sm:flex sm:flex-col lg:w-[450px] sm:mr-8  rounded-full sm:w-[300px] sm:h-[300px] mb-4 w-[250px] h-[320px]">
@@ -157,7 +130,7 @@ const hi = [
                 style={{ fontFamily: "Quintessential" }}
                 className="text-1xl mb-4 sm:text-2xl px-1 font-black text-white "
               >
-                Beach Condo
+                Sol O Cien Condo
               </p>
             </div>
             
@@ -178,11 +151,11 @@ const hi = [
               style={{ fontFamily: "Quintessential" }}
               className="text-1xl mb-4 sm:text-2xl px-1 font-black text-white "
             >
-              Beach Condo
+              Estrella Sol O Cien Condo
             </p>
            </div>
           </div>
-          <div className="flex  flex-col sm:flex-row">
+          {/* <div className="flex  flex-col sm:flex-row">
               <div className="flex flex-col">
 
             <div className="relative lg:w-[450px] sm:mr-8  rounded-full mb-4 sm:w-[300px] sm:h-[300px] w-[250px] h-[320px]">
@@ -222,8 +195,8 @@ const hi = [
             >
               Beach Glamping
             </p>
-              </div>
-          </div>
+              </div> */}
+          {/* </div> */}
         </div>
       </div>
     </div>

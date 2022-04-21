@@ -5,21 +5,23 @@ module.exports = {
     defaultLocale: "en",
   },
   env: {
-    SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN,
-    SHOPIFY_STOREFRONT_ACCESSTOKEN: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
+    // SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN,
+    // SHOPIFY_STOREFRONT_ACCESSTOKEN: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
     mapbox_key:
       "pk.eyJ1IjoiemF5bmUiLCJhIjoiY2t6ZGVlN3psMnhhNTJvbXpsMWNzeWd4NCJ9.IAVrOei3t_0Kzs21XA4Gxw",
-    stripe_public_key: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-    CHATAPP_ID: "d2b8ed65-207a-43e3-b5f0-6542d162e257",
-    CHATAPP_KEY: "084302e0-aaa8-4e87-920f-f39d4881599c",
+    GRAPHCMS_TOKEN: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdjbXMtbWFpbi1wcm9kdWN0aW9uIn0.eyJ2ZXJzaW9uIjozLCJpYXQiOjE2NDkzMTkwNjUsImF1ZCI6WyJodHRwczovL2FwaS11cy13ZXN0LTIuZ3JhcGhjbXMuY29tL3YyL2NsMW9lZHNkNzJzYXowMXhrNGdwY2FqZ2ovbWFzdGVyIiwiaHR0cHM6Ly9tYW5hZ2VtZW50LW5leHQuZ3JhcGhjbXMuY29tIl0sImlzcyI6Imh0dHBzOi8vbWFuYWdlbWVudC5ncmFwaGNtcy5jb20vIiwic3ViIjoiZDQwMjljZmMtNDZjZi00MzFhLWJiYzItMTBlYTM0ODhkMTA4IiwianRpIjoiY2wxb3B6amt2MzNiZDAxeGtjOWE3YTRpciJ9.W8f1UqNnwU_mOv1rixhDlgNkHUDDs3nTZ8-pBoun3NkPZJRCeQDjCMi8gMzeVSWrgHaxEwmRNnVDHeg4KogaQlf1tf2q6KzCONezmHW9DxU6sLwMvNPBUCrk4pHukJDzhB2tOHYKyLemO9D3aCh0AeFJFc4O9HjZq3NeJD4cBO3tXck2lBueaXAVt7CQqLI7-XMbZICTp8JRro3c-KhO1DSxQe3xWH1U-J5hdi6b6En-aOLEfFKWAmbhaN3lTLo-7bRozG0Eja-1viimXeEm7-Z91WIfMxU9Izu8eoaHKTrPnSy4nkMRlaZhVNLW4AbXrvtoHcxUI3Tz_nDInOI19ywQuH-XEhry2safw6VeyP6pRA7cq7gY0Egps5I-NCW6oaKK8WP14vE4hHF9jNmF1D3UaMXzpM2CkqU2mWLHt9oUqnQ9f0gueX33fbkSpdIH1zN4x6g7el_Q985TNR3U70Hl-3hy-HXy8atXuBNB56d827CgxqmEALAQb7tZnA6N-3Vh2wHW-wKNkfhjNlUadBkaKToGJXKHw5cYPPU227Ekb6pfntKcSkUCjlmCtgRzbqFgABzOumH73AbjBNva5Zu4ZpHFoWPksmZ0qscJmoOHztSnG_HcdGorvS1Oil6NkUuGMrC5YnxM1bIdslQYNrePgH9dKEp577ZouN3Be3w',
+  
+    // stripe_public_key: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    // CHATAPP_ID: "d2b8ed65-207a-43e3-b5f0-6542d162e257",
+    // CHATAPP_KEY: "084302e0-aaa8-4e87-920f-f39d4881599c",
   },
   images: {
-    domains: [
-      "cdn.shopify.com",
-      "i5.walmartimages.com",
-      "links.papareact.com",
-      "images.unsplash.com",
-      "solocienadventures.com",
-    ],
+    // domains: [
+    //   "cdn.shopify.com",
+    //   "i5.walmartimages.com",
+    //   "links.papareact.com",
+    //   "images.unsplash.com",
+    //   "solocienadventures.com",
+    // ],
   },
 };
