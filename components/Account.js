@@ -25,6 +25,7 @@ export default function Account({ session }) {
   const [payed, setPayed] = useState();
   const [viewmore, setViewmore] = useState(false);
   const inputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   // const focus = () => {
   //   inputRef.current.scrollIntoView();
@@ -33,7 +34,7 @@ export default function Account({ session }) {
 
   const createCheckoutSession = async (post) => {
     // console.log(post)
-
+    setLoading(true)
     const { data, error } = await supabase
   .from('pending_reservations')
   .select('status')
@@ -618,7 +619,7 @@ export default function Account({ session }) {
                       }}
                       className="absolute top-4 text-center hover:bg-lime-400 border shadow-lg bg-lime-200 cursor-pointer border-lime-400 px-[5px] py-[2px] rounded-lg right-2 "
                     >
-                      <h1 className="text-[10px] font-semibold">Pay Now</h1>
+                      <h1 className={`text-[10px] ${loading && 'animate-pulse'} font-semibold`}>{loading ? 'Loading...' : 'Pay Now'}</h1>
                     </div>
                     <h1 className="text-center mt-5">
                       Hotel Name:
