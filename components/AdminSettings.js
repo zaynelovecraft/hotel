@@ -10,7 +10,7 @@ function AdminSettings() {
       <div className="mt-5">
         <Link href={'/photo-bucket'}>
           <a>
-            <h1 className="text-gray-700 text-[14px]">Upload Photos</h1>
+            <h1 className="text-black border px-4 py-1 bg-gray-300  rounded-lg text-[14px]">Upload Photos</h1>
           </a>
         </Link>
       </div>
