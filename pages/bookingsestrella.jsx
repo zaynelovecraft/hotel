@@ -40,42 +40,40 @@ function bookings() {
   const [reserved, setReserved] = useState(false);
   const inputRef = useRef(null);
   const [hotel, setHotel] = useState("Estrella Sol-O-Cien Condo");
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const [earlydiscount, setEarlydiscount] = useState(0);
 
   const { userLoaded, user, session, userDetails, subscription } = useUser();
   useEffect(() => {
-    
-
     if (!user) router.replace("/signin");
   }, [user]);
-  
+
   const focus = () => {
     inputRef.current.scrollIntoView();
   };
 
-  const check = async() => {
-
-    const {data, error} = await supabase.from('pending_reservations').select('*').match({user_id: user?.id, hotel_name: hotel})
-    for(let i =0; i < data.length; i ++) {
-
-        if(data[i]?.status === 'pending') {
-         router.replace("/account"); 
-        }
-        if(data[i]?.status === 'approved') {
-         router.replace("/account"); 
-        }
+  const check = async () => {
+    const { data, error } = await supabase
+      .from("pending_reservations")
+      .select("*")
+      .match({ user_id: user?.id, hotel_name: hotel });
+    for (let i = 0; i < data.length; i++) {
+      if (data[i]?.status === "pending") {
+        router.replace("/account");
+      }
+      if (data[i]?.status === "approved") {
+        router.replace("/account");
+      }
     }
-    
-  }
+  };
 
   useEffect(() => {
-    check()
-  },[user])
-  
-  const startt = startDate.toISOString().slice(0,10) + 'T22:00:00.000Z'
-  const endd = endDate.toISOString().slice(0,10) + 'T18:00:00.000Z'
-  
+    check();
+  }, [user]);
+
+  const startt = startDate.toISOString().slice(0, 10) + "T22:00:00.000Z";
+  const endd = endDate.toISOString().slice(0, 10) + "T18:00:00.000Z";
+
   const pushdetails = async () => {
     const { data, error } = await supabase.from("pending_reservations").insert([
       {
@@ -102,7 +100,7 @@ function bookings() {
         pet_fee: petfee,
         total: total,
         hotel_name: hotel,
-        status: 'pending',
+        status: "pending",
         early_discount: earlydiscount,
         s: startt,
         e: endd,
@@ -146,7 +144,7 @@ function bookings() {
     if (guestamount >= 9) {
       return guestamount - 8;
     }
-    return 0
+    return 0;
   })();
 
   const masstotal = () => {
@@ -187,12 +185,11 @@ function bookings() {
       total = total + 265;
     }
 
-
     if (diff >= 14) {
       let number = total;
       let percentToGet = 10;
       let percent = (percentToGet / 100) * number;
-      let n = Math.floor(percent)
+      let n = Math.floor(percent);
       setEarlydiscount(n);
       total = total - percent + 1;
     }
@@ -302,7 +299,7 @@ function bookings() {
     const response = await fetch("/api/hotel-two");
     const data = await response.json();
     if (data.length == 0) {
-      setShow(true)
+      setShow(true);
     }
     setData(data);
   }, []);
@@ -458,7 +455,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
-          setShow(true)
+          setShow(true);
         }
       } else if (startcheck == endcheck - 1) {
         const wet = data[i].start.date;
@@ -467,7 +464,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
-          setShow(true)
+          setShow(true);
         }
       } else {
         const dateRange = (start, end, range = []) => {
@@ -488,7 +485,7 @@ function bookings() {
           const added = final[x].concat("T03:24:00");
 
           datesarray.push(added);
-          setShow(true)
+          setShow(true);
         }
       }
 
@@ -518,16 +515,15 @@ function bookings() {
         ></link>
       </Head>
       {!show && (
-      <div className={`bg-black bg-opacity-50 justify-center items-center flex  fixed inset-0 z-20 `}>
-<div className="bg-gray-200 max-w-sm animate-pulse py-2 px-3 text-gray-800 rounded shadow-xl" >
-  <div className="flex justify-between items-center">
-    <h4 className="text-lg font-bold">Loading Please Wait...</h4>
-  
-  </div>
-  
-  
-</div>
-</div>  
+        <div
+          className={`bg-black bg-opacity-50 justify-center items-center flex  fixed inset-0 z-20 `}
+        >
+          <div className="bg-gray-200 max-w-sm animate-pulse py-2 px-3 text-gray-800 rounded shadow-xl">
+            <div className="flex justify-between items-center">
+              <h4 className="text-lg font-bold">Loading Please Wait...</h4>
+            </div>
+          </div>
+        </div>
       )}
 
       {reserved ? (
@@ -701,14 +697,8 @@ function bookings() {
                           <option value="4"> 4 Guest</option>
                           <option value="5"> 5 Guest</option>
                           <option value="6"> 6 Guest </option>
-                          <option value="7">
-                            {" "}
-                            7 Guest 
-                          </option>
-                          <option value="8">
-                            {" "}
-                            8 Guest 
-                          </option>
+                          <option value="7"> 7 Guest</option>
+                          <option value="8"> 8 Guest</option>
                           <option value="9">
                             {" "}
                             9 Guest - ($40 extra per night)
@@ -956,15 +946,14 @@ function bookings() {
                   )}
                 </div>
                 <div>
-                  {earlydiscount>0 &&
+                  {earlydiscount > 0 && (
                     <h1 className="text-xs leading-relaxed text-center mt-5 text-gray-600">
                       (Early Bird Discount) you save{" "}
                       <span className="font-bold text-lime-600">
                         ${earlydiscount}
                       </span>
                     </h1>
-                 
-                  }
+                  )}
                 </div>
                 <div>
                   {guestamount > 0 && (
@@ -1017,7 +1006,6 @@ function bookings() {
                   </div>
                 )}
               </div>
-              
             </section>
           </div>
           <div>
@@ -1037,7 +1025,7 @@ function bookings() {
               )}
             </div>
           </div>
-          <Consent text='By booking a reservation with us,'  />
+          <Consent text="By booking a reservation with us," />
         </div>
       )}
     </div>

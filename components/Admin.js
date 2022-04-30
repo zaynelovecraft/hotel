@@ -5,6 +5,7 @@ import axios from "axios";
 import { AiOutlineMessage } from "@react-icons/all-files/ai/AiOutlineMessage";
 import TimeAgo from "timeago-react";
 import AdminChatEngine from "./AdminChat/AdminChatEngine";
+import AdminSettings from "./AdminSettings";
 
 function Admin() {
   const [resopen, setResopen] = useState(false);
@@ -48,12 +49,10 @@ function Admin() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-     
-      run()
+      run();
     }, 500);
     return () => clearTimeout(timer);
   }, [help]);
-
 
   const fetchData = async () => {
     const { data, error } = await supabase.from("Messages").select("*");
@@ -437,10 +436,6 @@ function Admin() {
     supabase.removeAllSubscriptions();
   };
 
-  // useEffect(async () => {
-  //   const { data, error } = await supabase.from("Messages").select("*");
-  //   setUsermessage(data);
-  // }, []);
   return (
     <div className="min-h-screen">
       <div
@@ -501,7 +496,10 @@ function Admin() {
             </h4>
           </div>
           <div className="mt-2 text-sm">
-            <p>This will Approve This Reservation, and add the dates to the calendar</p>
+            <p>
+              This will Approve This Reservation, and add the dates to the
+              calendar
+            </p>
           </div>
           <div className="mt-3 flex justify-end space-x-3">
             <button
@@ -581,7 +579,10 @@ function Admin() {
             </h4>
           </div>
           <div className="mt-2 text-sm">
-            <p>This will Decline This Reservation and remove the event from all calendars</p>
+            <p>
+              This will Decline This Reservation and remove the event from all
+              calendars
+            </p>
           </div>
           <div className="mt-3 flex justify-end space-x-3">
             <button
@@ -840,6 +841,13 @@ function Admin() {
             </h1>
           </div>
         </div>
+        {resopen ||
+          useropen ||
+          (messages === false && (
+            <div>
+              <AdminSettings />
+            </div>
+          ))}
       </section>
 
       {messages && (
