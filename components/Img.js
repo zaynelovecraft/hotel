@@ -19,7 +19,7 @@ useEffect(() => {
         <div
           className={`h-[20px] ${
             sel ? "bg-green-400 bg-opacity-100" : "bg-gray-700 bg-opacity-40"
-          } absolute w-[20px] top-2 left-2 border rounded-full z-50`}
+          } absolute w-[20px] top-2 left-2 border rounded-full z-40`}
         ></div>
       )}
 
