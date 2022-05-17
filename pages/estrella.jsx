@@ -236,7 +236,7 @@ function Solocien() {
   function Modal({ children, shown, close }) {
     return shown ? (
       <div
-        className=" fixed z-20  bg-black  w-full h-screen "
+        className=" fixed z-20 pt-12 lg:pt-24 bg-black  w-full h-screen "
         onClick={() => {
           // close modal when outside of modal is clicked
           close();
@@ -909,7 +909,7 @@ function Solocien() {
         onClick={() => {
           toggleModal(!modalShown);
         }}
-        className="relative cursor-pointer  h-[500px]"
+        className="relative lg:h-[700px] cursor-pointer  h-[500px]"
       >
         <div
           style={{

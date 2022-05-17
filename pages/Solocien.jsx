@@ -233,7 +233,7 @@ function Solocien() {
   function Modal({ children, shown, close }) {
     return shown ? (
       <div
-        className=" fixed z-20  bg-black  w-full h-screen "
+        className=" fixed z-20 pt-12 lg:pt-24 bg-black  w-full h-screen "
         onClick={() => {
           // close modal when outside of modal is clicked
           close();
@@ -252,8 +252,10 @@ function Solocien() {
           >
             X
           </button>
+          
 
           {children}
+         
         </div>
       </div>
     ) : null;
@@ -298,7 +300,7 @@ function Solocien() {
             emulateTouch={true}
             useKeyboardArrows={true}
             showIndicators={false}
-            className=""
+            className="pb-10"
           >
             <div className="w-full -mt-[130px] h-screen">
               <Image
@@ -929,7 +931,7 @@ function Solocien() {
         onClick={() => {
           toggleModal(!modalShown);
         }}
-        className="relative cursor-pointer  h-[500px]"
+        className="relative cursor-pointer lg:h-[700px] h-[500px]"
       >
         <div
           style={{
