@@ -14,7 +14,7 @@ const CategoryPost = ({ posts }) => {
   return (
     <div className='bg-gray-100'>
 
-    <div className="container mx-auto px-10 pt-10 pb-8">
+    <div className="container mx-auto px-10 pt-20 lg:pt-36 pb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-8">
           {posts.map((post, index) => (
@@ -22,7 +22,7 @@ const CategoryPost = ({ posts }) => {
           ))}
         </div>
         <div className="col-span-1 lg:col-span-4">
-          <div className="relative lg:sticky lg:top-[122px]">
+          <div className="relative lg:sticky lg:top-[10px]">
             <Categories />
           </div>
         </div>

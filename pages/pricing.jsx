@@ -17,7 +17,7 @@ const pricing = () => {
         </Head>
         <h1
           style={{ fontFamily: "Quintessential" }}
-          className="text-center text-4xl font-semibold text-gray-700 pt-6 pb-6"
+          className="text-center text-4xl font-semibold text-gray-700 pt-28 pb-6"
         >
           Pricing
         </h1>

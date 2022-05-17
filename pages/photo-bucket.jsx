@@ -223,9 +223,9 @@ const PhotoBucket = () => {
         </div>
       )}
 
-      <div className="bg-black min-h-screen bg-opacity-90">
+      <div className="bg-black  min-h-screen bg-opacity-90">
         <div className="bg-black border-b rounded-b-lg border-gray-700 flex flex-col w-full">
-          <h1 className="text-white text-3xl mb-3 font-thin text-center mt-2">
+          <h1 className="text-white text-3xl mb-3 font-thin text-center mt-16 lg:mt-28">
             Upload Images{" "}
           </h1>
           <div className="flex items-center">

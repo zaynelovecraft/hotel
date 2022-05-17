@@ -20,7 +20,7 @@ import Image from "next/image";
 import { useUser } from "../utils/useUser";
 import s from "../components/Navbar.module.css";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { BiHomeHeart } from "@react-icons/all-files/bi/BiHomeHeart";
 import { AiOutlineShop } from "@react-icons/all-files/ai/AiOutlineShop";
 import { GiNewspaper } from "@react-icons/all-files/gi/GiNewspaper";
@@ -112,10 +112,62 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const { user, signOut } = useUser();
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        // if scroll down hide the navbar
+        if (show === true) {
+          setShow(false);
+          console.log(show);
+        }
+      } else {
+        // if scroll up show the navbar
+        if (show === false) {
+          setShow(true);
+          console.log(show);
+        }
+      }
+
+      // remember current page location to use in the next move
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      // cleanup function
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    if (show === false) {
+      const timer = setTimeout(() => {
+        setHidden(true);
+      }, 700);
+      return () => clearTimeout(timer);
+    } else {
+      setHidden(false)
+    }
+  }, [show]);
 
   return (
-    <Popover className="sticky top-0 z-50 shadow-lg lg:bg-white bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 lg:px-10 lg:py-3 sm:px-6">
+    <Popover
+      className={`fixed transition-opacity ease-in duration-700 ${
+        hidden && "hidden"
+      } ${
+        !show && "opacity-0"
+      } w-full top-0 z-50 shadow-lg lg:bg-white bg-gray-800 `}
+    >
+      <div className="max-w-7xl sticky mx-auto px-4 lg:px-10 lg:py-3 sm:px-6">
         <div className="flex justify-between items-center  py-1 lg:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" passHref>

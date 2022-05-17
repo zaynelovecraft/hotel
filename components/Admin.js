@@ -784,7 +784,7 @@ function Admin() {
         </div>
       </div>
       <div ref={endRefr} className="absolute -top-[100px] right-0"></div>
-      <section className="py-2 mt-5 mb-5">
+      <section className="py-2 mt-20 lg:mt-24 mb-5">
         <h1 className="text-center text-gray-500">Admin Dashboard</h1>
         <h1 className="text-center text-[12px] text-gray-400">{time}</h1>
       </section>

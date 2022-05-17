@@ -499,7 +499,8 @@ function bookings() {
   };
 
   return (
-    <div ref={inputRef}>
+    <div>
+        <div ref={inputRef} className="absolute -top-[100px] right-0"></div>
       <Head>
         <meta
           name="viewport"
@@ -552,7 +553,7 @@ function bookings() {
       ) : (
         <div>
           <section className="md:mx-10">
-            <div className="flex justify-center mt-10">
+            <div className="flex justify-center mt-20 lg:mt-36">
               <h1
                 className="text-3xl font-extralight text-gray-500"
                 style={{ fontFamily: "Quintessential" }}
@@ -576,7 +577,7 @@ function bookings() {
                   <h1 className="absolute -bottom-[35px] font-light text-gray-700 ">
                     Estrella Sol-O-Cien Condo
                   </h1>
-                  <h1 className="absolute -bottom-[30px] text-[8px] lg:text-[10px] right-0 font-extralight text-gray-700 ">
+                  <h1 className="absolute -bottom-[30px] text-[8px] lg:text-[10px] lg:-right-10 right-0 font-extralight text-gray-700 ">
                     -Baja California, Mexico
                   </h1>
                   <p className="absolute -bottom-[50px] text-gray-500 text-[11px] mt-2">

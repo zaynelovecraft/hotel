@@ -11,7 +11,7 @@ import { getPosts } from "../services";
 function blog({ posts }) {
   return (
     <div className="bg-gray-200">
-      <div className="container pt-10  mx-auto px-10 pb-8 ">
+      <div className="container pt-20 lg:pt-36  mx-auto px-10 pb-8 ">
         <Head>
           <title>Blog</title>
           <link rel="icon" href="/favicon.ico"></link>
@@ -24,7 +24,7 @@ function blog({ posts }) {
             ))}
           </div>
           <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative lg:top-[100px]">
+            <div className="lg:sticky relative lg:top-[10px]">
               <PostWidget />
               <Categories />
             </div>

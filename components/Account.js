@@ -250,6 +250,7 @@ export default function Account({ session }) {
         </div>
       </div>
       <div className="flex flex-col items-center min-h-[500px] ">
+        <div className="h-[50px] lg:h-[93px] w-full bg-gray-200"></div>
         <div className="h-12 w-full justify-between flex items-center bg-gray-200">
           <div className="flex items-center lg:ml-[100px] flex-row-reverse">
             <div className="ml-5">

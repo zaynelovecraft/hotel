@@ -502,7 +502,8 @@ function bookings() {
   };
 
   return (
-    <div ref={inputRef}>
+    <div >
+      <div ref={inputRef} className="absolute -top-[100px] right-0"></div>
       <Head>
         <meta
           name="viewport"
@@ -557,7 +558,7 @@ function bookings() {
       ) : (
         <div>
           <section className="md:mx-10">
-            <div className="flex justify-center mt-10">
+            <div className="flex justify-center mt-20 lg:mt-36">
               <h1
                 className="text-3xl font-extralight text-gray-500"
                 style={{ fontFamily: "Quintessential" }}
