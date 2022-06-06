@@ -18,6 +18,7 @@ module.exports = {
       "2nkg1rddnrb7ilu2kvq17gega4@group.calendar.google.com",
     NEXT_PUBLIC_GRAPHCMS_ENDPOINT:
       "https://api-us-west-2.graphcms.com/v2/cl1oedsd72saz01xk4gpcajgj/master",
+    TWILIO_ACCOUNT_SID: "AC5daae473cede6431ace973ecb88138c7",
   },
   images: {},
 };
