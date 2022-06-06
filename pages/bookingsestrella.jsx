@@ -108,6 +108,24 @@ function bookings() {
     ]);
   };
 
+  const sendMessage = async () => {
+    const res = await fetch('/api/sendMessage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ phone: "5628322222", message: hotel + " " + "Start Date: " + startDate.toDateString() + " " + "End Date: " + endDate.toDateString() + " " + "Total$: " + total + " " + "Guest Name: " + name + " " + "Guest Phone: " + phone + " " + "Guest Email: " + email }),
+    });
+    const apiResponse = await res.json();
+
+    if (apiResponse.success) {
+      console.log('message sent')
+    } else {
+      console.log('error')
+    }
+
+  }
+
   const contactForm = async () => {
     event.preventDefault();
     setLoading(true);
@@ -116,7 +134,7 @@ function bookings() {
       setFill(true);
     } else {
       event.preventDefault();
-
+      sendMessage();
       pushdetails();
       setReserved(true);
       focus();
