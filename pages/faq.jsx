@@ -59,7 +59,7 @@ function faq() {
 
                   <span className="">
                 
-                  Since our policies regarding early check-in (generally before 3:00 pm) or late checkout (generally after 11:00 pm) vary by other guest reservations, please call the us directly prior to your arrival to make any necessary arrangements. Direct hotel phone numbers can be found on the contact page or message us through the messaging center.
+                  Since our policies regarding early check-in (generally before 3:00 pm) or late checkout (generally after 11:00 am) vary by other guest reservations, please call the us directly prior to your arrival to make any necessary arrangements. Direct hotel phone numbers can be found on the contact page or message us through the messaging center.
                   </span>
                 </details>
                 <details class="mb-4">
