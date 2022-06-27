@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-function Img({url, show, child }) {
+function Img({url, show, child, loading }) {
   const [sel, setSel] = useState(false);
 
 useEffect(() => {
@@ -11,7 +11,9 @@ useEffect(() => {
   return (
     <div
       onClick={() => {
+        if(loading === true) return
         setSel(!sel);
+        
       }}
       className="relative w-[360px] cursor-pointer m-1 border-gray-700  border-[1px] h-[300px] rounded-lg"
     >
