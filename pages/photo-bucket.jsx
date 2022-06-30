@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase-client";
 import { AiFillFolderOpen } from "@react-icons/all-files/ai/AiFillFolderOpen";
+import { RiDeleteBack2Fill } from "@react-icons/all-files/ri/RiDeleteBack2Fill";
 import Img from "../components/Img";
 import { useRouter } from "next/router";
 
@@ -27,8 +28,10 @@ const PhotoBucket = () => {
   const [child, setChild] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [newAlbum, setNewAlbum] = useState([]);
-  const [selectedAlbum, setSelectedAlbum] = useState('')
-  const [savedImgs, setSavedImgs] = useState([])
+  const [selectedAlbum, setSelectedAlbum] = useState("");
+  const [savedImgs, setSavedImgs] = useState([]);
+  const [modal2, setModal2] = useState(false);
+  const [albumToDelete, setAlbumToDelete] = useState("");
 
   const isadmin = async () => {
     let { data, error } = await supabase.from("is_admin").select("*");
@@ -52,29 +55,30 @@ const PhotoBucket = () => {
 
     setLoading(true);
     setLoadingg(true);
-    setUrls([])
+    setUrls([]);
     setNewimg([]);
-    const useSaved = savedImgs.some(element => {
+    const useSaved = savedImgs.some((element) => {
       if (element[selectedAlbum]) {
-        setUrls(element[selectedAlbum])
+        setUrls(element[selectedAlbum]);
         return true;
       }
-    
+
       return false;
     });
     if (useSaved) {
       setLoading(false);
       setLoadingg(false);
-      return
-    } 
+      return;
+    }
 
     loader.unshift("getting image paths from DB...");
-    const { data, error } = await supabase.storage.from("avatars").list(selectedAlbum, {
-      limit: 1000,
-      sortBy: { column: "created_at", order: "desc" },
-    });
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .list(selectedAlbum, {
+        limit: 1000,
+        sortBy: { column: "created_at", order: "desc" },
+      });
     namdata.push(data);
-    
 
     loader.unshift("image paths retrieved");
 
@@ -84,7 +88,7 @@ const PhotoBucket = () => {
       setMessage("Downloading image " + i + " of " + y + "...");
       const { data, error } = await supabase.storage
         .from("avatars")
-        .download(selectedAlbum+"/"+namdata[0][i].name);
+        .download(selectedAlbum + "/" + namdata[0][i].name);
 
       const url = URL.createObjectURL(data);
 
@@ -96,26 +100,21 @@ const PhotoBucket = () => {
       urldata.push(xx);
 
       setUrls(urldata);
-      
     }
-    
-    const isFound = savedImgs.some(element => {
+
+    const isFound = savedImgs.some((element) => {
       if (element[selectedAlbum]) {
         return true;
       }
-    
+
       return false;
     });
     if (isFound) {
-      
     } else {
       savedImgs.push({
-        [selectedAlbum]: urldata
-      })
+        [selectedAlbum]: urldata,
+      });
     }
-
-
-    
 
     loader.unshift("Downloading image " + y + " of " + y + "...");
     loader.unshift("Images loaded");
@@ -126,8 +125,8 @@ const PhotoBucket = () => {
   };
 
   useEffect(() => {
-    if(selectedAlbum!==''){
-      getdetails()
+    if (selectedAlbum !== "") {
+      getdetails();
     }
   }, [selectedAlbum]);
   useEffect(() => {
@@ -136,10 +135,10 @@ const PhotoBucket = () => {
       setAlbums(data);
     };
     getAlbums();
-  }, [modal1]);
+  }, [modal1,]);
 
   const imgtoupload = (event) => {
-    change()
+    change();
     setShow(false);
     setSelected([]);
     let names = [];
@@ -183,10 +182,12 @@ const PhotoBucket = () => {
       loader.unshift("Downloading uploaded images from the Db...");
       // test
       let y = uploaded.length;
-      const { data, error } = await supabase.storage.from("avatars").list(selectedAlbum, {
-        limit: y,
-        sortBy: { column: "created_at", order: "desc" },
-      });
+      const { data, error } = await supabase.storage
+        .from("avatars")
+        .list(selectedAlbum, {
+          limit: y,
+          sortBy: { column: "created_at", order: "desc" },
+        });
       // console.log(data);
       namdata.push(data);
       // console.log(namdata);
@@ -195,8 +196,8 @@ const PhotoBucket = () => {
       for (let i = 0; i < namdata[0].length; i++) {
         const { data, error } = await supabase.storage
           .from("avatars")
-          .download(selectedAlbum+"/"+namdata[0][i].name);
-        setMessage1(`loading image ${i+1} of ${x}...`);
+          .download(selectedAlbum + "/" + namdata[0][i].name);
+        setMessage1(`loading image ${i + 1} of ${x}...`);
 
         const url = URL.createObjectURL(data);
 
@@ -206,14 +207,14 @@ const PhotoBucket = () => {
         };
 
         urldata.push(xx);
-        
       }
-      savedImgs.some(element => {
+      savedImgs.some((element) => {
         if (element[selectedAlbum]) {
-          for(let i=0; i<urldata.length;i++){
-            element[selectedAlbum].unshift(urldata[i])
+          for (let i = 0; i < urldata.length; i++) {
+            element[selectedAlbum].unshift(urldata[i]);
           }
-         }});
+        }
+      });
       // let xx = {
       //   name: namdata[0][i].name,
       //   url: url,
@@ -227,11 +228,9 @@ const PhotoBucket = () => {
 
       // urls.push.apply(urls, urldata);
 
-         if(urls.length === 0){
-
-           newimg.unshift.apply(newimg, urldata);
-         }
-      
+      if (urls.length === 0) {
+        newimg.unshift.apply(newimg, urldata);
+      }
 
       // test
     } catch (error) {
@@ -251,7 +250,7 @@ const PhotoBucket = () => {
   };
 
   const imgtodel = async (url) => {
-    if(loading === true) return
+    if (loading === true) return;
     if (selected.includes(url.name) === false) {
       selected.push(url.name);
     } else {
@@ -288,38 +287,34 @@ const PhotoBucket = () => {
 
             setUrls(newarr);
             setNewimg(newarrr);
-            
-            let newArr = selected.map(el => selectedAlbum + "/" + el);
-//          
+
+            let newArr = selected.map((el) => selectedAlbum + "/" + el);
+            //
             // get arr to delete imgs from
             const newArrayy = savedImgs.filter((name, index) => {
-              return name[selectedAlbum]
+              return name[selectedAlbum];
             });
 
-
             // remove imgs from array
-            const xxx = newArrayy[0][selectedAlbum].filter(obj => !picstodelete.has(obj.name));
-            // remove 
-            const ttt = savedImgs.filter(obj => {
-
-              if(obj[selectedAlbum] === undefined) return obj
-            })
+            const xxx = newArrayy[0][selectedAlbum].filter(
+              (obj) => !picstodelete.has(obj.name)
+            );
+            // remove
+            const ttt = savedImgs.filter((obj) => {
+              if (obj[selectedAlbum] === undefined) return obj;
+            });
 
             let nnn = {
-              [selectedAlbum]: xxx
-            }
-            ttt.push(nnn)
+              [selectedAlbum]: xxx,
+            };
+            ttt.push(nnn);
 
-            setSavedImgs(ttt)
+            setSavedImgs(ttt);
 
-            
-          
-// 
+            //
             const { data, error } = await supabase.storage
               .from("avatars")
               .remove(newArr);
-
-
 
             change();
           }}
@@ -335,25 +330,101 @@ const PhotoBucket = () => {
             modal1 ? "flex" : "hidden"
           }  fixed inset-0 z-20 `}
         >
-          <div className="bg-black max-w-sm w-[384px] py-2 px-3 border border-gray-700 text-white rounded shadow-xl">
+          <div className="bg-black relative max-w-sm w-[384px] py-2 px-3 border border-gray-700 text-white rounded shadow-xl">
+            <div
+              className={`bg-black bg-opacity-50 absolute justify-center items-center ${
+                modal2 ? "flex" : "hidden"
+              }  fixed inset-0 z-20 `}
+            >
+              <div className="bg-black max-w-sm w-[350px] py-2 px-3 border border-gray-700 text-white rounded shadow-xl">
+                <div className="flex justify-between items-center">
+                  <h1 className="text-lg font-bold">Delete Album?</h1>
+                  <h4
+                    onClick={() => {
+                      setModal2(false);
+                    }}
+                    className="text-lg hover:underline align-top cursor-pointer font-bold"
+                  >
+                    X{" "}
+                  </h4>
+                </div>
+                <div className="mt-3 flex justify-center space-x-3">
+                  <button
+                    onClick={() => {
+                      setModal2(false);
+                    }}
+                    className="px-3 py-1 rounded bg-gray-700 hover:bg-opacity-50 hover:text-white"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={async () => {
+                      setNewimg([])
+                      setUrls([])
+                      let names = [];
+                      const { data, error } = await supabase.storage
+                        .from("avatars")
+                        .list(albumToDelete, {
+                          limit: 1000,
+                          sortBy: { column: "created_at", order: "desc" },
+                        });
+                      for (let i = 0; i < data.length; i++) {
+                        names.push(albumToDelete + "/" + data[i].name);
+                      }
+                      const { data1, error1 } = await supabase.storage
+                        .from("avatars")
+                        .remove(names);
+                      const { data2, error2 } = await supabase
+                        .from("Albums")
+                        .delete()
+                        .match({ album: albumToDelete });
+                      setModal2(false);
+                      setAlbumToDelete("");
+                      setModal1(false)
+                      setSelectedAlbum("")
+                    }}
+                    className="px-3 py-1 bg-red-500 hover:bg-red-600 text-black rounded"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
             <div className="flex justify-between items-center">
               <h4 className="text-lg font-bold">Select or Create Album.</h4>
               <h4
                 onClick={() => {
                   setModal1(false);
-                  setNewAlbum('')
+                  setNewAlbum("");
                 }}
-                className="text-lg cursor-pointer font-bold"
+                className="text-lg hover:underline cursor-pointer font-bold"
               >
                 X{" "}
               </h4>
             </div>
             <div className="mt-2 text-center max-h-[250px] overflow-scroll text-sm">
               {albums.map((album, index) => (
-                <p key={index} onClick={()=>{
-                  setSelectedAlbum(album.album)
-                  setModal1(false)
-                }} className="text-[20px] break-words px-2 border hover:bg-gray-800 border-gray-700 py-2 cursor-pointer mb-2">{album.album}</p>
+                <div className="flex justify-between">
+                  <p
+                    key={index}
+                    onClick={() => {
+                      setSelectedAlbum(album.album);
+                      setModal1(false);
+                    }}
+                    className="text-[20px] w-full break-words px-2 border hover:bg-gray-800 border-gray-700 py-2 cursor-pointer mb-2"
+                  >
+                    {album.album}
+                  </p>
+                  <div
+                    onClick={() => {
+                      setModal2(true);
+                      setAlbumToDelete(album.album);
+                    }}
+                    className="border flex mb-2 cursor-pointer hover:bg-red-500 hover:bg-opacity-20 items-center border-gray-700 border-l-0 justify-center align-middle"
+                  >
+                    <RiDeleteBack2Fill className="px-1 text-[30px] text-red-400" />
+                  </div>
+                </div>
               ))}
             </div>
             <div className="mt-3 flex justify-end space-x-3">
@@ -374,24 +445,22 @@ const PhotoBucket = () => {
               <button
                 onClick={() => {
                   setModal1(false);
-                  setNewAlbum('')
+                  setNewAlbum("");
                 }}
-                className="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-white"
+                className="px-3 py-1 rounded bg-gray-700 hover:bg-opacity-50 hover:text-white"
               >
                 Cancel
               </button>
               <button
-                onClick={ async () => {
+                onClick={async () => {
                   const { data, error } = await supabase
-                  .from('Albums')
-                    .insert([
-                    { album: newAlbum }
-                    ])
-                    setSelectedAlbum(newAlbum)
-                    setModal1(false)
-                    setNewAlbum('')
+                    .from("Albums")
+                    .insert([{ album: newAlbum }]);
+                  setSelectedAlbum(newAlbum);
+                  setModal1(false);
+                  setNewAlbum("");
                 }}
-                className="px-3 py-1 bg-green-400 hover:bg-cyan-400 text-black rounded"
+                className="px-3 py-1 bg-green-400 hover:bg-opacity-50 text-black rounded"
               >
                 Create
               </button>
@@ -404,11 +473,10 @@ const PhotoBucket = () => {
           </h1>
           <div className="flex flex-col mb-3">
             <h1
-              
               onClick={() => {
-                if(loading===true) return
+                if (loading === true) return;
                 setModal1(true);
-                change()
+                change();
                 setShow(false);
                 setSelected([]);
               }}
@@ -418,28 +486,28 @@ const PhotoBucket = () => {
             </h1>
           </div>
           <div className="flex mb-2 items-center">
-          {selectedAlbum === "" ?(<div></div>):(
-
-            <label
-              onClick={()=>{
-                change()
-                setShow(false);
-                setSelected([]);
-              }}
-              className={` flex items-center ${
-                uploading
-                  ? "bg-green-400 animate-pulse text-black"
-                  : "text-white"
-              } border ml-5 cursor-pointer font-thin  hover:bg-gray-800 border-gray-700 text-center px-4 text-[20px] justify-center rounded-lg py-1`}
-              htmlFor="single"
-            >
-              
-              {uploading ? "Uploading ..." : "Browse"}{" "}
-              {!uploading && (
-                <AiFillFolderOpen className="ml-2 text-green-400" />
-              )}
-            </label>
-)}
+            {selectedAlbum === "" ? (
+              <div></div>
+            ) : (
+              <label
+                onClick={() => {
+                  change();
+                  setShow(false);
+                  setSelected([]);
+                }}
+                className={` flex items-center ${
+                  uploading
+                    ? "bg-green-400 animate-pulse text-black"
+                    : "text-white"
+                } border ml-5 cursor-pointer font-thin  hover:bg-gray-800 border-gray-700 text-center px-4 text-[20px] justify-center rounded-lg py-1`}
+                htmlFor="single"
+              >
+                {uploading ? "Uploading ..." : "Browse"}{" "}
+                {!uploading && (
+                  <AiFillFolderOpen className="ml-2 text-green-400" />
+                )}
+              </label>
+            )}
             <input
               className="hidden"
               type="file"
@@ -457,13 +525,13 @@ const PhotoBucket = () => {
             )}
           </div>
           {uploaded?.length > 0 && (
-          <div className="text-white flex flex-wrap ml-5 mb-5">
-            {names?.map((file, index) => (
-              <div key={index}>
-                <h1 className="text-gray-600 mr-4 text-[20px]">{file}</h1>
-              </div>
-            ))}
-          </div>
+            <div className="text-white flex flex-wrap ml-5 mb-5">
+              {names?.map((file, index) => (
+                <div key={index}>
+                  <h1 className="text-gray-600 mr-4 text-[20px]">{file}</h1>
+                </div>
+              ))}
+            </div>
           )}
           {names?.length > 0 && (
             <div className="flex justify-center mb-5">
@@ -501,7 +569,7 @@ const PhotoBucket = () => {
         </div>
         <div className="">
           <h1 className="text-white mx-2 break-words text-center font-thin text-[20px]">
-          {selectedAlbum !== '' ? selectedAlbum : ''}
+            {selectedAlbum !== "" ? selectedAlbum : ""}
           </h1>
           {loadingg && (
             <h1 className="animate-pulse text-center text-green-400">
