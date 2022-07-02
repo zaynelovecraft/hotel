@@ -7,6 +7,24 @@ function SendMessage({ endRef, user }) {
   // console.log(message);
   // console.log(user?.id);
 
+  const sendMessage1 = async (number) => {
+    const res = await fetch('/api/sendMessage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ phone: number, message: "New message just now!! from: " + user.email + " Message Content: " +'"' + message + '"'}),
+    });
+    const apiResponse = await res.json();
+
+    if (apiResponse.success) {
+      console.log('message sent')
+    } else {
+      console.log('error')
+    }
+
+  }
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!message) return;
@@ -45,6 +63,9 @@ function SendMessage({ endRef, user }) {
         .update({ Message_data: messages, read: false })
         .match({ user_id: user.id });
     }
+    sendMessage1(9498678321)
+    sendMessage1(5628322222)
+
 
     
     setMessage("");
