@@ -117,6 +117,7 @@ export default function NavBar() {
   const [hidden, setHidden] = useState(false);
 
   const controlNavbar = () => {
+    if(window.innerWidth <= 1024) return
     if (typeof window !== "undefined") {
       if (window.scrollY > lastScrollY) {
         // if scroll down hide the navbar
