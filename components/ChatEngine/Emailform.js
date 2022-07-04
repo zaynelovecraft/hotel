@@ -14,47 +14,7 @@ function Emailform(props) {
   const [loadingg, setLoadingg] = useState(false);
   const { signUp, user, signIn } = useUser();
 
-  //   function getOrCreateUser(callback) {
-  //     axios.put(
-  //         'https://api.chatengine.io/users/',
-  //         {username: email, email: email, secret: email},
-  //         {headers: {"Private-Key": process.env.CHATAPP_KEY}}
-  //     )
-  //     .then(r => callback(r.data))
-  //     .catch(e => console.log('Get or create user error', e))
-  // }
-
-  // function getOrCreateChat(callback) {
-  //     axios.put(
-  //         'https://api.chatengine.io/chats/',
-  //         {usernames: ['Admin', email], is_direct_chat: true},
-  //         {headers: {
-  //             "Private-Key": process.env.CHATAPP_KEY,
-
-  //         }}
-  //     )
-  //     .then(r => callback(r.data))
-  //     .catch(e => console.log('Get or create chat error', e))
-  // }
-
-  //   useEffect(()=>{
-
-  //     getOrCreateUser(
-
-  //       chatuser => {
-  //         props.setChatuser(chatuser)
-
-  //         getOrCreateChat(
-  //           chat =>
-
-  //             props.setChat(chat)
-
-  //         )
-  //     })
-
-  //   },[email])
   const handleOAuthSignIn = async (provider) => {
-    
     const { error } = await signIn({ provider });
     if (error) {
       setMessage({ type: "error", content: error.message });
@@ -68,7 +28,6 @@ function Emailform(props) {
     }
   }, [user]);
 
-  
   return (
     <div
       className={`transition ${
@@ -78,7 +37,7 @@ function Emailform(props) {
       <div className="h-0">
         <div className="relative -top-[45px] -skew-y-12 z-20 w-[421px] h-[309px] bg-cyan-300"></div>
       </div>
-    
+
       <div className="absolute h-full w-full z-30 text-center">
         <img
           className="relative top-10 sm:left-[7.7rem] lg:left-[9.6rem] left-[6.9rem] h-[120px] w-auto"
@@ -88,17 +47,17 @@ function Emailform(props) {
           Chat with <br /> Support
         </h1>
       </div>
-      <div className="absolute cursor-pointer active:bg-pink-200 hover:bg-cyan-400 border-2 bg-cyan-300  py-2 rounded-lg px-3 bottom-[4rem] lg:bottom-[5rem] z-40 lg:left-[6.5rem] sm:left-[4.5rem] left-[4rem]">
+      <div className="absolute cursor-pointer active:bg-pink-200 hover:bg-cyan-400 border-2 bg-cyan-300  py-2 rounded-lg px-3 bottom-[4rem] lg:bottom-[5rem] z-40 lg:left-[6.5rem] sm:left-[4.5rem] left-[3.7rem]">
         <button
           disabled={loadingg}
-          onClick={() => handleOAuthSignIn('google') }
+          onClick={() => handleOAuthSignIn("google")}
           className="z-30  items-center flex flex-row"
         >
           <FcGoogle className="w-[25px] h-[25px]" />
           <span className="ml-2 text-xs ">Continue with Google</span>
         </button>
       </div>
-      <div className="absolute bottom-[8rem] active:bg-pink-200 lg:bottom-[10rem] border-2 py-1 px-4 rounded-lg cursor-pointer hover:bg-cyan-400 bg-cyan-300 lg:left-[9.8rem] sm:left-[7.7rem] left-[7.2rem] z-30">
+      <div className="absolute bottom-[8rem] active:bg-pink-200 lg:bottom-[10rem] border-2 py-1 px-4 rounded-lg cursor-pointer hover:bg-cyan-400 bg-cyan-300 lg:left-[9.8rem] sm:left-[7.7rem] left-[7rem] z-30">
         <Link href="/signin">
           <a>
             <h1>Sign In</h1>

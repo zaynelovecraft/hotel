@@ -362,7 +362,7 @@ export default function Account({ session }) {
         <div>
           <section>
             {admin === true && (
-              <div className="absolute text-sm text-black lg:top-[106px] hover:bg-cyan-200  border border-black top-[62px] bg-gray-200 lg:right-[200px]  cursor-pointer  rounded-lg px-2  right-[85px]">
+              <div className="absolute text-sm text-black lg:top-[106px] hover:bg-cyan-200  border border-black top-[63px] bg-gray-200 lg:right-[200px]  cursor-pointer  rounded-lg px-2  right-[85px]">
                 <RiAdminLine className="absolute  top-[0px] text-[20px] text-gray-600 -left-[20px]" />
                 <div className=" cursor-pointer">
                   <Link href={"/admindashboard"}>
