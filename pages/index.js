@@ -16,8 +16,6 @@ export default function Home() {
     <div className="">
       <Head>
         <title>Sol O Cien Adventures</title>
-        <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta httpEquiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <meta name="description" content="Sol-O-Cien was designed with your comfort in mind. We created a place like no other in the area. This is a Rustic-Mexican-Nautical little piece of paradise nestled only 110 steps from beautiful Rosarito Beach!!" />
