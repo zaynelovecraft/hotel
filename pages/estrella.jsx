@@ -280,14 +280,7 @@ function Solocien() {
   return (
     <div>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-          rel="stylesheet"
-        ></link>
+       
       </Head>
       <Modal
         shown={modalShown}

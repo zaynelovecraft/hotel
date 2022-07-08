@@ -6,14 +6,7 @@ const pricing = () => {
     <div className="bg-gray-100 flex justify-center pb-6">
       <div>
         <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-            rel="stylesheet"
-          ></link>
+         
         </Head>
         <h1
           style={{ fontFamily: "Quintessential" }}

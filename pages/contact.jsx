@@ -10,14 +10,7 @@ function contact() {
   return (
     <div>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-          rel="stylesheet"
-        ></link>
+
       </Head>
 
       <div className=" flex flex-col lg:flex-row-reverse lg:justify-center pt-[40px] lg:pb-[100px]  lg:pt-[100px] bg-gray-200">

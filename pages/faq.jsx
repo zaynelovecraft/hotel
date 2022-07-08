@@ -6,8 +6,7 @@ function faq() {
   return (
     <div className="bg-gray-100">
        <Head>
-    <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
+
     </Head>
       <div className="relative h-[125px] sm:h-[150px] lg:h-[200px] xl:h-[200px] 2xl:h-[200px]">
       <div
