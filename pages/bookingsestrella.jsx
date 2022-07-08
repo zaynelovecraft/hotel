@@ -586,8 +586,8 @@ function bookings() {
                     layout="fill"
                     objectFit="contain"
                   />
-                  <h1 className="absolute -bottom-[35px] font-light text-gray-700 ">
-                    Estrella&nbsp;Sol-O-Cien&nbsp;Condo
+                  <h1 className="absolute inline -bottom-[35px] font-light text-gray-700 ">
+                    Estrella Sol-O-Cien Condo
                   </h1>
                   <h1 className="absolute -bottom-[30px] text-[8px] lg:text-[10px] lg:-right-10 right-0 font-extralight text-gray-700 ">
                     -Baja California, Mexico
