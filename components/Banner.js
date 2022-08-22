@@ -8,17 +8,17 @@ function Banner() {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 1,
-      paritialVisibilityGutter: 60,
+      // paritialVisibilityGutter: 60,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 1,
-      paritialVisibilityGutter: 50,
+      // paritialVisibilityGutter: 50,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
-      paritialVisibilityGutter: 30,
+      // paritialVisibilityGutter: 30,
     },
   };
   const images = ["/2.jpg", "/images/banner/rafael-cisneros-mendez-y5PG8ZecXQI-unsplash.jpg", "/images/banner/josiah-weiss-qMXXUvCH98Q-unsplash.jpg", "/images/banner/brian-yurasits-9pg_HAxUNcI-unsplash.jpg", "/images/banner/joceline-m-huitzil-kLrZ67Y4bB8-unsplash.jpg"];
