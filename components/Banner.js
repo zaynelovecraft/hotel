@@ -26,12 +26,12 @@ function Banner() {
     <div className="w-[100%] h-[100%]">
       <Carousel
         autoPlay={true}
-        removeArrowOnDeviceType="desktop"
-        deviceType="desktop"
+        removeArrowOnDeviceType={['desktop', 'mobile', 'tablet']}
         transitionDuration={3000}
         autoPlaySpeed={4000}
         responsive={responsive}
         infinite={true}
+        ssr={true}
       >
         {images.map((image, index) => {
           return (
@@ -46,7 +46,6 @@ function Banner() {
                 }}
                 className="absolute z-[1] w-full h-full"
               >
-                <h1></h1>
               </div>
               <Image
                 src={image}
