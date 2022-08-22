@@ -23,7 +23,7 @@ function Banner() {
   };
   const images = ["/2.jpg", "/images/banner/rafael-cisneros-mendez-y5PG8ZecXQI-unsplash.jpg", "/images/banner/josiah-weiss-qMXXUvCH98Q-unsplash.jpg", "/images/banner/brian-yurasits-9pg_HAxUNcI-unsplash.jpg", "/images/banner/joceline-m-huitzil-kLrZ67Y4bB8-unsplash.jpg"];
   return (
-    <div>
+    <div className="w-[100%] h-[100%]">
       <Carousel
         autoPlay={true}
         removeArrowOnDeviceType="desktop"
@@ -37,7 +37,7 @@ function Banner() {
           return (
             <div
               key={index}
-              className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]"
+              className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]"
             >
               <div
                 style={{
