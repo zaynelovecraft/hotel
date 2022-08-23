@@ -15,7 +15,7 @@ function Mapp() {
     <Map
       {...viewstate}
       mapStyle="mapbox://styles/zayne/ckzdejant000514o7hlq87x99"
-      mapboxAccessToken={process.env.mapbox_key}
+      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
       onMove={(evt) => setViewstate(evt.viewState)}
     >
       <Head>

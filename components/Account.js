@@ -8,7 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import Reciept from "./ Reciept";
 
-const stripePromise = loadStripe(process.env.stripe_public_key);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Account({ session }) {
 
