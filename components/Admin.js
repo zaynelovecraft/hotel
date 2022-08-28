@@ -6,6 +6,7 @@ import { AiOutlineMessage } from "@react-icons/all-files/ai/AiOutlineMessage";
 import TimeAgo from "timeago-react";
 import AdminChatEngine from "./AdminChat/AdminChatEngine";
 import AdminSettings from "./AdminSettings";
+import { useStore } from "../lib/Store";
 
 function Admin() {
   const [resopen, setResopen] = useState(false);
@@ -46,6 +47,15 @@ function Admin() {
   const [original, setOriginal] = useState("");
   const [x, setX] = useState("");
   const [help, setHelp] = useState(false);
+  const { messages: newmessages } = useStore();
+  const [alert2, setAlert2] = useState()
+
+  useEffect(()=>{
+    unread()
+  },[usermessage])
+  useEffect(() => {
+    handleNewData(newmessages);
+  }, [newmessages]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -67,33 +77,34 @@ function Admin() {
     const data = await fetchData();
 
     setUsermessage(data);
+    
   };
 
-  const getChange = async () => {
-    console.log("subing to changes XX");
-    const mySubscription = supabase
-      .from("Messages")
-      .on("*", (payload) => {
-        handleNewData(payload.new);
-        console.log("update XX");
-      })
-      // .on("UPDATE", (payload) => {
-      //   console.log(payload.new);
-      //   handleNewData(payload.new);
-      //   console.log('update XX')
-      // })
-      .subscribe();
-    return mySubscription;
-  };
+  // const getChange = async () => {
+  //   console.log("subing to changes XX");
+  //   const mySubscription = supabase
+  //     .from("Messages")
+  //     .on("*", (payload) => {
+  //       handleNewData(payload.new);
+  //       console.log("update XX");
+  //     })
+  //     // .on("UPDATE", (payload) => {
+  //     //   console.log(payload.new);
+  //     //   handleNewData(payload.new);
+  //     //   console.log('update XX')
+  //     // })
+  //     .subscribe();
+  //   return mySubscription;
+  // };
 
   useEffect(() => {
     getData();
-    const mySubscription = getChange();
+    // const mySubscription = getChange();
 
-    return () => {
-      console.log("unsubing XX");
-      supabase.removeSubscription(mySubscription);
-    };
+    // return () => {
+    //   console.log("unsubing XX");
+    //   supabase.removeSubscription(mySubscription);
+    // };
   }, [render]);
 
   useEffect(() => {
@@ -101,8 +112,8 @@ function Admin() {
       setRender(!render);
     }
     if (messages === false) {
-      supabase.removeAllSubscriptions();
-      console.log("unsubing ALL SUBS");
+      // supabase.removeAllSubscriptions();
+      // console.log("unsubing ALL SUBS");
     }
   }, [messages]);
 
@@ -112,6 +123,7 @@ function Admin() {
     if (newData) {
       getData();
     }
+    unread()
   }, [newData]);
 
   const lastmessage = (x) => {
@@ -132,7 +144,7 @@ function Admin() {
         ammount++;
       }
     }
-    return ammount;
+    setAlert2(ammount)
   };
 
   const setmessagedata = (item) => {
@@ -432,8 +444,8 @@ function Admin() {
     }
   };
   const cast = () => {
-    console.log("cast remove");
-    supabase.removeAllSubscriptions();
+    // console.log("cast remove");
+    // supabase.removeAllSubscriptions();
   };
 
   return (
@@ -831,11 +843,11 @@ function Admin() {
               } relative cursor-pointer text-gray-700 hover:text-cyan-500`}
             >
               Messages{" "}
-              {unread() === 0 ? (
+              {alert2 === 0 ? (
                 <div></div>
               ) : (
                 <span className="absolute text-red-500 text-[12px] -right-2 animate-pulse font-bold -top-1 ">
-                  {unread()}
+                  {alert2}
                 </span>
               )}
             </h1>
@@ -864,7 +876,7 @@ function Admin() {
           </h1>
           {showusermessages === false && (
             <div className=" relative h-full w-full">
-              <AdminChatEngine end={endRefr} talk={talk} />
+              <AdminChatEngine end={endRefr} talk={talk} newmessages={newmessages}/>
             </div>
           )}
           {showusermessages && (

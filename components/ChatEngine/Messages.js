@@ -2,30 +2,14 @@ import React, { useRef, useState, useEffect } from "react";
 import SendMessage from "./SendMessage";
 import { supabase } from "../../utils/supabase-client";
 import Message from "./Message";
+import { useStore } from "../../lib/Store";
 
 function Messages({ user, loadchat }) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
   const [reload, setReload] = useState(false);
-
-  useEffect(() => {
-      if(loadchat === true) {
-        console.log('unsubing for new reload')
-        supabase.removeAllSubscriptions() 
-        const timer = setTimeout(() => {
-          console.log('reinitalizing sub to changes ')
-          setReload(!reload)
-        }, 250);
-        return () => clearTimeout(timer);
-      }
-      if(loadchat === false) {
-        console.log('closing chat then removing all subscriptions for user chat')
-        supabase.removeAllSubscriptions()
-      }
-  }, [loadchat]);
-    
-
+  const { messages } = useStore();
 
   const fetchData = async () => {
     const { data, error } = await supabase
@@ -37,33 +21,8 @@ function Messages({ user, loadchat }) {
     }
   };
 
-  const getChange = async () => {
-    console.log('subing to changes')
-    const mySubscription = supabase
-      .from("Messages")
-
-      .on("INSERT", (payload) => {
-        if (payload.new.user_id === user?.id) {
-          handleNewData(payload.new);
-          console.log('insert')
-        }
-        // console.log(user?.id)
-        // console.log(payload.new.user_id);
-      })
-      .on("UPDATE", (payload) => {
-        // console.log(user?.id)
-        // console.log(payload.new.user_id);
-        if (payload.new.user_id === user?.id) {
-          handleNewData(payload.new);
-          console.log('update')
-        }
-      })
-      .subscribe();
-    return mySubscription;
-  };
-
   const getData = async () => {
-    console.log('getting initial data')
+    console.log("getting initial data");
     const data = await fetchData();
 
     setData(data);
@@ -71,25 +30,13 @@ function Messages({ user, loadchat }) {
 
   useEffect(() => {
     getData();
-  }, [user, reload]);
+  }, [user, loadchat]);
 
   useEffect(() => {
-    const mySubscription = getChange();
-
-    return () => {
-      console.log('unsbscribing') 
-      supabase.removeSubscription(mySubscription);
-    };
-  }, [user, reload]);
-
-  useEffect(() => {
-    // console.log("newData value", newData);
-    console.log('newdata')
-    if (newData) {
-      setData(newData?.Message_data);
-      handleNewData(null);
+    if (messages?.user_id === user?.id) {
+      setData(messages?.Message_data);
     }
-  }, [newData]);
+  }, [messages]);
 
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth" });

@@ -5,7 +5,8 @@ import { ta } from "date-fns/locale";
 import AdminMessage from "./AdminMessage";
 import { BiArrowFromBottom } from "@react-icons/all-files/bi/BiArrowFromBottom";
 
-function AdminMessages({talk, end}) {
+function AdminMessages({talk, end, newmessages}) {
+
 
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
@@ -32,30 +33,30 @@ function AdminMessages({talk, end}) {
     console.log('getting initial data')
   };
 
-  const getChange = async () => {
-    console.log('subing to changes')
-    const mySubscription = supabase
-      .from("Messages")
+  // const getChange = async () => {
+  //   console.log('subing to changes')
+  //   const mySubscription = supabase
+  //     .from("Messages")
 
-      .on("INSERT", (payload) => {
-        if (payload.new.id === talk?.id) {
-          handleNewData(payload.new);
-          console.log('insert')
-        }
-        // console.log(user?.id)
-        // console.log(payload.new.user_id);
-      })
-      .on("UPDATE", (payload) => {
-        // console.log(user?.id)
-        // console.log(payload.new.user_id);
-        if (payload.new.id === talk?.id) {
-          handleNewData(payload.new);
-          console.log('update')
-        }
-      })
-      .subscribe();
-    return mySubscription;
-  };
+  //     .on("INSERT", (payload) => {
+  //       if (payload.new.id === talk?.id) {
+  //         handleNewData(payload.new);
+  //         console.log('insert')
+  //       }
+  //       // console.log(user?.id)
+  //       // console.log(payload.new.user_id);
+  //     })
+  //     .on("UPDATE", (payload) => {
+  //       // console.log(user?.id)
+  //       // console.log(payload.new.user_id);
+  //       if (payload.new.id === talk?.id) {
+  //         handleNewData(payload.new);
+  //         console.log('update')
+  //       }
+  //     })
+  //     .subscribe();
+  //   return mySubscription;
+  // };
 
   
 
@@ -63,12 +64,12 @@ function AdminMessages({talk, end}) {
     getData();
     const timer = setTimeout(() => {
 
-      const mySubscription = getChange();
+      // const mySubscription = getChange();
   
       
       return () => {
         console.log('unsbscribing') 
-        supabase.removeSubscription(mySubscription);
+        // supabase.removeSubscription(mySubscription);
       };
     }, 250);
     return () => clearTimeout(timer);
@@ -76,12 +77,10 @@ function AdminMessages({talk, end}) {
 
   useEffect(() => {
     // console.log("newData value", newData);
-    console.log('newdata')
-    if (newData) {
-      setData(newData.Message_data);
-      handleNewData(null);
+    if (newmessages.id === talk?.id) {
+      setData(newmessages.Message_data)
     }
-  }, [newData]);
+  }, [newmessages]);
 
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
