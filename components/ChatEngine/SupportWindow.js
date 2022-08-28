@@ -34,6 +34,7 @@ function SupportWindow({ visible, loadchat }) {
             user={user}
           />
         )}
+
         {/* <Chatengine chat={chat} chatuser={chatuser} visible={chatuser !== null || chat !== null} /> */}
       </div>
     </div>

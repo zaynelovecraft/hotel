@@ -3,13 +3,14 @@ import SendMessage from "./SendMessage";
 import { supabase } from "../../utils/supabase-client";
 import Message from "./Message";
 import { useStore } from "../../lib/Store";
+import { ThreeCircles } from "react-loader-spinner";
 
 function Messages({ user, loadchat }) {
   const [data, setData] = useState([]);
   const [newData, handleNewData] = useState(null);
   const endRef = useRef(null);
   const [reload, setReload] = useState(false);
-  const { messages } = useStore();
+  const { messages, loading } = useStore();
 
   const fetchData = async () => {
     const { data, error } = await supabase
@@ -39,25 +40,44 @@ function Messages({ user, loadchat }) {
   }, [messages]);
 
   useEffect(() => {
-    endRef.current.scrollIntoView({ behavior: "smooth" });
+    endRef?.current?.scrollIntoView({ behavior: "smooth" });
   }),
     [data];
 
   return (
     <div className="pb-[50px] ">
-      <div className="space-y-10 p-4">
-        {data?.map((item, index) => (
-          <Message key={index} item={item} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="absolute top-[41%] left-[35%]">
+          <ThreeCircles
+            height="100"
+            width="100"
+            color="rgb(165 243 252)"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="three-circles-rotating"
+            outerCircleColor=""
+            innerCircleColor="rgb(253 224 71)"
+            middleCircleColor=""
+          />
+        </div>
+      ) : (
+        <>
+          <div className="space-y-10 p-4">
+            {data?.map((item, index) => (
+              <Message key={index} item={item} />
+            ))}
+          </div>
 
-      <div className="flex justify-center">
-        <SendMessage user={user} />
-      </div>
+          <div className="flex justify-center">
+            <SendMessage user={user} />
+          </div>
 
-      <div ref={endRef} className="text-center mt-10">
-        <p className="text-xs  text-gray-400">You are up to date</p>
-      </div>
+          <div ref={endRef} className="text-center mt-10">
+            <p className="text-xs  text-gray-400">You are up to date</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }

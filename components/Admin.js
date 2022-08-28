@@ -47,9 +47,9 @@ function Admin() {
   const [original, setOriginal] = useState("");
   const [x, setX] = useState("");
   const [help, setHelp] = useState(false);
-  const { messages: newmessages } = useStore();
+  const { messages: newmessages, loading } = useStore();
   const [alert2, setAlert2] = useState()
-
+  
   useEffect(()=>{
     unread()
   },[usermessage])
@@ -876,7 +876,7 @@ function Admin() {
           </h1>
           {showusermessages === false && (
             <div className=" relative h-full w-full">
-              <AdminChatEngine end={endRefr} talk={talk} newmessages={newmessages}/>
+              <AdminChatEngine loading={loading} end={endRefr} talk={talk} newmessages={newmessages} />
             </div>
           )}
           {showusermessages && (

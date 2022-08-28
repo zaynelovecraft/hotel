@@ -8,7 +8,7 @@ function SupportEngine() {
   const [loadchat, setLoadchat] = useState(false);
   const ref = useRef(null);
   // const{ signUp, user, signIn } = useUser();
-  console.log(loadchat)
+
 
   // useEffect(() => {
   //   setLoadchat(false)
