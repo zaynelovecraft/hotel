@@ -63,8 +63,8 @@ function SendMessage({ endRef, user }) {
         .update({ Message_data: messages, read: false })
         .match({ user_id: user.id });
     }
-    // sendMessage1(9498678321)
-    // sendMessage1(5628322222)
+    sendMessage1(9498678321)
+    sendMessage1(5628322222)
 
 
     
