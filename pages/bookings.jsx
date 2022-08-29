@@ -136,8 +136,8 @@ function bookings() {
       setFill(true);
     } else {
       event.preventDefault();
-      sendMessage(5628322222);
-      sendMessage(9498678321);
+      // sendMessage(5628322222);
+      // sendMessage(9498678321);
       pushdetails();
       setReserved(true);
       focus();
