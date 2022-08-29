@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Emailform from "./Emailform";
 // import Chatengine from './Chatengine'
 import { useUser } from "../../utils/useUser";
@@ -8,7 +8,12 @@ function SupportWindow({ visible, loadchat }) {
   const { signUp, user, signIn } = useUser();
   const [chatuser, setChatuser] = useState(null);
   const [chat, setChat] = useState(null);
+  useEffect(()=>{
+    if(user?.email) {
+      setChatuser(user.email)
+    }
 
+  },[user])
   return (
     <div>
       <div
@@ -23,7 +28,7 @@ function SupportWindow({ visible, loadchat }) {
         } opacity-100 z-40 right-[24px] w-[310px] sm:w-[335px] sm:h-[489px] lg:w-[400px] lg:h-[550px] h-[490px] bg-white rounded-lg overflow-hidden duration-300`}
       >
         <Emailform
-          setChatuser={(chatuser) => setChatuser(chatuser)}
+          // setChatuser={setChatuser}
           visible={chatuser === null}
           // visible={visible}
         />

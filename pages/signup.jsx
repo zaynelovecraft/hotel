@@ -69,7 +69,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center overflow-hidden ">
-      <div className="flex mt-14 flex-col justify-between max-w-lg p-3 m-auto mx-5 ms:mx-auto sm:w-96 ">
+      <div className="flex mt-14 lg:mt-24 flex-col justify-between max-w-lg p-3 m-auto mx-5 ms:mx-auto sm:w-96 ">
         <div className="flex justify-center pb-5 ">
           <h1 className="text-black">Sign Up</h1>
         </div>

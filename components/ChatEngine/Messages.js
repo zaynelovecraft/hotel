@@ -47,7 +47,7 @@ function Messages({ user, loadchat }) {
   return (
     <div className="pb-[50px] ">
       {loading ? (
-        <div className="absolute top-[41%] left-[35%]">
+        <div className="absolute lg:left-[38%] top-[41%] left-[34.5%]">
           <ThreeCircles
             height="100"
             width="100"
@@ -60,6 +60,7 @@ function Messages({ user, loadchat }) {
             innerCircleColor="rgb(253 224 71)"
             middleCircleColor=""
           />
+          <h1 className="text-center text-gray-500">Loading</h1>
         </div>
       ) : (
         <>

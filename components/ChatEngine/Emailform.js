@@ -21,12 +21,12 @@ function Emailform(props) {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      setEmail(user.email);
-      props.setChatuser(email);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setEmail(user.email);
+  //     // props.setChatuser(email);
+  //   }
+  // }, [user]);
 
   return (
     <div
