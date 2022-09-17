@@ -37,8 +37,8 @@ function Bannertwo() {
           </div>
         </div>
         <div className="">
-          <section className=" mx-auto max-w-[730px] ">
-            <div className="flex scrollbar-hide space-x-3 p-3 ml-2 overflow-scroll">
+          <section className=" mx-auto pt-[20px] h-[500px] max-w-[730px] ">
+            <div className="flex scrollbar-hide space-x-3 pt-[20px] p-3 ml-2 overflow-scroll">
               {cardsData?.map((item, index) => (
                 <Link key={index} href={item.link}>
                   <a>
