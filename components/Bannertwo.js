@@ -3,6 +3,7 @@ import Image from "next/image";
 import { GiWaveCrest } from "@react-icons/all-files/gi/GiWaveCrest";
 import { FaHotel } from "@react-icons/all-files/fa/FaHotel";
 import { GiPalmTree } from "@react-icons/all-files/gi/GiPalmTree";
+import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Link from "next/link";
 import { FeaturedPosts } from "./blog";
 
@@ -12,10 +13,12 @@ function Bannertwo() {
     {
       img: "/images/condos/sol37.jpeg",
       title: "Sol O Cien Condo",
+      link: '/Solocien',
     },
     {
       img: "/images/condos/est3.jpeg",
       title: "Estrella Condo",
+      link: '/estrella'
     },
   ];
 
@@ -37,12 +40,27 @@ function Bannertwo() {
           <section className=" mx-auto max-w-[730px] ">
             <div className="flex scrollbar-hide space-x-3 p-3 ml-2 overflow-scroll">
               {cardsData?.map((item, index) => (
-                <Link key={index} href="/accommodations">
+                <Link key={index} href={item.link}>
                   <a>
                     <div
                       className="cursor-pointer mt-5 mb-10 transform transition duration-300 ease-out hover:scale-105"
                       key={item.title}
                     >
+                      <div className="flex absolute top-[-24px] left-[8px] z-30">
+                        <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
+                        <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
+                        <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
+                        <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
+                        <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
+                      </div>
+                      <div className="absolute top-[-25px] right-[45px]">
+                        <div className="relative">
+                          <h1 className="line-through absolute z-30 left-[-43px] top-[-7px] right text-gray-600 mb-[10px]">
+                            $500
+                          </h1>
+                        </div>
+                        <h1 className="text-lime-500 text-[20px] font-medium ">$400</h1>
+                      </div>
                       <div className="relative mr-10 h-80 w-80">
                         <Image
                           src={item.img}
