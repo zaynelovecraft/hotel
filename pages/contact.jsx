@@ -35,16 +35,22 @@ function contact() {
               />
             </div>
           </div>
-          <div>
+          <div className="flex flex-col">
             <h1 className="text-center text-gray-700">
               352 Calle Mexicali, 22710, Rosarito B.C.
             </h1>
-            <h1 className="text-center mt-2 text-gray-700">
-              Phone 1(562) 832-2222
-            </h1>
-            <h1 className="text-center mt-2 text-gray-700">
-              Phone (661) 106-2419
-            </h1>
+            <a
+                className="text-center mt-2 text-gray-700"
+                href="tel:15628322222"
+              >
+                Phone 1(562) 832-2222
+              </a>
+              <a
+                className="text-center mt-2 text-gray-700"
+                href="tel:6611062419"
+              >
+                Phone (661) 106-2419
+              </a>
             <h1 className="text-center mt-2 text-gray-700">
               info@solocienadventures.com
             </h1>
