@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import FeatureImgs from "../components/FeatureImgs";
 
 const about = () => {
   return (
@@ -89,6 +90,7 @@ const about = () => {
           </h1>
         </div>
       </div>
+      <FeatureImgs />
     </div>
   );
 };

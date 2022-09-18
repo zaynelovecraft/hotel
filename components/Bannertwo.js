@@ -6,6 +6,7 @@ import { GiPalmTree } from "@react-icons/all-files/gi/GiPalmTree";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Link from "next/link";
 import { FeaturedPosts } from "./blog";
+import FeatureImgs from "./FeatureImgs";
 
 function Bannertwo() {
   const hi = [];
@@ -13,14 +14,16 @@ function Bannertwo() {
     {
       img: "/images/condos/sol37.jpeg",
       title: "Sol O Cien Condo",
-      link: '/Solocien',
+      link: "/Solocien",
     },
     {
       img: "/images/condos/est3.jpeg",
       title: "Estrella Condo",
-      link: '/estrella'
+      link: "/estrella",
     },
   ];
+
+  
 
   return (
     <div className="">
@@ -59,7 +62,9 @@ function Bannertwo() {
                             $500
                           </h1>
                         </div>
-                        <h1 className="text-lime-500 text-[20px] font-medium ">$400</h1>
+                        <h1 className="text-lime-500 text-[20px] font-medium ">
+                          $400
+                        </h1>
                       </div>
                       <div className="relative mr-10 h-80 w-80">
                         <Image
@@ -185,6 +190,7 @@ function Bannertwo() {
           <FeaturedPosts />
         </div>
       </div>
+      <FeatureImgs />
     </div>
   );
 }
