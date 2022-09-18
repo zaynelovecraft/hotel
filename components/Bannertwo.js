@@ -190,7 +190,7 @@ function Bannertwo() {
           <FeaturedPosts />
         </div>
       </div>
-      <FeatureImgs />
+
     </div>
   );
 }
