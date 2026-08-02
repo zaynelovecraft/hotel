@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.0",
