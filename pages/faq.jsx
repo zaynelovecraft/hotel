@@ -110,7 +110,7 @@ function faq() {
                   </summary>
 
                   <span class="">
-                    Please Message us about any special requests you may have and we will be happy to accommodate your request. You can message us through the chat icon located on the bottom right of the home and contact page. If you wish to contact us another way, you can find our contact information on the contact page.
+                    Please message us about any special requests you may have and we will be happy to accommodate your request. You can find our contact information on the contact page.
                   </span>
                 </details>
               </div>
