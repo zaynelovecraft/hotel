@@ -56,16 +56,6 @@ function Bannertwo() {
                         <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
                         <AiFillStar className="w-[23px] h-[23px] text-[#ebb434]" />
                       </div>
-                      <div className="absolute top-[-25px] right-[45px]">
-                        <div className="relative">
-                          <h1 className="line-through absolute z-30 left-[-43px] top-[-7px] right text-gray-600 mb-[10px]">
-                            $500
-                          </h1>
-                        </div>
-                        <h1 className="text-lime-500 text-[20px] font-medium ">
-                          $400
-                        </h1>
-                      </div>
                       <div className="relative mr-10 h-80 w-80">
                         <Image
                           src={item.img}

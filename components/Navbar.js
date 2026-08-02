@@ -17,18 +17,13 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "../utils/useUser";
-import s from "../components/Navbar.module.css";
 
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BiHomeHeart } from "@react-icons/all-files/bi/BiHomeHeart";
-import { AiOutlineShop } from "@react-icons/all-files/ai/AiOutlineShop";
 import { GiNewspaper } from "@react-icons/all-files/gi/GiNewspaper";
 import { FaQuestion } from "@react-icons/all-files/fa/FaQuestion";
 import { BiMessageCheck } from "@react-icons/all-files/bi/BiMessageCheck";
 import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
-import { MdAccountCircle } from "@react-icons/all-files/md/MdAccountCircle";
-import { CgShoppingCart } from "@react-icons/all-files/cg/CgShoppingCart";
 import { MdLocalHotel } from "@react-icons/all-files/md/MdLocalHotel";
 
 const solutions = [
@@ -111,7 +106,6 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { user, signOut } = useUser();
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hidden, setHidden] = useState(false);
@@ -404,43 +398,7 @@ export default function NavBar() {
               {/*  */}
             </Popover>
           </Popover.Group>
-          <div className="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
-            <div className="ml-3">
-              {user && (
-                <div className="ml-1 border border-black rounded-full px-1 text-sm hover:shadow-md  ">
-                  <Link href="/account">
-                    <a className="flex p-2 px-3 items-center">
-                      <MdAccountCircle className="text-cyan-500 mr-1" />
-                      Account
-                    </a>
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <div>
-              {user ? (
-                <div className="ml-3 p-2 px-3 border border-black rounded-full  text-sm hover:shadow-md ">
-                  <Link href="/">
-                    <a onClick={() => signOut()}>
-                      <span>Sign Out</span>
-                    </a>
-                  </Link>
-                </div>
-              ) : (
-                <Link href="/signin">
-                  <a className={s.link}>Sign in</a>
-                </Link>
-              )}
-            </div>
-            {!user && (
-              <div className="ml-3">
-                <Link href="/signup">
-                  <a className={s.link}>Sign Up</a>
-                </Link>
-              </div>
-            )}
-          </div>
+          <div className="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0" />
         </div>
       </div>
       <Transition
@@ -524,53 +482,6 @@ export default function NavBar() {
                     </Link>
                   </Popover.Button>
                 ))}
-              </div>
-              <div className="flex flex-col text-center justify-center">
-                {user && (
-                  <Popover.Button className="" onClick={() => (open = false)}>
-                    <Link href="/account">
-                      <a className="w-full mb-3 flex items-center pr-9 justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500">
-                        <MdAccountCircle className="mr-2 text-black" />
-                        Account
-                      </a>
-                    </Link>
-                  </Popover.Button>
-                )}
-                {user ? (
-                  <Popover.Button className="" onClick={() => (open = false)}>
-                    <Link href="/">
-                      <a
-                        onClick={() => signOut()}
-                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-300 hover:bg-cyan-500"
-                      >
-                        Log Out
-                      </a>
-                    </Link>
-                  </Popover.Button>
-                ) : (
-                  <Popover.Button className="" onClick={() => (open = false)}>
-                    <Link
-                      className="flex justify-center items-center border"
-                      href="/signup"
-                    >
-                      <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-cyan-500 hover:bg-cyan-300 hover:shadow-lg">
-                        Sign up
-                      </a>
-                    </Link>
-                  </Popover.Button>
-                )}
-                {!user && (
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing Guest?{" "}
-                    <Popover.Button className="" onClick={() => (open = false)}>
-                      <Link href="/signin">
-                        <a className="text-cyan-500 hover:text-black">
-                          Sign in
-                        </a>
-                      </Link>
-                    </Popover.Button>
-                  </p>
-                )}
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { AiOutlineHome } from "@react-icons/all-files/ai/AiOutlineHome";
 import { BsBuilding } from "@react-icons/all-files/bs/BsBuilding";
@@ -6,31 +6,17 @@ import { BsFillPeopleFill } from "@react-icons/all-files/bs/BsFillPeopleFill";
 import { GiBed } from "@react-icons/all-files/gi/GiBed";
 import { BsFileEarmarkArrowDown } from "@react-icons/all-files/bs/BsFileEarmarkArrowDown";
 import { BsFileEarmarkArrowUp } from "@react-icons/all-files/bs/BsFileEarmarkArrowUp";
-import { supabase } from "../utils/supabase-client";
 import { AiFillCheckCircle } from "@react-icons/all-files/ai/AiFillCheckCircle";
 import { MdDoNotDisturb } from "@react-icons/all-files/md/MdDoNotDisturb";
 import { IoMdPhotos } from "@react-icons/all-files/io/IoMdPhotos";
 import Link from "next/link";
 import Mapp from "../components/Mapp";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css";
-import { DateRange } from "react-date-range";
 import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-// import Calendi from "../components/Calendi";
-import { DateRangePicker } from "react-date-range";
-import { useUser } from "../utils/useUser";
+import accommodations from "../config/accommodations";
 
-// export async function getServerSideProps() {
-//   const response = await fetch("/api/hotel");
-//   const data = await response.json();
-
-//   return {
-//     props: { data }, // will be passed to the page component as props
-//   };
-// }
-//
+const listing = accommodations.solocien;
 
 function Solocien() {
   const [clicked, setClicked] = useState(false);
@@ -41,194 +27,7 @@ function Solocien() {
   const [details, setDetails] = useState(false);
   const [features, setFeatures] = useState(false);
   const [terms, setTerms] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
   const [modalShown, toggleModal] = useState(false);
-  const [data, setData] = useState();
-  const [datesarray, setDatesarray] = useState([]);
-  const [estemate, setEstemate] = useState(0);
-  const [alreadyreserved, setAlreadyreserved] = useState(false);
-  const [alreadyreservedd, setAlreadyreservedd] = useState(false);
-  const { userLoaded, user, session, userDetails, subscription } = useUser();
-  const [rerender, setRerender] = useState(false);
-
-  const reservecheck = async () => {
-    if (user) {
-      const { data, error } = await supabase
-        .from("pending_reservations")
-        .select("status")
-        .match({ user_id: user.id, hotel_name: "Sol O Cien Condo" });
-      console.log(data);
-
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].status === "pending") {
-          setAlreadyreserved(true);
-        }
-
-        if (data[i].status === "approved") {
-          setAlreadyreserved(true);
-          setAlreadyreservedd(true);
-        }
-      }
-    }
-  };
-
-  useEffect(async () => {
-    reservecheck();
-  }, []);
-
-  useEffect(() => {
-    setRerender(!rerender);
-  }, [data, estemate]);
-
-  const price = () => {
-    let price = 0;
-    const addDays = (date, days = 1) => {
-      const result = new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    };
-    const dateRange = (start, end, range = []) => {
-      if (start > end) return range;
-      const next = addDays(start, 1);
-      return dateRange(next, end, [...range, start]);
-    };
-
-    const range = dateRange(new Date(startDate), new Date(endDate));
-
-    const days = range.map((date) => date.toDateString().slice(0, 3));
-    if (days.length >= 2) {
-      days.pop();
-    }
-
-    const priceperday = [];
-
-    for (let i = 0; i < 7; i++) {
-      if (days[i] == "Fri") {
-        price = price + 500;
-      }
-      if (days[i] == "Sat") {
-        price = price + 500;
-      }
-      if (days[i] == "Mon") {
-        price = price + 400;
-      }
-      if (days[i] == "Tue") {
-        price = price + 400;
-      }
-      if (days[i] == "Wed") {
-        price = price + 400;
-      }
-      if (days[i] == "Thu") {
-        price = price + 400;
-      }
-      if (days[i] == "Sun") {
-        price = price + 400;
-      }
-    }
-
-    for (let i = 7; i < 30; i++) {
-      if (typeof days[i] === "string" || days[i] instanceof String) {
-        price = price + 300;
-      }
-    }
-    for (let i = 30; i < days.length; i++) {
-      if (typeof days[i] === "string" || days[i] instanceof String) {
-        price = price + 150;
-      }
-    }
-
-    setEstemate(price);
-
-    // if date is weekday = $400
-  };
-
-  useEffect(() => {
-    price();
-  }, [startDate, endDate]);
-
-  useEffect(async () => {
-    const response = await fetch("/api/hotel");
-    const data = await response.json();
-    setData(data);
-    // console.log(data[0].start.date)
-    // console.log(data[1].start.date)
-    // console.log(data[2].start.date)
-  }, []);
-  useEffect(async () => {
-    getdates();
-  }, [data]);
-
-  const getdates = () => {
-    let dates = [];
-
-    for (let i = 0; i < data?.length; i++) {
-      const addDays = (date, days = 1) => {
-        const result = new Date(date);
-        result.setDate(result.getDate() + days);
-        return result;
-      };
-      const startcheck = data[i].start.date?.slice(8);
-      const endcheck = data[i].end.date?.slice(8);
-
-      if (data[i].start.date === undefined) {
-        const dateRange = (start, end, range = []) => {
-          if (start > end) return range;
-          const next = addDays(start, 1);
-          return dateRange(next, end, [...range, start]);
-        };
-
-        const range = dateRange(
-          new Date(data[i].start.dateTime),
-          new Date(data[i].end.dateTime)
-        );
-
-        const wet = range.map((date) => date.toISOString().slice(0, 10));
-
-        const final = dates.concat(wet);
-
-        for (let x = 0; x < final.length; x++) {
-          const added = final[x].concat("T03:24:00");
-
-          datesarray.push(added);
-        }
-      } else if (startcheck == endcheck - 1) {
-        const wet = data[i].start.date;
-        const final = dates.concat(wet);
-        for (let x = 0; x < final.length; x++) {
-          const added = final[x].concat("T03:24:00");
-
-          datesarray.push(added);
-        }
-      } else {
-        const dateRange = (start, end, range = []) => {
-          if (start > end) return range;
-          const next = addDays(start, 1);
-          return dateRange(next, end, [...range, start]);
-        };
-        const range = dateRange(
-          new Date(data[i].start.date),
-          new Date(data[i].end.date)
-        );
-
-        const wet = range.map((date) => date.toISOString().slice(0, 10));
-        const final = dates.concat(wet);
-        final.pop();
-
-        for (let x = 0; x < final.length; x++) {
-          const added = final[x].concat("T03:24:00");
-
-          datesarray.push(added);
-        }
-      }
-
-      // const datesjon = JSON.stringify(dates[i]);
-      // const added = datesjon.concat('T03:24:00')
-      // console.log(added)
-      // console.log(dates[i])
-      // dates[i].append('')
-    }
-  };
 
   function Modal({ children, shown, close }) {
     return shown ? (
@@ -260,17 +59,6 @@ function Solocien() {
       </div>
     ) : null;
   }
-
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: "selection",
-  };
-
-  const handleSelect = (ranges) => {
-    setStartDate(ranges.selection.startDate);
-    setEndDate(ranges.selection.endDate);
-  };
 
   const focus = () => {
     setClicked(false);
@@ -950,17 +738,23 @@ function Solocien() {
             Playas de Rosarito, Predios Urbanos
           </p>
           <h1 className=" text-yellow-600 sm:hidden text-2xl font-bold ">
-            $ 400 per night
+            ${listing.pricePerNight} per night
           </h1>
+          <p className="sm:hidden text-sm font-light mt-1">
+            Up to {listing.guests} guests
+          </p>
         </div>
-        <div className="absolute hidden sm:inline-flex bottom-5 my-3 lg:right-36 right-5 z-10 ">
+        <div className="absolute hidden sm:inline-flex flex-col items-end bottom-5 my-3 lg:right-36 right-5 z-10 ">
           <h1 className=" text-yellow-600  text-2xl font-bold ">
-            $ 400 per night
+            ${listing.pricePerNight} per night
           </h1>
+          <p className="text-sm font-light mt-1 text-white">
+            Up to {listing.guests} guests
+          </p>
         </div>
       </div>
-      <div className="flex justify-between mx-auto  max-w-[750px]   ">
-        <div className="sm:justify-center sm:ml-10 ml-2 sm:flex">
+      <div className="flex justify-between items-center mx-auto max-w-[750px]">
+        <div className="sm:justify-center sm:ml-10 ml-2 sm:flex min-w-0">
           <div className=" max-w-[750px] mt-10 md:flex md:flex-row  text-gray-500">
             <div className="flex mb-2  md:mr-5 items-center">
               <AiOutlineHome className="text-3xl mr-2" />{" "}
@@ -972,7 +766,7 @@ function Solocien() {
             </div>
             <div className="flex mb-2 md:mr-5 items-center">
               <BsFillPeopleFill className="text-3xl mr-2" />{" "}
-              <h1 className="font-light"> 6 Guest</h1>
+              <h1 className="font-light"> {listing.guests} Guests</h1>
             </div>
             <div className="flex mb-2 md:mr-5 items-center">
               <GiBed className="text-3xl mr-2" />{" "}
@@ -980,60 +774,14 @@ function Solocien() {
             </div>
           </div>
         </div>
-        {/* 
-        
-        
-        }
-        
-        
-        
-        
-        
-        */}
-
-        {alreadyreserved ? (
-          <div>
-            <Link href={"/account"}>
-              <a>
-                <div className="cursor-pointer">
-                  {alreadyreservedd ? (
-                    <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                      Approved
-                    </button>
-                  ) : (
-                    <button className=" text-black text-1xl mt-10 mr-2 bg-lime-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                      Pending
-                    </button>
-                  )}
-                </div>
-              </a>
-            </Link>
-          </div>
-        ) : (
-          <div>
-            {!user ? (
-              <Link href={"/signup"}>
-                <a>
-                  <div className="cursor-pointer">
-                    <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                      Book Now!
-                    </button>
-                  </div>
-                </a>
-              </Link>
-            ) : (
-              <Link href={"/bookings"}>
-                <a>
-                  <div className="cursor-pointer">
-                    <button className=" text-white text-1xl mt-10 mr-2 bg-cyan-400 border sm:mr-10 border-white rounded-3xl  px-3 py-1 shadow-lg hover:bg-cyan-300">
-                      Book Now!
-                    </button>
-                  </div>
-                </a>
-              </Link>
-            )}
-          </div>
-        )}
+        <a
+          href={listing.bookNowUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0 mt-10 mr-2 sm:mr-10 whitespace-nowrap text-white text-xl bg-cyan-400 border border-white rounded-3xl px-4 py-1 shadow-lg hover:bg-cyan-300"
+        >
+          Book Now!
+        </a>
       </div>
       <div className=" border-b mx-10 my-10 border-gray-300  mb-8"></div>
 
@@ -1206,44 +954,6 @@ function Solocien() {
           </div>
         )}
       </div>
-      <div className="flex flex-col mt-4 items-center justify-center">
-        <h1 className="font-extralight text-2xl">Availability</h1>
-      </div>
-      <div className="border-gray-300 border-b mx-24 mb-2"></div>
-
-      <div className="flex lg:hidden mb-2 mt-2 justify-center">
-        <div className=" flex overflow-hidden w-[700px] mb-2 h-[325px] justify-center">
-          <DateRange
-            style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
-            ranges={[selectionRange]}
-            // disabledDates={[new Date(ree)]}
-            minDate={new Date()}
-            onChange={handleSelect}
-            rangeColors={["#03cffc"]}
-            disabledDates={datesarray.map((e) => new Date(e))}
-          />
-        </div>
-      </div>
-      <div className="hidden lg:flex mx-auto mb-6 mt-2 justify-center">
-        <div className=" flex overflow-hidden  w-100vw mb-2 h-[400px] justify-center">
-          <DateRangePicker
-            style={{ width: "100vw", height: "100%", maxWidth: "400px" }}
-            ranges={[selectionRange]}
-            // disabledDates={[new Date(ree)]}
-            minDate={new Date()}
-            onChange={handleSelect}
-            rangeColors={["#03cffc"]}
-            disabledDates={datesarray.map((e) => new Date(e))}
-            months={2}
-            direction="horizontal"
-          />
-        </div>
-      </div>
-      <h1 className="text-center font-light text-gray-600 mb-3">
-        Your estimated price:{" "}
-        <span className="text-lime-600 text-sm">${estemate}</span>
-      </h1>
-      <div className="border-gray-300 border-b mx-24 mb-6"></div>
       <div className="flex mb-1 mt-8 items-center justify-center">
         <IoMdPhotos className=" text-gray-500 mr-3 text-2xl" />
         <h1
@@ -1369,30 +1079,24 @@ function Solocien() {
           {priceInfo && (
             <div className="mx-10 text-gray-600 mt-3">
               <h1 className="text-sm font-semibold mb-3">
-                Price per night: <span className="font-light">$ 400</span>
+                Price per night:{" "}
+                <span className="font-light">${listing.pricePerNight}</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Price per night(7d+) : <span className="font-light">$ 250</span>
+                Guests included:{" "}
+                <span className="font-light">{listing.guests}</span>
               </h1>
               <h1 className="text-sm font-semibold mb-3">
-                Price per night(30d+): <span className="font-light">$ 150</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Price per weekend (Friday and Saturday):{" "}
-                <span className="font-light">$ 500</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Extra Price per Guest: <span className="font-light">$ 40</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Cleaning Fee:{" "}
-                <span className="font-light">$ 65 Single Fee</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                City Tax fee: <span className="font-light">$ 3 Single Fee</span>
-              </h1>
-              <h1 className="text-sm font-semibold mb-3">
-                Minimum no of nights:<span className="font-light"> 1</span>
+                Availability and final pricing are shown when you{" "}
+                <a
+                  href={listing.bookNowUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-600 underline"
+                >
+                  Book Now
+                </a>
+                .
               </h1>
               <h1 className="text-sm font-semibold mb-3">
                 Allow more guest than the capacity:

@@ -2,16 +2,9 @@
 
 
 import Head from 'next/head'
-import { useEffect } from 'react'
 import Banner from "../components/Banner"
-import SupportEngine from "../components/ChatEngine/SupportEngine"
 
-
-
-// h
 export default function Home() {
- 
-  // test 
   return (
     <div className="">
       <Head>
@@ -29,13 +22,7 @@ export default function Home() {
         <meta property="og:site_name" content="Sol O Cien Adventures" />
       </Head>
 
-     
       <Banner />
-      <SupportEngine />
-
-
-
-      
     </div>
   )
 }
