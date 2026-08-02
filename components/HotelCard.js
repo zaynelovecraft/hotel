@@ -31,7 +31,8 @@ function HotelCard({ hotel }) {
                 />
                 <div className="absolute z-10 font-bold text-white left-3 bottom-3">
                   <h1 className="text-2xl  p-1 ">
-                    $ 400/<span className="text-xs">night</span>
+                    ${hotel.pricePerNight}/
+                    <span className="text-xs">night</span>
                   </h1>
                 </div>
               </div>
