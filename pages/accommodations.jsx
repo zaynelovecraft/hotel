@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Head from "next/head";
 import HotelCard from "../components/HotelCard";
-import accommodations from "../config/accommodations";
+import listingConfig from "../config/accommodations";
 
 const hotels = [
   {
@@ -10,14 +10,14 @@ const hotels = [
     location: "de Rosarito, Predios Urbanos",
     href: "/Solocien",
     img: "/images/condos/sol57.jpeg",
-    pricePerNight: accommodations.solocien.pricePerNight,
+    pricePerNight: listingConfig.solocien.pricePerNight,
   },
   {
     name: "Estrella Sol-O-Cien Condo",
     location: "de Rosarito, Predios Urbanos",
     href: "/estrella",
     img: "/images/condos/est1.jpeg",
-    pricePerNight: accommodations.estrella.pricePerNight,
+    pricePerNight: listingConfig.estrella.pricePerNight,
   },
 ];
 function accommodations() {
